@@ -6,6 +6,7 @@
       <w>execpp</w>
       <w>getcwd</w>
       <w>questiondir</w>
+      <w>sendgrid</w>
       <w>uploaddir</w>
       <w>uploadfile</w>
     </words>
