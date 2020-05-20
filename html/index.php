@@ -19,3 +19,7 @@ try {
 } catch (Exception $e) {
     echo 'Caught exception: ' . $e->getMessage() . "\n";
 }
+?>
+<?php
+require("../templates/footer.php");
+?>
