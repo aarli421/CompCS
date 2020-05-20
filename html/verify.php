@@ -7,7 +7,7 @@ if (!$db) {
 }
 
 if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
-    $sth = $db->prepare("SELECT `email`, `hash`, `active` FROM `users` WHERE `email`=? AND `hash`=? AND `active`=0");
+    $sth = $db->prepare("SELECT `username`, `email`, `hash`, `active` FROM `users` WHERE `email`=? AND `hash`=? AND `active`=0");
     $sth->execute([$_GET['email'], $_GET['hash']]);
     $passArr = $sth->fetchAll();
 
@@ -19,6 +19,9 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
         } else {
             $sth = $db->prepare("UPDATE users SET active=1 WHERE email=? AND hash=? AND active=0");
             $sth->execute([$_GET['email'], $_GET['hash']]);
+
+            $username = $passArr[0]['username'];
+            `mkdir ../users/$username`;
             echo "Account Verified!";
         }
     }
