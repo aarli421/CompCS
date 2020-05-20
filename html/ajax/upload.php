@@ -8,8 +8,8 @@ $ajaxDir = '../../ajax/';
 $name = explode(".",  basename($_FILES['fileInput']['name']));
 $fileType = $name[1];
 
-$uploadFile = $uploadDir . $questionName . $fileType;
-$fileName = $questionName . $fileType;
+$fileName = $questionName . '.' . $fileType;
+$uploadFile = $uploadDir . $fileName;
 
 $javaName = $questionName;
 $cppName = $questionName . ".execpp";
