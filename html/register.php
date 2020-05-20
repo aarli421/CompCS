@@ -1,5 +1,6 @@
 <?php
 require('../templates/header.php');
+require '../vendor/autoload.php';
 
 $db = setupDb();
 if (!$db) {
@@ -22,30 +23,53 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     if (preg_match($pattern, $email) === 1) {
         $host = $_SERVER["HTTP_HOST"];
         $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+        $verLink = 'http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash;
 
-        $to = $email; // Send email to our user
-        $subject = 'SignUp | Verification'; // Give the email a subject
-        $message = '
-            Thanks for signing up!
-            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-             
-            ------------------------
-            Username: '. $username .'
-            ------------------------
-             
-            Please click this link to activate your account:
-            http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash; // Our message above including the link
+        $handle = fopen('../private/keys.csv', 'r');
+        $data = fgetcsv($handle, 5, ',');
 
-        $headers = 'From:noreply@34.227.148.166' . "\r\n"; // Set from headers
-
-        $success = mail($to, $subject, $message, $headers);
-        if (!$success) {
-            echo "Mail failed!";
-            $errorMessage = error_get_last()['message'];
-            echo $errorMessage;
-        } else {
-            echo "Mail has went through!";
+        $email = new \SendGrid\Mail\Mail();
+        $email->setFrom("noreply@compcs.codes", "CompCS");
+        $email->setSubject("Verify your CompCS Account");
+        $email->addTo("aaron.linear@gmail.com", "Example User");
+        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        $email->addContent(
+            "text/html", "<strong>and easy to do anywhere, even with PHP</strong><br>
+                                      <a href=$verLink>Verify your Email</a>"
+        );
+        $sendgrid = new \SendGrid($data[1]);
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: ' . $e->getMessage() . "\n";
         }
+//
+//        $to = $email; // Send email to our user
+//        $subject = 'SignUp | Verification'; // Give the email a subject
+//        $message = '
+//            Thanks for signing up!
+//            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+//
+//            ------------------------
+//            Username: '. $username .'
+//            ------------------------
+//
+//            Please click this link to activate your account:
+//            http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash; // Our message above including the link
+//
+//        $headers = 'From:noreply@34.227.148.166' . "\r\n"; // Set from headers
+//
+//        $success = mail($to, $subject, $message, $headers);
+//        if (!$success) {
+//            echo "Mail failed!";
+//            $errorMessage = error_get_last()['message'];
+//            echo $errorMessage;
+//        } else {
+//            echo "Mail has went through!";
+//        }
     } else {
         echo "Invalid email!";
     }
