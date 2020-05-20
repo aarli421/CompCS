@@ -1,0 +1,62 @@
+<?php
+require('../templates/header.php');
+
+$db = setupDb();
+if (!$db) {
+    echo "Database could not load";
+}
+
+if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && hasValue($_POST['signUpEmail'])) {
+    $email = $_POST['signUpEmail'];
+    $username = $_POST['signUpUsername'];
+    $hashedPw = hash('sha256', $_POST['signUpPassword']);
+    $hash = md5(rand(0, 10000));
+
+    // A note on the regex pattern used below (from the PHP source). It looks like there is some copyright on it of Michael Rushton. As stated: "Feel free to use and redistribute this code. But please keep this copyright notice."
+    $pattern = '/^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){255,})(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){65,}@)(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22))(?:\\.(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\\]))$/iD';
+
+    $sth = $db->prepare("INSERT INTO `users` (`username`, `password`, `email`, `hash`) VALUES (?, ?, ?, ?)");
+    $sth->execute([$username, $hashedPw, $email, $hash]);
+    echo "Please verify your email";
+
+    if (preg_match($pattern, $email) === 1) {
+        $host = $_SERVER["HTTP_HOST"];
+        $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+
+        $to = $email; // Send email to our user
+        $subject = 'SignUp | Verification'; // Give the email a subject
+        $message = '
+            Thanks for signing up!
+            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+             
+            ------------------------
+            Username: '. $username .'
+            ------------------------
+             
+            Please click this link to activate your account:
+            http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash; // Our message above including the link
+
+        $headers = 'From:noreply@34.227.148.166' . "\r\n"; // Set from headers
+
+        $success = mail($to, $subject, $message, $headers);
+        if (!$success) {
+            echo "Mail failed!";
+            $errorMessage = error_get_last()['message'];
+            echo $errorMessage;
+        } else {
+            echo "Mail has went through!";
+        }
+    } else {
+        echo "Invalid email!";
+    }
+}
+?>
+<form method="post" action="register.php">
+    <input name="signUpEmail" type="email"> <br>
+    <input name="signUpUsername" type="text"> <br>
+    <input name="signUpPassword" type="password"> <br>
+    <button type="submit">Sign Up</button>
+</form>
+<?php
+require('../templates/footer.php');
+?>
