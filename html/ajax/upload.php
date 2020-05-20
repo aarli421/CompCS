@@ -3,7 +3,6 @@ session_start();
 $uploadDir = '../users/' . $_SESSION['user'] . '/';
 $questionName = $_POST['questionName'];
 $questionDir = '../questions/' . $questionName;
-echo $questionDir;
 $ajaxDir = '../../ajax/';
 $fileName = basename($_FILES['fileInput']['name']);
 $uploadFile = $uploadDir . $fileName;
@@ -20,9 +19,9 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
     echo "File is valid, and was successfully uploaded.\n";
 
     $ioDirAmount = `ls $questionDir | wc -l`;
-    echo "IO Dir:" . $ioDirAmount;
-    $testAmount = $ioDirAmount / 2;
-    echo "Test:" . $testAmount . "<br>";
+    //echo "IO Dir:" . $ioDirAmount;
+    $testAmount = ((int) $ioDirAmount) / 2;
+    //echo "Test:" . $testAmount . "<br>";
 
     chdir($uploadDir);
     if ($fileType == "py") {
@@ -34,7 +33,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
                     break;
                 }
 
-                echo $symbol;
+                echo $symbol . "<br>";
             }
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
