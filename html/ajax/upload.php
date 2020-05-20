@@ -142,7 +142,11 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
     } else {
         $output = `[ -s {$questionName}.out ] || echo "empty"`;
         if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
-            return array('symbol' => 'E');
+            if ($i == 1) {
+                return array('symbol' => 'X', 'stdout' => $result['output']);
+            } else {
+                return array('symbol' => 'E');
+            }
         } else {
             $contents = `cat {$questionName}.out`;
             return array('symbol' => 'X', 'stdout' => $result['output'], 'fout' => $contents);
