@@ -1,6 +1,6 @@
 <?php
 
-$uploadDir = '../uploads/' . $_SESSION['user'];
+$uploadDir = '../../users/' . $_SESSION['user'];
 $questionDir = '../questions/' . $_POST['questionName'];
 $ajaxDir = '../ajax/';
 $questionName = 'main';
@@ -18,7 +18,7 @@ echo '<pre>';
 if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
     echo "File is valid, and was successfully uploaded.\n";
 
-    $ioDirAmount = `ls ../questions/ | wc -l`;
+    $ioDirAmount = `ls $questionDir | wc -l`;
     echo "IO Dir:" . $ioDirAmount;
     $testAmount = $ioDirAmount / 2;
     echo "Test:" . $testAmount . "<br>";
