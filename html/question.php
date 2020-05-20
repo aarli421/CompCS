@@ -29,6 +29,10 @@ require("../templates/header.php");
                     $("#dialogDiv").html(data);
                     stopUpload();
                 },
+                error: function(data) {
+                    $("#dialogDiv").html("Error happened");
+                    stopUpload();
+                },
                 cache: false,
                 contentType: false,
                 processData: false

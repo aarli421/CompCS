@@ -115,8 +115,6 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
         throw new \Exception("Could not move input cases!");
     }
 
-//    `touch {$questionName}.out`;
-//    `>{$questionName}.out`;
     `rm {$questionName}.out`;
 
     $result = exec_timeout($cmd, $timeout);
