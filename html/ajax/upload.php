@@ -30,7 +30,8 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
     if ($fileType == "py") {
         try {
             for ($i = 1; $i <= $testAmount; $i++) {
-                $symbol = run('../' . $questionDir, $questionName, $i, "python3 $fileName", 4);
+                $runResults = run('../' . $questionDir, $questionName, $i, "python3 $fileName", 4);
+                $symbol = $runResults['symbol'];
 
                 if ($i == 1 && $symbol != '*') {
                     break;
