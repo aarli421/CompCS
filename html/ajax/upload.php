@@ -1,5 +1,7 @@
 <?php
 session_start();
+require '../../templates/helper.php';
+
 $uploadDir = '../users/' . $_SESSION['user'] . '/';
 $questionName = $_POST['questionName'];
 $questionDir = '../questions/' . $questionName;
