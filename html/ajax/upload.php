@@ -1,9 +1,10 @@
 <?php
-
+session_start();
 $uploadDir = '../../users/' . $_SESSION['user'];
-$questionDir = '../questions/' . $_POST['questionName'];
+$questionName = $_POST['questionName'];
+$questionDir = '../questions/' . $questionName;
+echo $questionDir;
 $ajaxDir = '../ajax/';
-$questionName = 'main';
 $fileName = basename($_FILES['fileInput']['name']);
 $uploadFile = $uploadDir . $fileName;
 

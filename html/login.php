@@ -1,5 +1,6 @@
 <?php
 require("../templates/header.php");
+session_start();
 
 $db = setupDb();
 if (!$db) {
