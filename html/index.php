@@ -2,6 +2,8 @@
 require("../templates/header.php");
 require("../libs/sendgrid-php/sendgrid-php.php");
 
+echo "Hello world!";
+
 $email = new \SendGrid\Mail\Mail();
 $email->setFrom("noreply@compcs.codes", "Example User");
 $email->setSubject("Sending with SendGrid is Fun");
