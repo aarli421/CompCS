@@ -89,10 +89,15 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
             if ($i == 1 && $symbol != '*') {
                 echo "Did not pass because outcome was " . $symbol . "<br>";
                 if ($symbol == 'X') {
-                    echo "The following was printed in stdout <br>";
-                    echo $runResults['stdout'];
-                    echo "The following was printed in fout <br>";
-                    echo $runResults['fout'];
+                    if (hasValue($runResults['stdout'])) {
+                        echo "The following was printed in stdout <br>";
+                        echo $runResults['stdout'];
+                    }
+
+                    if (hasValue($runResults['fout'])) {
+                        echo "The following was printed in fout <br>";
+                        echo $runResults['fout'];
+                    }
                 }
                 break;
             }
