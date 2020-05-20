@@ -1,6 +1,6 @@
 <?php
 session_start();
-$uploadDir = '../../users/' . $_SESSION['user'] . '/';
+$uploadDir = '../users/' . $_SESSION['user'] . '/';
 $questionName = $_POST['questionName'];
 $questionDir = '../questions/' . $questionName . '/';
 echo $questionDir;
