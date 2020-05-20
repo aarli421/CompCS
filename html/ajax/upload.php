@@ -71,37 +71,6 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 
 echo "</pre>";
 
-function copyCase($questionDir, $questionName, $i) {
-    $output = `cp -f {$questionDir}/{$i}.in {$questionName}.in`;
-    if (!empty($output)) {
-        throw new \Exception("Could not move input cases!");
-    }
-
-//    `touch {$questionName}.out`;
-//    `>{$questionName}.out`;
-    `rm {$questionName}.out`;
-}
-
-function checkCase($questionDir, $questionName, $i) {
-    $output = `test -f {$questionName}.out || echo "does not exist"`;
-    if(str_replace(array("\n", "\r"), '', $output) == 'does not exist') {
-        return array('symbol' => 'M', 'output' => 'Missing file!');
-    }
-
-    $output = `cmp -s {$questionDir}/{$i}.out {$questionName}.out && echo "alike"`;
-    if(str_replace(array("\n", "\r"), '', $output) == 'alike') {
-        return array('symbol' => '*', 'output' => 'Correct');
-    } else {
-        $output = `[ -s {$questionName}.out ] || echo "empty"`;
-        if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
-            return array('symbol' => 'E', 'output' => 'Empty file!');
-        } else {
-            $contents = `cat {$questionName}.out`;
-            return array('symbol' => 'X', 'output' => $contents);
-        }
-    }
-}
-
 function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount) {
     $result = exec_timeout($compCmd, $compileTimeout);
     echo $result['output'];
@@ -119,7 +88,12 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 
             if ($i == 1 && $symbol != '*') {
                 echo "Did not pass because outcome was " . $symbol . "<br>";
-                if ($symbol == 'X') echo $runResults['output'];
+                if ($symbol == 'X') {
+                    echo "The following was printed in stdout <br>";
+                    echo $runResults['stdout'];
+                    echo "The following was printed in fout <br>";
+                    echo $runResults['fout'];
+                }
                 break;
             }
 
@@ -129,7 +103,14 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 }
 
 function run($questionDir, $questionName, $i, $cmd, $timeout) {
-    copyCase($questionDir, $questionName, $i);
+    $output = `cp -f {$questionDir}/{$i}.in {$questionName}.in`;
+    if (!empty($output)) {
+        throw new \Exception("Could not move input cases!");
+    }
+
+//    `touch {$questionName}.out`;
+//    `>{$questionName}.out`;
+    `rm {$questionName}.out`;
 
     $result = exec_timeout($cmd, $timeout);
 
@@ -143,7 +124,23 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
         }
     }
 
-    return checkCase($questionDir, $questionName, $i);
+    $output = `test -f {$questionName}.out || echo "does not exist"`;
+    if(str_replace(array("\n", "\r"), '', $output) == 'does not exist') {
+        return array('symbol' => 'M');
+    }
+
+    $output = `cmp -s {$questionDir}/{$i}.out {$questionName}.out && echo "alike"`;
+    if(str_replace(array("\n", "\r"), '', $output) == 'alike') {
+        return array('symbol' => '*');
+    } else {
+        $output = `[ -s {$questionName}.out ] || echo "empty"`;
+        if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
+            return array('symbol' => 'E');
+        } else {
+            $contents = `cat {$questionName}.out`;
+            return array('symbol' => 'X', 'stdout' => $result['output'], 'fout' => $contents);
+        }
+    }
 }
 
 function exec_timeout($cmd, $timeout) {
