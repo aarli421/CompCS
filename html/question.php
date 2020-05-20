@@ -5,6 +5,7 @@ require("../templates/header.php");
     function startUpload(){
         $(function() {
             $('#upload_process').css("display", "inline");
+            $('#dialogDiv').html('');
         });
     }
 
