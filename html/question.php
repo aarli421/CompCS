@@ -41,7 +41,7 @@ require("../templates/header.php");
 <div id="dialogDiv"></div>
 <form id="fileSubmission" method="post" enctype="multipart/form-data">
     <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-    <input type="hidden" name="questionName" />
+    <input type="hidden" name="questionName" value="<?php echo $_GET['questionName'] ?>" />
     Send this file: <input name="fileInput" type="file" />
     <input name="fileSubmit" type="submit" value="Send File" />
 </form>

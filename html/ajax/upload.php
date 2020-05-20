@@ -1,7 +1,7 @@
 <?php
 
-$uploadDir = '../uploads/';
-$questionDir = '../questions/';
+$uploadDir = '../uploads/' . $_SESSION['user'];
+$questionDir = '../questions/' . $_POST['questionName'];
 $ajaxDir = '../ajax/';
 $questionName = 'main';
 $fileName = basename($_FILES['fileInput']['name']);
