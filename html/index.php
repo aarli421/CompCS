@@ -1,6 +1,6 @@
 <?php
-require("../templates/header.php");
-require("../libs/sendgrid-php/sendgrid-php.php");
+require "../templates/header.php";
+require 'vendor/autoload.php';
 
 echo "Hello world!";
 
