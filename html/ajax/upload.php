@@ -85,18 +85,19 @@ function copyCase($questionDir, $questionName, $i) {
 function checkCase($questionDir, $questionName, $i) {
     $output = `test -f {$questionName}.out || echo "does not exist"`;
     if(str_replace(array("\n", "\r"), '', $output) == 'does not exist') {
-        return 'M';
+        return array('symbol' => 'M', 'output' => 'Missing file!');
     }
 
     $output = `cmp -s {$questionDir}/{$i}.out {$questionName}.out && echo "alike"`;
     if(str_replace(array("\n", "\r"), '', $output) == 'alike') {
-        return '*';
+        return array('symbol' => '*', 'output' => 'Correct');
     } else {
         $output = `[ -s {$questionName}.out ] || echo "empty"`;
         if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
-            return 'E';
+            return array('symbol' => 'E', 'output' => 'Empty file!');
         } else {
-            return 'X';
+            $contents = `cat {$questionName}.out`;
+            return array('symbol' => 'X', 'output' => $contents);
         }
     }
 }
@@ -104,22 +105,26 @@ function checkCase($questionDir, $questionName, $i) {
 function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount) {
     $result = exec_timeout($compCmd, $compileTimeout);
     echo $result['output'];
-    echo 'Compiled in ' . $result['time'] . "<br>";
 
     if (!empty($result['errors'])) {
+        echo 'Compilation failed!' . '<br>';
         echo $result['errors'];
-        return;
-    }
+        echo '<br>';
+    } else {
+        echo 'Compiled in ' . $result['time'] . '<br>';
 
-    for ($i = 1; $i <= $testAmount; $i++) {
-        $symbol = run($questionDir, $questionName, $i, $runCmd, $runTimeout);
+        for ($i = 1; $i <= $testAmount; $i++) {
+            $runResults = run($questionDir, $questionName, $i, $runCmd, $runTimeout);
+            $symbol = $runResults['symbol'];
 
-        if ($i == 1 && $symbol != '*') {
-            echo "Did not pass because outcome was " . $symbol . "!";
-            break;
+            if ($i == 1 && $symbol != '*') {
+                echo "Did not pass because outcome was " . $symbol . "<br>";
+                if ($symbol == 'X') echo $runResults['output'];
+                break;
+            }
+
+            echo $symbol . "<br>";
         }
-
-        echo $symbol . "<br>";
     }
 }
 
@@ -129,12 +134,11 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
     $result = exec_timeout($cmd, $timeout);
 
     if (!empty($result['errors'])) {
-        return '!';
+        return array('symbol' => '!', 'output' => $result['errors']);
     } else {
         if ($result['isTimedOut']) {
-            return 't';
+            return array('symbol' => 't');
         } else {
-            echo $result['output'];
             echo 'Ran in ' . $result['time'];
         }
     }
