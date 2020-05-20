@@ -4,15 +4,16 @@ $uploadDir = '../users/' . $_SESSION['user'] . '/';
 $questionName = $_POST['questionName'];
 $questionDir = '../questions/' . $questionName;
 $ajaxDir = '../../ajax/';
-$fileName = basename($_FILES['fileInput']['name']);
-$uploadFile = $uploadDir . $fileName;
 
-$name = explode(".", $fileName);
+$name = explode(".",  basename($_FILES['fileInput']['name']));
 $fileType = $name[1];
 
-$javaName = $name[0];
-$cppName = $name[0] . ".execpp";
-$cName = $name[0] . ".exec";
+$uploadFile = $uploadDir . $questionName . $fileType;
+$fileName = $questionName . $fileType;
+
+$javaName = $questionName;
+$cppName = $questionName . ".execpp";
+$cName = $questionName . ".exec";
 
 echo '<pre>';
 if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
