@@ -127,7 +127,7 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
         if ($result['isTimedOut']) {
             return array('symbol' => 't');
         } else {
-            echo 'Ran in ' . $result['time'] . "<br>";
+            echo 'Test case #' . $i . ' ran in ' . $result['time'] . "<br>";
         }
     }
 
