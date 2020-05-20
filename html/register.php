@@ -31,10 +31,10 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
         $email = new \SendGrid\Mail\Mail();
         $email->setFrom("noreply@compcs.codes", "CompCS");
         $email->setSubject("Verify your CompCS Account");
-        $email->addTo("aaron.linear@gmail.com", "Example User");
-        $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+        $email->addTo("aaron.linear@gmail.com", "CompCS Codes User");
         $email->addContent(
-            "text/html", "<strong>and easy to do anywhere, even with PHP</strong><br>
+            "text/html", "You have recently created an account with an username of $username<br>
+                                      If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
                                       <a href=$verLink>Verify your Email</a>"
         );
         $sendgrid = new \SendGrid($data[1]);
