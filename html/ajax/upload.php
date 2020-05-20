@@ -4,7 +4,7 @@ $uploadDir = '../users/' . $_SESSION['user'] . '/';
 $questionName = $_POST['questionName'];
 $questionDir = '../questions/' . $questionName;
 echo $questionDir;
-$ajaxDir = '../ajax/';
+$ajaxDir = '../../ajax/';
 $fileName = basename($_FILES['fileInput']['name']);
 $uploadFile = $uploadDir . $fileName;
 
@@ -28,7 +28,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
     if ($fileType == "py") {
         try {
             for ($i = 1; $i <= $testAmount; $i++) {
-                $symbol = run($questionDir, $questionName, $i, "python3 $fileName", 4);
+                $symbol = run('../' . $questionDir, $questionName, $i, "python3 $fileName", 4);
 
                 if ($i == 1 && $symbol != '*') {
                     break;
@@ -41,19 +41,19 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
         }
     } else if ($fileType == "java") {
         try {
-            full_run($questionDir, $questionName, "javac $fileName", "java $javaName", 30, 4, $testAmount);
+            full_run('../' . $questionDir, $questionName, "javac $fileName", "java $javaName", 30, 4, $testAmount);
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
         }
     } else if ($fileType == "cpp") {
         try {
-            full_run($questionDir, $questionName, "g++ -o $cppName $fileName", "./$cppName", 30, 2, $testAmount);
+            full_run('../' . $questionDir, $questionName, "g++ -o $cppName $fileName", "./$cppName", 30, 2, $testAmount);
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
         }
     } else if ($fileType == "c") {
         try {
-            full_run($questionDir, $questionName, "gcc -o $cName $fileName", "./$cName", 30, 2, $testAmount);
+            full_run('../' . $questionDir, $questionName, "gcc -o $cName $fileName", "./$cName", 30, 2, $testAmount);
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
         }
