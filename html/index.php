@@ -11,10 +11,7 @@ $email->setSubject("Sending with SendGrid is Fun");
 $email->addTo("aaron.linear@gmail.com", "Example User");
 $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
-    "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
-);
-$email->addContent(
-    "text/html", "<a href='https://www.google.com'>Verify your Email</a>"
+    "text/html", "<strong>and easy to do anywhere, even with PHP</strong> <a href='https://www.google.com'>Verify your Email</a>"
 );
 $sendgrid = new \SendGrid($data[1]);
 try {
