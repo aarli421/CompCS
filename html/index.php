@@ -2,8 +2,6 @@
 require '../templates/header.php';
 require '../vendor/autoload.php';
 
-echo "Hello world!";
-
 $email = new \SendGrid\Mail\Mail();
 $email->setFrom("noreply@compcs.codes", "Example User");
 $email->setSubject("Sending with SendGrid is Fun");
@@ -12,7 +10,6 @@ $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
-echo "Hello World";
 $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
 echo getenv('SENDGRID_API_KEY');
 try {
