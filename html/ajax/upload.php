@@ -106,6 +106,11 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
     echo $result['output'];
     echo 'Compiled in ' . $result['time'] . "<br>";
 
+    if (!empty($result['errors'])) {
+        echo $result['errors'];
+        return;
+    }
+
     for ($i = 1; $i <= $testAmount; $i++) {
         $symbol = run($questionDir, $questionName, $i, $runCmd, $runTimeout);
 
