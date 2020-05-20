@@ -2,6 +2,9 @@
 require '../templates/header.php';
 require '../vendor/autoload.php';
 
+$handle = fopen('../private/keys.csv', 'r');
+$data = fgetcsv($handle, 5, ',');
+
 $email = new \SendGrid\Mail\Mail();
 $email->setFrom("noreply@compcs.codes", "Example User");
 $email->setSubject("Sending with SendGrid is Fun");
@@ -10,8 +13,7 @@ $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
 $email->addContent(
     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 );
-$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-echo getenv('SENDGRID_API_KEY');
+$sendgrid = new \SendGrid($data[1]);
 try {
     $response = $sendgrid->send($email);
     print $response->statusCode() . "\n";
