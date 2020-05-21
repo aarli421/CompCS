@@ -18,10 +18,10 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 
     $sql = "
     START TRANSACTION;
-    SELECT `username` FROM `users` WHERE `username`=?;";
+    SELECT `username`, `email` FROM `users` WHERE `username`=? OR `email`=?;";
 
     $sth = $db->prepare($sql);
-    $sth->execute([$username]);
+    $sth->execute([$username, $email]);
     $passArr = $sth->fetchAll();
 
     if (empty($passArr)) {
@@ -29,6 +29,8 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
         COMMIT;";
         $sth = $db->prepare($sql);
         $sth->execute();
+
+        echo "There is already an account logged with the username/email";
     } else {
         $sql = "
         INSERT INTO `users` (`username`, `password`, `email`, `hash`) VALUES (?, ?, ?, ?);
