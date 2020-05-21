@@ -1,7 +1,7 @@
 <?php
 require '../templates/header.php';
 session_start();
-echo $_SESSION['user'];
+echo $_SESSION['user'] . "<br>";
 
 $db = setupDb();
 if (!$db) {
@@ -11,6 +11,10 @@ if (!$db) {
 $sth = $db->prepare("SELECT * FROM `questions`");
 $sth->execute();
 $passArr = $sth->fetchAll();
-print_r($passArr);
+
+foreach ($passArr as $value) {
+    echo "Name: " . $value['name'] . "<br>";
+    echo "Difficulty: " . $value['difficulty'] . "<br>";
+}
 
 require '../templates/footer.php';
