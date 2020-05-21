@@ -50,18 +50,20 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             $email = new \SendGrid\Mail\Mail();
             $email->setFrom("noreply@compcs.codes", "CompCS");
             $email->setSubject("Verify your CompCS Account");
-            $email->addTo("wonderfulman506406@gmail.com", "CompCS Codes User");
+            $email->addTo("$email", "CompCS Codes User");
             $email->addContent(
-                "text/html", "You have recently created an account with an username of $username<br>
+                "text/html", "You have recently created an account on compcs.codes with an username of $username<br>
                                   If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
                                   <a href=$verLink>Verify your Email</a>"
             );
             $sendgrid = new \SendGrid($data[1]);
             try {
                 $response = $sendgrid->send($email);
-                print $response->statusCode() . "\n";
-                print_r($response->headers());
-                print $response->body() . "\n";
+                if ($response->statusCode() == 202) {
+                    echo "Mail has sent!";
+                } else {
+                    echo "Mail has an error!";
+                }
             } catch (Exception $e) {
                 echo 'Caught exception: ' . $e->getMessage() . "\n";
             }
