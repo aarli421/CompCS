@@ -19,15 +19,15 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     $sql = "
     START TRANSACTION;
     INSERT INTO `users` (`username`, `password`, `email`, `hash`)
-    SELECT * FROM (SELECT ?, ?, ?, ?) AS temp 
-    WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;
+    SELECT * FROM (SELECT $username, $hashedPw, $email, $hash) AS temp 
+    WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=$username OR `email`=$email) LIMIT 1;
     COMMIT;";
     $sth = $db->prepare($sql);
     if (!$sth) {
         print_r($db->errorInfo());
         die();
     }
-    $sth->execute([$username, $hashedPw, $email, $hash, $username, $email]);
+    $sth->execute();
     echo "Please verify your email";
 
     if (preg_match($pattern, $email) === 1) {
