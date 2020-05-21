@@ -20,9 +20,13 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     START TRANSACTION;
     SELECT `username`, `email` FROM `users` WHERE `username`=? OR `email`=?;";
 
-    $sth = $db->prepare($sql);
-    $sth->execute([$username, $email]);
-    $passArr = $sth->fetchAll();
+    try {
+        $sth = $db->prepare($sql);
+        $sth->execute([$username, $email]);
+        $passArr = $sth->fetchAll();
+    } catch (Exception $e) {
+        echo $e;
+    }
 
     if (empty($passArr)) {
         $sql = "
