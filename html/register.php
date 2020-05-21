@@ -22,6 +22,8 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1");
     $sth->execute([$username, $email]);
     $passArr = $sth->fetchAll();
+    print_r($passArr);
+
     if ($passArr[0] == 0) {
         $sql = "
         INSERT INTO `users` (`username`, `password`, `email`, `hash`)
