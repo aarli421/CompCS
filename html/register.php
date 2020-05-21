@@ -25,6 +25,10 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     ) LIMIT 1;
     COMMIT;";
     $sth = $db->prepare($sql);
+    if (!$sth) {
+        print_r($db->errorInfo());
+        die();
+    }
     $sth->execute([$username, $hashedPw, $email, $hash, $username, $email]);
     echo "Please verify your email";
 
