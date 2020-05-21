@@ -19,7 +19,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     $sth = $db->prepare("START TRANSACTION");
     $sth->execute();
 
-    $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `users` WHERE `username`=? OR `email`=?)");
+    $sth = $db->prepare("SELECT * FROM `users` WHERE `username`=? OR `email`=?");
     $sth->execute();
     print_r($sth->fetchAll());
 
