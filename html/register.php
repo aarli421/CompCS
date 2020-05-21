@@ -50,7 +50,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             $email = new \SendGrid\Mail\Mail();
             $email->setFrom("noreply@compcs.codes", "CompCS");
             $email->setSubject("Verify your CompCS Account");
-            $email->addTo($email, "CompCS Codes User");
+            $email->addTo("wonderfulman506406@gmail.com", "CompCS Codes User");
             $email->addContent(
                 "text/html", "You have recently created an account with an username of $username<br>
                                   If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
