@@ -16,36 +16,53 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     // A note on the regex pattern used below (from the PHP source). It looks like there is some copyright on it of Michael Rushton. As stated: "Feel free to use and redistribute this code. But please keep this copyright notice."
     $pattern = '/^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){255,})(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){65,}@)(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22))(?:\\.(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|(?:\\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\\]))$/iD';
 
-    $sth = $db->prepare("INSERT INTO `users` (`username`, `password`, `email`, `hash`) VALUES (?, ?, ?, ?)");
-    $sth->execute([$username, $hashedPw, $email, $hash]);
-    echo "Please verify your email";
+    $sql = "
+    START TRANSACTION;
+    SELECT `username` FROM `users` WHERE `username`=?;";
 
-    if (preg_match($pattern, $email) === 1) {
-        $host = $_SERVER["HTTP_HOST"];
-        $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-        $verLink = 'http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash;
+    $sth = $db->prepare($sql);
+    $sth->execute([$username]);
+    $passArr = $sth->fetchAll();
 
-        $handle = fopen('../private/keys.csv', 'r');
-        $data = fgetcsv($handle, 5, ',');
+    if (empty($passArr)) {
+        $sql = "
+        COMMIT;";
+        $sth = $db->prepare($sql);
+        $sth->execute();
+    } else {
+        $sql = "
+        INSERT INTO `users` (`username`, `password`, `email`, `hash`) VALUES (?, ?, ?, ?);
+        COMMIT;";
+        $sth = $db->prepare($sql);
+        $sth->execute([$username, $hashedPw, $email, $hash]);
+        echo "Please verify your email";
 
-        $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("noreply@compcs.codes", "CompCS");
-        $email->setSubject("Verify your CompCS Account");
-        $email->addTo("aaron.linear@gmail.com", "CompCS Codes User");
-        $email->addContent(
-            "text/html", "You have recently created an account with an username of $username<br>
+        if (preg_match($pattern, $email) === 1) {
+            $host = $_SERVER["HTTP_HOST"];
+            $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+            $verLink = 'http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash;
+
+            $handle = fopen('../private/keys.csv', 'r');
+            $data = fgetcsv($handle, 5, ',');
+
+            $email = new \SendGrid\Mail\Mail();
+            $email->setFrom("noreply@compcs.codes", "CompCS");
+            $email->setSubject("Verify your CompCS Account");
+            $email->addTo("aaron.linear@gmail.com", "CompCS Codes User");
+            $email->addContent(
+                "text/html", "You have recently created an account with an username of $username<br>
                                       If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
                                       <a href=$verLink>Verify your Email</a>"
-        );
-        $sendgrid = new \SendGrid($data[1]);
-        try {
-            $response = $sendgrid->send($email);
-            print $response->statusCode() . "\n";
-            print_r($response->headers());
-            print $response->body() . "\n";
-        } catch (Exception $e) {
-            echo 'Caught exception: ' . $e->getMessage() . "\n";
-        }
+            );
+            $sendgrid = new \SendGrid($data[1]);
+            try {
+                $response = $sendgrid->send($email);
+                print $response->statusCode() . "\n";
+                print_r($response->headers());
+                print $response->body() . "\n";
+            } catch (Exception $e) {
+                echo 'Caught exception: ' . $e->getMessage() . "\n";
+            }
 //
 //        $to = $email; // Send email to our user
 //        $subject = 'SignUp | Verification'; // Give the email a subject
@@ -70,8 +87,9 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 //        } else {
 //            echo "Mail has went through!";
 //        }
-    } else {
-        echo "Invalid email!";
+        } else {
+            echo "Invalid email!";
+        }
     }
 }
 ?>
