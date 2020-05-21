@@ -18,84 +18,40 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 
     $sql = "
     START TRANSACTION;
-    SELECT `username`, `email` FROM `users` WHERE `username`=? OR `email`=?;";
+    INSERT INTO `users` (`username`, `password`, `email`, `hash`) VALUES (?, ?, ?, ?) WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?);
+    COMMIT;";
+    $sth = $db->prepare($sql);
+    $sth->execute([$username, $hashedPw, $email, $hash, $username, $email]);
+    echo "Please verify your email";
 
-    try {
-        $sth = $db->prepare($sql);
-        $sth->execute([$username, $email]);
-        $passArr = $sth->fetchAll();
-    } catch (Exception $e) {
-        echo $e;
-    }
+    if (preg_match($pattern, $email) === 1) {
+        $host = $_SERVER["HTTP_HOST"];
+        $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+        $verLink = 'http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash;
 
-    if (empty($passArr)) {
-        $sql = "
-        COMMIT;";
-        $sth = $db->prepare($sql);
-        $sth->execute();
+        $handle = fopen('../private/keys.csv', 'r');
+        $data = fgetcsv($handle, 5, ',');
 
-        echo "There is already an account logged with the username/email";
-    } else {
-        $sql = "
-        INSERT INTO `users` (`username`, `password`, `email`, `hash`) VALUES (?, ?, ?, ?);
-        COMMIT;";
-        $sth = $db->prepare($sql);
-        $sth->execute([$username, $hashedPw, $email, $hash]);
-        echo "Please verify your email";
-
-        if (preg_match($pattern, $email) === 1) {
-            $host = $_SERVER["HTTP_HOST"];
-            $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-            $verLink = 'http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash;
-
-            $handle = fopen('../private/keys.csv', 'r');
-            $data = fgetcsv($handle, 5, ',');
-
-            $email = new \SendGrid\Mail\Mail();
-            $email->setFrom("noreply@compcs.codes", "CompCS");
-            $email->setSubject("Verify your CompCS Account");
-            $email->addTo("aaron.linear@gmail.com", "CompCS Codes User");
-            $email->addContent(
-                "text/html", "You have recently created an account with an username of $username<br>
-                                      If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
-                                      <a href=$verLink>Verify your Email</a>"
-            );
-            $sendgrid = new \SendGrid($data[1]);
-            try {
-                $response = $sendgrid->send($email);
-                print $response->statusCode() . "\n";
-                print_r($response->headers());
-                print $response->body() . "\n";
-            } catch (Exception $e) {
-                echo 'Caught exception: ' . $e->getMessage() . "\n";
-            }
-//
-//        $to = $email; // Send email to our user
-//        $subject = 'SignUp | Verification'; // Give the email a subject
-//        $message = '
-//            Thanks for signing up!
-//            Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
-//
-//            ------------------------
-//            Username: '. $username .'
-//            ------------------------
-//
-//            Please click this link to activate your account:
-//            http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash; // Our message above including the link
-//
-//        $headers = 'From:noreply@34.227.148.166' . "\r\n"; // Set from headers
-//
-//        $success = mail($to, $subject, $message, $headers);
-//        if (!$success) {
-//            echo "Mail failed!";
-//            $errorMessage = error_get_last()['message'];
-//            echo $errorMessage;
-//        } else {
-//            echo "Mail has went through!";
-//        }
-        } else {
-            echo "Invalid email!";
+        $email = new \SendGrid\Mail\Mail();
+        $email->setFrom("noreply@compcs.codes", "CompCS");
+        $email->setSubject("Verify your CompCS Account");
+        $email->addTo("aaron.linear@gmail.com", "CompCS Codes User");
+        $email->addContent(
+            "text/html", "You have recently created an account with an username of $username<br>
+                                  If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
+                                  <a href=$verLink>Verify your Email</a>"
+        );
+        $sendgrid = new \SendGrid($data[1]);
+        try {
+            $response = $sendgrid->send($email);
+            print $response->statusCode() . "\n";
+            print_r($response->headers());
+            print $response->body() . "\n";
+        } catch (Exception $e) {
+            echo 'Caught exception: ' . $e->getMessage() . "\n";
         }
+    } else {
+        echo "Invalid email!";
     }
 }
 ?>
