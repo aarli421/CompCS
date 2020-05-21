@@ -1,6 +1,6 @@
 <?php
 function setupDb() {
-    $dsn = 'mysql:host=localhost;dbname=CompCS';
+    $dsn = 'mysql:host=localhost;dbname=compcs';
     $user = 'aaron';
 
     $handle = fopen('../private/keys.csv', 'r');
