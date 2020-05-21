@@ -15,20 +15,14 @@ $sth->execute();
 $passArr = $sth->fetchAll();
 
 foreach ($passArr as $value) {
-    echo '<form method="get">';
+    echo '<form method="get" action="question.php">';
     echo "Name: " . $value['name'] . "<br>";
     echo "Difficulty: " . $value['difficulty'] . "<br>";
     echo '<input name="questionName" value="gymnastics" hidden>';
-    echo '<button type="submit">Go to question';
-    echo $value['name'];
-    echo '</button>';
+    echo '<button type="submit">Go to question</button>';
     echo '</form>';
 }?>
 </div>
-<form method="get">
-    <input name="questionName" value="gymnastics" hidden>
-    <button type="submit">Go to question</button>
-</form>
 <?php
 require '../templates/footer.php';
 ?>
