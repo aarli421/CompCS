@@ -18,11 +18,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 
     $sql = "
     START TRANSACTION;
-    INSERT INTO `users` (`username`, `password`, `email`, `hash`) 
-    SELECT * FROM (SELECT ?, ?, ?, ?) AS tmp 
-    WHERE NOT EXISTS (
-    SELECT * FROM `users` WHERE `username`=? OR `email`=?
-    ) LIMIT 1;
+    INSERT INTO `users` (`username`, `password`, `email`, `hash`) SELECT * FROM (SELECT ?, ?, ?, ?) AS temp WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;
     COMMIT;";
     $sth = $db->prepare($sql);
     if (!$sth) {
