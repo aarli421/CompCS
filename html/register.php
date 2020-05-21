@@ -21,51 +21,54 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 
     $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1");
     $sth->execute([$username, $email]);
-    print_r($sth->fetchAll());
+    $passArr = $sth->fetchAll();
+    if (!$passArr[0]) {
+        $sql = "
+        INSERT INTO `users` (`username`, `password`, `email`, `hash`)
+        SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? AS `hash`) AS temp 
+        WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
+        $sth = $db->prepare($sql);
+        if (!$sth) {
+            print_r($db->errorInfo());
+            die();
+        }
+        $sth->execute([$username, $hashedPw, $email, $hash, $username, $email]);
 
-    $sql = "
-    INSERT INTO `users` (`username`, `password`, `email`, `hash`)
-    SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? AS `hash`) AS temp 
-    WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
-    $sth = $db->prepare($sql);
-    if (!$sth) {
-        print_r($db->errorInfo());
-        die();
-    }
-    $sth->execute([$username, $hashedPw, $email, $hash, $username, $email]);
+        $sth = $db->prepare("COMMIT");
+        $sth->execute();
+        echo "Please verify your email";
 
-    $sth = $db->prepare("COMMIT");
-    $sth->execute();
-    echo "Please verify your email";
+        if (preg_match($pattern, $email) === 1) {
+            $host = $_SERVER["HTTP_HOST"];
+            $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+            $verLink = 'http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash;
 
-    if (preg_match($pattern, $email) === 1) {
-        $host = $_SERVER["HTTP_HOST"];
-        $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-        $verLink = 'http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash;
+            $handle = fopen('../private/keys.csv', 'r');
+            $data = fgetcsv($handle, 5, ',');
 
-        $handle = fopen('../private/keys.csv', 'r');
-        $data = fgetcsv($handle, 5, ',');
-
-        $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("noreply@compcs.codes", "CompCS");
-        $email->setSubject("Verify your CompCS Account");
-        $email->addTo($email, "CompCS Codes User");
-        $email->addContent(
-            "text/html", "You have recently created an account with an username of $username<br>
+            $email = new \SendGrid\Mail\Mail();
+            $email->setFrom("noreply@compcs.codes", "CompCS");
+            $email->setSubject("Verify your CompCS Account");
+            $email->addTo($email, "CompCS Codes User");
+            $email->addContent(
+                "text/html", "You have recently created an account with an username of $username<br>
                                   If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
                                   <a href=$verLink>Verify your Email</a>"
-        );
-        $sendgrid = new \SendGrid($data[1]);
-        try {
-            $response = $sendgrid->send($email);
-            print $response->statusCode() . "\n";
-            print_r($response->headers());
-            print $response->body() . "\n";
-        } catch (Exception $e) {
-            echo 'Caught exception: ' . $e->getMessage() . "\n";
+            );
+            $sendgrid = new \SendGrid($data[1]);
+            try {
+                $response = $sendgrid->send($email);
+                print $response->statusCode() . "\n";
+                print_r($response->headers());
+                print $response->body() . "\n";
+            } catch (Exception $e) {
+                echo 'Caught exception: ' . $e->getMessage() . "\n";
+            }
+        } else {
+            echo "Invalid email!";
         }
     } else {
-        echo "Invalid email!";
+        echo "The username / email already exists.";
     }
 }
 ?>
