@@ -29,7 +29,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
         SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? AS `hash`) AS temp 
         WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
         $sth = $db->prepare($sql);
-        //$sth->execute([$username, $hashedPw, $email, $hash, $username, $email]);
+        $sth->execute([$username, $hashedPw, $email, $hash, $username, $email]);
 
         $sth = $db->prepare("COMMIT");
         $sth->execute();
@@ -43,13 +43,10 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             $handle = fopen('../private/keys.csv', 'r');
             $data = fgetcsv($handle, 5, ',');
 
-            echo $email;
-            echo "wonderfulman506406@gmail.com";
-
             $email = new \SendGrid\Mail\Mail();
             $email->setFrom("noreply@compcs.codes", "CompCS");
             $email->setSubject("Verify your CompCS Account");
-            $email->addTo("$email", "CompCS Codes User");
+            $email->addTo("andrewzheng04@gmail.com", "CompCS Codes User");
             $email->addContent(
                 "text/html", "You have recently created an account on compcs.codes with an username of $username<br>
                                   If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
