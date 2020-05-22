@@ -22,7 +22,7 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
             $sth->execute([$_GET['email'], $_GET['hash']]);
 
             $username = $passArr[0]['username'];
-            `mkdir ../users/$username`;
+            `mkdir users/$username`;
             echo "Account Verified!";
         }
     }
