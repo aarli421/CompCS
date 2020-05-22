@@ -8,7 +8,7 @@ if (!$db) {
 }
 
 if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && hasValue($_POST['signUpEmail'])) {
-    $email = $_POST['signUpEmail'];
+    $mail = $_POST['signUpEmail'];
     $username = $_POST['signUpUsername'];
     $hashedPw = hash('sha256', $_POST['signUpPassword']);
     $hash = md5(rand(0, 10000));
@@ -20,7 +20,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     $sth->execute();
 
     $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1");
-    $sth->execute([$username, $email]);
+    $sth->execute([$username, $mail]);
     $passArr = $sth->fetchAll();
 
     if ($passArr[0][0] == 0) {
@@ -29,16 +29,16 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
         SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? AS `hash`) AS temp 
         WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
         $sth = $db->prepare($sql);
-        $sth->execute([$username, $hashedPw, $email, $hash, $username, $email]);
+        $sth->execute([$username, $hashedPw, $mail, $hash, $username, $mail]);
 
         $sth = $db->prepare("COMMIT");
         $sth->execute();
         echo "Please verify your email";
 
-        if (preg_match($pattern, $email) === 1) {
+        if (preg_match($pattern, $mail) === 1) {
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-            $verLink = 'http://' . $host . $path . '/verify.php?email=' . $email . '&hash=' . $hash;
+            $verLink = 'http://' . $host . $path . '/verify.php?email=' . $mail . '&hash=' . $hash;
 
             $handle = fopen('../private/keys.csv', 'r');
             $data = fgetcsv($handle, 5, ',');
@@ -46,7 +46,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             $email = new \SendGrid\Mail\Mail();
             $email->setFrom("noreply@compcs.codes", "CompCS");
             $email->setSubject("Verify your CompCS Account");
-            $email->addTo("andrewzheng04@gmail.com", "CompCS Codes User");
+            $email->addTo($mail, "CompCS Codes User");
             $email->addContent(
                 "text/html", "You have recently created an account on compcs.codes with an username of $username<br>
                                   If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
