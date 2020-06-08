@@ -7,6 +7,8 @@ $targetFolder = 'questions/' . $name[0];
 if (isset($_POST['questionInput'])) {
     if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
         `unzip $uploadFile -d `;
+    } else {
+        echo 'Unable to move file';
     }
 }
 ?>
