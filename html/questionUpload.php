@@ -4,8 +4,8 @@ $name = explode(".",  basename($_FILES['fileInput']['name']));
 $uploadFile = 'questions/' . $_FILES['fileInput']['name'];
 $targetFolder = 'questions/' . $name[0];
 
-if (isset($_POST['questionInput'])) {
-    if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
+if (isset($_FILES['questionInput'])) {
+    if (move_uploaded_file($_FILES['questionInput']['tmp_name'], $uploadFile)) {
         `unzip $uploadFile -d `;
     } else {
         echo 'Unable to move file';
