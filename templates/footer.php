@@ -1,3 +1,3 @@
-    <script src="../html/libs/particles.min.js"></script>
+    <script src="libs/particles.min.js"></script>
 </body>
 </html>
