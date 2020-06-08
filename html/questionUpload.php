@@ -1,4 +1,6 @@
 <?php
+require '../templates/header.php';
+
 $db = setupDb();
 if (!$db) {
     echo "Database could not load";
@@ -28,3 +30,5 @@ if (isset($_FILES['questionInput'])) {
     Send this file: <input name="questionInput" type="file" />
     <input type="submit" value="Send File" />
 </form>
+<?php
+require  '../templates/footer.php';
