@@ -26,7 +26,7 @@ if (isset($_FILES['questionInput'])) {
 }
 ?>
 <form method="post" action="questionUpload.php" enctype="multipart/form-data">
-    <input name="difficulty" type="number" />
+    Difficulty: <input name="difficulty" type="number" /> <br>
     Send this file: <input name="questionInput" type="file" />
     <input type="submit" value="Send File" />
 </form>
