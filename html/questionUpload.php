@@ -1,7 +1,7 @@
 <?php
-$name = explode(".",  basename($_FILES['fileInput']['name']));
+$name = explode(".",  basename($_FILES['questionInput']['name']));
 
-$uploadFile = 'questions/' . $_FILES['fileInput']['name'];
+$uploadFile = 'questions/' . $_FILES['questionInput']['name'];
 $targetFolder = 'questions/' . $name[0];
 
 if (isset($_FILES['questionInput'])) {
