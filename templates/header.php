@@ -9,5 +9,6 @@ require("helper.php");
     <script src="libs/jquery-3.5.1.min.js"></script>
     <script src="libs/anime.min.js"></script>
     <link rel="icon" href="media/compcs.svg">
+    <link rel="stylesheet" href="stylesheets/styles.css">
 </head>
 <body>
