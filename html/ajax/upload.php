@@ -23,7 +23,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 
     $ioDirAmount = `ls $questionDir | wc -l`;
     //echo "IO Dir:" . $ioDirAmount;
-    $testAmount = ((int) $ioDirAmount) / 2;
+    $testAmount = ((int) ($ioDirAmount - 1)) / 2;
     //echo "Test:" . $testAmount . "<br>";
 
     chdir($uploadDir);

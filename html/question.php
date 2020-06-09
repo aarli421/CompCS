@@ -40,10 +40,9 @@ require("../templates/header.php");
         });
 
         $.ajax({
-            url: "questions/" + "<?php echo $_GET['questionName'] ?>" + "/prompt.txt",
+            url: "questions/" + <?php echo "\"" . $_GET['questionName'] . "\"" ?> + "/prompt.txt",
             success: function(data) {
                 $("#prompt").html(data);
-                $("#upload_process").append("HELLO WORLD!");
             }
         });
     });
