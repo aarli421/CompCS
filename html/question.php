@@ -43,6 +43,7 @@ require("../templates/header.php");
             url: "questions/" + <?php echo $_GET['questionName'] ?> + "/prompt.txt",
             success: function(data) {
                 $("#prompt").html(data);
+                $("#upload_process").append("HELLO WORLD!");
             }
         });
     });
