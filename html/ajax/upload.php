@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (!isset($_SESSION['user'])) {
+    echo "YOU ARE NOT LOGGED IN";
+    die;
+}
+
 require '../../templates/helper.php';
 
 $uploadDir = '../users/' . $_SESSION['user'] . '/';
