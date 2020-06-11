@@ -29,7 +29,13 @@ if (isset($_POST['addToSQL'])) {
     $dir = new DirectoryIterator("questions");
     foreach ($dir as $fileinfo) {
         if (!$fileinfo->isDot()) {
-            var_dump($fileinfo->getFilename());
+
+            $sql = "
+            INSERT INTO `questions` (`name`, `difficulty`)
+            SELECT * FROM (SELECT ? AS `name`, ? AS `difficulty`) AS temp 
+            WHERE NOT EXISTS (SELECT * FROM `questions` WHERE `name`=?) LIMIT 1;";
+            $sth = $db->prepare($sql);
+            $sth->execute([$fileinfo->getFilename(), 100, $fileinfo->getFilename()]);
         }
     }
 }
