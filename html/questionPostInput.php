@@ -2,7 +2,7 @@
 if (isset($_POST['input'])) {
     $dir = "users/test";
     $dirAmount = `ls $dir | wc -l`;
-    $amount = ((int) ($dirAmount - 1)) / 2;
+    $amount = (int) ($dirAmount);
     $fileNum = $amount + 1;
     $fileName = $fileNum . '.in';
 
