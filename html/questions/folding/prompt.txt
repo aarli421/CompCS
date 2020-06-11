@@ -1,0 +1,54 @@
+Rope Folding
+============
+
+Farmer John has a long rope of length L (1 &lt;= L &lt;= 10,000) that he uses for
+various tasks around his farm.  The rope has N knots tied into it at
+various distinct locations (1 &lt;= N &lt;= 100), including one knot at each of
+its two endpoints.
+
+FJ notices that there are certain locations at which he can fold the rope
+back on itself such that the knots on opposite strands all line up exactly
+with each-other:
+<br><img src="data:image/png;base64,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" alt=""><br>
+Please help FJ count the number of folding points having this property. 
+Folding exactly at a knot is allowed, except folding at one of the
+endpoints is not allowed, and extra knots on the longer side of a fold are
+not a problem (that is, knots only need to line up in the areas where there
+are two strands opposite each-other).  FJ only considers making a single
+fold at a time; he fortunately never makes multiple folds.
+
+PROBLEM NAME: folding
+
+INPUT FORMAT:
+
+* Line 1: Two space-separated integers, N and L.
+
+* Lines 2..1+N: Each line contains an integer in the range 0...L
+        specifying the location of a single knot.  Two of these lines
+        will always be 0 and L.
+
+SAMPLE INPUT:
+
+5 10
+0
+10
+6
+2
+4
+
+INPUT DETAILS:
+
+The rope has length L=10, and there are 5 knots at positions 0, 2, 4, 6,
+and 10.
+
+OUTPUT FORMAT:
+
+* Line 1: The number of valid folding positions.
+
+SAMPLE OUTPUT:
+
+4
+
+OUTPUT DETAILS:
+
+The valid folding positions are 1, 2, 3, and 8.

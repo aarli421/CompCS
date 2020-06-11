@@ -1,0 +1,22 @@
+N Queens Problem
+================
+
+Solve a modified version of the eight queens problem with N queens on an NxN chessboard where N &gt;= 1 and N&lt;15.
+
+PROBLEM NAME: nqueen
+
+INPUT FORMAT:
+
+* Line 1: A single integer: N
+
+SAMPLE INPUT:
+
+5
+
+OUTPUT FORMAT:
+
+* Line 1: Number of solutions
+
+SAMPLE OUTPUT:
+
+10

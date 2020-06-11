@@ -24,11 +24,24 @@ if (isset($_FILES['questionInput'])) {
         echo 'Unable to move file';
     }
 }
+
+if (isset($_POST['addToSQL'])) {
+    $dir = new DirectoryIterator("questions");
+    foreach ($dir as $fileinfo) {
+        if (!$fileinfo->isDot()) {
+            var_dump($fileinfo->getFilename());
+        }
+    }
+}
 ?>
 <form method="post" action="questionUpload.php" enctype="multipart/form-data">
     Difficulty: <input name="difficulty" type="number" /> <br>
     Send this file: <input name="questionInput" type="file" />
     <input type="submit" value="Send File" />
+</form> <br>
+<form method="post" action="questionUpload.php">
+    <input name="addToSQL" value="true" hidden>
+    <input type="submit" value="Add to SQL" />
 </form>
 <?php
 require  '../templates/footer.php';
