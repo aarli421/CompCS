@@ -29,7 +29,7 @@ if (isset($_POST['addToSQL'])) {
     $dir = new DirectoryIterator("questions");
     foreach ($dir as $fileinfo) {
         if (!$fileinfo->isDot()) {
-            echo $fileinfo->getFilename() . "<br>";
+//            echo $fileinfo->getFilename() . "<br>";
 
             $sql = "
             INSERT INTO `questions` (`name`, `difficulty`)
