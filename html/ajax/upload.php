@@ -140,7 +140,7 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
         return array('symbol' => 'M');
     }
 
-    $output = `cmp -s {$questionDir}/{$i}.out {$questionName}.out && echo "alike"`;
+    $output = `diff -w {$questionDir}/{$i}.out {$questionName}.out && echo "alike"`;
     if(str_replace(array("\n", "\r"), '', $output) == 'alike') {
         return array('symbol' => '*');
     } else {

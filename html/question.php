@@ -34,15 +34,12 @@ require("../templates/header.php");
                     $("#dialogDiv").html("Error happened");
                     stopUpload();
                     $("#fileInput").val("");
-                },
-                cache: false,
-                contentType: false,
-                processData: false
+                }
             });
         });
 
         $.ajax({
-            url: "questions/" + <?php echo "\"" . $_GET['questionName'] . "\"" ?> + "/prompt.txt",
+            url: "questions/<?php echo $_GET['questionName']; ?>/prompt.txt",
             success: function(data) {
                 $("#prompt").html(data);
             }
