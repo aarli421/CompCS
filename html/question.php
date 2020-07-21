@@ -34,7 +34,9 @@ require("../templates/header.php");
                     $("#dialogDiv").html("Error happened");
                     stopUpload();
                     $("#fileInput").val("");
-                }
+                },
+                contentType: false,
+                processData: false
             });
         });
 
