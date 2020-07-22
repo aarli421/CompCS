@@ -1,4 +1,9 @@
 <?php
+function getRootDir() {
+    $dir = dirname($_SERVER["PHP_SELF"]);
+    return $dir;
+}
+
 function setupDb() {
     $dsn = 'mysql:host=localhost;dbname=compcs';
     $user = 'aaron';

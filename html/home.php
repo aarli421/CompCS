@@ -10,6 +10,8 @@ if (!$db) {
     echo "Database could not load";
 }
 
+echo getRootDir();
+
 $sth = $db->prepare("SELECT `points` FROM `users` WHERE `username` = ?");
 $sth->execute([$_SESSION['user']]);
 $passArr = $sth->fetchAll();
