@@ -10,7 +10,7 @@ if (!$db) {
     echo "Database could not load";
 }
 
-echo getRootDir();
+echo $_SERVER['DOCUMENT_ROOT'];
 
 $sth = $db->prepare("SELECT `points` FROM `users` WHERE `username` = ?");
 $sth->execute([$_SESSION['user']]);
