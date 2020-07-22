@@ -43,7 +43,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 
     $fileVal = `cat $uploadFile`;
     $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
-    $sth->execute([$_SESSION['user'], $fileVal, date('Y-m-d H:i:s', time())]);
+    $sth->execute([$user_id, $question_id, $fileVal, date('Y-m-d H:i:s', time())]);
 
     $ioDirAmount = `ls $questionDir | wc -l`;
     //echo "IO Dir:" . $ioDirAmount;
