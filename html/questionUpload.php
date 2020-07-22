@@ -46,9 +46,9 @@ if (isset($_POST['addToSQL'])) {
     Send this file: <input name="questionInput" type="file" />
     <input type="submit" value="Send File" />
 </form> <br>
-<form method="post" action="questionUpload.php">
-    <input name="addToSQL" value="true" hidden>
-    <input type="submit" value="Add to SQL" />
-</form>
+<!--<form method="post" action="questionUpload.php">-->
+<!--    <input name="addToSQL" value="true" hidden>-->
+<!--    <input type="submit" value="Add to SQL" />-->
+<!--</form>-->
 <?php
 require  '../templates/footer.php';
