@@ -8,7 +8,7 @@ function setupDb() {
     $dsn = 'mysql:host=localhost;dbname=compcs';
     $user = 'aaron';
 
-    $handle = fopen('/var/www/private/keys.csv', 'r');
+    $handle = fopen($_SERVER['DOCUMENT_ROOT'] . '/../private/keys.csv', 'r');
     $data = fgetcsv($handle, 5, ',');
     $password = $data[0];
 
