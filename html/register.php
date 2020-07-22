@@ -1,5 +1,5 @@
 <?php
-require('../templates/header.php');
+require '../templates/header.php';
 require '../vendor/autoload.php';
 
 $db = setupDb();
