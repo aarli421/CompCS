@@ -20,7 +20,7 @@ $sth->execute();
 $passArr = $sth->fetchAll();
 
 foreach ($passArr as $value) {
-    if ($value['difficulty'] <= $points) {
+    if ($value['unlock_value'] <= $points) {
         echo '<form method="get" action="question.php">';
         echo "Name: " . $value['name'] . "<br>";
         echo "Difficulty: " . $value['difficulty'] . "<br>";

@@ -17,7 +17,6 @@ if (hasValue($_POST['loginUsername']) && hasValue($_POST['loginPassword'])) {
     } else {
         if (hash('sha256', $_POST['loginPassword']) == $passArr[0]['password'] && $passArr[0]['active'] == 1) {
             $_SESSION['user'] = $_POST['loginUsername'];
-            $_SESSION['authenticated'] = true;
             redirect("home");
         } else {
             echo "Login Failed";

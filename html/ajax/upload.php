@@ -7,6 +7,11 @@ if (!isset($_SESSION['user'])) {
 
 require '../../templates/helper.php';
 
+$db = setupDb();
+if (!$db) {
+    echo "Database could not load";
+}
+
 $uploadDir = '../users/' . $_SESSION['user'] . '/';
 $questionName = $_POST['questionName'];
 $questionDir = '../questions/' . $questionName;
@@ -25,6 +30,20 @@ $cName = $questionName . ".exec";
 echo '<pre>';
 if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
     echo "File is valid, and was successfully uploaded.\n";
+
+    $sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
+    $sth->execute([$_SESSION['user']]);
+    $passArr = $sth->fetchAll();
+    $user_id = $passArr[0]['user_id'];
+
+    $sth = $db->prepare("SELECT `question_id` FROM questions WHERE `name`=?");
+    $sth->execute([$questionName]);
+    $passArr = $sth->fetchAll();
+    $question_id = $passArr[0]['question_id'];
+
+    $fileVal = `cat $uploadFile`;
+    $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
+    $sth->execute([$_SESSION['user'], $fileVal, date('Y-m-d H:i:s', time())]);
 
     $ioDirAmount = `ls $questionDir | wc -l`;
     //echo "IO Dir:" . $ioDirAmount;
