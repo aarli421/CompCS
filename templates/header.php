@@ -1,14 +1,79 @@
-<?php
-require("helper.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <title>CCC</title>
+    <link rel="shortcut icon" href="images/ccc-logo.svg" type="image/svg+xml">
+
     <meta charset="UTF-8">
-    <title>CompCS Codes</title>
-    <script src="libs/jquery-3.5.1.min.js"></script>
-    <script src="libs/anime.min.js"></script>
-    <link rel="icon" href="media/compcs.svg">
-    <link rel="stylesheet" href="stylesheets/styles.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/templatemo-style.css">
+
 </head>
 <body>
+
+<!-- PRE LOADER -->
+<section class="preloader">
+    <div class="spinner">
+
+        <span class="spinner-rotate"></span>
+
+    </div>
+</section>
+
+
+<!-- MENU -->
+<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+
+            <!-- LOGO TEXT HERE -->
+
+
+            <a href="index.html" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
+
+                <img src="images/ccc-logo.svg" alt="" width="67" height="67" style="padding-bottom: 10px">
+
+            </a>
+            <a href="index.html" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px;">
+                Competitive<span><br>Computing</span><br>Club
+            </a>
+
+        </div>
+
+        <!-- MENU LINKS IN NAV BAR-->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-nav-first" >
+                <li><a href="#about" class="smoothScroll" style="font-size: 18px">Home</a></li>
+                <li><a href="login.html" class="smoothScroll" style="font-size: 18px">Login / Register</a></li>
+                <li><a href="index.html#contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
+            </ul>
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <a href="#footer" class="section-btn">Learn to Code?</a>
+            </ul>
+        </div>
+
+    </div>
+</section>

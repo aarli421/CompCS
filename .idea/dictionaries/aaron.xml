@@ -2,7 +2,9 @@
   <dictionary name="aaron">
     <words>
       <w>ajaxdir</w>
+      <w>closebtn</w>
       <w>compcs</w>
+      <w>cpassword</w>
       <w>cppname</w>
       <w>execpp</w>
       <w>fileinfo</w>
@@ -10,6 +12,7 @@
       <w>getcwd</w>
       <w>questiondir</w>
       <w>sendgrid</w>
+      <w>smoothscroll</w>
       <w>uploaddir</w>
       <w>uploadfile</w>
     </words>

@@ -1,6 +1,6 @@
 <?php
-require '../templates/header.php';
-require '../vendor/autoload.php';
+require '../../templates/helper.php';
+require '../../vendor/autoload.php';
 
 $db = setupDb();
 if (!$db) {
@@ -33,7 +33,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 
         $sth = $db->prepare("COMMIT");
         $sth->execute();
-        echo "Please verify your email";
+//        echo "Passed ";
 
         if (preg_match($pattern, $mail) === 1) {
             $host = $_SERVER["HTTP_HOST"];
@@ -56,27 +56,18 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             try {
                 $response = $sendgrid->send($email);
                 if ($response->statusCode() == 202) {
-                    echo "Mail has sent!";
+                    echo "Success";
                 } else {
-                    echo "Mail has an error!";
+                    echo "Mail was unable to send.";
                 }
             } catch (Exception $e) {
                 echo 'Caught exception: ' . $e->getMessage() . "\n";
             }
         } else {
-            echo "Invalid email!";
+            echo "Invalid email.";
         }
     } else {
         echo "The username / email already exists.";
     }
 }
-?>
-<form method="post" action="register.php">
-    <input name="signUpEmail" type="email"> <br>
-    <input name="signUpUsername" type="text"> <br>
-    <input name="signUpPassword" type="password"> <br>
-    <button type="submit">Sign Up</button>
-</form>
-<?php
-require('../templates/footer.php');
 ?>

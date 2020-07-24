@@ -53,7 +53,7 @@ require("../templates/header.php");
 
 </pre>
 <br>
-<p id="upload_process" style="display: none">Loading <img src="media/loader.gif" /></p>
+<p id="upload_process" style="display: none">Loading <img src="images/loader.gif" /></p>
 <p id="result"></p>
 <div id="dialogDiv"></div>
 <form id="fileSubmission" method="post" enctype="multipart/form-data">

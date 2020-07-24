@@ -1,0 +1,39 @@
+.question{
+  margin: 50px;
+  border-radius: 25px;
+  border: 2px solid #000000;
+  width:65%;
+}
+
+.categories th{
+	text-align: center;
+	padding: 2px;
+}
+td{
+	text-align: center;
+	margin:20px;
+}
+table, th, td {
+  border: 1px solid black;
+}
+th, td {
+  padding: 15px;
+	white-space: nowrap;
+}
+
+.problemnum{
+	width: 10px;
+	white-space: nowrap;
+}
+
+.link{
+	width:10px;
+	white-space: nowrap;
+}
+.namesize{
+	width:50px;
+	white-space: nowrap;
+}
+.welcome{
+	padding-left: 20%;
+}
