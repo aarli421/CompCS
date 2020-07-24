@@ -76,6 +76,51 @@
 <script src="js/smoothscroll.js"></script>
 <script src="js/custom.js"></script>
 <script src="js/login-register.js"></script>
+<script>
+    $(function () {
+        $("form#login").submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: "ajax/login.php",
+                type: "POST",
+                data: formData,
+                success: function(data) {
+                    if (data == "Success") {
+                        console.log("Successfully logged in!");
+                    } else {
+                        console.log("Error: " + data);
+                    }
+                },
+                error: function(data) {
+
+                }
+            });
+        });
+
+        $("form#register").submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: "ajax/register.php",
+                type: "POST",
+                data: formData,
+                success: function(data) {
+                    if (data == "Success") {
+                        console.log("Successfully registered!");
+                    } else {
+                        console.log("Error: " + data);
+                    }
+                },
+                error: function(data) {
+
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

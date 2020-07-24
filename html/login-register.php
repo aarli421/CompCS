@@ -1,51 +1,6 @@
 <?php
 require '../templates/header.php';
 ?>
-<script>
-    $(function () {
-        $("form#login").submit(function(e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
-
-            $.ajax({
-                url: "ajax/login.php",
-                type: "POST",
-                data: formData,
-                success: function(data) {
-                    if (data == "Success") {
-                        console.log("Successfully logged in!");
-                    } else {
-                        console.log("Error: " + data);
-                    }
-                },
-                error: function(data) {
-
-                }
-            });
-        });
-
-        $("form#register").submit(function(e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
-
-            $.ajax({
-                url: "ajax/register.php",
-                type: "POST",
-                data: formData,
-                success: function(data) {
-                    if (data == "Success") {
-                        console.log("Successfully registered!");
-                    } else {
-                        console.log("Error: " + data);
-                    }
-                },
-                error: function(data) {
-
-                }
-            });
-        });
-    });
-</script>
 <style>
     .background {
         background-image: url("images/bestbg.png");
