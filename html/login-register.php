@@ -60,7 +60,7 @@ require '../templates/header.php';
                 error: function(data) {
 
                 }
-            })
+            });
         });
     });
 
@@ -83,7 +83,7 @@ require '../templates/header.php';
                 error: function(data) {
 
                 }
-            })
+            });
         });
     });
 </script>
