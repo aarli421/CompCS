@@ -52,7 +52,7 @@ require '../templates/header.php';
                 data: formData,
                 success: function(data) {
                     if (data == "Success") {
-                        // console.log("Successfully logged in!");
+                        <?php redirect("home"); ?>
                     } else {
                         console.log("Error: " + data);
                     }
