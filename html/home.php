@@ -1,6 +1,6 @@
 <?php
-require '../templates/header.php';
 session_start();
+require '../templates/header.php';
 echo $_SESSION['user'] . "<br>";
 ?>
 <div id="question_select">

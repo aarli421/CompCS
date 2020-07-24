@@ -1,6 +1,6 @@
 <?php
-require '../../templates/helper.php';
 session_start();
+require '../../templates/helper.php';
 
 $db = setupDb();
 if (!$db) {
