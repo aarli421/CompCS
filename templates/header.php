@@ -22,6 +22,17 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/templatemo-style.css">
 
+    <!-- SCRIPTS -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/login-register.js"></script>
+
 </head>
 <body>
 
