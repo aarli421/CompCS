@@ -99,8 +99,8 @@ require '../templates/header.php';
                 </div>
                 <div class="form-content">
                     <form id="login" method="post">
-                        <div class="form-group"><label for="username">Username</label><input type="text" id="loginUsername" name="username" required="required" /></div>
-                        <div class="form-group"><label for="password">Password</label><input type="password" id="loginPassword" name="password" required="required" /></div>
+                        <div class="form-group"><label for="username">Username</label><input type="text" id="username" name="loginUsername" required="required" /></div>
+                        <div class="form-group"><label for="password">Password</label><input type="password" id="password" name="loginPassword" required="required" /></div>
                         <div class="form-group"><a class="form-recovery" href="#">Forgot Password?</a></div>
                         <div class="form-group"><button form="login" type="submit">Log In</button></div>
                     </form>
