@@ -288,113 +288,36 @@ require '../templates/header.php';
                 </div>
             </div>
 
-<!--            <div class="col-md-4 col-sm-6">-->
-                <!-- MENU THUMB -->
-<!--                <div class="menu-thumb">-->
-<!--                    <a href="images/menu-image4.jpg" class="image-popup" title="Rice Soup">-->
-<!--                        <img src="images/menu-image4.jpg" class="img-responsive" alt="">-->
-<!---->
-<!--                        <div class="menu-info">-->
-<!--                            <div class="menu-item">-->
-<!--                                <h3>Rice Soup</h3>-->
-<!--                                <p>Green / Chicken</p>-->
-<!--                            </div>-->
-<!--                            <div class="menu-price">-->
-<!--                                <span>$28</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--            <div class="col-md-4 col-sm-6">-->
-                <!-- MENU THUMB -->
-<!--                <div class="menu-thumb">-->
-<!--                    <a href="images/menu-image5.jpg" class="image-popup" title="Project title">-->
-<!--                        <img src="images/menu-image5.jpg" class="img-responsive" alt="">-->
-<!---->
-<!--                        <div class="menu-info">-->
-<!--                            <div class="menu-item">-->
-<!--                                <h3>Deli Burger</h3>-->
-<!--                                <p>Beef / Fried Potatoes</p>-->
-<!--                            </div>-->
-<!--                            <div class="menu-price">-->
-<!--                                <span>$46</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!---->
-<!--            <div class="col-md-4 col-sm-6">-->
-                <!-- MENU THUMB -->
-<!--                <div class="menu-thumb">-->
-<!--                    <a href="images/menu-image6.jpg" class="image-popup" title="Project title">-->
-<!--                        <img src="images/menu-image6.jpg" class="img-responsive" alt="">-->
-<!---->
-<!--                        <div class="menu-info">-->
-<!--                            <div class="menu-item">-->
-<!--                                <h3>Big Flat Fried</h3>-->
-<!--                                <p>Pepper / Crispy</p>-->
-<!--                            </div>-->
-<!--                            <div class="menu-price">-->
-<!--                                <span>$30</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-
 
         </div>
     </div>
 </section>
 
 
-<!-- TESTIMONIAL -->
-<section id="testimonial" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
+<section id="about" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row">
+            <div class="col-md-6 col-sm-12 col-lg-12">
+                <div class="about-info">
+                    <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                        <h2>How to use the website</h2>
+                    </div>
 
-            <div class="col-md-12 col-sm-12">
-                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                    <h2>Testimonials</h2>
+                    <div class="wow fadeInUp" data-wow-delay="0.4s">
+                        <p>First, you can register an account with your email, username, and a password. To prevent spam, you must check your email and verify your account in order to login. You can then login into your account.</p>
+                        <p>After logging in you are able to go to your home and see all the questions available. By clicking on a button corresponding to a question you have you go to that question.</p>
+                        <p>When you are on a question, you can submit the question by choosing the file and clicking the Send File button. The file language is calculated through the file extension, where .cpp is c++, .c is c, .java is java, .py is python.</p>
+                        <p>Answers are displayed similar to USACO. Submission rules are also similar to USACO, where you get 4 seconds for python and java and 2 seconds for c++ and c. Memory limits are same unless otherwise stated. No toleration whatsoever of cheating or submitting harmful code. Your account will be banned and legal action may be taken.</p>
+                        <p>Language Specifications</p>
+                        <ul>
+                            <li>C++ - g++ 7.5.0</li>
+                            <li>C - gcc 7.5.0</li>
+                            <li>Java 8 - OpenJDK</li>
+                            <li>Python - 3.6.9</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-md-offset-2 col-md-8 col-sm-12">
-                <div class="owl-carousel owl-theme">
-                    <div class="item">
-                        <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas faucibus mollis
-                            interdum ullamcorper nulla non.</p>
-                        <div class="tst-author">
-                            <h4>Hugh</h4>
-                            <span>Pharetra quam sit amet</span>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Sed vestibulum orci quam.</p>
-                        <div class="tst-author">
-                            <h4>Johnny Stephen</h4>
-                            <span>Magna nisi porta ligula</span>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <p>Vivamus aliquet felis eu diam ultricies congue. Morbi porta lorem nec consectetur porta quis
-                            dui elit habitant morbi.</p>
-                        <div class="tst-author">
-                            <h4>Jessie White</h4>
-                            <span>Vitae lacinia augue urna quis</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
