@@ -30,8 +30,6 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/smoothscroll.js"></script>
-    <script src="js/custom.js"></script>
-    <script src="js/login-register.js"></script>
 
 </head>
 <body>
