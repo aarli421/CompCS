@@ -51,10 +51,8 @@ require '../templates/header.php';
                 type: "POST",
                 data: formData,
                 success: function(data) {
-                    console.log(data);
-
                     if (data == "Success") {
-                        console.log("Successfully logged in!");
+                        // console.log("Successfully logged in!");
                     } else {
                         console.log("Error: " + data);
                     }
