@@ -55,7 +55,7 @@ require '../templates/header.php';
                         <div class="form-group"><label for="username">Username</label><input type="text" id="loginUsername" name="username" required="required" /></div>
                         <div class="form-group"><label for="password">Password</label><input type="password" id="loginPassword" name="password" required="required" /></div>
                         <div class="form-group"><a class="form-recovery" href="#">Forgot Password?</a></div>
-                        <div class="form-group"><button type="submit">Log In</button></div>
+                        <div class="form-group"><button form="login" type="submit">Log In</button></div>
                     </form>
                 </div>
             </div>
@@ -70,7 +70,7 @@ require '../templates/header.php';
                         <div class="form-group"><label for="cpassword">Confirm Password</label><input type="password" id="cpassword" name="signUpCPassword" required="required" /></div>
                         <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="signUpEmail" required="required" /></div>
                         <div class="form-group"><label class="form-remember"><input type="checkbox" checked="checked" required="required"/>Agree to Terms of Service</label></div>
-                        <div class="form-group"><button type="submit">Register</button></div>
+                        <div class="form-group"><button form="register" type="submit">Register</button></div>
                     </form>
                 </div>
             </div>
@@ -80,7 +80,7 @@ require '../templates/header.php';
 <script>
     $(function () {
         $("form#login").submit(function(e) {
-            return false;
+            e.preventDefault();
             var formData = $(this).serialize();
 
             $.ajax({
@@ -101,7 +101,7 @@ require '../templates/header.php';
         });
 
         $("form#register").submit(function(e) {
-            return false;
+            e.preventDefault();
             var formData = $(this).serialize();
 
             $.ajax({
