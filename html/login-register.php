@@ -80,7 +80,7 @@ require '../templates/header.php';
 <script>
     $(function () {
         $("form#login").submit(function(e) {
-            e.preventDefault();
+            return false;
             var formData = $(this).serialize();
 
             $.ajax({
@@ -101,7 +101,7 @@ require '../templates/header.php';
         });
 
         $("form#register").submit(function(e) {
-            e.preventDefault();
+            return false;
             var formData = $(this).serialize();
 
             $.ajax({
