@@ -58,12 +58,12 @@
             <!-- LOGO TEXT HERE -->
 
 
-            <a href="index.html" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
+            <a href="index.php" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
 
                 <img src="images/ccc-logo.svg" alt="" width="67" height="67" style="padding-bottom: 10px">
 
             </a>
-            <a href="index.html" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px;">
+            <a href="index.php" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px;">
                 Competitive<span><br>Computing</span><br>Club
             </a>
 
@@ -72,9 +72,9 @@
         <!-- MENU LINKS IN NAV BAR-->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-nav-first" >
-                <li><a href="#about" class="smoothScroll" style="font-size: 18px">Home</a></li>
-                <li><a href="login.html" class="smoothScroll" style="font-size: 18px">Login / Register</a></li>
-                <li><a href="index.html#contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
+                <li><a href="home.php" class="smoothScroll" style="font-size: 18px">Home</a></li>
+                <li><a href="login-register.php" class="smoothScroll" style="font-size: 18px">Login / Register</a></li>
+                <li><a href="index.php#contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
             </ul>
 
 
