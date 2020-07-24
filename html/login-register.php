@@ -98,7 +98,7 @@ require '../templates/header.php';
                     <h1>Account Login</h1>
                 </div>
                 <div class="form-content">
-                    <form id="login" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="login" method="post" enctype="application/x-www-form-urlencoded" onsubmit="e.preventDefault();">
                         <div class="form-group"><label for="username">Username</label><input type="text" id="loginUsername" name="username" required="required" /></div>
                         <div class="form-group"><label for="password">Password</label><input type="password" id="loginPassword" name="password" required="required" /></div>
                         <div class="form-group"><a class="form-recovery" href="#">Forgot Password?</a></div>
@@ -111,7 +111,7 @@ require '../templates/header.php';
                     <h1>Register Account</h1>
                 </div>
                 <div class="form-content">
-                    <form id="register" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="register" method="post" enctype="application/x-www-form-urlencoded" onsubmit="e.preventDefault();">
                         <div class="form-group"><label for="username">Username</label><input type="text" id="username" name="singUpUsername" required="required" /></div>
                         <div class="form-group"><label for="password">Password</label><input type="password" id="password" name="signUpPassword" required="required" /></div>
                         <div class="form-group"><label for="cpassword">Confirm Password</label><input type="password" id="cpassword" name="signUpCPassword" required="required" /></div>
