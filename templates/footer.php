@@ -66,7 +66,6 @@
 </footer>
 
 <script src="js/custom.js"></script>
-<script src="js/login-register.js"></script>
 
 </body>
 </html>

@@ -92,6 +92,8 @@ require '../templates/header.php';
         <div class="form">
             <div class="form-toggle"></div>
             <div class="form-panel one">
+                <h6 id="loginSuccess" class="text-success"></h6>
+                <h6 id="loginError" class="text-danger"></h6>
                 <div class="form-header">
                     <h1>Account Login</h1>
                 </div>
@@ -105,12 +107,14 @@ require '../templates/header.php';
                 </div>
             </div>
             <div class="form-panel two">
+                <h6 id="registerSuccess" class="text-success">Random</h6>
+                <h6 id="registerError" class="text-danger">Random</h6>
                 <div class="form-header">
                     <h1>Register Account</h1>
                 </div>
                 <div class="form-content">
                     <form id="register" method="post">
-                        <div class="form-group"><label for="username">Username</label><input type="text" id="username" name="singUpUsername" required="required" /></div>
+                        <div class="form-group"><label for="username">Username</label><input type="text" id="username" name="signUpUsername" required="required" /></div>
                         <div class="form-group"><label for="password">Password</label><input type="password" id="password" name="signUpPassword" required="required" /></div>
                         <div class="form-group"><label for="cpassword">Confirm Password</label><input type="password" id="cpassword" name="signUpCPassword" required="required" /></div>
                         <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="signUpEmail" required="required" /></div>
@@ -124,6 +128,7 @@ require '../templates/header.php';
 </section>
 </div>
 </div>
+<script src="js/login-register.js"></script>
 <?php
 require '../templates/footer.php'
 ?>

@@ -307,7 +307,7 @@ require '../templates/header.php';
                         <p>First, you can register an account with your email, username, and a password. To prevent spam, you must check your email and verify your account in order to login. You can then login into your account.</p>
                         <p>After logging in you are able to go to your home and see all the questions available. By clicking on a button corresponding to a question you have you go to that question.</p>
                         <p>When you are on a question, you can submit the question by choosing the file and clicking the Send File button. The file language is calculated through the file extension, where .cpp is c++, .c is c, .java is java, .py is python.</p>
-                        <p>Answers are displayed similar to USACO. Submission rules are also similar to USACO, where you get 4 seconds for python and java and 2 seconds for c++ and c. Memory limits are same unless otherwise stated. No toleration whatsoever of cheating or submitting harmful code. Your account will be banned and legal action may be taken.</p>
+                        <p>Answers are displayed similar to USACO. Submission rules are also similar to USACO, where you get 4 seconds for python and java and 2 seconds for c++ and c. Memory limits are same unless otherwise stated. No toleration whatsoever of submitting harmful code or trying to disrupt website. Your account will be banned and legal action may be taken.</p>
                         <p>Language Specifications</p>
                         <ul>
                             <li>C++ - g++ 7.5.0</li>

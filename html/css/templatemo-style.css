@@ -696,7 +696,7 @@
 
   #contact .text-success,
   #contact .text-danger {
-    display: none;
+    /*display: none;*/
   }
 
   #contact .form-control {
