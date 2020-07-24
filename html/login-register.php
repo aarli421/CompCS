@@ -44,7 +44,7 @@ require '../templates/header.php';
     $(function () {
         $("form#login").submit(function(e) {
             e.preventDefault();
-            var formData = new FormData(this);
+            var formData = $(this).serialize();
 
             $.ajax({
                 url: "ajax/login.php",
@@ -67,7 +67,7 @@ require '../templates/header.php';
     $(function () {
         $("form#register").submit(function(e) {
             e.preventDefault();
-            var formData = new FormData(this);
+            var formData = $(this).serialize();
 
             $.ajax({
                 url: "ajax/register.php",
