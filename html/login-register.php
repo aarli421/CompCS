@@ -40,53 +40,6 @@ require '../templates/header.php';
         color: black;
     }
 </style>
-<script>
-    $(function () {
-        $("form#login").submit(function(e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
-
-            $.ajax({
-                url: "ajax/login.php",
-                type: "POST",
-                data: formData,
-                success: function(data) {
-                    if (data == "Success") {
-                        alert("Successfully logged in!");
-                    } else {
-                        alert("Error: " + data);
-                    }
-                },
-                error: function(data) {
-
-                }
-            });
-        });
-    });
-
-    $(function () {
-        $("form#register").submit(function(e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
-
-            $.ajax({
-                url: "ajax/register.php",
-                type: "POST",
-                data: formData,
-                success: function(data) {
-                    if (data == "Success") {
-                        alert("Successfully registered!");
-                    } else {
-                        alert("Error: " + data);
-                    }
-                },
-                error: function(data) {
-
-                }
-            });
-        });
-    });
-</script>
 <div class="background">
 <!-- Form-->
 <section data-stellar-background-ratio="0.5">
@@ -124,6 +77,51 @@ require '../templates/header.php';
         </div>
     </div>
 </section>
+<script>
+    $(function () {
+        $("form#login").submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: "ajax/login.php",
+                type: "POST",
+                data: formData,
+                success: function(data) {
+                    if (data == "Success") {
+                        alert("Successfully logged in!");
+                    } else {
+                        alert("Error: " + data);
+                    }
+                },
+                error: function(data) {
+
+                }
+            });
+        });
+
+        $("form#register").submit(function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: "ajax/register.php",
+                type: "POST",
+                data: formData,
+                success: function(data) {
+                    if (data == "Success") {
+                        alert("Successfully registered!");
+                    } else {
+                        alert("Error: " + data);
+                    }
+                },
+                error: function(data) {
+
+                }
+            });
+        });
+    });
+</script>
 </div>
 </div>
 <?php
