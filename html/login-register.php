@@ -52,7 +52,7 @@ require '../templates/header.php';
                 data: formData,
                 success: function(data) {
                     if (data == "Success") {
-                        <?php redirect("home"); ?>
+                        $(location).attr("href", "http://www.compcs.codes/home.php")
                     } else {
                         console.log("Error: " + data);
                     }
