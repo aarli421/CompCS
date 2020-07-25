@@ -52,7 +52,7 @@ require '../templates/header.php';
                 data: formData,
                 success: function(data) {
                     if (data == "Success") {
-                        $("#loginSuccess").html("Successfully logged you in. Redirecting you in 3 seconds...");
+                        $("#loginSuccess").html("Successfully logged you in. Redirecting you in 3 seconds... If you are not redirected you can click <a href='http://www.compcs.codes/home.php'>this</a>.");
                         $("#loginError").html("");
                         setTimeout(function () {
                             $(location).attr("href", "http://www.compcs.codes/home.php");
