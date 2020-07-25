@@ -1,13 +1,13 @@
 <?php
-require("../templates/header.php");
+require '../templates/header.php';
 ?>
 <link rel="stylesheet" href="css/question.css">
 <link rel="stylesheet" href="css/loader.css">
 <script>
     function startUpload(){
         $(function() {
-            $('#upload_process').css("display", "inline");
-            $('#dialogDiv').html('');
+            $('#upload_process').css("display", "block");
+            $('#dialogDiv').html("");
         });
     }
 
@@ -33,7 +33,7 @@ require("../templates/header.php");
                     $("#fileInput").val("");
                 },
                 error: function(data) {
-                    $("#dialogDiv").html("Error happened");
+                    $("#upload-error").html("Error happened");
                     stopUpload();
                     $("#fileInput").val("");
                 },
@@ -54,9 +54,9 @@ require("../templates/header.php");
     <div><h1 class="problemtitle" style="margin-bottom: 3px;">Problem: Gymnastics <h3 class="problemtitle" style="margin-top: 0px">Points/Case: 20</h3></h1></div>
 
     <center>
-        <div class="outer">
-            <div><span style="color: #993333; font-size: 20px;">Red Text</span></div>
-            <div class="loader triangle">
+        <div id="dialogDiv" class="outer">
+            <div><span id="upload-error" style="color: #993333; font-size: 20px;">Red Text</span></div>
+            <div id="upload_process" class="loader triangle" style="display: none;">
                 <svg viewBox="0 0 86 80">
                     <polygon points="43 8 79 72 7 72"></polygon>
                 </svg>
@@ -97,15 +97,6 @@ require("../templates/header.php");
     </div>
 </center>
 </section>
-<!--<p id="upload_process" style="display: none">Loading <img src="images/loader.gif" /></p>-->
-<!--<p id="result"></p>-->
-<!--<div id="dialogDiv"></div>-->
-<!--<form id="fileSubmission" method="post" enctype="multipart/form-data">-->
-<!--    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />-->
-<!--    <input type="hidden" name="questionName" value="--><?php //echo $_GET['questionName'] ?><!--" />-->
-<!--    Send this file: <input id="fileInput" name="fileInput" type="file" />-->
-<!--    <input name="fileSubmit" type="submit" value="Send File" />-->
-<!--</form>-->
 <?php
-require("../templates/footer.php");
+require '../templates/footer.php';
 ?>
