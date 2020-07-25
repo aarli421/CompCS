@@ -1,6 +1,8 @@
 <?php
 require("../templates/header.php");
 ?>
+<link rel="stylesheet" href="css/question.css">
+<link rel="stylesheet" href="css/loader.css">
 <script>
     function startUpload(){
         $(function() {
