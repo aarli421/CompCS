@@ -1,6 +1,6 @@
 <?php
-require("../templates/header.php");
 session_start();
+require '../templates/header.php';
 
 $db = setupDb();
 if (!$db) {
@@ -28,4 +28,4 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
     }
 }
 
-require("../templates/footer.php");
+require '../templates/footer.php';
