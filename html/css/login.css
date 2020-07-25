@@ -128,11 +128,23 @@ html {
 	 line-height: inherit;
 	 text-transform: uppercase;
 	 cursor: pointer;
+	 transition-duration: 0.4s;
 }
  .two .form-group button {
 	 background: #fff;
 	 color: #CE3232;
 }
+
+ /*.form-group button:hover {*/
+	/* background-color: #fff;*/
+	/* color: #CE3232;*/
+ /*}*/
+
+ /*.two .form-group button:hover {*/
+	/* background-color: #CE3232;*/
+	/* color: #fff;*/
+ /*}*/
+
  .form-group .form-remember {
 	 font-size: 12px;
 	 font-weight: 400;
@@ -202,9 +214,13 @@ html {
 	 left: 10%;
 	 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	 cursor: default;
+	 position: relative;
+	 z-index: -100000;
 }
  .form-panel.two.active:before, .form-panel.two.active:after {
 	 opacity: 0;
+	 position: relative;
+	 z-index: -100000;
 }
  .form-header {
 	 margin: 0 0 40px;

@@ -73,7 +73,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-nav-first" >
                 <li><a href="home.php" class="smoothScroll" style="font-size: 18px">Home</a></li>
-                <li><a href="login-register.php" class="smoothScroll" style="font-size: 18px">Login / Register</a></li>
+                <li><a href="login.php" class="smoothScroll" style="font-size: 18px">Login</a></li>
+                <li><a href="register.php" class="smoothScroll" style="font-size: 18px">Register</a></li>
                 <li><a href="index.php#contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
             </ul>
 

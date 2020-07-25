@@ -5,7 +5,7 @@ require '../templates/header.php';
     .background {
         background-image: url("images/bestbg.png");
         background-repeat: no-repeat, repeat;
-        background-size: cover;
+        /*background-size: cover;*/
     }
 </style>
 <style>
@@ -42,7 +42,7 @@ require '../templates/header.php';
 </style>
 <script>
     $(function () {
-        $("form#login").submit(function(e) {
+        $("#login").submit(function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
 
@@ -69,43 +69,12 @@ require '../templates/header.php';
             });
         });
     });
-
-    $(function () {
-        $("form#register").submit(function(e) {
-            e.preventDefault();
-            console.log("Passed here 1");
-
-            var formData = $(this).serialize();
-
-            console.log("Passed here 2");
-
-            $.ajax({
-                url: "ajax/register.php",
-                type: "POST",
-                data: formData,
-                success: function(data) {
-                    if (data == "Success") {
-                        $("#registerSuccess").html("You are successfully registered! Please verify your account through the email that was just sent.");
-                        $("#registerError").html("");
-                    } else {
-                        $("#registerSuccess").html("");
-                        $("#registerError").html(data);
-                    }
-                },
-                error: function(data) {
-                    $("#registerSuccess").html("");
-                    $("#registerError").html(data);
-                }
-            });
-        });
-    });
 </script>
 <div class="background">
 <!-- Form-->
 <section data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="form">
-            <div class="form-toggle"></div>
             <div class="form-panel one">
                 <h6 id="loginSuccess" class="text-success"></h6>
                 <h6 id="loginError" class="text-danger"></h6>
@@ -118,23 +87,6 @@ require '../templates/header.php';
                         <div class="form-group"><label for="loginPassword">Password</label><input type="password" id="loginPassword" name="loginPassword" required="required" /></div>
                         <div class="form-group"><a class="form-recovery" href="#">Forgot Password?</a></div>
                         <div class="form-group"><button form="login" type="submit">Log In</button></div>
-                    </form>
-                </div>
-            </div>
-            <div class="form-panel two">
-                <h6 id="registerSuccess" class="text-success"></h6>
-                <h6 id="registerError" class="text-danger"></h6>
-                <div class="form-header">
-                    <h1>Register Account</h1>
-                </div>
-                <div class="form-content">
-                    <form id="register" method="post">
-                        <div class="form-group"><label for="registerUsername">Username</label><input type="text" id="registerUsername" name="signUpUsername" required="required" /></div>
-                        <div class="form-group"><label for="registerPassword">Password</label><input type="password" id="registerPassword" name="signUpPassword" required="required" /></div>
-                        <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
-                        <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" /></div>
-                        <div class="form-group"><label class="form-remember"><input type="checkbox" checked="checked" required="required"/>Agree to Terms of Service</label></div>
-                        <div class="form-group"><button form="register" type="submit">Register</button></div>
                     </form>
                 </div>
             </div>
