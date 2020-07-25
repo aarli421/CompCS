@@ -6,14 +6,13 @@ require '../templates/header.php';
 <script>
     function startUpload(){
         $(function() {
-            $('#upload_process').css("display", "block");
-            $('#dialogDiv').html("");
+            $('#dialogDiv').html("<div id=\"upload_process\" class=\"loader triangle\"> <svg viewBox=\"0 0 86 80\"><polygon points=\"43 8 79 72 7 72\"></polygon></svg></div>");
         });
     }
 
     function stopUpload(){
         $(function() {
-            $('#upload_process').css("display", "none");
+            $('#dialogDiv').html("");
         });
     }
 
@@ -28,13 +27,13 @@ require '../templates/header.php';
                 type: 'POST',
                 data: formData,
                 success: function(data) {
-                    $("#dialogDiv").html(data);
                     stopUpload();
+                    $("#dialogDiv").html(data);
                     $("#fileInput").val("");
                 },
                 error: function(data) {
-                    $("#upload-error").html("Error happened");
                     stopUpload();
+                    $("#upload-error").html("Error happened");
                     $("#fileInput").val("");
                 },
                 contentType: false,
@@ -56,11 +55,6 @@ require '../templates/header.php';
     <center>
         <div id="dialogDiv" class="outer">
             <div><span id="upload-error" style="color: #993333; font-size: 20px;">Red Text</span></div>
-            <div id="upload_process" class="loader triangle" style="display: none;">
-                <svg viewBox="0 0 86 80">
-                    <polygon points="43 8 79 72 7 72"></polygon>
-                </svg>
-            </div>
             <div class="trial-result trial-status-yes"><div class="res-symbol">*</div><div class="trial-num">1</div><div class="info"><span class="msize">152ms</span></div></div>
             <div class="trial-result trial-status-no"><div class="res-X">X</div><div class="trial-num">2</div><div class="info"></div></div>
             <div class="trial-result trial-status-no"><div class="res-X">E</div><div class="trial-num">3</div><div class="info"></div></div>
