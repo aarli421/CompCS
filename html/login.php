@@ -76,8 +76,6 @@ require '../templates/header.php';
     <div class="container">
         <div class="form">
             <div class="form-panel one">
-                <h6 id="loginSuccess" class="text-success"></h6>
-                <h6 id="loginError" class="text-danger"></h6>
                 <div class="form-header">
                     <h1>Account Login</h1>
                 </div>
@@ -89,6 +87,8 @@ require '../templates/header.php';
                         <div class="form-group"><button form="login" type="submit">Log In</button></div>
                     </form>
                 </div>
+                <h6 id="loginSuccess" class="text-success" style="text-align: center;"></h6>
+                <h6 id="loginError" class="text-danger" style="text-align: center;"></h6>
             </div>
         </div>
     </div>
