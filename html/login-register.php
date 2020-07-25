@@ -68,7 +68,9 @@ require '../templates/header.php';
                 }
             });
         });
+    });
 
+    $(function () {
         $("form#register").submit(function(e) {
             e.preventDefault();
             console.log("Passed here 1");
