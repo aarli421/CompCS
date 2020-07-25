@@ -91,12 +91,13 @@ require '../templates/header.php';
             <label for="file-upload" class="section-btn">
                 <i class="fa fa-cloud-upload"></i> Upload File
             </label>
-            <input id="file-upload" name='fileInput' type="file" style="display:none; margin: 20px;">
+            <input id="file-upload" name="fileInput" type="file" style="display:none; margin: 20px;">
             <input name="fileSubmit" type="submit" class="section-btn" value="Send File" style="margin: 20px;"/>
         </form>
     </div>
 </center>
 </section>
+<script src="js/question.js"></script>
 <?php
 require '../templates/footer.php';
 ?>
