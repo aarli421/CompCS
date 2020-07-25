@@ -63,7 +63,8 @@ require '../templates/header.php';
                     }
                 },
                 error: function(data) {
-
+                    $("#loginSuccess").html("");
+                    $("#loginError").html(data);
                 }
             });
         });
@@ -78,13 +79,16 @@ require '../templates/header.php';
                 data: formData,
                 success: function(data) {
                     if (data == "Success") {
-                        console.log("Successfully registered!");
+                        $("#registerSuccess").html("You are successfully registered! Please verify your account through the email that was just sent.");
+                        $("#registerError").html("");
                     } else {
-                        console.log("Error: " + data);
+                        $("#registerSuccess").html("");
+                        $("#registerError").html(data);
                     }
                 },
                 error: function(data) {
-
+                    $("#registerSuccess").html("");
+                    $("#registerError").html(data);
                 }
             });
         });
