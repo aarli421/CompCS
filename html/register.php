@@ -58,7 +58,7 @@ require '../templates/header.php';
                     if (data == "Success") {
                         $("#registerSuccess").css("display", "inline");
                         $("#registerSuccess").html("You are successfully registered! Please verify your account through the email that was just sent.");
-                        $("#registerSuccess").css("display", "none");
+                        $("#registerError").css("display", "none");
                         $("#registerError").html("");
                     } else {
                         $("#registerSuccess").css("display", "none");
