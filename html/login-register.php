@@ -71,7 +71,11 @@ require '../templates/header.php';
 
         $("form#register").submit(function(e) {
             e.preventDefault();
+            console.log("Passed here 1");
+
             var formData = $(this).serialize();
+
+            console.log("Passed here 2");
 
             $.ajax({
                 url: "ajax/register.php",
