@@ -90,8 +90,8 @@ require '../templates/header.php';
                             <div class="form-group"><button form="register" type="submit">Register</button></div>
                         </form>
                     </div>
-                    <h6 id="registerSuccess" class="text-success" style="text-align: center;"></h6>
-                    <h6 id="registerError" class="text-danger" style="text-align: center;"></h6>
+                    <h6 id="registerSuccess" class="text-success" style="text-align: center; padding: 20px;"></h6>
+                    <h6 id="registerError" class="text-danger" style="text-align: center; padding: 20px;"></h6>
                 </div>
             </div>
         </div>

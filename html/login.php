@@ -87,8 +87,8 @@ require '../templates/header.php';
                         <div class="form-group"><button form="login" type="submit">Log In</button></div>
                     </form>
                 </div>
-                <h6 id="loginSuccess" class="text-success" style="text-align: center;"></h6>
-                <h6 id="loginError" class="text-danger" style="text-align: center;"></h6>
+                <h6 id="loginSuccess" class="text-success" style="text-align: center; padding: 20px;"></h6>
+                <h6 id="loginError" class="text-danger" style="text-align: center; padding: 20px;"></h6>
             </div>
         </div>
     </div>
