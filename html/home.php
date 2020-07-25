@@ -2,7 +2,11 @@
 session_start();
 require '../templates/header.php';
 require '../templates/helper.php';
-echo $_SESSION['user'] . "<br>";
+
+$db = setupDb();
+if (!$db) {
+    echo "Database could not load";
+}
 ?>
 <!-- Greeting Message -->
 <section style="height: 50px;">
@@ -21,11 +25,6 @@ echo $_SESSION['user'] . "<br>";
     <th class="link">Link</th>
 </tr>
 <?php
-$db = setupDb();
-if (!$db) {
-    echo "Database could not load";
-}
-
 $sth = $db->prepare("SELECT `points` FROM `users` WHERE `username` = ?");
 $sth->execute([$_SESSION['user']]);
 $passArr = $sth->fetchAll();
