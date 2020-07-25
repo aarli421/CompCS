@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/home.css">
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/templatemo-style.css">

@@ -34,8 +34,8 @@ $sth = $db->prepare("SELECT * FROM `questions`");
 $sth->execute();
 $passArr = $sth->fetchAll();
 
+$i = 0;
 foreach ($passArr as $value) {
-    $i = 0;
     if ($value['unlock_value'] <= $points) {
         $i++;
         ?>
