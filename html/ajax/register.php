@@ -24,17 +24,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     $passArr = $sth->fetchAll();
 
     if ($passArr[0][0] == 0) {
-        $sql = "
-        INSERT INTO `users` (`username`, `password`, `email`, `hash`)
-        SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? AS `hash`) AS temp 
-        WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
-        $sth = $db->prepare($sql);
-        $sth->execute([$username, $hashedPw, $mail, $hash, $username, $mail]);
-
-        $sth = $db->prepare("COMMIT");
-        $sth->execute();
 //        echo "Passed ";
-
         if (preg_match($pattern, $mail) === 1) {
             $host = $_SERVER["HTTP_HOST"];
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
@@ -56,6 +46,16 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             try {
                 $response = $sendgrid->send($email);
                 if ($response->statusCode() == 202) {
+                    $sql = "
+                    INSERT INTO `users` (`username`, `password`, `email`, `hash`)
+                    SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? AS `hash`) AS temp 
+                    WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
+                    $sth = $db->prepare($sql);
+                    $sth->execute([$username, $hashedPw, $mail, $hash, $username, $mail]);
+
+                    $sth = $db->prepare("COMMIT");
+                    $sth->execute();
+
                     echo "Success";
                 } else {
                     echo "Mail was unable to send.";
