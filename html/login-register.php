@@ -52,9 +52,14 @@ require '../templates/header.php';
                 data: formData,
                 success: function(data) {
                     if (data == "Success") {
-                        $(location).attr("href", "http://www.compcs.codes/home.php")
+                        $("#loginSuccess").html("Successfully logged you in. Redirecting you in 3 seconds...");
+                        $("#loginError").html("");
+                        setTimeout(function () {
+                            $(location).attr("href", "http://www.compcs.codes/home.php");
+                        }, 3000);
                     } else {
-                        console.log("Error: " + data);
+                        $("#loginSuccess").html("");
+                        $("#loginError").html(data);
                     }
                 },
                 error: function(data) {
@@ -107,8 +112,8 @@ require '../templates/header.php';
                 </div>
             </div>
             <div class="form-panel two">
-                <h6 id="registerSuccess" class="text-success">Random</h6>
-                <h6 id="registerError" class="text-danger">Random</h6>
+                <h6 id="registerSuccess" class="text-success"></h6>
+                <h6 id="registerError" class="text-danger"></h6>
                 <div class="form-header">
                     <h1>Register Account</h1>
                 </div>
