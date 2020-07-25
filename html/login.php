@@ -52,18 +52,24 @@ require '../templates/header.php';
                 data: formData,
                 success: function(data) {
                     if (data == "Success") {
+                        $("#loginSuccess").css("display", "inline");
                         $("#loginSuccess").html("Successfully logged you in. Redirecting you in 3 seconds... If you are not redirected you can click <a href='http://www.compcs.codes/home.php'>this</a>.");
+                        $("#loginError").css("display", "none");
                         $("#loginError").html("");
                         setTimeout(function () {
                             $(location).attr("href", "http://www.compcs.codes/home.php");
                         }, 3000);
                     } else {
+                        $("#loginSuccess").css("display", "none");
                         $("#loginSuccess").html("");
+                        $("#loginError").css("display", "inline");
                         $("#loginError").html(data);
                     }
                 },
                 error: function(data) {
+                    $("#loginSuccess").css("display", "none");
                     $("#loginSuccess").html("");
+                    $("#loginError").css("display", "inline");
                     $("#loginError").html(data);
                 }
             });
@@ -87,8 +93,8 @@ require '../templates/header.php';
                         <div class="form-group"><button form="login" type="submit">Log In</button></div>
                     </form>
                 </div>
-                <h6 id="loginSuccess" class="text-success" style="text-align: center; padding: 20px;"></h6>
-                <h6 id="loginError" class="text-danger" style="text-align: center; padding: 20px;"></h6>
+                <h6 id="loginSuccess" class="text-success"></h6>
+                <h6 id="loginError" class="text-danger"></h6>
             </div>
         </div>
     </div>

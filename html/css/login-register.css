@@ -261,4 +261,8 @@ html {
 	 color: #4285f4 !important;
 }
  /* CSS Document */
-
+.text-success .text-success {
+	text-align: center;
+	padding-top: 20px;
+	display: none;
+}

@@ -56,15 +56,21 @@ require '../templates/header.php';
                 data: formData,
                 success: function(data) {
                     if (data == "Success") {
+                        $("#registerSuccess").css("display", "inline");
                         $("#registerSuccess").html("You are successfully registered! Please verify your account through the email that was just sent.");
+                        $("#registerSuccess").css("display", "none");
                         $("#registerError").html("");
                     } else {
+                        $("#registerSuccess").css("display", "none");
                         $("#registerSuccess").html("");
+                        $("#registerError").css("display", "inline");
                         $("#registerError").html(data);
                     }
                 },
                 error: function(data) {
+                    $("#registerSuccess").css("display", "none");
                     $("#registerSuccess").html("");
+                    $("#registerError").css("display", "inline");
                     $("#registerError").html(data);
                 }
             });
@@ -90,8 +96,8 @@ require '../templates/header.php';
                             <div class="form-group"><button form="register" type="submit">Register</button></div>
                         </form>
                     </div>
-                    <h6 id="registerSuccess" class="text-success" style="text-align: center; padding: 20px;"></h6>
-                    <h6 id="registerError" class="text-danger" style="text-align: center; padding: 20px;"></h6>
+                    <h6 id="registerSuccess" class="text-success"></h6>
+                    <h6 id="registerError" class="text-danger"></h6>
                 </div>
             </div>
         </div>
