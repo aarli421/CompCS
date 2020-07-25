@@ -114,8 +114,8 @@ require '../templates/header.php';
                 </div>
                 <div class="form-content">
                     <form id="login" method="post">
-                        <div class="form-group"><label for="username">Username</label><input type="text" id="username" name="loginUsername" required="required" /></div>
-                        <div class="form-group"><label for="password">Password</label><input type="password" id="password" name="loginPassword" required="required" /></div>
+                        <div class="form-group"><label for="loginUsername">Username</label><input type="text" id="loginUsername" name="loginUsername" required="required" /></div>
+                        <div class="form-group"><label for="loginPassword">Password</label><input type="password" id="loginPassword" name="loginPassword" required="required" /></div>
                         <div class="form-group"><a class="form-recovery" href="#">Forgot Password?</a></div>
                         <div class="form-group"><button form="login" type="submit">Log In</button></div>
                     </form>
@@ -129,10 +129,10 @@ require '../templates/header.php';
                 </div>
                 <div class="form-content">
                     <form id="register" method="post">
-                        <div class="form-group"><label for="username">Username</label><input type="text" id="username" name="signUpUsername" required="required" /></div>
-                        <div class="form-group"><label for="password">Password</label><input type="password" id="password" name="signUpPassword" required="required" /></div>
-                        <div class="form-group"><label for="cpassword">Confirm Password</label><input type="password" id="cpassword" name="signUpCPassword" required="required" /></div>
-                        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="signUpEmail" required="required" /></div>
+                        <div class="form-group"><label for="registerUsername">Username</label><input type="text" id="registerUsername" name="signUpUsername" required="required" /></div>
+                        <div class="form-group"><label for="registerPassword">Password</label><input type="password" id="registerPassword" name="signUpPassword" required="required" /></div>
+                        <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
+                        <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" /></div>
                         <div class="form-group"><label class="form-remember"><input type="checkbox" checked="checked" required="required"/>Agree to Terms of Service</label></div>
                         <div class="form-group"><button form="register" type="submit">Register</button></div>
                     </form>
