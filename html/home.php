@@ -4,7 +4,22 @@ require '../templates/header.php';
 require '../templates/helper.php';
 echo $_SESSION['user'] . "<br>";
 ?>
-<div id="question_select">
+<!-- Greeting Message -->
+<section style="height: 50px;">
+    <div style="padding-left:17.5%; padding-top: 60px;">
+        <h1 >Welcome, Username</h1>
+    </div>
+</section>
+<!-- Form-->
+<section data-stellar-background-ratio="0.5" class = "questionlist">
+<center>
+<table class="question">
+<tr class="categories">
+    <th class="problemnum">Problem #</th>
+    <th>Problem name</th>
+    <th>Points / Testcase</th>
+    <th class="link">Link</th>
+</tr>
 <?php
 $db = setupDb();
 if (!$db) {
@@ -21,18 +36,21 @@ $sth->execute();
 $passArr = $sth->fetchAll();
 
 foreach ($passArr as $value) {
+    $i = 0;
     if ($value['unlock_value'] <= $points) {
-        echo '<form method="get" action="question.php">';
-        echo "Name: " . $value['name'] . "<br>";
-        echo "Difficulty: " . $value['difficulty'] . "<br>";
-        echo '<input name="questionName" value="';
-        echo $value['name'];
-        echo '" hidden>';
-        echo '<button type="submit">Go to question</button>';
-        echo '</form>';
-    }
+        $i++;
+        ?>
+        <tr class="categories">
+            <td><?php echo $i; ?></td>
+            <td><?php echo $value['name']; ?></td>
+            <td><?php echo $value['testcase_value']; ?></td>
+            <td><form method="get" action="question.php"><input name="questionName" value="<?php echo $value['name']; ?>" hidden=""><button type="submit" class="section-btn" style="margin:20px;">Go to question</button></form></td>
+        </tr>
+    <?php}
 }?>
-</div>
+</table>
+</center>
+</section>
 <?php
 require '../templates/footer.php';
 ?>
