@@ -40,7 +40,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
             $verLink = 'http://' . $host . $path . '/verify.php?email=' . $mail . '&hash=' . $hash;
 
-            $handle = fopen('../private/keys.csv', 'r');
+            $handle = fopen('../../private/keys.csv', 'r');
             $data = fgetcsv($handle, 5, ',');
 
             $email = new \SendGrid\Mail\Mail();
