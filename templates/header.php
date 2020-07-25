@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/question.css">
+    <link rel="stylesheet" href="css/loader.css">
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/templatemo-style.css">

@@ -12,7 +12,9 @@
       <w>getcwd</w>
       <w>navbar</w>
       <w>problemnum</w>
+      <w>problemtitle</w>
       <w>questiondir</w>
+      <w>questionlist</w>
       <w>sendgrid</w>
       <w>smoothscroll</w>
       <w>testcase</w>

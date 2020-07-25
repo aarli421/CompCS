@@ -1,0 +1,154 @@
+#prompt{
+	padding:10px;
+}
+
+pre {
+    white-space: pre-line;
+}
+.square{
+	background:#00C03F;
+    width: 20px;
+    height: 20px;
+}
+
+.outer{
+  border-radius: 25px;
+  border: 2px solid #575757;
+  padding: 10px;
+  width: 1150px;
+  margin: 25px;
+}
+
+.status-working
+{
+	font-weight: bold;
+	color: black;
+}
+
+.status-yes
+{
+	font-weight: bold;
+	color: green;
+}
+
+.status-no
+{
+	font-weight: bold;
+	color: #900;
+}
+.redtext span{
+	text-size: 20px;
+	color:#993333;
+}
+.trial-result {
+    border: 1px solid pink;
+    display: inline-block;
+    height: 60px;
+    margin: 3px;
+    position: relative;
+    width: 65px;
+    vertical-align: top;
+}
+.trial-status-no {
+    background-color: #FFE2E2;
+    border: 1px solid #993333;
+    color: #993333;
+}
+.trial-status-partial {
+    background-color: #EEFFEE;
+    border: 1px solid #339933;
+    color: #339933;
+}
+.trial-status-unknown {
+    background-color: #EEEEEE;
+    border: 1px solid black;
+    color: black;
+}
+.trial-num {
+    bottom: 2px;
+    display: inline;
+    float: left;
+    font-size: 15px;
+	padding-left: 2px;
+	padding-bottom: 16px;
+    left: 3px;
+    position: absolute;
+    text-align: right;
+}
+.trial-result .info span {
+    display: block;
+    text-align: right;
+}
+.trial-result .info {
+    bottom: 2px;
+	text-align:center;
+    font-size: x-small;
+    position: absolute;
+    right: 3px;
+}
+.res-X{
+	font-weight: 600;
+	font-size: 16px;
+	padding-top: 3px;
+	padding-left: 10px;
+    text-align: center;
+}
+.res-symbol {
+    font-size: xx-large;
+	padding-top: 8px;
+	padding-left: 10px;
+    text-align: center;
+}
+.trial-status-partial .res-symbol {
+    font-size: x-large !important;
+}
+.trial-status-yes {
+    background-color: #EEFFEE;
+    border: 1px solid #3A9151;
+    color: #3A9151;
+}
+.tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+}
+.mssize span {
+	font-size: xx-small;
+}
+label{
+	background: #ce3232;
+    border-radius: 0;
+    border: 0;
+    color: #f9f9f9;
+    font-size: inherit;
+    font-weight: normal;
+    padding: 10px 25px;
+    transition: 0.5s 0.2s;
+	cursor: pointer;
+}
+label:hover{
+	cursor:grab/pointer;
+}
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.custom-file-upload {
+  display: inline-block;
+  padding: 6px 12px;
+  
+}
+.problemtitle{
+	margin-top: 5px;
+	padding-top: 0px;
+	padding-left: 380px;
+}

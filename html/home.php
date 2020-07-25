@@ -11,11 +11,11 @@ if (!$db) {
 <!-- Greeting Message -->
 <section style="height: 50px;">
     <div style="padding-left:17.5%; padding-top: 60px;">
-        <h1 >Welcome, Username</h1>
+        <h1 >Welcome, <?php echo $_SESSION['user']; ?>!</h1>
     </div>
 </section>
 <!-- Form-->
-<section data-stellar-background-ratio="0.5" class = "questionlist">
+<section data-stellar-background-ratio="0.5" class="questionlist">
 <center>
 <table class="question">
 <tr class="categories">
