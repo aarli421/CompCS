@@ -31,6 +31,7 @@ require '../templates/header.php';
                     stopUpload();
 
                     if (data.hasOwnProperty('error')) {
+                        console.log(data);
                         $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data[0]["error"] + "</span></div>")
                     } else {
                         Object.keys(data).forEach(function(k) {
