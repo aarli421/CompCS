@@ -34,11 +34,12 @@ require '../templates/header.php';
                         data.append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data + "</span></div>")
                     } else {
                         Object.keys(data).forEach(function(k) {
-                            if (data[k]["symbol"] == "*") {
+                            var symbol = data[k]["symbol"];
+                            if (symbol == "*") {
                                 var time = Math.round(data[k]["time"] * 1000);
-                                console.log(k + ' - ' + data[k]["symbol"] + ' - ' + time);
+                                data.append("<div class=\"trial-result trial-status-yes\"><div class=\"res-symbol\">*</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"><span class=\"msize\">" + time + "ms</span></div></div>");
                             } else {
-                                console.log(k + ' - ' + data[k]["symbol"]);
+                                data.append("<div class=\"trial-result trial-status-no\"><div class=\"res-X\">" + symbol + "</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"></div></div>");
                             }
                         });
                     }
