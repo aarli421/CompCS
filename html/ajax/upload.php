@@ -27,23 +27,24 @@ $javaName = $questionName;
 $cppName = $questionName . ".execpp";
 $cName = $questionName . ".exec";
 
-echo '<pre>';
+$arr = array();
+//echo '<pre>';
 if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
     echo "File is valid, and was successfully uploaded.\n";
 
-    $sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
-    $sth->execute([$_SESSION['user']]);
-    $passArr = $sth->fetchAll();
-    $user_id = $passArr[0]['user_id'];
-
-    $sth = $db->prepare("SELECT `question_id` FROM questions WHERE `name`=?");
-    $sth->execute([$questionName]);
-    $passArr = $sth->fetchAll();
-    $question_id = $passArr[0]['question_id'];
-
-    $fileVal = `cat $uploadFile`;
-    $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
-    $sth->execute([$user_id, $question_id, $fileVal, date('Y-m-d H:i:s', time())]);
+//    $sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
+//    $sth->execute([$_SESSION['user']]);
+//    $passArr = $sth->fetchAll();
+//    $user_id = $passArr[0]['user_id'];
+//
+//    $sth = $db->prepare("SELECT `question_id` FROM questions WHERE `name`=?");
+//    $sth->execute([$questionName]);
+//    $passArr = $sth->fetchAll();
+//    $question_id = $passArr[0]['question_id'];
+//
+//    $fileVal = `cat $uploadFile`;
+//    $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
+//    $sth->execute([$user_id, $question_id, $fileVal, date('Y-m-d H:i:s', time())]);
 
     $ioDirAmount = `ls $questionDir | wc -l`;
     //echo "IO Dir:" . $ioDirAmount;
@@ -58,10 +59,28 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
                 $symbol = $runResults['symbol'];
 
                 if ($i == 1 && $symbol != '*') {
+//                $arr['error_symbol'] = $symbol;
+                    $arr['error'] = array("message" => "Did not pass because outcome was " . $symbol . "<br>");
+//                echo "Did not pass because outcome was " . $symbol . "<br>";
+                    if ($symbol == 'X') {
+                        if (hasValue($runResults['stdout'])) {
+                            $arr['error']['message'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
+//                        echo "The following was printed in stdout <br>";
+//                        echo $runResults['stdout'];
+                        }
+
+                        if (hasValue($runResults['fout'])) {
+                            $arr['error']['message'] .= "The following was printed in fout <br>" . $runResults['fout'];
+//                        echo "The following was printed in fout <br>";
+//                        echo $runResults['fout'];
+                        }
+                    }
                     break;
                 }
 
-                echo $symbol . "<br>";
+                if ($symbol != '*') {
+                    $arr[$i] = array("symbol" => $symbol);
+                }
             }
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
@@ -90,46 +109,56 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
     chdir($ajaxDir);
 
 } else {
-    echo "Could not upload!";
+    echo "Could not upload file. Server error.";
 }
+
+echo json_encode($arr);
 
 //echo 'Here is some more debugging info: <br>';
 //print_r($_FILES);
 
-echo "</pre>";
+//echo "</pre>";
 
 function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount) {
     $result = exec_timeout($compCmd, $compileTimeout);
     echo $result['output'];
 
     if (!empty($result['errors'])) {
-        echo 'Compilation failed!' . '<br>';
-        echo $result['errors'];
-        echo '<br>';
+        $arr['error'] = array("message" => "Compilation failed!<br>" . $result['errors']);
+//        die();
+//        echo 'Compilation failed!' . '<br>';
+//        echo $result['errors'];
+//        echo '<br>';
     } else {
-        echo 'Compiled in ' . $result['time'] . '<br>';
+//        echo 'Compiled in ' . $result['time'] . '<br>';
 
         for ($i = 1; $i <= $testAmount; $i++) {
             $runResults = run($questionDir, $questionName, $i, $runCmd, $runTimeout);
             $symbol = $runResults['symbol'];
 
             if ($i == 1 && $symbol != '*') {
-                echo "Did not pass because outcome was " . $symbol . "<br>";
+//                $arr['error_symbol'] = $symbol;
+                $arr['error'] = array("message" => "Did not pass because outcome was " . $symbol . "<br>");
+//                echo "Did not pass because outcome was " . $symbol . "<br>";
                 if ($symbol == 'X') {
                     if (hasValue($runResults['stdout'])) {
-                        echo "The following was printed in stdout <br>";
-                        echo $runResults['stdout'];
+                        $arr['error']['message'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
+//                        echo "The following was printed in stdout <br>";
+//                        echo $runResults['stdout'];
                     }
 
                     if (hasValue($runResults['fout'])) {
-                        echo "The following was printed in fout <br>";
-                        echo $runResults['fout'];
+                        $arr['error']['message'] .= "The following was printed in fout <br>" . $runResults['fout'];
+//                        echo "The following was printed in fout <br>";
+//                        echo $runResults['fout'];
                     }
                 }
                 break;
             }
 
-            echo $symbol . "<br>";
+            if ($symbol != '*') {
+                $arr[$i] = array("symbol" => $symbol);
+            }
         }
     }
 }
@@ -137,7 +166,9 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 function run($questionDir, $questionName, $i, $cmd, $timeout) {
     $output = `cp -f {$questionDir}/{$i}.in {$questionName}.in`;
     if (!empty($output)) {
-        throw new \Exception("Could not move input cases!");
+        $arr['error'] = array("message" => "Server error.");
+        die();
+//        throw new \Exception("Could not move input cases!");
     }
 
     `rm {$questionName}.out`;
@@ -148,9 +179,10 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
         return array('symbol' => '!', 'output' => $result['errors']);
     } else {
         if ($result['isTimedOut']) {
-            return array('symbol' => 't');
+            return array('symbol' => 'T');
         } else {
-            echo 'Test case #' . $i . ' ran in ' . $result['time'] . "<br>";
+            $arr[$i] = array("symbol" => '*', 'time' => $result['time']);
+//            echo 'Test case #' . $i . ' ran in ' . $result['time'] . "<br>";
         }
     }
 
@@ -165,7 +197,7 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
     } else {
         $output = `[ -s {$questionName}.out ] || echo "empty"`;
         if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
-            if ($i == 1) {
+            if ($i == 1 && $result['output'] != '') {
                 return array('symbol' => 'X', 'stdout' => $result['output']);
             } else {
                 return array('symbol' => 'E');
