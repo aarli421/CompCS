@@ -80,7 +80,14 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 
                 if ($symbol != '*') {
                     $arr[$i] = array("symbol" => $symbol);
+//                echo $symbol;
+                } else {
+                    $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
+//                echo $symbol . "<br>" . $runResults['time'];
                 }
+//            echo "<br>";
+
+                if ($i == $testAmount) echo json_encode($arr);
             }
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
@@ -111,7 +118,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 } else {
     echo "Could not upload file. Server error.";
 }
-print_r($arr);
+//print_r($arr);
 //echo json_encode($arr);
 
 //echo 'Here is some more debugging info: <br>';
@@ -158,12 +165,15 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 
             if ($symbol != '*') {
                 $arr[$i] = array("symbol" => $symbol);
-                echo $symbol;
+//                echo $symbol;
             } else {
                 $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
-                echo $symbol . "<br>" . $runResults['time'];
+//                echo $symbol . "<br>" . $runResults['time'];
             }
-            echo "<br>";
+//            echo "<br>";
+
+            if ($i == $testAmount) echo json_encode($arr);
+
 //            print_r($arr);
         }
     }
