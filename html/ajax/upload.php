@@ -94,19 +94,19 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
         }
     } else if ($fileType == "java") {
         try {
-            full_run('../' . $questionDir, $questionName, "javac $fileName", "java $javaName", 30, 4, $testAmount);
+            full_run('../' . $questionDir, $questionName, "javac $fileName", "java $javaName", 30, 4, $testAmount, $arr);
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
         }
     } else if ($fileType == "cpp") {
         try {
-            full_run('../' . $questionDir, $questionName, "g++ -o $cppName $fileName", "./$cppName", 30, 2, $testAmount);
+            full_run('../' . $questionDir, $questionName, "g++ -o $cppName $fileName", "./$cppName", 30, 2, $testAmount, $arr);
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
         }
     } else if ($fileType == "c") {
         try {
-            full_run('../' . $questionDir, $questionName, "gcc -o $cName $fileName", "./$cName", 30, 2, $testAmount);
+            full_run('../' . $questionDir, $questionName, "gcc -o $cName $fileName", "./$cName", 30, 2, $testAmount, $arr);
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
         }
@@ -114,22 +114,18 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
         echo "Only Python3, Java, C++, and C supported!";
     }
 
-    print_r($arr);
-
     chdir($ajaxDir);
 
 } else {
     echo "Could not upload file. Server error.";
 }
-
-//echo 'Here is some more debugging info: <br>';
-//print_r($_FILES);
+print_r($arr);
 
 //echo "</pre>";
 
-function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount) {
+function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount, &$arr) {
     $result = exec_timeout($compCmd, $compileTimeout);
-    echo $result['output'];
+//    echo $result['output'];
 
     if (!empty($result['errors'])) {
         $arr['error'] = array("message" => "Compilation failed!<br>" . $result['errors']);
