@@ -69,24 +69,7 @@ require '../templates/header.php';
 
     <center>
         <div id="dialogDiv" class="outer">
-            <div><span id="upload-error" style="color: #993333; font-size: 20px;">Red Text</span></div>
-            <div class="trial-result trial-status-yes"><div class="res-symbol">*</div><div class="trial-num">1</div><div class="info"><span class="msize">152ms</span></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">X</div><div class="trial-num">2</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">E</div><div class="trial-num">3</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">!</div><div class="trial-num">4</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">T</div><div class="trial-num">5</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">M</div><div class="trial-num">6</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">!</div><div class="trial-num">7</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">T</div><div class="trial-num">8</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">M</div><div class="trial-num">9</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">!</div><div class="trial-num">10</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">T</div><div class="trial-num">11</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">M</div><div class="trial-num">12</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">!</div><div class="trial-num">13</div><div class="info"></div></div>
-            <div class="trial-result trial-status-no"><div class="res-X">T</div><div class="trial-num">14</div><div class="info"></div></div>
-            <div class="trial-result trial-status-yes"><div class="res-symbol">*</div><div class="trial-num">15</div><div class="info"><span>1345ms</span></div></div>
-            <div class="trial-result trial-status-yes"><div class="res-symbol">*</div><div class="trial-num">16</div><div class="info"><span>1345ms</span></div></div>
-            <div class="trial-result trial-status-yes"><div class="res-symbol">*</div><div class="trial-num">17</div><div class="info"><span>1345ms</span></div></div>
+            <div><span id="upload-error" style="color: #993333; font-size: 20px;">You have not submitted anything.</span></div>
         </div>
     </center>
 <div class="container">
