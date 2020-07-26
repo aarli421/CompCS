@@ -25,7 +25,7 @@ require '../templates/header.php';
             $.ajax({
                 url: "ajax/upload.php",
                 type: 'POST',
-                dataType: 'JSON',
+                // dataType: 'JSON',
                 data: formData,
                 success: function(data) {
                     stopUpload();
