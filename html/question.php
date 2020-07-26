@@ -13,6 +13,7 @@ require '../templates/header.php';
     function stopUpload(){
         $(function() {
             $('#dialogDiv').html("");
+            $("#prompt-center").css("text-align", "center");
         });
     }
 
@@ -31,6 +32,7 @@ require '../templates/header.php';
                     stopUpload();
 
                     if (data.hasOwnProperty('error')) {
+                        $("#prompt-center").css("text-align", "left");
                         console.log(data);
                         $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data["error"] + "</span></div>")
                     } else {
@@ -68,7 +70,7 @@ require '../templates/header.php';
 <section data-stellar-background-ratio="0.5" class = "questionlist">
     <div><h1 class="problemtitle" style="margin-bottom: 3px;">Problem: Gymnastics <h3 class="problemtitle" style="margin-top: 0px">Points/Case: 20</h3></h1></div>
 
-    <center>
+    <center id="prompt-center">
         <div id="dialogDiv" class="outer">
             <div><span id="upload-error" style="color: #993333; font-size: 20px;">You have not submitted anything.</span></div>
         </div>
