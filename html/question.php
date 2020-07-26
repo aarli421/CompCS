@@ -30,11 +30,14 @@ require '../templates/header.php';
                 success: function(data) {
                     stopUpload();
 
-                    Object.keys(data).forEach(function(k){
-                        console.log(k + ' - ' + data[k]["symbol"]);
-                    });
-
-                    // $("#dialogDiv").html(data);
+                    // if (data.hasOwnProperty('error')) {
+                    //
+                    // } else {
+                    //     Object.keys(data).forEach(function(k){
+                    //         console.log(k + ' - ' + data[k]["symbol"]);
+                    //     });
+                    // }
+                    $("#dialogDiv").html(data);
                     $("#fileInput").val("");
                 },
                 error: function(data) {

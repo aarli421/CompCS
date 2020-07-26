@@ -87,7 +87,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
                 }
 //            echo "<br>";
 
-                if ($i == $testAmount) echo json_encode($arr);
+//                if ($i == $testAmount) echo json_encode($arr);
             }
         } catch (Exception $e) {
             echo "<h1>" . $e . "</h1>";
@@ -113,6 +113,9 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
     } else {
         echo "Only Python3, Java, C++, and C supported!";
     }
+
+    print_r($arr);
+
     chdir($ajaxDir);
 
 } else {
@@ -172,7 +175,7 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
             }
 //            echo "<br>";
 
-            if ($i == $testAmount) echo json_encode($arr);
+//            if ($i == $testAmount) echo json_encode($arr);
 
 //            print_r($arr);
         }
