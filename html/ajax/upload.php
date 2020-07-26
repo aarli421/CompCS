@@ -30,7 +30,7 @@ $cName = $questionName . ".exec";
 $arr = array();
 //echo '<pre>';
 if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
-    echo "File is valid, and was successfully uploaded.\n";
+//    echo "File is valid, and was successfully uploaded.\n";
 
 //    $sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
 //    $sth->execute([$_SESSION['user']]);
@@ -111,8 +111,8 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 } else {
     echo "Could not upload file. Server error.";
 }
-
-echo json_encode($arr);
+print_r($arr);
+//echo json_encode($arr);
 
 //echo 'Here is some more debugging info: <br>';
 //print_r($_FILES);
