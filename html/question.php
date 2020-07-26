@@ -31,19 +31,19 @@ require '../templates/header.php';
                     stopUpload();
 
                     if (data.hasOwnProperty('error')) {
-                        data.append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data + "</span></div>")
+                        $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data + "</span></div>")
                     } else {
                         Object.keys(data).forEach(function(k) {
                             var symbol = data[k]["symbol"];
                             if (symbol == "*") {
                                 var time = Math.round(data[k]["time"] * 1000);
-                                data.append("<div class=\"trial-result trial-status-yes\"><div class=\"res-symbol\">*</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"><span class=\"msize\">" + time + "ms</span></div></div>");
+                                $("#dialogDiv").append("<div class=\"trial-result trial-status-yes\"><div class=\"res-symbol\">*</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"><span class=\"msize\">" + time + "ms</span></div></div>");
                             } else {
-                                data.append("<div class=\"trial-result trial-status-no\"><div class=\"res-X\">" + symbol + "</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"></div></div>");
+                                $("#dialogDiv").append("<div class=\"trial-result trial-status-no\"><div class=\"res-X\">" + symbol + "</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"></div></div>");
                             }
                         });
                     }
-                    $("#dialogDiv").html(data);
+                    // $("#dialogDiv").html(data);
                     $("#fileInput").val("");
                 },
                 error: function(data) {
