@@ -8,7 +8,7 @@ if (!$db) {
 }
 
 $sth = $db->prepare("SELECT `testcase_value` FROM questions WHERE `name`=?");
-$sth->execute([$_SESSION['user']]);
+$sth->execute([$_GET['questionName']]);
 $passArr = $sth->fetchAll();
 ?>
 <link rel="stylesheet" href="css/question.css">
