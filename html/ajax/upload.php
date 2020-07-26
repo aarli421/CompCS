@@ -156,9 +156,11 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
                 break;
             }
 
-//            if ($symbol != '*') {
+            if ($symbol != '*') {
                 $arr[$i] = array("symbol" => $symbol);
-//            }
+            } else {
+                $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
+            }
         }
     }
 }
@@ -180,9 +182,6 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
     } else {
         if ($result['isTimedOut']) {
             return array('symbol' => 'T');
-        } else {
-            $arr[$i] = array("symbol" => '*', 'time' => $result['time']);
-//            echo 'Test case #' . $i . ' ran in ' . $result['time'] . "<br>";
         }
     }
 
@@ -193,7 +192,7 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
 
     $output = `diff -w {$questionDir}/{$i}.out {$questionName}.out && echo "alike"`;
     if(str_replace(array("\n", "\r"), '', $output) == 'alike') {
-        return array('symbol' => '*');
+        return array("symbol" => '*', 'time' => $result['time']);
     } else {
         $output = `[ -s {$questionName}.out ] || echo "empty"`;
         if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
