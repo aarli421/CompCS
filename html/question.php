@@ -1,5 +1,15 @@
 <?php
 require '../templates/header.php';
+require '../templates/helper.php';
+
+$db = setupDb();
+if ($db) {
+    die("Database could not load");
+}
+
+$sth = $db->prepare("SELECT `testcase_value` FROM questions WHERE `name`=?");
+$sth->execute([$_SESSION['user']]);
+$passArr = $sth->fetchAll();
 ?>
 <link rel="stylesheet" href="css/question.css">
 <link rel="stylesheet" href="css/loader.css">
@@ -34,7 +44,7 @@ require '../templates/header.php';
                     if (data.hasOwnProperty('error')) {
                         $("#prompt-center").css("text-align", "left");
                         console.log(data);
-                        $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data["error"] + "</span></div>")
+                        $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 14px;\">" + data["error"] + "</span></div>")
                     } else {
                         Object.keys(data).forEach(function(k) {
                             var symbol = data[k]["symbol"];
@@ -68,12 +78,12 @@ require '../templates/header.php';
     });
 </script>
 <section data-stellar-background-ratio="0.5" class = "questionlist">
-    <div><h1 class="problemtitle" style="margin-bottom: 3px;">Problem: Gymnastics <h3 class="problemtitle" style="margin-top: 0px">Points/Case: 20</h3></h1></div>
+    <div><h1 class="problemtitle" style="margin-bottom: 3px;">Problem: <?php echo $_GET['questionName']; ?><h3 class="problemtitle" style="margin-top: 0px">Points/Case: <?php echo $passArr[0]['testcase_value']; ?></h3></h1></div>
 
     <center id="prompt-center">
         <div class="outer-container">
             <div id="dialogDiv" class="outer">
-                <div><span class="upload-error" style="color: #993333; font-size: 20px;">You have not submitted anything.</span></div>
+                <div><span class="upload-error" style="color: #993333; font-size: 14px;">You have not submitted anything.</span></div>
             </div>
         </div>
     </center>
