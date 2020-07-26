@@ -73,7 +73,7 @@ require '../templates/header.php';
     <center id="prompt-center">
         <div class="outer-container">
             <div id="dialogDiv" class="outer">
-                <div><span id="upload-error" style="color: #993333; font-size: 20px;">You have not submitted anything.</span></div>
+                <div><span class="redtext">You have not submitted anything.</span></div>
             </div>
         </div>
     </center>
