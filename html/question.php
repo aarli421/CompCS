@@ -31,7 +31,7 @@ require '../templates/header.php';
                     stopUpload();
 
                     Object.keys(data).forEach(function(k){
-                        console.log(k + ' - ' + data[k]);
+                        console.log(k + ' - ' + data[k]["symbol"]);
                     });
 
                     // $("#dialogDiv").html(data);
