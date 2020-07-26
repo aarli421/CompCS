@@ -128,7 +128,7 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 //    echo $result['output'];
 
     if (!empty($result['errors'])) {
-        $arr['error'] = array("message" => "Compilation failed!<br>" . $result['errors']);
+        $arr['error'] = "Compilation failed!<br>" . $result['errors'];
 //        die();
 //        echo 'Compilation failed!' . '<br>';
 //        echo $result['errors'];
@@ -142,17 +142,17 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 
             if ($i == 1 && $symbol != '*') {
 //                $arr['error_symbol'] = $symbol;
-                $arr['error'] = array("message" => "Did not pass because outcome was " . $symbol . "<br>");
+                $arr['error'] = "Did not pass because outcome was " . $symbol . "<br>";
 //                echo "Did not pass because outcome was " . $symbol . "<br>";
                 if ($symbol == 'X') {
                     if (hasValue($runResults['stdout'])) {
-                        $arr['error']['message'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
+                        $arr['error'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
 //                        echo "The following was printed in stdout <br>";
 //                        echo $runResults['stdout'];
                     }
 
                     if (hasValue($runResults['fout'])) {
-                        $arr['error']['message'] .= "The following was printed in fout <br>" . $runResults['fout'];
+                        $arr['error'] .= "The following was printed in fout <br>" . $runResults['fout'];
 //                        echo "The following was printed in fout <br>";
 //                        echo $runResults['fout'];
                     }
