@@ -25,10 +25,18 @@ require '../templates/header.php';
             $.ajax({
                 url: "ajax/upload.php",
                 type: 'POST',
+                dataType: 'JSON',
                 data: formData,
                 success: function(data) {
                     stopUpload();
-                    $("#dialogDiv").html(data);
+
+                    var len = data.length;
+                    for (var i = 0; i < len; i++) {
+                        var symbol = data[i].symbol;
+                        $("#dialogDiv").append(symbol);
+                    }
+
+                    // $("#dialogDiv").html(data);
                     $("#fileInput").val("");
                 },
                 error: function(data) {
