@@ -25,18 +25,23 @@ require '../templates/header.php';
             $.ajax({
                 url: "ajax/upload.php",
                 type: 'POST',
-                // dataType: 'JSON',
+                dataType: 'JSON',
                 data: formData,
                 success: function(data) {
                     stopUpload();
 
-                    // if (data.hasOwnProperty('error')) {
-                    //
-                    // } else {
-                    //     Object.keys(data).forEach(function(k){
-                    //         console.log(k + ' - ' + data[k]["symbol"]);
-                    //     });
-                    // }
+                    if (data.hasOwnProperty('error')) {
+                        data.append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data + "</span></div>")
+                    } else {
+                        Object.keys(data).forEach(function(k) {
+                            if (data[k]["symbol"] == "*") {
+                                var time = Math.round(data[k]["time"] * 1000);
+                                console.log(k + ' - ' + data[k]["symbol"] + ' - ' + time);
+                            } else {
+                                console.log(k + ' - ' + data[k]["symbol"]);
+                            }
+                        });
+                    }
                     $("#dialogDiv").html(data);
                     $("#fileInput").val("");
                 },
