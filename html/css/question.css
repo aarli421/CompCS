@@ -17,6 +17,11 @@ pre {
   padding: 10px;
   width: 1150px;
   margin: 25px;
+    display: inline-block;
+}
+
+.outer-container {
+    text-align: center;
 }
 
 .status-working

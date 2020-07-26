@@ -71,8 +71,10 @@ require '../templates/header.php';
     <div><h1 class="problemtitle" style="margin-bottom: 3px;">Problem: Gymnastics <h3 class="problemtitle" style="margin-top: 0px">Points/Case: 20</h3></h1></div>
 
     <center id="prompt-center">
-        <div id="dialogDiv" class="outer">
-            <div><span id="upload-error" style="color: #993333; font-size: 20px;">You have not submitted anything.</span></div>
+        <div class="outer-container">
+            <div id="dialogDiv" class="outer">
+                <div><span id="upload-error" style="color: #993333; font-size: 20px;">You have not submitted anything.</span></div>
+            </div>
         </div>
     </center>
 <div class="container">
