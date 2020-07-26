@@ -32,7 +32,7 @@ require '../templates/header.php';
 
                     if (data.hasOwnProperty('error')) {
                         console.log(data);
-                        $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data[0]["error"] + "</span></div>")
+                        $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 20px;\">" + data["error"] + "</span></div>")
                     } else {
                         Object.keys(data).forEach(function(k) {
                             var symbol = data[k]["symbol"];
