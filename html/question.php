@@ -30,11 +30,9 @@ require '../templates/header.php';
                 success: function(data) {
                     stopUpload();
 
-                    var len = data.length;
-                    for (var i = 0; i < len; i++) {
-                        var symbol = data[i].symbol;
-                        $("#dialogDiv").append(symbol);
-                    }
+                    Object.keys(data).forEach(function(k){
+                        console.log(k + ' - ' + data[k]);
+                    });
 
                     // $("#dialogDiv").html(data);
                     $("#fileInput").val("");
