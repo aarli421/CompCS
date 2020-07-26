@@ -156,9 +156,9 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
                 break;
             }
 
-            if ($symbol != '*') {
+//            if ($symbol != '*') {
                 $arr[$i] = array("symbol" => $symbol);
-            }
+//            }
         }
     }
 }
