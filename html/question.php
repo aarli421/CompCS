@@ -3,7 +3,7 @@ require '../templates/header.php';
 require '../templates/helper.php';
 
 $db = setupDb();
-if ($db) {
+if (!$db) {
     die("Database could not load");
 }
 
