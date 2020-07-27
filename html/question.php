@@ -57,12 +57,12 @@ $passArr = $sth->fetchAll();
                         });
                     }
                     // $("#dialogDiv").html(data);
-                    $("#fileInput").val("");
+                    $("#file-upload").val("");
                 },
                 error: function(data) {
                     stopUpload();
                     $("#upload-error").html("Error happened");
-                    $("#fileInput").val("");
+                    $("#file-upload").val("");
                 },
                 contentType: false,
                 processData: false
