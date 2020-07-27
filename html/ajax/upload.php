@@ -170,15 +170,6 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
                 $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
 //                echo $symbol . "<br>" . $runResults['time'];
             }
-            }
-
-            if ($symbol != '*') {
-                $arr[$i] = array("symbol" => $symbol);
-//                echo $symbol;
-            } else {
-                $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
-//                echo $symbol . "<br>" . $runResults['time'];
-            }
 //            echo "<br>";
 
 //            if ($i == $testAmount) echo json_encode($arr);
