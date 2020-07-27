@@ -75,7 +75,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 //                        echo $runResults['fout'];
                         }
                     } else if ($symbol == '!') {
-                        $arr['error'] .= "The following was printed in error <br>" .
+                        $arr['error'] .= "The following was printed in error <br>" . $runResults['output'];
                     }
                     break;
                 }
