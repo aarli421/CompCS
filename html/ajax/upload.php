@@ -60,17 +60,17 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 
                 if ($i == 1 && $symbol != '*') {
 //                $arr['error_symbol'] = $symbol;
-                    $arr['error'] = array("message" => "Did not pass because outcome was " . $symbol . "<br>");
+                    $arr['error'] = "Did not pass because outcome was " . $symbol . "<br>";
 //                echo "Did not pass because outcome was " . $symbol . "<br>";
                     if ($symbol == 'X') {
                         if (hasValue($runResults['stdout'])) {
-                            $arr['error']['message'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
+                            $arr['error'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
 //                        echo "The following was printed in stdout <br>";
 //                        echo $runResults['stdout'];
                         }
 
                         if (hasValue($runResults['fout'])) {
-                            $arr['error']['message'] .= "The following was printed in fout <br>" . $runResults['fout'];
+                            $arr['error'] .= "The following was printed in fout <br>" . $runResults['fout'];
 //                        echo "The following was printed in fout <br>";
 //                        echo $runResults['fout'];
                         }
@@ -85,7 +85,6 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
                     $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
 //                echo $symbol . "<br>" . $runResults['time'];
                 }
-//            echo "<br>";
 
 //                if ($i == $testAmount) echo json_encode($arr);
             }
