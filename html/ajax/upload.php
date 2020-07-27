@@ -62,7 +62,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 //                $arr['error_symbol'] = $symbol;
                     $arr['error'] = "Did not pass because outcome was " . $symbol . "<br>";
 //                echo "Did not pass because outcome was " . $symbol . "<br>";
-                    if ($symbol == 'X') {
+                    if ($symbol != '!' && $symbol != 'T') {
                         if (hasValue($runResults['stdout'])) {
                             $arr['error'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
 //                        echo "The following was printed in stdout <br>";
@@ -74,6 +74,8 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 //                        echo "The following was printed in fout <br>";
 //                        echo $runResults['fout'];
                         }
+                    } else if ($symbol == '!') {
+                        $arr['error'] .= "The following was printed in error <br>" .
                     }
                     break;
                 }
@@ -143,7 +145,7 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 //                $arr['error_symbol'] = $symbol;
                 $arr['error'] = "Did not pass because outcome was " . $symbol . "<br>";
 //                echo "Did not pass because outcome was " . $symbol . "<br>";
-                if ($symbol == 'X') {
+                if ($symbol != '!' && $symbol != 'T') {
                     if (hasValue($runResults['stdout'])) {
                         $arr['error'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
 //                        echo "The following was printed in stdout <br>";
@@ -155,8 +157,19 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 //                        echo "The following was printed in fout <br>";
 //                        echo $runResults['fout'];
                     }
-                }
+                } else if ($symbol == '!') {
+                    $arr['error'] .= "The following was printed in error <br>" . $runResults['output'];
+                    }
                 break;
+            }
+
+            if ($symbol != '*') {
+                $arr[$i] = array("symbol" => $symbol);
+//                echo $symbol;
+            } else {
+                $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
+//                echo $symbol . "<br>" . $runResults['time'];
+            }
             }
 
             if ($symbol != '*') {
@@ -195,9 +208,11 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
         }
     }
 
+    $contents = `cat {$questionName}.out`;
+
     $output = `test -f {$questionName}.out || echo "does not exist"`;
     if(str_replace(array("\n", "\r"), '', $output) == 'does not exist') {
-        return array('symbol' => 'M');
+        return array('symbol' => 'M', 'stdout' => $result['output']);
     }
 
     $output = `diff -w {$questionDir}/{$i}.out {$questionName}.out && echo "alike"`;
@@ -209,10 +224,9 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
             if ($i == 1 && $result['output'] != '') {
                 return array('symbol' => 'X', 'stdout' => $result['output']);
             } else {
-                return array('symbol' => 'E');
+                return array('symbol' => 'E', 'stdout' => $result['output']);
             }
         } else {
-            $contents = `cat {$questionName}.out`;
             return array('symbol' => 'X', 'stdout' => $result['output'], 'fout' => $contents);
         }
     }
