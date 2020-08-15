@@ -983,11 +983,6 @@
     }
   }
 
-  button:disabled {
-    cursor: not-allowed;
-    pointer-events: all !important;
-  }
-
   @media only screen and (max-width: 580px) {
     h1 {
       font-size: 2.1em;

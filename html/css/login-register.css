@@ -266,3 +266,8 @@ html {
 	padding-top: 20px;
 	display: none;
 }
+
+button[disabled] {
+	cursor: not-allowed;
+	pointer-events: all !important;
+}
