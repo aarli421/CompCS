@@ -3,7 +3,7 @@ session_start();
 
 require '../templates/helper.php';
 
-if (isset($_SESSION['user'])) redirect("login");
+if (!isset($_SESSION['user'])) redirect("login");
 
 require '../templates/header.php';
 
