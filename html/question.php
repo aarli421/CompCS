@@ -59,13 +59,13 @@ $passArr = $sth->fetchAll();
                     }
                     // $("#dialogDiv").html(data);
                     $("#file-upload").val("");
-                    $("#file-upload").prev('label').text("<i class=\"fa fa-cloud-upload\"></i> Upload File");
+                    $("#file-label").append("<i class=\"fa fa-cloud-upload\"></i> Upload File");
                 },
                 error: function(data) {
                     stopUpload();
                     $("#upload-error").html("Error happened");
                     $("#file-upload").val("");
-                    $("#file-upload").prev('label').text("<i class=\"fa fa-cloud-upload\"></i> Upload File");
+                    $("#file-label").append("<i class=\"fa fa-cloud-upload\"></i> Upload File");
                 },
                 contentType: false,
                 processData: false
@@ -98,7 +98,7 @@ $passArr = $sth->fetchAll();
         <form id="fileSubmission" method="post" enctype="multipart/form-data">
             <input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
             <input type="hidden" name="questionName" value="<?php echo $_GET['questionName'] ?>" />
-            <label for="file-upload" class="section-btn">
+            <label id="file-label" for="file-upload" class="section-btn">
                 <i class="fa fa-cloud-upload"></i> Upload File
             </label>
             <input id="file-upload" name="fileInput" type="file" style="display:none; margin: 20px;">
