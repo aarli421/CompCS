@@ -1,11 +1,9 @@
 <?php
-session_start();
+require '../../templates/helper.php';
 if (!isset($_SESSION['user'])) {
     echo "YOU ARE NOT LOGGED IN";
     die;
 }
-
-require '../../templates/helper.php';
 
 $db = setupDb();
 if (!$db) {

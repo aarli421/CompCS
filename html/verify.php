@@ -1,7 +1,6 @@
 <?php
-session_start();
-require '../templates/header.php';
 require '../templates/helper.php';
+require '../templates/header.php';
 
 $db = setupDb();
 if (!$db) {

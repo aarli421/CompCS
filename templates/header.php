@@ -73,17 +73,40 @@
         <!-- MENU LINKS IN NAV BAR-->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-nav-first" >
-                <li><a href="home.php" class="smoothScroll" style="font-size: 18px">Home</a></li>
-                <li><a href="login.php" class="smoothScroll" style="font-size: 18px">Login</a></li>
-                <li><a href="register.php" class="smoothScroll" style="font-size: 18px">Register</a></li>
+                <?php
+                if (isset($_SESSION['user'])) {
+                ?>
+                    <li><a href="home.php" class="smoothScroll" style="font-size: 18px">Home</a></li>
+                <?php
+                } else {
+                ?>
+                    <li><a href="login.php" class="smoothScroll" style="font-size: 18px">Login</a></li>
+                    <li><a href="register.php" class="smoothScroll" style="font-size: 18px">Register</a></li>
+                <?php
+                }
+                ?>
                 <li><a href="index.php#contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
             </ul>
 
 
-
-            <ul class="nav navbar-nav navbar-right">
-                <a href="#footer" class="section-btn">Learn to Code?</a>
-            </ul>
+            <?php
+            if (isset($_SESSION['user'])) {
+            ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <form action="home.php" method="post">
+                        <input type="hidden" name="logout" value="true">
+                        <input type="submit" class="section-btn" value="Logout">
+                    </form>
+                </ul>
+            <?php
+            } else {
+            ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <a href="#footer" class="section-btn">Learn to Code?</a>
+                </ul>
+            <?php
+            }
+            ?>
         </div>
 
     </div>

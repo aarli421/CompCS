@@ -1,4 +1,5 @@
 <?php
+require '../templates/helper.php';
 require '../templates/header.php';
 ?>
 <style>
