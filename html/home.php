@@ -7,6 +7,8 @@ $db = setupDb();
 if (!$db) {
     echo "Database could not load";
 }
+
+if (hasValue($_SESSION['user'])) redirect("login");
 ?>
 <!-- Greeting Message -->
 <section style="height: 50px;">
