@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+if (hasValue($_SESSION['user'])) redirect("login");
+
 require '../templates/header.php';
 require '../templates/helper.php';
 
@@ -7,8 +10,6 @@ $db = setupDb();
 if (!$db) {
     echo "Database could not load";
 }
-
-if (hasValue($_SESSION['user'])) redirect("login");
 ?>
 <!-- Greeting Message -->
 <section style="height: 50px;">
