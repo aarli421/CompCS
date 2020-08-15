@@ -90,7 +90,7 @@ $passArr = $sth->fetchAll();
 
     <center id="prompt-center">
         <div class="outer-container">
-            <div id="dialogDiv" class="container">
+            <div id="dialogDiv" class="container outer">
                 <div><span class="upload-error" style="color: #993333; font-size: 14px;">You have not submitted anything.</span></div>
             </div>
         </div>
