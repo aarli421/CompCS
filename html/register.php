@@ -92,7 +92,7 @@ require '../templates/header.php';
                             <div class="form-group"><label for="registerPassword">Password</label><input type="password" id="registerPassword" name="signUpPassword" required="required" /></div>
                             <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
                             <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" /></div>
-                            <div class="form-group"><label class="form-remember"><input type="checkbox" checked="checked" required="required"/>Agree to Terms of Service</label></div>
+                            <div class="form-group"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to Terms of Service</label></div>
                             <div class="form-group"><button form="register" type="submit">Register</button></div>
                         </form>
                     </div>

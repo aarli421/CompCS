@@ -7,7 +7,7 @@ if (!$db) {
     echo "Database could not load";
 }
 
-if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && hasValue($_POST['signUpEmail'])) {
+if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && hasValue($_POST['signUpEmail']) && hasValue($_POST['tos'])) {
     $mail = $_POST['signUpEmail'];
     $username = $_POST['signUpUsername'];
     $hashedPw = hash('sha256', $_POST['signUpPassword']);
@@ -69,5 +69,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     } else {
         echo "The username / email already exists.";
     }
+} else {
+    echo "Form not filled completely.";
 }
 ?>
