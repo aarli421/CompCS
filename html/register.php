@@ -88,7 +88,7 @@ require '../templates/header.php';
 
         function passwordRepeatDoneTyping() {
             if ($("#registerPassword").val() == $("#registerCPassword").val()) {
-                $("#registerPassword")[0].setCustomValidity('');
+                $("#registerCPassword")[0].setCustomValidity('');
             } else {
                 $("#registerCPassword")[0].setCustomValidity('The passwords do not match.');
             }
