@@ -56,6 +56,8 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                     $sth = $db->prepare("COMMIT");
                     $sth->execute();
 
+                    `mkdir ../users/$username`;
+
                     echo "Success";
                 } else {
                     echo "Mail was unable to send.";
