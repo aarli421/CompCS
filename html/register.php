@@ -65,7 +65,7 @@ require '../templates/header.php';
                         btn.attr("disabled", true);
                         setTimeout(function() {
                             btn.removeAttr("disabled");
-                        }, 3000);
+                        }, 5000);
                     } else {
                         $("#registerSuccess").css("display", "none");
                         $("#registerSuccess").html("");
