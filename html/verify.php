@@ -75,10 +75,10 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
     }
 }
 ?>
-    $("#message").html("Redirecting you in 3 seconds... If you are not redirected you can click <a href='" + redirect + "'>this</a>.");
+    $("#message").html("Redirecting you in 5 seconds... If you are not redirected you can click <a href='" + redirect + "'>this</a>.");
     setTimeout(function () {
         $(location).attr("href", redirect);
-    }, 3000);
+    }, 5000);
 </script>
 <?php
 require '../templates/footer.php';
