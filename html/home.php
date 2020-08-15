@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (hasValue($_SESSION['user'])) redirect("login");
+if (isset($_SESSION['user'])) redirect("login");
 
 require '../templates/header.php';
 require '../templates/helper.php';
