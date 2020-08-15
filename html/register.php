@@ -60,6 +60,12 @@ require '../templates/header.php';
                         $("#registerSuccess").html("You are successfully registered! Please verify your account through the email that was just sent.");
                         $("#registerError").css("display", "none");
                         $("#registerError").html("");
+
+                        let btn = $("#registerBtn");
+                        btn.attr("disabled", true);
+                        setTimeout(function() {
+                            btn.removeAttr("disabled");
+                        }, 3000);
                     } else {
                         $("#registerSuccess").css("display", "none");
                         $("#registerSuccess").html("");
@@ -111,7 +117,7 @@ require '../templates/header.php';
                             <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
                             <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" /></div>
                             <div class="form-group"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to Terms of Service</label></div>
-                            <div class="form-group"><button form="register" type="submit">Register</button></div>
+                            <div class="form-group"><button id="registerBtn" form="register" type="submit">Register</button></div>
                         </form>
                     </div>
                     <h6 id="registerSuccess" class="text-success"></h6>
