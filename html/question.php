@@ -59,13 +59,13 @@ $passArr = $sth->fetchAll();
                     }
                     // $("#dialogDiv").html(data);
                     $("#file-upload").val("");
-                    $(this).prev('label').text("");
+                    $("#file-upload").prev('label').text("");
                 },
                 error: function(data) {
                     stopUpload();
                     $("#upload-error").html("Error happened");
                     $("#file-upload").val("");
-                    $(this).prev('label').text("");
+                    $("#file-upload").prev('label').text("");
                 },
                 contentType: false,
                 processData: false
