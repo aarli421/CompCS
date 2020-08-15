@@ -2,7 +2,17 @@
 require '../templates/helper.php';
 require '../templates/header.php';
 ?>
-
+<script>
+    <?php
+        if (isset($_GET['contact'])) {
+        ?>
+            $("#contact").scrollIntoView({
+                behavior: "smooth";
+            });
+        <?php
+        }
+    ?>
+</script>
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
     <div class="row">
