@@ -75,6 +75,24 @@ require '../templates/header.php';
                 }
             });
         });
+
+        var passwordRepeatTimer;
+        var doneTypingInterval = 500;
+
+        $("#registerCPassword").keyup(function() {
+            clearTimeout(passwordRepeatTimer);
+            if ($('#registerCPassword').val()) {
+                passwordRepeatTimer = setTimeout(passwordRepeatDoneTyping, doneTypingInterval);
+            }
+        });
+
+        function passwordRepeatDoneTyping() {
+            if ($("#registerPassword").val() == $("#registerCPassword").val()) {
+                $("#registerPassword")[0].setCustomValidity('');
+            } else {
+                $("#registerCPassword")[0].setCustomValidity('The passwords do not match.');
+            }
+        }
     });
 </script>
 <div class="background">
