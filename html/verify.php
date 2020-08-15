@@ -48,7 +48,7 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
     <?php
     } else {
         if ($passArr[0]['active'] == 1) {
-            echo "Your account has already been made";
+//            echo "Your account has already been made";
             ?>
             $("#title").html("Your account was already verified!");
             redirect = "http://www.compcs.codes/login.php";
