@@ -34,7 +34,7 @@ $passArr = $sth->fetchAll();
             var formData = new FormData(this);
             startUpload();
 
-            $(window).scrollTop(0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
 
             $.ajax({
                 url: "ajax/upload.php",
@@ -108,7 +108,7 @@ $passArr = $sth->fetchAll();
             <label id="file-label" for="file-upload" class="section-btn">
                 <i class="fa fa-cloud-upload"></i> Upload File
             </label>
-            <input id="file-upload" name="fileInput" type="file" style="display:none; margin: 20px;">
+            <input id="file-upload" name="fileInput" type="file" style="display:none; margin: 20px;" required>
             <input name="fileSubmit" type="submit" class="section-btn" value="Send File" style="margin: 20px;"/>
         </form>
     </div>
