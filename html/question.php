@@ -82,12 +82,15 @@ $passArr = $sth->fetchAll();
         });
     });
 </script>
-<section data-stellar-background-ratio="0.5" class = "questionlist">
-    <div><h1 class="problemtitle" style="margin-bottom: 3px;">Problem: <?php echo $_GET['questionName']; ?><h3 class="problemtitle" style="margin-top: 0px">Points/Case: <?php echo $passArr[0]['testcase_value']; ?></h3></h1></div>
+<section data-stellar-background-ratio="0.5" class="questionlist">
+    <div class="container">
+        <h1 class="problemtitle" style="margin-bottom: 3px;">Problem: <?php echo $_GET['questionName']; ?></h1>
+        <h3 class="problemtitle" style="margin-top: 0px">Points/Case: <?php echo $passArr[0]['testcase_value']; ?></h3>
+    </div>
 
     <center id="prompt-center">
         <div class="outer-container">
-            <div id="dialogDiv" class="outer">
+            <div id="dialogDiv" class="container">
                 <div><span class="upload-error" style="color: #993333; font-size: 14px;">You have not submitted anything.</span></div>
             </div>
         </div>
