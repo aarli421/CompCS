@@ -6,9 +6,7 @@ require '../templates/header.php';
     <?php
         if (isset($_GET['contact'])) {
         ?>
-            $("#contact").scrollIntoView({
-                behavior: "smooth";
-            });
+            $("#contact").scrollIntoView();
         <?php
         }
     ?>
