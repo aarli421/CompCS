@@ -25,7 +25,7 @@ if (!$db) {
     <th class="link">Link</th>
 </tr>
 <?php
-$sth = $db->prepare("SELECT `points` FROM `users` WHERE `username` = ?");
+$sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
 $sth->execute([$_SESSION['user']]);
 $passArr = $sth->fetchAll();
 $points = $passArr[0]['points'];

@@ -8,7 +8,7 @@ if (!$db) {
 }
 
 if (hasValue($_POST['loginUsername']) && hasValue($_POST['loginPassword'])) {
-    $sth = $db->prepare("SELECT `password`, `active` FROM `users` WHERE `username` = ?");
+    $sth = $db->prepare("SELECT `password`, `active` FROM `users` WHERE `username`=?");
     $sth->execute([$_POST['loginUsername']]);
     $passArr = $sth->fetchAll();
 
@@ -20,7 +20,11 @@ if (hasValue($_POST['loginUsername']) && hasValue($_POST['loginPassword'])) {
             echo "Success";
 //            redirect("home");
         } else {
-            echo "Login Failed";
+            if ($passArr[0]['active'] == 1) {
+                echo "Login failed.";
+            } else {
+                echo "Your account has not been activated.";
+            }
         }
     }
 }
