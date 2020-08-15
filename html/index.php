@@ -2,14 +2,6 @@
 require '../templates/header.php';
 
 ?>
-<!-- PRE LOADER -->
-<section class="preloader">
-    <div class="spinner">
-
-        <span class="spinner-rotate"></span>
-
-    </div>
-</section>
 
 <!-- HOME -->
 <section id="home" class="slider" data-stellar-background-ratio="0.5">
@@ -233,8 +225,8 @@ require '../templates/header.php';
 
             <div class="col-md-4 col-sm-6">
                 <!-- MENU THUMB -->
-                <div class="menu-thumb">
-                    <a href="images/menu-image1.jpg" class="image-popup" title="Languages">
+                <div class="menu-thumb">WW
+                    <a href="images/menu-image4.jpg" class="image-popup" title="Languages">
                         <img src="images/menu-image1.jpg" class="img-responsive" alt="">
 
                         <div class="menu-info">

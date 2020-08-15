@@ -14,8 +14,10 @@ if (!$db) {
 ?>
 <!-- Greeting Message -->
 <section style="height: 50px;">
-    <div style="padding-left:17.5%; padding-top: 60px;">
-        <h1 >Welcome, <?php echo $_SESSION['user']; ?>!</h1>
+    <div class="container">
+        <div style="padding-left:17.5%; padding-top: 60px;">
+            <h1 >Welcome, <?php echo $_SESSION['user']; ?>!</h1>
+        </div>
     </div>
 </section>
 <!-- Form-->
