@@ -59,12 +59,14 @@ $passArr = $sth->fetchAll();
                     }
                     // $("#dialogDiv").html(data);
                     $("#file-upload").val("");
+                    $(this).prev('label').text("");
                     $("#file-label").append("<i class=\"fa fa-cloud-upload\"></i> Upload File");
                 },
                 error: function(data) {
                     stopUpload();
                     $("#upload-error").html("Error happened");
                     $("#file-upload").val("");
+                    $(this).prev('label').text("");
                     $("#file-label").append("<i class=\"fa fa-cloud-upload\"></i> Upload File");
                 },
                 contentType: false,
