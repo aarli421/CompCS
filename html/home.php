@@ -1,10 +1,11 @@
 <?php
 session_start();
 
+require '../templates/helper.php';
+
 if (isset($_SESSION['user'])) redirect("login");
 
 require '../templates/header.php';
-require '../templates/helper.php';
 
 $db = setupDb();
 if (!$db) {
