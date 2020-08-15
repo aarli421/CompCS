@@ -71,9 +71,9 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
                 <div class="form-toggle"></div>
                 <div class="form-panel one">
                     <div class="form-header">
-                        <h1 id="title">Thank you for verifying your account!</h1>
+                        <h1 id="title">Verification Page</h1>
                     </div>
-                    <p id="message"> Click <a href = "index.php"> here </a> to go back to the home screen!</p>
+                    <p id="message"></p>
                 </div>
 
             </div>
