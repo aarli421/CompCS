@@ -34,6 +34,8 @@ $passArr = $sth->fetchAll();
             var formData = new FormData(this);
             startUpload();
 
+            window.location.hash = "prompt-center";
+
             $.ajax({
                 url: "ajax/upload.php",
                 type: 'POST',
