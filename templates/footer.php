@@ -9,7 +9,7 @@
                         <h2 class="wow fadeInUp" data-wow-delay="0.2s">Policy</h2>
                     </div>
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>No submitting malicious code,<br> follow good etiquette,<br> and learn about cs</p>
+                        <p>No submitting malicious code<br>Follow good etiquette<br>Learn about cs</p>
                     </address>
                 </div>
             </div>
@@ -33,15 +33,11 @@
                         <h2 class="wow fadeInUp" data-wow-delay="0.2s">Beginner Instructions</h2>
                     </div>
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>Register account</p>
-                        <div>
-                            <p>Verify account</p>
-                            <p>Login</p>
-                        </div>
-                        <div>
-                            <p>View questions in home</p>
-                            <p>Solve a question!</p>
-                        </div>
+                        <p>Register account<br>
+                            Verify account<br>
+                            Login<br>
+                            View questions in home<br>
+                            Solve a question!</p>
                     </div>
                 </div>
             </div>
