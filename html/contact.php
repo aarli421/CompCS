@@ -10,7 +10,7 @@ require '../templates/header.php';
                 <div class="col-md-12 col-sm-12">
 
                     <div class="col-md-12 col-sm-12">
-                        <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="section-title wow fadeInUp" data-wow-delay="0.1s" style="padding-top: 50px;">
                             <h2>Contact Us</h2>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ require '../templates/header.php';
                             <input type="text" class="form-control" id="cf-subject" name="subject" placeholder="Subject">
 
                             <textarea class="form-control" rows="6" id="cf-message" name="message"
-                                      placeholder="Tell about your project"></textarea>
+                                      placeholder="Tell us about a problem or ask a question"></textarea>
 
                             <button type="submit" class="form-control" id="cf-submit" name="submit">Send Message</button>
                         </div>
