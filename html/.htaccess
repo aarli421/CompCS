@@ -1,2 +1,6 @@
+RewriteEngine On 
+RewriteCond %{HTTPS}  !=on 
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+
 # set max post size
 php_value post_max_size 100M
