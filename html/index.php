@@ -127,8 +127,8 @@ require '../templates/header.php';
                     </div>
                 </div>
                 <div class="team-info">
-                    <h3>Austin Wang</h3>
-                    <p>Vice President</p>
+                    <h3>Andrew Zheng</h3>
+                    <p>Officer Position</p>
                 </div>
             </div>
 
@@ -147,7 +147,7 @@ require '../templates/header.php';
                 </div>
                 <div class="team-info">
                     <h3>Brandon Liu</h3>
-                    <p>Secretary</p>
+                    <p>Officer Position</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
