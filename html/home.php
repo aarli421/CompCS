@@ -19,8 +19,7 @@ if (!$db) {
     </div>
 </section>
 <!-- Form-->
-<section data-stellar-background-ratio="0.5" class="questionlist">
-<center>
+<div class="container">
 <table class="question">
 <tr class="categories">
     <th class="problemnum">Problem #</th>
@@ -52,8 +51,7 @@ foreach ($passArr as $value) {
 <?php   }
 } ?>
 </table>
-</center>
-</section>
+</div>
 <?php
 require '../templates/footer.php';
 ?>
