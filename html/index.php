@@ -139,8 +139,8 @@ require '../templates/header.php';
                         <div class="team-item">
                             <h4></h4>
                             <ul class="social-icon">
-                                <li><a href="#" class="fa fa-github"></a></li>
-                                <li><a href="#" class="fa fa-google"></a></li>
+<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
+<!--                                <li><a href="#" class="fa fa-google"></a></li>-->
                             </ul>
                         </div>
                     </div>
@@ -173,17 +173,17 @@ require '../templates/header.php';
                     <img src="images/team-image3.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
-                            <h4>Etiam auctor enim tristique faucibus</h4>
+                            <h4></h4>
                             <ul class="social-icon">
-                                <li><a href="#" class="fa fa-github"></a></li>
-                                <li><a href="#" class="fa fa-google"></a></li>
+<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
+<!--                                <li><a href="#" class="fa fa-google"></a></li>-->
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="team-info">
                     <h3>TBD</h3>
-                    <p>Publicist</p>
+                    <p>TBD</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -191,10 +191,10 @@ require '../templates/header.php';
                     <img src="images/team-image3.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
-                            <h4>Etiam auctor enim tristique faucibus</h4>
+                            <h4></h4>
                             <ul class="social-icon">
-                                <li><a href="#" class="fa fa-github"></a></li>
-                                <li><a href="#" class="fa fa-google"></a></li>
+<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
+<!--                                <li><a href="#" class="fa fa-google"></a></li>-->
                             </ul>
                         </div>
                     </div>
