@@ -283,13 +283,15 @@ require '../templates/header.php';
     </div>
 </section>
 <script>
-    <?php
-    if (isset($_GET['contact'])) {
-    ?>
-    $("#contact-btn").trigger("click");
-    <?php
-    }
-    ?>
+    $(function () {
+        <?php
+        if (isset($_GET['contact'])) {
+        ?>
+        $("#contact-btn").trigger("click");
+        <?php
+        }
+        ?>
+    });
 </script>
 <?php
 require "../templates/footer.php";
