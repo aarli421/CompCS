@@ -283,7 +283,7 @@ require '../templates/header.php';
     </div>
 </section>
 <script>
-    $(function () {
+    $(window).load(function () {
         <?php
         if (isset($_GET['contact'])) {
         ?>
