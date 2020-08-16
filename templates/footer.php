@@ -9,7 +9,7 @@
                         <h2 class="wow fadeInUp" data-wow-delay="0.2s">Policy</h2>
                     </div>
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>123 nulla a cursus rhoncus,<br> augue sem viverra 10870<br>id ultricies sapien</p>
+                        <p>No submitting malicious code,<br> follow good etiquette,<br> and learn about cs</p>
                     </address>
                 </div>
             </div>
@@ -17,12 +17,12 @@
             <div class="col-md-3 col-sm-8">
                 <div class="footer-info">
                     <div class="section-title">
-                        <h2 class="wow fadeInUp" data-wow-delay="0.2s">Reservation</h2>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.2s">Contact</h2>
                     </div>
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>090-080-0650 | 090-070-0430</p>
-                        <p><a href="mailto:info@company.com">info@company.com</a></p>
-                        <p>LINE: eatery247 </p>
+<!--                        <p>090-080-0650 | 090-070-0430</p>-->
+                        <p><a href="mailto:compcscodes@gmail.com">compcscodes@gmail.com</a></p>
+<!--                        <p>LINE: eatery247 </p>-->
                     </address>
                 </div>
             </div>
@@ -30,17 +30,17 @@
             <div class="col-md-4 col-sm-8">
                 <div class="footer-info footer-open-hour">
                     <div class="section-title">
-                        <h2 class="wow fadeInUp" data-wow-delay="0.2s">Open Hours</h2>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.2s">Beginner Instructions</h2>
                     </div>
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>Monday: Closed</p>
+                        <p>Register account</p>
                         <div>
-                            <strong>Tuesday to Friday</strong>
-                            <p>7:00 AM - 9:00 PM</p>
+                            <p>Verify account</p>
+                            <p>Login</p>
                         </div>
                         <div>
-                            <strong>Saturday - Sunday</strong>
-                            <p>11:00 AM - 10:00 PM</p>
+                            <p>View questions in home</p>
+                            <p>Solve a question!</p>
                         </div>
                     </div>
                 </div>

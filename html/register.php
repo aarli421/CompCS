@@ -115,7 +115,7 @@ $usernameReg = "^[A-Za-z0-9]*$";
                     </div>
                     <div class="form-content">
                         <form id="register" method="post">
-                            <div class="form-group"><label for="registerUsername">Username</label><input type="text" id="registerUsername" name="signUpUsername" required="required" pattern="<?php echo $usernameReg; ?>" /></div>
+                            <div class="form-group"><label for="registerUsername">Username (Only letters and numbers)</label><input type="text" id="registerUsername" name="signUpUsername" required="required" pattern="<?php echo $usernameReg; ?>" /></div>
                             <div class="form-group"><label for="registerPassword">Password</label><input type="password" id="registerPassword" name="signUpPassword" required="required" /></div>
                             <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
                             <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" /></div>

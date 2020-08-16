@@ -57,17 +57,16 @@ require '../templates/header.php';
                 <div class="about-info">
                     <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
                         <h4>Read our story</h4>
-                        <h2>About Competitive Computing Club</h2>
+                        <h2>About Competitive Computing Website</h2>
                     </div>
 
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>Fusce hendrerit malesuada lacinia. Donec semper semper sem vitae malesuada. Proin scelerisque
-                            risus et ipsum semper molestie sed in nisi. Ut rhoncus congue lectus, rhoncus venenatis leo
-                            malesuada id.</p>
-                        <p>Sed elementum vel felis sed scelerisque. In arcu diam, sollicitudin eu nibh ac, posuere
-                            tristique magna. You can use this template for your cafe or restaurant website. Please tell
-                            your friends about <a href="https://plus.google.com/+templatemo"
-                                                  target="_parent">templatemo</a>. Thank you.</p>
+                        <p>This website is a tool that can be used to become more proficient at competitive computing style
+                            competitions. The main competition this focuses on is USACO, where you will need to incorporate different
+                            algorithms and coding logic to solve the problems</p>
+                        <p>This is an unique website where problems can be unlocked after certain points and doing problems allows
+                            you to gain points. Thus, the more points you have, the harder questions you are able to unlock. The ranking
+                            is handpicked by our team based on our experience with the questions.</p>
                     </div>
                 </div>
             </div>
