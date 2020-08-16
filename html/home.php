@@ -13,11 +13,9 @@ if (!$db) {
 }
 ?>
 <!-- Greeting Message -->
-<section style="height: 50px;">
+<section data-stellar-background-ratio="0.5">
     <div class="container">
-        <div style="text-align: left; padding-left: 17%; padding-top: 4%">
-            <h1 >Welcome, <?php echo $_SESSION['user']; ?>!</h1>
-        </div>
+        <h1>Welcome, <?php echo $_SESSION['user']; ?>!</h1>
     </div>
 </section>
 <!-- Form-->

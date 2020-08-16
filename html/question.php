@@ -97,6 +97,7 @@ $passArr = $sth->fetchAll();
             </div>
         </div>
     </center>
+</section>
 <div class="container">
     <pre id="prompt"></pre>
 </div>
