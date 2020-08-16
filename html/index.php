@@ -287,7 +287,7 @@ require '../templates/header.php';
         <?php
         if (isset($_GET['contact'])) {
         ?>
-        $("#contact-btn").trigger("click");
+        $("#contact-btn").find('a').trigger("click");
         <?php
         }
         ?>
