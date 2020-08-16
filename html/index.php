@@ -13,7 +13,7 @@ require '../templates/header.php';
                         <div class="col-md-8 col-sm-12">
                             <h3>Competitive Computing</h3>
                             <h1>Our mission is to provide the best computing preparation</h1>
-                            <a href="#team" class="section-btn btn btn-default smoothScroll">Register</a>
+                            <a href="register.php" class="section-btn btn btn-default smoothScroll">Register</a>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@ require '../templates/header.php';
                         <div class="col-md-8 col-sm-12">
                             <h3>Free To Use</h3>
                             <h1>The best prep material for competitive computing</h1>
-                            <a href="#menu" class="section-btn btn btn-default smoothScroll">Login</a>
+                            <a href="login.php" class="section-btn btn btn-default smoothScroll">Login</a>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ require '../templates/header.php';
                         <div class="col-md-8 col-sm-12">
                             <h3>Responsive and Supportive</h3>
                             <h1>Our website helps beginners become advanced through support from the team</h1>
-                            <a href="#contact" class="section-btn btn btn-default smoothScroll">Contact</a>
+                            <a id="contact-btn" href="#contact" class="section-btn btn btn-default smoothScroll">Contact</a>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ require '../templates/header.php';
                     <img src="images/team-image2.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
-                            <h4>Created frontend for this website</h4>
+                            <h4></h4>
                             <ul class="social-icon">
 <!--                                <li><a href="#" class="fa fa-github"></a></li>-->
                                 <li><a href="https://www.facebook.com/profile.php?id=100011261383353" target="_blank" class="fa fa-facebook"></a></li>
@@ -282,6 +282,15 @@ require '../templates/header.php';
         </div>
     </div>
 </section>
+<script>
+    <?php
+    if (isset($_GET['contact'])) {
+    ?>
+    $("#contact-btn").trigger("click");
+    <?php
+    }
+    ?>
+</script>
 <?php
-require("../templates/footer.php");
+require "../templates/footer.php";
 ?>

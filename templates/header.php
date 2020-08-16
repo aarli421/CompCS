@@ -85,7 +85,7 @@
                 <?php
                 }
                 ?>
-                <li><a href="index.php#contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
+                <li><a href="index.php?contact=true" class="smoothScroll" style="font-size: 18px">Contact</a></li>
             </ul>
 
 
