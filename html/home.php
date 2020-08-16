@@ -44,10 +44,10 @@ foreach ($passArr as $value) {
         $i++;
         ?>
         <tr class="categories">
-            <td class="passed"><?php echo $i; ?></td>
-            <td class="passed"><?php echo $value['name']; ?></td>
-            <td class="passed"><?php echo $value['testcase_value']; ?></td>
-            <td class="passed"><form method="get" action="question.php"><input name="questionName" value="<?php echo $value['name']; ?>" hidden=""><button type="submit" class="section-btn" style="margin:20px;">Go to question</button></form></td>
+            <td><?php echo $i; ?></td>
+            <td><?php echo $value['name']; ?></td>
+            <td><?php echo $value['testcase_value']; ?></td>
+            <td><form method="get" action="question.php"><input name="questionName" value="<?php echo $value['name']; ?>" hidden=""><button type="submit" class="section-btn" style="margin:20px;">Go to question</button></form></td>
         </tr>
 <?php   }
 } ?>
