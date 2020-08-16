@@ -99,10 +99,10 @@ require '../templates/header.php';
                     <img src="images/team-image1.png" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
-                            <h4>Created the backend and some frontend of this website</h4>
+                            <h4></h4>
                             <ul class="social-icon">
-                                <li><a href="https://github.com/5up3rN00b" class="fa fa-github"></a></li>
-                                <li><a href="https://www.facebook.com/profile.php?id=100010404820757" class="fa fa-facebook"></a></li>
+                                <li><a href="https://github.com/5up3rN00b" target="_blank" class="fa fa-github"></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100010404820757" target="_blank" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -121,7 +121,7 @@ require '../templates/header.php';
                             <h4>Created frontend for this website</h4>
                             <ul class="social-icon">
 <!--                                <li><a href="#" class="fa fa-github"></a></li>-->
-                                <li><a href="https://www.facebook.com/profile.php?id=100011261383353" class="fa fa-facebook"></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100011261383353" target="_blank" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -137,7 +137,7 @@ require '../templates/header.php';
                     <img src="images/team-image3.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
-                            <h4>Etiam auctor enim tristique faucibus</h4>
+                            <h4></h4>
                             <ul class="social-icon">
                                 <li><a href="#" class="fa fa-github"></a></li>
                                 <li><a href="#" class="fa fa-google"></a></li>
@@ -152,20 +152,20 @@ require '../templates/header.php';
             </div>
             <div class="col-md-4 col-sm-4">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
-                    <img src="images/team-image3.jpg" class="img-responsive" alt="">
+                    <img src="images/team-image4.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
-                            <h4>Etiam auctor enim tristique faucibus</h4>
+                            <h4></h4>
                             <ul class="social-icon">
-                                <li><a href="#" class="fa fa-github"></a></li>
-                                <li><a href="#" class="fa fa-google"></a></li>
+<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
+<!--                                <li><a href="#" class="fa fa-google"></a></li>-->
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="team-info">
-                    <h3>Andrew Zheng</h3>
-                    <p>Treasurer</p>
+                    <h3>Austin Wang</h3>
+                    <p>Officer Position</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
