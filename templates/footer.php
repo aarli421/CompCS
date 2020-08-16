@@ -43,15 +43,15 @@
             </div>
 
             <div class="col-md-2 col-sm-4">
-                <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
-                    <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                    <li><a href="#" class="fa fa-twitter"></a></li>
-                    <li><a href="#" class="fa fa-instagram"></a></li>
-                    <li><a href="#" class="fa fa-google"></a></li>
-                </ul>
+<!--                <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">-->
+<!--                    <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>-->
+<!--                    <li><a href="#" class="fa fa-twitter"></a></li>-->
+<!--                    <li><a href="#" class="fa fa-instagram"></a></li>-->
+<!--                    <li><a href="#" class="fa fa-google"></a></li>-->
+<!--                </ul>-->
 
                 <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
-                    <p><br>Copyright &copy; 2018 <br>CompCS</p>
+                    <p><br>Copyright &copy; 2020 <br>CompCS</p>
 
                     <!--   <br><br>Design: <a rel="nofollow" href="http://templatemo.com" target="_parent">TemplateMo</a></p> -->
                 </div>

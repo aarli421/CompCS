@@ -4,7 +4,7 @@ require '../templates/header.php';
 ?>
 <style>
     .background {
-        background-image: url("images/bestbg.png");
+        background-image: url("images/bg.png");
         background-repeat: no-repeat, repeat;
         /*background-size: cover;*/
     }
