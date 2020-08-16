@@ -13,7 +13,7 @@ if (!$db) {
 }
 ?>
 <!-- Greeting Message -->
-<section data-stellar-background-ratio="0.5">
+<section data-stellar-background-ratio="0.5" style="padding-bottom: 25px;">
     <div class="container">
         <h1>Welcome, <?php echo $_SESSION['user']; ?>!</h1>
     </div>
