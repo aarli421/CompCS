@@ -99,10 +99,10 @@ require '../templates/header.php';
                     <img src="images/team-image1.png" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
-                            <h4>Duis vel lacus id magna mattis vehicula</h4>
+                            <h4>Created the backend and some frontend of this website</h4>
                             <ul class="social-icon">
-                                <li><a href="#" class="fa fa-linkedin-square"></a></li>
-                                <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                <li><a href="https://github.com/5up3rN00b" class="fa fa-github"></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100010404820757" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -118,10 +118,10 @@ require '../templates/header.php';
                     <img src="images/team-image2.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
-                            <h4>Cras suscipit neque quis odio feugiat</h4>
+                            <h4>Created frontend for this website</h4>
                             <ul class="social-icon">
-                                <li><a href="#" class="fa fa-instagram"></a></li>
-                                <li><a href="#" class="fa fa-flickr"></a></li>
+<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
+                                <li><a href="https://www.facebook.com/profile.php?id=100011261383353" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
