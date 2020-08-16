@@ -22,7 +22,7 @@ if (hasValue($_POST['name']) && hasValue($_POST['email']) && hasValue($_POST['su
     } catch(Exception $e) {
 
     }
-    redirect("home");
+    redirect("contact");
 }
 
 require '../templates/header.php';
