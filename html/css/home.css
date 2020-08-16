@@ -37,3 +37,7 @@ th, td {
 .welcome{
 	padding-left: 20%;
 }
+.passed {
+	background-color: #e6ffe6;
+	color: black;
+}

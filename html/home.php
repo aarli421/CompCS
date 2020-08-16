@@ -15,7 +15,7 @@ if (!$db) {
 <!-- Greeting Message -->
 <section style="height: 50px;">
     <div class="container">
-        <div style="padding-left:17.5%; padding-top: 60px;">
+        <div style="text-align: left; padding-left: 17%; padding-top: 4%">
             <h1 >Welcome, <?php echo $_SESSION['user']; ?>!</h1>
         </div>
     </div>
@@ -46,10 +46,10 @@ foreach ($passArr as $value) {
         $i++;
         ?>
         <tr class="categories">
-            <td><?php echo $i; ?></td>
-            <td><?php echo $value['name']; ?></td>
-            <td><?php echo $value['testcase_value']; ?></td>
-            <td><form method="get" action="question.php"><input name="questionName" value="<?php echo $value['name']; ?>" hidden=""><button type="submit" class="section-btn" style="margin:20px;">Go to question</button></form></td>
+            <td class="passed"><?php echo $i; ?></td>
+            <td class="passed"><?php echo $value['name']; ?></td>
+            <td class="passed"><?php echo $value['testcase_value']; ?></td>
+            <td class="passed"><form method="get" action="question.php"><input name="questionName" value="<?php echo $value['name']; ?>" hidden=""><button type="submit" class="section-btn" style="margin:20px;">Go to question</button></form></td>
         </tr>
 <?php   }
 } ?>
