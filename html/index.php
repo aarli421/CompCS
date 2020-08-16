@@ -170,7 +170,7 @@ require '../templates/header.php';
             </div>
             <div class="col-md-4 col-sm-4">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
-                    <img src="images/team-image3.jpg" class="img-responsive" alt="">
+                    <img src="images/team-image5.png" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
                             <h4></h4>
@@ -188,7 +188,7 @@ require '../templates/header.php';
             </div>
             <div class="col-md-4 col-sm-4">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.8s">
-                    <img src="images/team-image3.jpg" class="img-responsive" alt="">
+                    <img src="images/team-image5.png" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
                             <h4></h4>
