@@ -1,5 +1,6 @@
 <?php
 require '../templates/helper.php';
+require '../vendor/autoload.php';
 
 if (hasValue($_POST['name']) && hasValue($_POST['email']) && hasValue($_POST['subject']) && hasValue($_POST['message'])){
     $handle = fopen('../private/keys.csv', 'r');
