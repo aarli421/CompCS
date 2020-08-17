@@ -6,7 +6,7 @@ if (hasValue($_POST['loginUsername']) && hasValue($_POST['loginPassword'])) {
     $sth->execute([$_POST['loginUsername']]);
     $passArr = $sth->fetchAll();
 
-    if (empty($passArr)){
+    if (empty($passArr)) {
         echo "You are not registered!";
     } else {
         if (hash('sha256', $_POST['loginPassword']) == $passArr[0]['password'] && $passArr[0]['active'] == 1) {

@@ -1,8 +1,16 @@
 <?php
 require '../../templates/helper.php';
+
+$err = false;
+$arr = array();
+
 if (!isset($_SESSION['user'])) {
     echo "YOU ARE NOT LOGGED IN";
     die;
+}
+
+if ($err) {
+    echo json_encode($arr);
 }
 
 $uploadDir = '../users/' . $_SESSION['user'] . '/';
@@ -20,7 +28,6 @@ $javaName = $questionName;
 $cppName = $questionName . ".execpp";
 $cName = $questionName . ".exec";
 
-$arr = array();
 $arr['correct_cases'] = 0;
 
 $sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");

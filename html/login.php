@@ -54,11 +54,11 @@ require '../templates/header.php';
                 success: function(data) {
                     if (data == "Success") {
                         $("#loginSuccess").css("display", "inline");
-                        $("#loginSuccess").html("Successfully logged you in. Redirecting you in 3 seconds... If you are not redirected you can click <a href='http://www.compcs.codes/home.php'>this</a>.");
+                        $("#loginSuccess").html("Successfully logged you in. Redirecting you in 3 seconds... If you are not redirected you can click <a href='http://www.compcs.codes/home'>this</a>.");
                         $("#loginError").css("display", "none");
                         $("#loginError").html("");
                         setTimeout(function () {
-                            $(location).attr("href", "https://www.compcs.codes/home.php");
+                            $(location).attr("href", "https://www.compcs.codes/home");
                         }, 3000);
                     } else {
                         $("#loginSuccess").css("display", "none");

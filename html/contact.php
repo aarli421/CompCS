@@ -41,7 +41,7 @@ require '../templates/header.php';
                     </div>
 
                     <!-- CONTACT FORM -->
-                    <form action="contact.php" method="post" class="wow fadeInUp" id="contact-form" role="form" data-wow-delay="0.8s">
+                    <form action="contact" method="post" class="wow fadeInUp" id="contact-form" role="form" data-wow-delay="0.8s">
 
                         <!-- IF MAIL SENT SUCCESSFUL  // connect this with custom JS -->
                         <h6 class="text-success">Your message has been sent successfully.</h6>

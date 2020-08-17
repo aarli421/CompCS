@@ -13,7 +13,7 @@ require '../templates/header.php';
                         <div class="col-md-8 col-sm-12">
                             <h3>Competitive Computing</h3>
                             <h1>Our mission is to provide the best computing preparation</h1>
-                            <a href="register.php" class="section-btn btn btn-default smoothScroll">Register</a>
+                            <a href="register" class="section-btn btn btn-default smoothScroll">Register</a>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@ require '../templates/header.php';
                         <div class="col-md-8 col-sm-12">
                             <h3>Free To Use</h3>
                             <h1>The best prep material for competitive computing</h1>
-                            <a href="login.php" class="section-btn btn btn-default smoothScroll">Login</a>
+                            <a href="login" class="section-btn btn btn-default smoothScroll">Login</a>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ require '../templates/header.php';
                         <div class="col-md-8 col-sm-12">
                             <h3>Responsive and Supportive</h3>
                             <h1>Our website helps beginners become advanced through support from the team</h1>
-                            <a href="contact.php" class="section-btn btn btn-default smoothScroll">Contact</a>
+                            <a href="contact" class="section-btn btn btn-default smoothScroll">Contact</a>
                         </div>
                     </div>
                 </div>
