@@ -7,7 +7,7 @@ $sth->execute([$_GET['questionName']]);
 $passArr = $sth->fetchAll();
 
 $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
-$sth->execute([$user_id, $question[0]['question_id']]);
+$sth->execute([$user_id, 1]);
 $max = $sth->fetchAll();
 
 echo $max[0][0];
