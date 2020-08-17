@@ -115,7 +115,7 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 echo json_encode($arr);
 
 if (!hasValue($arr['error'])) {
-    $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=1 AND question_id=1");
+    $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
     $sth->execute([$user_id, $question[0]['question_id']]);
     $max = $sth->fetchAll();
 
