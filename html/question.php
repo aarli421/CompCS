@@ -28,6 +28,8 @@ $output = $sth->fetchAll();
     }
     
     function parseJSON(output) {
+        console.log(output);
+
         if (output.hasOwnProperty('error')) {
             $("#prompt-center").css("text-align", "left");
             // console.log(output);
