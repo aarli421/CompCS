@@ -59,12 +59,12 @@
             <!-- LOGO TEXT HERE -->
 
 
-            <a href="index.php" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
+            <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
 
                 <img src="images/ccc-logo.svg" alt="" width="67" height="67" style="padding-bottom: 10px">
 
             </a>
-            <a href="index.php" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px;">
+            <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px;">
                 Competitive<span><br>Computing</span><br>Club
             </a>
 
@@ -102,7 +102,7 @@
             } else {
             ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <a href="#footer" class="section-btn">Learn to Code?</a>
+                    <a href="#footer" class="section-btn smoothScroll">Learn to Code?</a>
                 </ul>
             <?php
             }
