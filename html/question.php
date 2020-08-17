@@ -34,7 +34,7 @@ $passArr = $sth->fetchAll();
             $.ajax({
                 url: "ajax/upload.php",
                 type: 'POST',
-                dataType: 'JSON',
+                dataType: 'text',
                 data: formData,
                 success: function(data) {
                     stopUpload();
@@ -43,7 +43,7 @@ $passArr = $sth->fetchAll();
 
                     if (data.hasOwnProperty('error')) {
                         $("#prompt-center").css("text-align", "left");
-                        console.log(data);
+                        // console.log(data);
                         $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 14px;\">" + data["error"] + "</span></div>")
                     } else {
                         Object.keys(data).forEach(function(k) {
