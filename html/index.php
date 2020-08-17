@@ -57,14 +57,14 @@ require '../templates/header.php';
                 <div class="about-info">
                     <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
                         <h4>Read our story</h4>
-                        <h2>About Competitive Computing Website</h2>
+                        <h2>About Competitive Computing</h2>
                     </div>
 
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
                         <p>This website is a tool that can be used to become more proficient at competitive computing style
                             competitions. The main competition this focuses on is USACO, where you will need to incorporate different
                             algorithms and coding logic to solve the problems</p>
-                        <p>This is an unique website where problems can be unlocked after certain points and doing problems allows
+                        <p>This is a unique website where problems can be unlocked after certain points and doing problems allows
                             you to gain points. Thus, the more points you have, the harder questions you are able to unlock. The ranking
                             is handpicked by our team based on our experience with the questions.</p>
                     </div>

@@ -33,7 +33,7 @@ $sth->execute([$_SESSION['user']]);
 $passArr = $sth->fetchAll();
 $points = $passArr[0]['points'];
 
-$sth = $db->prepare("SELECT * FROM `questions`");
+$sth = $db->prepare("SELECT * FROM `questions` ORDER BY `unlock_value`");
 $sth->execute();
 $passArr = $sth->fetchAll();
 
