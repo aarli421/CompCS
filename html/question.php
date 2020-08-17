@@ -39,6 +39,8 @@ $passArr = $sth->fetchAll();
                 success: function(data) {
                     stopUpload();
 
+                    console.log(data);
+
                     if (data.hasOwnProperty('error')) {
                         $("#prompt-center").css("text-align", "left");
                         console.log(data);
