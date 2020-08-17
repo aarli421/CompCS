@@ -86,14 +86,6 @@ $output = $sth->fetchAll();
                 $("#prompt").html(data);
             }
         });
-
-        <?php
-        if (!empty($output)) {
-        ?>
-            parseJSON(JSON.parse(<?php echo $output[0]['output_json']; ?>));
-        <?php
-        }
-        ?>
     });
 </script>
 <section data-stellar-background-ratio="0.5" class="questionlist" style="padding-bottom: 0px;">
@@ -127,6 +119,16 @@ $output = $sth->fetchAll();
     </div>
 </center>
 </section>
+<script>
+    <?php
+    if (!empty($output)) {
+    ?>
+        stopUpload();
+        parseJSON(JSON.parse(<?php echo $output[0]['output_json']; ?>));
+    <?php
+    }
+    ?>
+</script>
 <script src="js/question.js"></script>
 <?php
 require '../templates/footer.php';
