@@ -76,16 +76,16 @@
                 <?php
                 if (isset($_SESSION['user'])) {
                 ?>
-                    <li><a href="home.php" class="smoothScroll" style="font-size: 18px">Home</a></li>
+                    <li><a href="home" class="smoothScroll" style="font-size: 18px">Home</a></li>
                 <?php
                 } else {
                 ?>
-                    <li><a href="login.php" class="smoothScroll" style="font-size: 18px">Login</a></li>
-                    <li><a href="register.php" class="smoothScroll" style="font-size: 18px">Register</a></li>
+                    <li><a href="login" class="smoothScroll" style="font-size: 18px">Login</a></li>
+                    <li><a href="register" class="smoothScroll" style="font-size: 18px">Register</a></li>
                 <?php
                 }
                 ?>
-                <li><a href="contact.php" class="smoothScroll" style="font-size: 18px">Contact</a></li>
+                <li><a href="contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
             </ul>
 
 
@@ -93,7 +93,7 @@
             if (isset($_SESSION['user'])) {
             ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <form action="home.php" method="post">
+                    <form action="home" method="post">
                         <input type="hidden" name="logout" value="true">
                         <input type="submit" class="section-btn" value="Logout">
                     </form>
