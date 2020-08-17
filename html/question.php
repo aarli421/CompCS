@@ -5,6 +5,13 @@ require '../templates/header.php';
 $sth = $db->prepare("SELECT `testcase_value` FROM questions WHERE `name`=?");
 $sth->execute([$_GET['questionName']]);
 $passArr = $sth->fetchAll();
+
+$sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
+$sth->execute([$user_id, $question[0]['question_id']]);
+$max = $sth->fetchAll();
+
+echo $max[0][0];
+print_r($max);
 ?>
 <link rel="stylesheet" href="css/question.css">
 <link rel="stylesheet" href="css/loader.css">
