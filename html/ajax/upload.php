@@ -26,28 +26,30 @@ $cppName = $questionName . ".execpp";
 $cName = $questionName . ".exec";
 
 $arr = array();
-//echo '<pre>';
+$arr['correct_cases'] = 0;
+
+$sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
+$sth->execute([$_SESSION['user']]);
+$passArr = $sth->fetchAll();
+$user_id = $passArr[0]['user_id'];
+
+$sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");
+$sth->execute([$questionName]);
+$question = $sth->fetchAll();
+
 if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 //    echo "File is valid, and was successfully uploaded.\n";
 
-    $sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
-    $sth->execute([$_SESSION['user']]);
-    $passArr = $sth->fetchAll();
-    $user_id = $passArr[0]['user_id'];
-
-    $sth = $db->prepare("SELECT `question_id` FROM questions WHERE `name`=?");
-    $sth->execute([$questionName]);
-    $passArr = $sth->fetchAll();
-    $question_id = $passArr[0]['question_id'];
-
     $fileVal = `cat $uploadFile`;
     $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
-    $sth->execute([$user_id, $question_id, $fileVal, date('Y-m-d H:i:s', time())]);
+    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, date('Y-m-d H:i:s', time())]);
 
-    $ioDirAmount = `ls $questionDir | wc -l`;
+//    $ioDirAmount = `ls $questionDir | wc -l`;
     //echo "IO Dir:" . $ioDirAmount;
-    $testAmount = ((int) ($ioDirAmount - 1)) / 2;
+//    $testAmount = ((int) ($ioDirAmount - 1)) / 2;
     //echo "Test:" . $testAmount . "<br>";
+
+    $testAmount = $question[0]['testcases'];
 
     chdir($uploadDir);
     if ($fileType == "py") {
@@ -83,44 +85,78 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 //                echo $symbol;
                 } else {
                     $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
+                    $arr['correct_cases'] += 1;
 //                echo $symbol . "<br>" . $runResults['time'];
                 }
 
 //                if ($i == $testAmount) echo json_encode($arr);
             }
         } catch (Exception $e) {
-            echo "<h1>" . $e . "</h1>";
+            $arr['error'] = $e;
         }
     } else if ($fileType == "java") {
         try {
             full_run('../' . $questionDir, $questionName, "javac $fileName", "java $javaName", 30, 4, $testAmount, $arr);
         } catch (Exception $e) {
-            echo "<h1>" . $e . "</h1>";
+            $arr['error'] = $e;
         }
     } else if ($fileType == "cpp") {
         try {
             full_run('../' . $questionDir, $questionName, "g++ -o $cppName $fileName", "./$cppName", 30, 2, $testAmount, $arr);
         } catch (Exception $e) {
-            echo "<h1>" . $e . "</h1>";
+            $arr['error'] = $e;
         }
     } else if ($fileType == "c") {
         try {
             full_run('../' . $questionDir, $questionName, "gcc -o $cName $fileName", "./$cName", 30, 2, $testAmount, $arr);
         } catch (Exception $e) {
-            echo "<h1>" . $e . "</h1>";
+            $arr['error'] = $e;
         }
     } else {
-        echo "Only Python3, Java, C++, and C supported!";
+        $arr['error'] = "Only Python3, Java, C++, and C supported!";
     }
 
     chdir($ajaxDir);
 
 } else {
-    echo "Could not upload file. Server error.";
+    $arr['error'] = "Could not upload file. Server error.";
 }
+
 echo json_encode($arr);
 
-//echo "</pre>";
+if (!hasValue($arr['error'])) {
+    $sth = $db->prepare("SELECT `correct_cases` FROM grades WHERE `user_id`=? AND `question_id`=?");
+    $sth->execute([$user_id, $question[0]['question_id']]);
+    $pastGrades = $sth->fetchAll();
+
+    $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `output_json`, `correct_cases`) VALUES (?, ?, ?, ?)");
+    $sth->execute([$user_id, $question[0]['question_id'], json_encode($arr), $arr['correct_cases']]);
+
+    $points = 0;
+    if (empty($pastGrades)) {
+        $points = $arr['correct_cases'] * $question[0]['testcase_value'];
+    } else {
+        $max_correct = 0;
+        foreach ($pastGrades as $key => $value) {
+            if ($value['correct_cases'] > $max_correct) {
+                $max_correct = $value['correct_cases'];
+            }
+        }
+
+        if ($arr['correct_cases'] > $max_correct) {
+            $points = ($arr['correct_cases'] - $max_correct) * $question[0]['testcase_value'];
+        }
+    }
+
+    $sth = $db->prepare("START TRANSACTION;");
+    $sth->execute();
+
+    $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
+    $sth->execute([$points, $user_id]);
+
+    $sth = $db->prepare("COMMIT;");
+    $sth->execute();
+}
 
 function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount, &$arr) {
     $result = exec_timeout($compCmd, $compileTimeout);
@@ -157,7 +193,7 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
                     }
                 } else if ($symbol == '!') {
                     $arr['error'] .= "The following was printed in error <br>" . $runResults['output'];
-                    }
+                }
                 break;
             }
 
@@ -166,6 +202,7 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
 //                echo $symbol;
             } else {
                 $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
+                $arr['correct_cases'] += 1;
 //                echo $symbol . "<br>" . $runResults['time'];
             }
 //            echo "<br>";

@@ -1,9 +1,13 @@
 <?php
 require '../templates/helper.php';
 
-if (hasValue($_POST['logout'])) unset($_SESSION['user']);
+if (hasValue($_POST['logout'])) {
+    unset($_SESSION['user']);
+}
 
-if (!isset($_SESSION['user'])) redirect("login");
+if (!isset($_SESSION['user'])) {
+    redirect("login");
+}
 
 require '../templates/header.php';
 
