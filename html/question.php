@@ -38,6 +38,8 @@ $output = $sth->fetchAll();
             Object.keys(output).forEach(function(k) {
                 if (k == "correct_cases") return;
 
+                console.log("k");
+
                 var symbol = output[k]["symbol"];
                 if (symbol == "*") {
                     var time = Math.round(output[k]["time"] * 1000);
