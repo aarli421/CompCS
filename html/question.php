@@ -50,6 +50,8 @@ $passArr = $sth->fetchAll();
                         $("#dialogDiv").append("<div><span id=\"upload-error\" style=\"color: #993333; font-size: 14px;\">" + data["error"] + "</span></div>")
                     } else {
                         Object.keys(data).forEach(function(k) {
+                            if (k == "correct_cases") return;
+
                             var symbol = data[k]["symbol"];
                             if (symbol == "*") {
                                 var time = Math.round(data[k]["time"] * 1000);
