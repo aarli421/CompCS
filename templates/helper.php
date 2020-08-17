@@ -43,3 +43,7 @@ $sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
 $sth->execute([$_SESSION['user']]);
 $passArr = $sth->fetchAll();
 $user_id = $passArr[0]['user_id'];
+
+function getMaxGrades($db) {
+
+}

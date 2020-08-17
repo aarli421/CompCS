@@ -115,9 +115,9 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 echo json_encode($arr);
 
 if (!hasValue($arr['error'])) {
-    $sth = $db->prepare("SELECT `correct_cases` FROM grades WHERE `user_id`=? AND `question_id`=?");
+    $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=1 AND question_id=1");
     $sth->execute([$user_id, $question[0]['question_id']]);
-    $pastGrades = $sth->fetchAll();
+    $max = $sth->fetchAll();
 
     $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `output_json`, `correct_cases`) VALUES (?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], json_encode($arr), $arr['correct_cases']]);
@@ -126,17 +126,8 @@ if (!hasValue($arr['error'])) {
     if (empty($pastGrades)) {
         $points = $arr['correct_cases'] * $question[0]['testcase_value'];
     } else {
-        $max_correct = 0;
-        $index = 0;
-        foreach ($pastGrades as $key => $value) {
-            if ($value['correct_cases'] > $max_correct) {
-                $max_correct = $value['correct_cases'];
-                $index = $key;
-            }
-        }
-
-        if ($arr['correct_cases'] > $max_correct) {
-            $points = ($arr['correct_cases'] - $max_correct) * $question[0]['testcase_value'];
+        if ($arr['correct_cases'] > $max[0][0]) {
+            $points = ($arr['correct_cases'] - $max[0][0]) * $question[0]['testcase_value'];
         }
     }
 
