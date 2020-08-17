@@ -44,7 +44,7 @@ $output = $sth->fetchAll();
                 if (symbol == "*") {
                     var time = Math.round(output[k]["time"] * 1000);
                     $("#dialogDiv").append("<div class=\"trial-result trial-status-yes\"><div class=\"res-symbol\">*</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"><span class=\"msize\">" + time + "ms</span></div></div>");
-                    console.log($("#dialogDiv").innerHTML);
+                    console.log(time);
                 } else {
                     $("#dialogDiv").append("<div class=\"trial-result trial-status-no\"><div class=\"res-X\">" + symbol + "</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"></div></div>");
                 }
