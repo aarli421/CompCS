@@ -124,7 +124,7 @@ $output = $sth->fetchAll();
     if (!empty($output)) {
     ?>
         stopUpload();
-        parseJSON(JSON.parse(<?php echo $output[0]['output_json']; ?>));
+        parseJSON(JSON.parse("<?php echo $output[0]['output_json']; ?>"));
     <?php
     }
     ?>
