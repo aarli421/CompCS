@@ -9,12 +9,18 @@ if (!isset($_SESSION['user'])) {
     redirect("login");
 }
 
+$sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
+$sth->execute([$_SESSION['user']]);
+$passArr = $sth->fetchAll();
+$points = $passArr[0]['points'];
+
 require '../templates/header.php';
 ?>
 <!-- Greeting Message -->
 <section data-stellar-background-ratio="0.5" style="padding-bottom: 25px;">
     <div class="container">
         <h1>Welcome, <?php echo $_SESSION['user']; ?>!</h1>
+        <h3 class="problemtitle" style="margin-top: 0px">Points: <?php echo $points; ?></h3>
     </div>
 </section>
 <!-- Form-->
@@ -28,11 +34,6 @@ require '../templates/header.php';
     <th class="link">Link</th>
 </tr>
 <?php
-$sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
-$sth->execute([$_SESSION['user']]);
-$passArr = $sth->fetchAll();
-$points = $passArr[0]['points'];
-
 $sth = $db->prepare("SELECT * FROM `questions` ORDER BY `unlock_value`");
 $sth->execute();
 $passArr = $sth->fetchAll();
