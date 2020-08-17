@@ -132,7 +132,7 @@ $output = $sth->fetchAll();
         setTimeout(function () {
             stopUpload();
             parseJSON(JSON.parse('<?php echo $output[0]['output_json']; ?>'));
-        }, 3000);
+        }, 10);
     });
     <?php
     }
