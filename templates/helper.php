@@ -27,7 +27,7 @@ function redirect($file) {
     $loc = $file; //. ".php";
     $host = $_SERVER["HTTP_HOST"];
     $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-    header("Location: http://$host/$loc");
+    header("Location: https://$host/$loc");
 }
 
 function hasValue($value) {
