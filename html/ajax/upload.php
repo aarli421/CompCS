@@ -5,11 +5,6 @@ if (!isset($_SESSION['user'])) {
     die;
 }
 
-$db = setupDb();
-if (!$db) {
-    echo "Database could not load";
-}
-
 $uploadDir = '../users/' . $_SESSION['user'] . '/';
 $questionName = $_POST['questionName'];
 $questionDir = '../questions/' . $questionName;
@@ -27,11 +22,6 @@ $cName = $questionName . ".exec";
 
 $arr = array();
 $arr['correct_cases'] = 0;
-
-$sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
-$sth->execute([$_SESSION['user']]);
-$passArr = $sth->fetchAll();
-$user_id = $passArr[0]['user_id'];
 
 $sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");
 $sth->execute([$questionName]);
@@ -137,9 +127,11 @@ if (!hasValue($arr['error'])) {
         $points = $arr['correct_cases'] * $question[0]['testcase_value'];
     } else {
         $max_correct = 0;
+        $index = 0;
         foreach ($pastGrades as $key => $value) {
             if ($value['correct_cases'] > $max_correct) {
                 $max_correct = $value['correct_cases'];
+                $index = $key;
             }
         }
 

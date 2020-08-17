@@ -2,11 +2,6 @@
 require '../templates/helper.php';
 require '../templates/header.php';
 
-$db = setupDb();
-if (!$db) {
-    die("Database could not load");
-}
-
 $sth = $db->prepare("SELECT `testcase_value` FROM questions WHERE `name`=?");
 $sth->execute([$_GET['questionName']]);
 $passArr = $sth->fetchAll();

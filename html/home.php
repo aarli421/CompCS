@@ -10,11 +10,6 @@ if (!isset($_SESSION['user'])) {
 }
 
 require '../templates/header.php';
-
-$db = setupDb();
-if (!$db) {
-    echo "Database could not load";
-}
 ?>
 <!-- Greeting Message -->
 <section data-stellar-background-ratio="0.5" style="padding-bottom: 25px;">

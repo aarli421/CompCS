@@ -2,11 +2,6 @@
 require '../templates/helper.php';
 require '../templates/header.php';
 
-$db = setupDb();
-if (!$db) {
-    echo "Database could not load";
-}
-
 $name = explode(".",  basename($_FILES['questionInput']['name']));
 
 $uploadFile = 'questions/' . $_FILES['questionInput']['name'];

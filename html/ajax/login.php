@@ -1,11 +1,6 @@
 <?php
 require '../../templates/helper.php';
 
-$db = setupDb();
-if (!$db) {
-    echo "Database could not load";
-}
-
 if (hasValue($_POST['loginUsername']) && hasValue($_POST['loginPassword'])) {
     $sth = $db->prepare("SELECT `password`, `active` FROM `users` WHERE `username`=?");
     $sth->execute([$_POST['loginUsername']]);

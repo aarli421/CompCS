@@ -2,11 +2,6 @@
 require '../../templates/helper.php';
 require '../../vendor/autoload.php';
 
-$db = setupDb();
-if (!$db) {
-    echo "Database could not load";
-}
-
 if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && hasValue($_POST['signUpEmail']) && hasValue($_POST['tos'])) {
     $mail = $_POST['signUpEmail'];
     $username = $_POST['signUpUsername'];

@@ -1,11 +1,6 @@
 <?php
 require '../templates/helper.php';
 require '../templates/header.php';
-
-$db = setupDb();
-if (!$db) {
-    echo "Database could not load";
-}
 ?>
 <style>
     .background {

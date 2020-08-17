@@ -33,4 +33,13 @@ function redirect($file) {
 function hasValue($value) {
     return isset($value) && !empty($value);
 }
-?>
+
+$db = setupDb();
+if (!$db) {
+    echo "Database could not load";
+}
+
+$sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
+$sth->execute([$_SESSION['user']]);
+$passArr = $sth->fetchAll();
+$user_id = $passArr[0]['user_id'];
