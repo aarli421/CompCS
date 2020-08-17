@@ -129,10 +129,10 @@ $output = $sth->fetchAll();
     if (!empty($output)) {
     ?>
     $(function () {
-        setTimeout(function () {
+        $(window).load(function() {
             stopUpload();
             parseJSON(JSON.parse('<?php echo $output[0]['output_json']; ?>'));
-        }, 10);
+        });
     });
     <?php
     }
