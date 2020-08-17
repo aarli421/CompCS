@@ -125,7 +125,7 @@ if (!hasValue($arr['error'])) {
     $sth->execute([$user_id, $question[0]['question_id'], json_encode($arr), $arr['correct_cases']]);
 
     $points = 0;
-    if (empty($pastGrades)) {
+    if (empty($max)) {
         $points = $arr['correct_cases'] * $question[0]['testcase_value'];
     } else {
         if ($arr['correct_cases'] > $max[0][0]) {
