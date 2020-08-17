@@ -38,12 +38,13 @@ $output = $sth->fetchAll();
             Object.keys(output).forEach(function(k) {
                 if (k == "correct_cases") return;
 
-                console.log("k");
+                console.log(k);
 
                 var symbol = output[k]["symbol"];
                 if (symbol == "*") {
                     var time = Math.round(output[k]["time"] * 1000);
                     $("#dialogDiv").append("<div class=\"trial-result trial-status-yes\"><div class=\"res-symbol\">*</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"><span class=\"msize\">" + time + "ms</span></div></div>");
+                    console.log($("#dialogDiv").innerHTML);
                 } else {
                     $("#dialogDiv").append("<div class=\"trial-result trial-status-no\"><div class=\"res-X\">" + symbol + "</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"></div></div>");
                 }
