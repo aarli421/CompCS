@@ -34,12 +34,12 @@ $passArr = $sth->fetchAll();
             $.ajax({
                 url: "ajax/upload.php",
                 type: 'POST',
-                dataType: 'text',
+                dataType: 'JSON`',
                 data: formData,
                 success: function(data) {
                     stopUpload();
 
-                    console.log(data);
+                    // console.log(data);
 
                     if (data.hasOwnProperty('error')) {
                         $("#prompt-center").css("text-align", "left");

@@ -119,7 +119,7 @@ if (!hasValue($arr['error'])) {
     $sth->execute([$user_id, $question[0]['question_id']]);
     $max = $sth->fetchAll();
 
-    print_r($max);
+//    print_r($max);
 
     $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `output_json`, `correct_cases`) VALUES (?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], json_encode($arr), $arr['correct_cases']]);
