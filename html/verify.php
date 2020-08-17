@@ -27,7 +27,7 @@ require '../templates/header.php';
     </section>
 </div>
 <script>
-    let redirect = "http://www.compcs.codes/index.php";
+    let redirect = "https://www.compcs.codes/index.php";
 <?php
 if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
     $sth = $db->prepare("SELECT `username`, `email`, `hash`, `active` FROM `users` WHERE `email`=? AND `hash`=?");
@@ -38,14 +38,14 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
 //        echo "Account not found!";
         ?>
         $("#title").html("Your account was not found!");
-        redirect = "http://www.compcs.codes/register.php";
+        redirect = "https://www.compcs.codes/register.php";
     <?php
     } else {
         if ($passArr[0]['active'] == 1) {
 //            echo "Your account has already been made";
             ?>
             $("#title").html("Your account was already verified!");
-            redirect = "http://www.compcs.codes/login.php";
+            redirect = "https://www.compcs.codes/login.php";
             <?php
         } else {
             $username = $passArr[0]['username'];
@@ -54,14 +54,14 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
             if (hasValue($msg)) {
                 ?>
                 $("#title").html("The verification process encountered an error!");
-                redirect = "http://www.compcs.codes/index.php#contact";
+                redirect = "https://www.compcs.codes/index.php#contact";
                 <?php
             } else {
                 $sth = $db->prepare("UPDATE users SET active=1 WHERE email=? AND hash=? AND active=0");
                 $sth->execute([$_GET['email'], $_GET['hash']]);
                 ?>
                 $("#title").html("Your account was successfully verified!");
-                redirect = "http://www.compcs.codes/login.php";
+                redirect = "https://www.compcs.codes/login.php";
                 <?php
             }
 //            echo "Account Verified!";

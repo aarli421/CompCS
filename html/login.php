@@ -58,7 +58,7 @@ require '../templates/header.php';
                         $("#loginError").css("display", "none");
                         $("#loginError").html("");
                         setTimeout(function () {
-                            $(location).attr("href", "http://www.compcs.codes/home.php");
+                            $(location).attr("href", "https://www.compcs.codes/home.php");
                         }, 3000);
                     } else {
                         $("#loginSuccess").css("display", "none");
