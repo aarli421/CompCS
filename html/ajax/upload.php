@@ -119,6 +119,8 @@ if (!hasValue($arr['error'])) {
     $sth->execute([$user_id, $question[0]['question_id']]);
     $max = $sth->fetchAll();
 
+    print_r($max);
+
     $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `output_json`, `correct_cases`) VALUES (?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], json_encode($arr), $arr['correct_cases']]);
 
@@ -126,8 +128,8 @@ if (!hasValue($arr['error'])) {
     if (empty($pastGrades)) {
         $points = $arr['correct_cases'] * $question[0]['testcase_value'];
     } else {
-        if ($arr['correct_cases'] > $max[0]) {
-            $points = ($arr['correct_cases'] - $max[0]) * $question[0]['testcase_value'];
+        if ($arr['correct_cases'] > $max[0][0]) {
+            $points = ($arr['correct_cases'] - $max[0][0]) * $question[0]['testcase_value'];
         }
     }
 
