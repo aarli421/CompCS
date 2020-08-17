@@ -7,6 +7,7 @@ if (hasValue($_POST['logout'])) {
 
 if (!isset($_SESSION['user'])) {
     redirect("login");
+    exit();
 }
 
 $sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");

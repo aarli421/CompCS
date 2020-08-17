@@ -1,16 +1,35 @@
 <?php
 require '../../templates/helper.php';
 
+$sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");
+$sth->execute([$questionName]);
+$question = $sth->fetchAll();
+
+$sth = $db->prepare("SELECT `points` FROM users WHERE `user_id`=?");
+$sth->execute([$user_id]);
+$points = $sth->fetchAll();
+
 $err = false;
 $arr = array();
 
 if (!isset($_SESSION['user'])) {
-    echo "YOU ARE NOT LOGGED IN";
-    die;
+    $arr['error'] = "You are not logged in! Refresh the page.";
+    $err = true;
+}
+
+if (empty($question)) {
+    $arr['error'] = "Question does not exist!";
+    $err = true;
+}
+
+if ($points[0]['points'] < $question[0]['unlock_value']) {
+    $arr['error'] = "You do not have enough points.";
+    $err = true;
 }
 
 if ($err) {
     echo json_encode($arr);
+    exit();
 }
 
 $uploadDir = '../users/' . $_SESSION['user'] . '/';
@@ -29,10 +48,6 @@ $cppName = $questionName . ".execpp";
 $cName = $questionName . ".exec";
 
 $arr['correct_cases'] = 0;
-
-$sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");
-$sth->execute([$questionName]);
-$question = $sth->fetchAll();
 
 if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 //    echo "File is valid, and was successfully uploaded.\n";
