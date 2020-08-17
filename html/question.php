@@ -1,10 +1,27 @@
 <?php
 require '../templates/helper.php';
-require '../templates/header.php';
 
-$sth = $db->prepare("SELECT `question_id`, `testcase_value` FROM questions WHERE `name`=?");
+$sth = $db->prepare("SELECT `question_id`, `testcase_value`, `unlock_value` FROM questions WHERE `name`=?");
 $sth->execute([$_GET['questionName']]);
 $passArr = $sth->fetchAll();
+
+$sth = $db->prepare("SELECT `points` FROM users WHERE `user_id`=?");
+$sth->execute([$user_id]);
+$points = $sth->fetchAll();
+
+if (!isset($_SESSION['user'])) {
+    redirect("login");
+}
+
+if (empty($passArr)) {
+    redirect("home");
+}
+
+if ($points[0]['points'] < $passArr[0]['unlock_value']) {
+    redirect("home");
+}
+
+require '../templates/header.php';
 
 $sth = $db->prepare("SELECT `output_json` FROM `grades` WHERE `user_id`=? AND `question_id`=? ORDER BY `grade_id` DESC LIMIT 1;");
 $sth->execute([$user_id, $passArr[0]['question_id']]);
