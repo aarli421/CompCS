@@ -123,8 +123,10 @@ $output = $sth->fetchAll();
     <?php
     if (!empty($output)) {
     ?>
+    $(function () {
         stopUpload();
         parseJSON(JSON.parse('<?php echo $output[0]['output_json']; ?>'));
+    });
     <?php
     }
     ?>
