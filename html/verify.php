@@ -52,7 +52,7 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
 
             $root = $_SERVER['DOCUMENT_ROOT'];
             $directory = $root . "/users/" . $username;
-            $msg = `sudo /home/compcs/scripts/executeAsUser.sh $username "mkdir $directory; chmod g+w $directory; chown $username:webadmin $directory; usermod -aG $username admin"`;
+            $msg = `sudo /home/compcs/scripts/executeAsUser.sh $username "mkdir $directory; chmod g+w $directory; usermod -aG $username admin"`;
 
             if (hasValue($msg)) {
                 ?>
