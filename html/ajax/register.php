@@ -5,6 +5,7 @@ require '../../vendor/autoload.php';
 if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && hasValue($_POST['signUpEmail']) && hasValue($_POST['tos'])) {
     $mail = $_POST['signUpEmail'];
     $username = $_POST['signUpUsername'];
+    $password = $_POST['signUpPassword'];
     $hashedPw = hash('sha256', $_POST['signUpPassword']);
     $hash = md5(rand(0, 10000));
 
@@ -20,48 +21,55 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 
     if ($passArr[0][0] == 0) {
 //        echo "Passed ";
-        if (preg_match($pattern, $mail) === 1) {
-            $host = $_SERVER["HTTP_HOST"];
-            $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-            $verLink = 'http://' . $host . '/verify?email=' . $mail . '&hash=' . $hash;
 
-            $handle = fopen('../../private/keys.csv', 'r');
-            $data = fgetcsv($handle, 5, ',');
+        $msg = `sudo /home/compcs/createUser.sh $username $password`;
 
-            $email = new \SendGrid\Mail\Mail();
-            $email->setFrom("noreply@compcs.codes", "CompCS");
-            $email->setSubject("Verify your CompCS Account");
-            $email->addTo($mail, "CompCS Codes User");
-            $email->addContent(
-                "text/html", "You have recently created an account on compcs.codes with an username of $username<br>
+        if (!hasValue($msg)) {
+            if (preg_match($pattern, $mail) === 1) {
+                $host = $_SERVER["HTTP_HOST"];
+                $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+                $verLink = 'http://' . $host . '/verify?email=' . $mail . '&hash=' . $hash;
+
+                $handle = fopen('../../private/keys.csv', 'r');
+                $data = fgetcsv($handle, 5, ',');
+
+                $email = new \SendGrid\Mail\Mail();
+                $email->setFrom("noreply@compcs.codes", "CompCS");
+                $email->setSubject("Verify your CompCS Account");
+                $email->addTo($mail, "CompCS Codes User");
+                $email->addContent(
+                    "text/html", "You have recently created an account on compcs.codes with an username of $username<br>
                                   If you did not create an account, <strong>IGNORE THIS EMAIL</strong><br>
                                   <a href=$verLink>Verify your Email</a>"
-            );
-            $sendgrid = new \SendGrid($data[1]);
-            try {
-                $response = $sendgrid->send($email);
-                if ($response->statusCode() == 202) {
-                    $sql = "
+                );
+                $sendgrid = new \SendGrid($data[1]);
+                try {
+                    $response = $sendgrid->send($email);
+                    if ($response->statusCode() == 202) {
+                        $sql = "
                     INSERT INTO `users` (`username`, `password`, `email`, `hash`)
                     SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? AS `hash`) AS temp 
                     WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
-                    $sth = $db->prepare($sql);
-                    $sth->execute([$username, $hashedPw, $mail, $hash, $username, $mail]);
+                        $sth = $db->prepare($sql);
+                        $sth->execute([$username, $hashedPw, $mail, $hash, $username, $mail]);
 
-                    $sth = $db->prepare("COMMIT");
-                    $sth->execute();
+                        $sth = $db->prepare("COMMIT");
+                        $sth->execute();
 
-                    `mkdir ../users/$username`;
+                        `mkdir ../users/$username`;
 
-                    echo "Success";
-                } else {
-                    echo "Mail was unable to send.";
+                        echo "Success";
+                    } else {
+                        echo "Mail was unable to send.";
+                    }
+                } catch (Exception $e) {
+                    echo 'Caught exception: ' . $e->getMessage() . "\n";
                 }
-            } catch (Exception $e) {
-                echo 'Caught exception: ' . $e->getMessage() . "\n";
+            } else {
+                echo "Invalid email.";
             }
         } else {
-            echo "Invalid email.";
+            echo "The username already exists";
         }
     } else {
         echo "The username / email already exists.";
