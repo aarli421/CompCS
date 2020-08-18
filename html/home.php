@@ -29,7 +29,7 @@ require '../templates/header.php';
     <div class="container">
         <ol>
             <?php
-            $divisions = array(0 => array('lower' => 0, 'upper' => 999));
+            $divisions = array(0 => array('lower' => 100, 'upper' => 101));
             $numDivisions = 1;
 
             for ($i = 0; $i < $numDivisions; $i++) {
@@ -58,7 +58,7 @@ require '../templates/header.php';
                     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
                     $sth->execute([$user_id, $value['question_id']]);
                     $max = $sth->fetchAll();
-                    echo $max[0][0];
+                    if (empty($max)) $max[0][0] = 0;
                 ?>
                     <li class="question">
                         <div class="categories">
