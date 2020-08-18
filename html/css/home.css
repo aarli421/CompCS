@@ -41,3 +41,17 @@ th, td {
 	background-color: #e6ffe6;
 	color: black;
 }
+
+.division h2 {
+	text-align: left;
+}
+
+ol {
+	list-style-type:none;
+	padding-left: 17%;
+}
+
+.info div{
+	display: table;
+	width: 80%;
+}
