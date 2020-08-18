@@ -54,13 +54,13 @@ require '../templates/header.php';
                             </div>
                             <div class="categories-div">
                                 <div class="category">
-                                    <h4>Where am I</h4>
+                                    <h5>Where am I</h5>
                                 </div>
                                 <div class="category">
-                                    <h4>10</h4>
+                                    <h5>10</h5>
                                 </div>
                                 <div class="category">
-                                    <h4>10</h4>
+                                    <h5>10</h5>
                                 </div>
                             </div>
                         </a>
