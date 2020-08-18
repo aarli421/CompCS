@@ -49,10 +49,10 @@ $fileName = $questionName . '.' . $fileType;
 $uploadFile = $uploadDir . "/" . $fileName;
 $tempFile = $_FILES['fileInput']['tmp_name'];
 
-$file = $uploadDir . "/" . $fileName;
-$javaName = $uploadDir . "/" . $questionName;
-$cppName = $uploadDir . "/" . $questionName . ".execpp";
-$cName = $uploadDir . "/" . $questionName . ".exec";
+$file = $fileName;
+$javaName = $questionName;
+$cppName = $questionName . ".execpp";
+$cName = $questionName . ".exec";
 
 $arr['correct_cases'] = 0;
 $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
@@ -171,7 +171,7 @@ function parse_results($runResults, $i) {
 }
 
 function full_run($questionDir, $questionName, $uploadDir, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount, &$arr, $scriptsDirectory, $username) {
-    $result = exec_timeout($compCmd, $compileTimeout, $scriptsDirectory, $username);
+    $result = exec_timeout($compCmd, $compileTimeout, $uploadDir, $scriptsDirectory, $username);
 
     if (!empty($result['errors'])) {
         $arr['error'] = "Compilation failed!<br>" . $result['errors'];
@@ -196,7 +196,7 @@ function run($questionDir, $uploadDir, $questionName, $i, $cmd, $timeout, $scrip
 
     `sudo $scriptsDirectory/executeAsUser.sh $username "rm {$question}.out"`;
 
-    $result = exec_timeout($cmd, $timeout, $scriptsDirectory, $username);
+    $result = exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username);
 
     if (!empty($result['errors'])) {
         return array('symbol' => '!', 'output' => $result['errors']);
@@ -230,8 +230,8 @@ function run($questionDir, $uploadDir, $questionName, $i, $cmd, $timeout, $scrip
     }
 }
 
-function exec_timeout($cmd, $timeout, $scriptsDirectory, $username) {
-    $newCmd = "sudo $scriptsDirectory" . "/executeAsUser.sh $username \"$cmd\"";
+function exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username) {
+    $newCmd = "sudo $scriptsDirectory" . "/executeAsUser.sh $username \"cd $uploadDir; $cmd\"";
 
     // File descriptors passed to the process.
     $descriptors = array(
