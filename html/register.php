@@ -50,11 +50,18 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
     $(function () {
         $("#register").submit(function(e) {
             e.preventDefault();
-            console.log("Passed here 1");
+            // console.log("Passed here 1");
+
+            if ($("#registerPassword").val() == $("#registerCPassword").val()) {
+                $("#registerCPassword")[0].setCustomValidity('');
+            } else {
+                $("#registerCPassword")[0].setCustomValidity('The passwords do not match.');
+                return;
+            }
 
             var formData = $(this).serialize();
 
-            console.log("Passed here 2");
+            // console.log("Passed here 2");
 
             $.ajax({
                 url: "ajax/register.php",
@@ -87,24 +94,6 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
                 }
             });
         });
-
-        var passwordRepeatTimer;
-        var doneTypingInterval = 500;
-
-        $("#registerCPassword").keyup(function() {
-            clearTimeout(passwordRepeatTimer);
-            if ($('#registerCPassword').val()) {
-                passwordRepeatTimer = setTimeout(passwordRepeatDoneTyping, doneTypingInterval);
-            }
-        });
-
-        function passwordRepeatDoneTyping() {
-            if ($("#registerPassword").val() == $("#registerCPassword").val()) {
-                $("#registerCPassword")[0].setCustomValidity('');
-            } else {
-                $("#registerCPassword")[0].setCustomValidity('The passwords do not match.');
-            }
-        }
     });
 </script>
 <div class="background">
