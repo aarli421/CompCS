@@ -25,7 +25,7 @@ require '../templates/header.php';
         <h3 class="problemtitle" style="margin-top: 0px">Points: <?php echo $points; ?></h3>
     </div>
 </section>
-<section data-stellar-background-ratio="0.5">
+<section data-stellar-background-ratio="0.5" style="padding-top: 0px;">
     <div class="container">
         <ol>
             <div style="padding-top: 5%"><hr class="line div-line"></div>
@@ -41,11 +41,11 @@ require '../templates/header.php';
                     <div style="width: 80%; display: table; padding-top: 1%">
                         <div><hr class="line question-line"></div>
                         <a href="">
-                            <div style="display: table-row; height: 100px;">
+                            <div class="question-name-div">
                                 <div style="width: 33%; display: table-cell">
                                     <h4>Problem: Where am I</h4>
                                 </div>
-                                <div style="width: 33%; height: 65%; display: table-cell">
+                                <div style="width: 33%; display: table-cell">
                                     <h4>Unlock Value: 10</h4>
                                 </div>
                                 <div style="width: 33%; display: table-cell">
@@ -54,7 +54,7 @@ require '../templates/header.php';
                             </div>
                         </a>
                     </div>
-                    <div style="width: 70%; display: table">
+                    <div class="progress-bar-div">
                         <div class="progress-wrap progress" data-progress-percent="90">
                             <div class="progress-bar progress"></div>
                         </div>
@@ -64,7 +64,7 @@ require '../templates/header.php';
                     <div style="width: 80%; display: table; padding-top: 1%">
                         <div><hr class="line question-line"></div>
                         <a href="">
-                            <div style="display: table-row; height: 100px;">
+                            <div class="question-name-div">
                                 <div style="width: 33%; display: table-cell">
                                     <h4>Swapity-Swapity Swap</h4>
                                 </div>
@@ -77,7 +77,7 @@ require '../templates/header.php';
                             </div>
                         </a>
                     </div>
-                    <div style="width: 70%; display: table">
+                    <div class="progress-bar-div">
                         <div class="progress-wrap progress" data-progress-percent="90">
                             <div class="progress-bar progress"></div>
                         </div>
