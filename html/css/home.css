@@ -85,7 +85,8 @@ ol {
 
 .category {
 	width: 33%;
-	display: table-cell
+	display: table-cell;
+	padding-right: 20px;
 }
 
 .categories {

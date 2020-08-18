@@ -88,7 +88,7 @@ require '../templates/header.php';
                             </div>
                             <div class="categories-div">
                                 <div class="category">
-                                    <h5>Swapasdfasdfasdfasdf</h5>
+                                    <h5>swap</h5>
                                 </div>
                                 <div class="category">
                                     <h5>10</h5>
