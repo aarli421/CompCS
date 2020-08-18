@@ -46,7 +46,7 @@ $name = explode(".",  basename($_FILES['fileInput']['name']));
 $fileType = $name[1];
 
 $fileName = $questionName . '.' . $fileType;
-$uploadFile = $uploadDir . $fileName;
+$uploadFile = $uploadDir . "/" . $fileName;
 $tempFile = $_FILES['fileInput']['tmp_name'];
 
 $file = $uploadDir . "/" . $fileName;
@@ -55,8 +55,7 @@ $cppName = $uploadDir . "/" . $questionName . ".execpp";
 $cName = $uploadDir . "/" . $questionName . ".exec";
 
 $arr['correct_cases'] = 0;
-
-$msg = `sudo $scriptsDirectory/executeAsUser.sh admin "mv $tempFile $uploadFile"`;
+$msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
 
 if (!hasValue($msg)) {
 
