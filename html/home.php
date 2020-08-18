@@ -61,36 +61,38 @@ require '../templates/header.php';
                     if (empty($max)) $max[0][0] = 0;
                 ?>
                     <li class="question">
-                        <div class="categories">
-                            <div><hr class="line question-line"></div>
-                            <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
-                                <div class="categories-div">
-                                    <div class="category">
-                                        <h4>Problem</h4>
+                        <div style="pointer-events: none; background-color: gray; opacity: 0.5; padding: 1%">
+                            <div class="categories">
+                                <div><hr class="line question-line"></div>
+                                <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
+                                    <div class="categories-div">
+                                        <div class="category">
+                                            <h4>Problem</h4>
+                                        </div>
+                                        <div class="category">
+                                            <h4>Unlock Value</h4>
+                                        </div>
+                                        <div class="category">
+                                            <h4>Total Points</h4>
+                                        </div>
                                     </div>
-                                    <div class="category">
-                                        <h4>Unlock Value</h4>
+                                    <div class="categories-div">
+                                        <div class="category">
+                                            <h5><?php echo $value['name']; ?></h5>
+                                        </div>
+                                        <div class="category">
+                                            <h5><?php echo $value['unlock_value']; ?></h5>
+                                        </div>
+                                        <div class="category">
+                                            <h5><?php echo ($value['testcase_value'] * $value['testcases']);?></h5>
+                                        </div>
                                     </div>
-                                    <div class="category">
-                                        <h4>Total Points</h4>
-                                    </div>
+                                </a>
+                            </div>
+                            <div class="progress-bar-div">
+                                <div id="progress-wrapper<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
+                                    <div id="progress-bar<?php echo $j; ?>" class="progress-bar progress"></div>
                                 </div>
-                                <div class="categories-div">
-                                    <div class="category">
-                                        <h5><?php echo $value['name']; ?></h5>
-                                    </div>
-                                    <div class="category">
-                                        <h5><?php echo $value['unlock_value']; ?></h5>
-                                    </div>
-                                    <div class="category">
-                                        <h5><?php echo ($value['testcase_value'] * $value['testcases']);?></h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="progress-bar-div">
-                            <div id="progress-wrapper<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
-                                <div id="progress-bar<?php echo $j; ?>" class="progress-bar progress"></div>
                             </div>
                         </div>
                     </li>
