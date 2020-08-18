@@ -98,3 +98,14 @@ ol {
 .division-title {
 	padding-top: 2%
 }
+
+.locked {
+	pointer-events: none;
+	background-color: gray;
+	opacity: 0.5;
+	padding: 1%;
+}
+
+div.locked:hover {
+	cursor: not-allowed;
+}

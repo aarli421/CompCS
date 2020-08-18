@@ -61,7 +61,7 @@ require '../templates/header.php';
                     if (empty($max)) $max[0][0] = 0;
                 ?>
                     <li class="question">
-                        <div style="pointer-events: none; background-color: gray; opacity: 0.5; padding: 1%">
+                        <div style="">
                             <div class="categories">
                                 <div><hr class="line question-line"></div>
                                 <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
