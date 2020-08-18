@@ -1,6 +1,8 @@
 <?php
 require '../../templates/helper.php';
 
+$questionName = $_POST['questionName'];
+
 $sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");
 $sth->execute([$questionName]);
 $question = $sth->fetchAll();
@@ -33,7 +35,6 @@ if ($err) {
 }
 
 $uploadDir = '../users/' . $_SESSION['user'] . '/';
-$questionName = $_POST['questionName'];
 $questionDir = '../questions/' . $questionName;
 $ajaxDir = '../../ajax/';
 
