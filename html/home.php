@@ -52,7 +52,7 @@ require '../templates/header.php';
                 $passArr = $sth->fetchAll();
 
                 foreach ($passArr as $value) {
-                    if ($points <= $value['unlock_value']) {
+                    if ($points >= $value['unlock_value']) {
                         $j++;
                     }
                     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
