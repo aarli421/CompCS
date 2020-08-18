@@ -51,7 +51,7 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
             $username = $passArr[0]['username'];
 
             $root = $_SERVER['DOCUMENT_ROOT'];
-            $msg = `sudo /home/compcs/scripts/executeAsUser.sh $username "mkdir $root/users/$username"`;
+            $msg = `sudo /home/compcs/scripts/executeAsUser.sh $username "mkdir $root/users/$username; chmod 711 $root/users/$username"`;
 
             if (hasValue($msg)) {
                 ?>
