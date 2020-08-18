@@ -28,8 +28,8 @@ require '../templates/header.php';
 <section data-stellar-background-ratio="0.5" style="padding-top: 0px;">
     <div class="container">
         <ol>
-            <div style="padding-top: 5%"><hr class="line div-line"></div>
             <li>
+                <div style="padding-top: 5%"><hr class="line div-line"></div>
                 <div>
                     <br>
                     <br>
