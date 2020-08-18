@@ -24,8 +24,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     if ($passArr[0][0] == 0) {
 //        echo "Passed ";
         if ((preg_match($pattern, $mail) === 1) && (preg_match($usernameReg, $username) === 1) && (preg_match($passwordReg, $password) === 1)) {
-            $msg = `sudo /home/compcs/scripts/createUser.sh $username $password`;
-            echo "MESSAGE . $msg";
+            $msg = `sudo $scriptsDirectory/createUser.sh $username $password`;
 
             if (!hasValue($msg)) {
                 $host = $_SERVER["HTTP_HOST"];

@@ -7,9 +7,9 @@ $sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");
 $sth->execute([$questionName]);
 $question = $sth->fetchAll();
 
-$sth = $db->prepare("SELECT `points` FROM users WHERE `user_id`=?");
+$sth = $db->prepare("SELECT `username`, `points` FROM users WHERE `user_id`=?");
 $sth->execute([$user_id]);
-$points = $sth->fetchAll();
+$user = $sth->fetchAll();
 
 $err = false;
 $arr = array();
@@ -24,7 +24,7 @@ if (empty($question)) {
     $err = true;
 }
 
-if ($points[0]['points'] < $question[0]['unlock_value']) {
+if ($user[0]['points'] < $question[0]['unlock_value']) {
     $arr['error'] = "You do not have enough points.";
     $err = true;
 }
@@ -34,8 +34,12 @@ if ($err) {
     exit();
 }
 
-$uploadDir = '../users/' . $_SESSION['user'] . '/';
-$questionDir = '../questions/' . $questionName;
+$rootDir = $_SERVER['DOCUMENT_ROOT'];
+
+$username = $user[0]['username'];
+
+$uploadDir = $rootDir . '/users/' . $username;
+$questionDir = $rootDir . '/questions/' . $questionName;
 $ajaxDir = '../../ajax/';
 
 $name = explode(".",  basename($_FILES['fileInput']['name']));
@@ -44,9 +48,10 @@ $fileType = $name[1];
 $fileName = $questionName . '.' . $fileType;
 $uploadFile = $uploadDir . $fileName;
 
-$javaName = $questionName;
-$cppName = $questionName . ".execpp";
-$cName = $questionName . ".exec";
+$file = $uploadDir . "/" . $fileName;
+$javaName = $uploadDir . "/" . $questionName;
+$cppName = $uploadDir . "/" . $questionName . ".execpp";
+$cName = $uploadDir . "/" . $questionName . ".exec";
 
 $arr['correct_cases'] = 0;
 
@@ -58,11 +63,11 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
 
     $testAmount = $question[0]['testcases'];
 
-    chdir($uploadDir);
+//    chdir($uploadDir);
     if ($fileType == "py") {
         try {
             for ($i = 1; $i <= $testAmount; $i++) {
-                $runResults = run('../' . $questionDir, $questionName, $i, "python3 $fileName", 4);
+                $runResults = run($questionDir,  $uploadDir, $questionName, $i, "python3 $file", 4, $scriptsDirectory, $username);
                 if (!parse_results($runResults, $i)) {
                     break;
                 }
@@ -72,27 +77,27 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
         }
     } else if ($fileType == "java") {
         try {
-            full_run('../' . $questionDir, $questionName, "javac $fileName", "java $javaName", 30, 4, $testAmount, $arr);
+            full_run($questionDir, $questionName, $uploadDir, "javac $file", "java $javaName", 30, 4, $testAmount, $arr, $scriptsDirectory, $username);
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
     } else if ($fileType == "cpp") {
         try {
-            full_run('../' . $questionDir, $questionName, "g++ -o $cppName $fileName", "./$cppName", 30, 2, $testAmount, $arr);
+            full_run($questionDir, $questionName, $uploadDir, "g++ -o $cppName $file", "$cppName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
-    } else if ($fileType == "c") {
-        try {
-            full_run('../' . $questionDir, $questionName, "gcc -o $cName $fileName", "./$cName", 30, 2, $testAmount, $arr);
-        } catch (Exception $e) {
-            $arr['error'] = $e;
-        }
+//    } else if ($fileType == "c") {
+//        try {
+//            full_run($questionDir, $questionName, $uploadDir, "gcc -o $cName $file", "$cName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
+//        } catch (Exception $e) {
+//            $arr['error'] = $e;
+//        }
     } else {
-        $arr['error'] = "Only Python3, Java, C++, and C supported!";
+        $arr['error'] = "Only Python3, Java, and C++ supported!";
     }
 
-    chdir($ajaxDir);
+//    chdir($ajaxDir);
 
 } else {
     $arr['error'] = "Could not upload file. Server error.";
@@ -133,20 +138,14 @@ function parse_results($runResults, $i) {
     $symbol = $runResults['symbol'];
 
     if ($i == 1 && $symbol != '*') {
-//                $arr['error_symbol'] = $symbol;
         $arr['error'] = "Did not pass because outcome was " . $symbol . "<br>";
-//                echo "Did not pass because outcome was " . $symbol . "<br>";
         if ($symbol != '!' && $symbol != 'T') {
             if (hasValue($runResults['stdout'])) {
                 $arr['error'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
-//                        echo "The following was printed in stdout <br>";
-//                        echo $runResults['stdout'];
             }
 
             if (hasValue($runResults['fout'])) {
                 $arr['error'] .= "The following was printed in fout <br>" . $runResults['fout'];
-//                        echo "The following was printed in fout <br>";
-//                        echo $runResults['fout'];
             }
         } else if ($symbol == '!') {
             $arr['error'] .= "The following was printed in error <br>" . $runResults['output'];
@@ -164,14 +163,14 @@ function parse_results($runResults, $i) {
     return true;
 }
 
-function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount, &$arr) {
+function full_run($questionDir, $questionName, $uploadDir, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount, &$arr, $scriptsDirectory, $username) {
     $result = exec_timeout($compCmd, $compileTimeout);
 
     if (!empty($result['errors'])) {
         $arr['error'] = "Compilation failed!<br>" . $result['errors'];
     } else {
         for ($i = 1; $i <= $testAmount; $i++) {
-            $runResults = run($questionDir, $questionName, $i, $runCmd, $runTimeout);
+            $runResults = run($questionDir, $uploadDir, $questionName, $i, $runCmd, $runTimeout, $scriptsDirectory, $username);
             if (!parse_results($runResults, $i)) {
                 break;
             }
@@ -179,17 +178,18 @@ function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeou
     }
 }
 
-function run($questionDir, $questionName, $i, $cmd, $timeout) {
-    $output = `cp -f {$questionDir}/{$i}.in {$questionName}.in`;
+function run($questionDir, $uploadDir, $questionName, $i, $cmd, $timeout, $scriptsDirectory, $username) {
+    $question = $uploadDir . '/' . $questionName;
+
+    $output = `sudo $scriptsDirectory/executeAsUser.sh admin "cp -f {$questionDir}/{$i}.in {$question}.in"`;
     if (!empty($output)) {
         $arr['error'] = array("message" => "Server error.");
         die();
-//        throw new \Exception("Could not move input cases!");
     }
 
-    `rm {$questionName}.out`;
+    `sudo $scriptsDirectory/executeAsUser.sh $username "rm {$question}.out"`;
 
-    $result = exec_timeout($cmd, $timeout);
+    $result = exec_timeout($cmd, $timeout, $scriptsDirectory, $username);
 
     if (!empty($result['errors'])) {
         return array('symbol' => '!', 'output' => $result['errors']);
@@ -199,18 +199,18 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
         }
     }
 
-    $contents = `cat {$questionName}.out`;
+    $contents = `cat {$question}.out`;
 
-    $output = `test -f {$questionName}.out || echo "does not exist"`;
+    $output = `test -f {$question}.out || echo "does not exist"`;
     if(str_replace(array("\n", "\r"), '', $output) == 'does not exist') {
         return array('symbol' => 'M', 'stdout' => $result['output']);
     }
 
-    $output = `diff -w {$questionDir}/{$i}.out {$questionName}.out && echo "alike"`;
+    $output = `diff -w {$questionDir}/{$i}.out {$question}.out && echo "alike"`;
     if(str_replace(array("\n", "\r"), '', $output) == 'alike') {
         return array("symbol" => '*', 'time' => $result['time']);
     } else {
-        $output = `[ -s {$questionName}.out ] || echo "empty"`;
+        $output = `[ -s {$question}.out ] || echo "empty"`;
         if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
             if ($i == 1 && $result['output'] != '') {
                 return array('symbol' => 'X', 'stdout' => $result['output']);
@@ -223,7 +223,9 @@ function run($questionDir, $questionName, $i, $cmd, $timeout) {
     }
 }
 
-function exec_timeout($cmd, $timeout) {
+function exec_timeout($cmd, $timeout, $scriptsDirectory, $username) {
+    $newCmd = "sudo $scriptsDirectory" . "/executeAsUser.sh $username \"$cmd\"";
+
     // File descriptors passed to the process.
     $descriptors = array(
         0 => array('pipe', 'r'),  // stdin
@@ -234,7 +236,7 @@ function exec_timeout($cmd, $timeout) {
     // Start the process.
     $time = -microtime(true);
 
-    $process = proc_open($cmd, $descriptors, $pipes);
+    $process = proc_open($newCmd, $descriptors, $pipes);
 
     if (!is_resource($process)) {
         throw new \Exception('Could not execute process');
