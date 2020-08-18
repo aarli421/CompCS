@@ -53,7 +53,6 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
                 $("#registerCPassword")[0].setCustomValidity('');
             } else {
                 $("#registerCPassword")[0].setCustomValidity('The passwords do not match.');
-                $("#registerCPassword").focus();
             }
         });
 
