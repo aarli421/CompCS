@@ -75,7 +75,7 @@ if (!hasValue($msg)) {
         try {
             for ($i = 1; $i <= $testAmount; $i++) {
                 $runResults = run($questionDir,  $uploadDir, $questionName, $i, "python3 $file", 4, $scriptsDirectory, $username);
-                if (!parse_results($runResults, $i)) {
+                if (!parse_results($runResults, $i, $arr)) {
                     break;
                 }
             }
@@ -141,7 +141,7 @@ if (!hasValue($arr['error'])) {
     $sth->execute();
 }
 
-function parse_results($runResults, $i) {
+function parse_results($runResults, $i, &$arr) {
     $symbol = $runResults['symbol'];
 
     if ($i == 1 && $symbol != '*') {
@@ -178,7 +178,7 @@ function full_run($questionDir, $questionName, $uploadDir, $compCmd, $runCmd, $c
     } else {
         for ($i = 1; $i <= $testAmount; $i++) {
             $runResults = run($questionDir, $uploadDir, $questionName, $i, $runCmd, $runTimeout, $scriptsDirectory, $username);
-            if (!parse_results($runResults, $i)) {
+            if (!parse_results($runResults, $i, $arr)) {
                 break;
             }
         }
