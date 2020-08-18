@@ -55,3 +55,20 @@ ol {
 	display: table;
 	width: 80%;
 }
+
+.line {
+	border-width:0;
+	float: left;
+	color:gray;
+	background-color:gray
+}
+
+.div-line {
+	height:10px;
+	width: 85%;
+}
+
+.question-line {
+	height:2px;
+	width: 262%;
+}

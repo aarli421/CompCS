@@ -26,9 +26,9 @@ require '../templates/header.php';
     </div>
 </section>
 <section data-stellar-background-ratio="0.5">
-    <div>
+    <div class="container">
         <ol>
-            <div style="padding-top: 5%"><hr style="height:10px; width: 85%; border-width:0; float: left; color:gray; background-color:gray"></div>
+            <div style="padding-top: 5%"><hr class="line div-line"></div>
             <li>
                 <div>
                     <br>
@@ -36,12 +36,11 @@ require '../templates/header.php';
                     <h2 class="division">Points: 1000 - 2000</h2>
                 </div>
             </li>
-            <ol>
-                <li class="questions">
-
-                    <a href="">
-                        <div style="width: 80%; display: table; padding-top: 1%">
-                            <div><hr style="height:2px; width: 262%; border-width:0; color:gray; background-color:gray"></div>
+            <ol class="questions">
+                <li class="question">
+                    <div style="width: 80%; display: table; padding-top: 1%">
+                        <div><hr class="line question-line"></div>
+                        <a href="">
                             <div style="display: table-row; height: 100px;">
                                 <div style="width: 33%; display: table-cell">
                                     <h4>Problem: Where am I</h4>
@@ -53,18 +52,18 @@ require '../templates/header.php';
                                     <h4>Points/Testcase: 10</h4>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     <div style="width: 70%; display: table">
                         <div class="progress-wrap progress" data-progress-percent="90">
                             <div class="progress-bar progress"></div>
                         </div>
                     </div>
                 </li>
-                <li class="questions">
-                    <a href="">
-                        <div style="width: 80%; display: table; padding-top: 1%">
-                            <div><hr style="height:2px; width: 262%; border-width:0; color:gray; background-color:gray"></div>
+                <li class="question">
+                    <div style="width: 80%; display: table; padding-top: 1%">
+                        <div><hr class="line question-line"></div>
+                        <a href="">
                             <div style="display: table-row; height: 100px;">
                                 <div style="width: 33%; display: table-cell">
                                     <h4>Swapity-Swapity Swap</h4>
@@ -76,15 +75,15 @@ require '../templates/header.php';
                                     <h4>Points/Testcase: 10</h4>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     <div style="width: 70%; display: table">
                         <div class="progress-wrap progress" data-progress-percent="90">
                             <div class="progress-bar progress"></div>
                         </div>
                     </div>
+                </li>
             </ol>
-            </li>
         </ol>
     </div>
 </section>
