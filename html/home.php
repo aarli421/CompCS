@@ -145,8 +145,8 @@ require '../templates/header.php';
     function moveProgressBar() {
         console.log("moveProgressBar");
         let i;
-        for (i = 0; i < <?php echo $j; ?>; i++) {
-            var getPercent = ($('#progress-bar' + i).data('progress-percent') / 100);
+        for (i = 1; i <= <?php echo $j; ?>; i++) {
+            var getPercent = ($('#progress-bar' + i.toString()).data('progress-percent') / 100);
             var getProgressWrapWidth = $('#progress-bar' + i).width();
             var progressTotal = getPercent * getProgressWrapWidth;
             var animationLength = 1000;
