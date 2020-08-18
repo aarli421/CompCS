@@ -31,6 +31,7 @@ require '../templates/header.php';
             <?php
             $divisions = array(0 => array('lower' => 0, 'upper' => 9999));
             $numDivisions = 1;
+            $j = 0;
 
             for ($i = 0; $i < $numDivisions; $i++) {
                 $lower = $divisions[$i]['lower'];
@@ -50,12 +51,9 @@ require '../templates/header.php';
                 $sth->execute([$lower, $upper]);
                 $passArr = $sth->fetchAll();
 
-
-
-                $i = 0;
                 foreach ($passArr as $value) {
                     if ($points <= $value['unlock_value']) {
-                        $i++;
+                        $j++;
                     }
                     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
                     $sth->execute([$user_id, $value['question_id']]);
@@ -91,7 +89,7 @@ require '../templates/header.php';
                             </a>
                         </div>
                         <div class="progress-bar-div">
-                            <div id="progress-bar<?php echo $i; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
+                            <div id="progress-bar<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
                                 <div class="progress-bar progress"></div>
                             </div>
                         </div>
@@ -147,7 +145,7 @@ require '../templates/header.php';
     function moveProgressBar() {
         console.log("moveProgressBar");
         let i;
-        for (i = 0; i < <?php echo $i; ?>; i++) {
+        for (i = 0; i < <?php echo $j; ?>; i++) {
             var getPercent = ($('#progress-bar' + i).data('progress-percent') / 100);
             var getProgressWrapWidth = $('#progress-bar' + i).width();
             var progressTotal = getPercent * getProgressWrapWidth;
