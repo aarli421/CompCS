@@ -58,8 +58,13 @@ $arr['correct_cases'] = 0;
 $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
 
 if (!hasValue($msg)) {
+    $msg = $fileVal = `cat $uploadFile`;
 
-    $fileVal = `cat $uploadFile`;
+    if (hasValue($msg)) {
+        $arr['error'] = "Could not upload file. Server error.";
+        die();
+    }
+
     $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $fileVal, date('Y-m-d H:i:s', time())]);
 
@@ -166,7 +171,7 @@ function parse_results($runResults, $i) {
 }
 
 function full_run($questionDir, $questionName, $uploadDir, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount, &$arr, $scriptsDirectory, $username) {
-    $result = exec_timeout($compCmd, $compileTimeout);
+    $result = exec_timeout($compCmd, $compileTimeout, $scriptsDirectory, $username);
 
     if (!empty($result['errors'])) {
         $arr['error'] = "Compilation failed!<br>" . $result['errors'];
