@@ -58,6 +58,7 @@ require '../templates/header.php';
                     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
                     $sth->execute([$user_id, $value['question_id']]);
                     $max = $sth->fetchAll();
+                    echo $max[0][0];
                 ?>
                     <li class="question">
                         <div class="categories">
@@ -88,7 +89,7 @@ require '../templates/header.php';
                             </a>
                         </div>
                         <div class="progress-bar-div">
-                            <div class="progress-wrap progress" data-progress-percent="<?php echo round($max[0][0] / ($value['testcases'] / 100),2); ?>">
+                            <div class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
                                 <div class="progress-bar progress"></div>
                             </div>
                         </div>
