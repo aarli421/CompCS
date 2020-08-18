@@ -52,9 +52,10 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
 
             $root = $_SERVER['DOCUMENT_ROOT'];
             $directory = $root . "/users/" . $username;
-            $msg = `sudo /home/compcs/scripts/executeAsUser.sh $username "mkdir $directory; chmod g+w $directory; usermod -aG $username admin"`;
+            $msg = `sudo $scriptsDirectory/executeAsUser.sh $username "mkdir $directory; chmod g+w $directory;"`;
+            $msg2 = `sudo $scriptsDirectory/addAdmin.sh $username`;
 
-            if (hasValue($msg)) {
+            if (hasValue($msg) || hasValue($msg2)) {
                 ?>
                 $("#title").html("The verification process encountered an error!");
                 redirect = "https://www.compcs.codes/contact";
