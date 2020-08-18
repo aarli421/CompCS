@@ -54,7 +54,9 @@ require '../templates/header.php';
 
                 $i = 0;
                 foreach ($passArr as $value) {
-                    $i++;
+                    if ($points <= $value['unlock_value']) {
+                        $i++;
+                    }
                     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
                     $sth->execute([$user_id, $value['question_id']]);
                     $max = $sth->fetchAll();
@@ -89,7 +91,7 @@ require '../templates/header.php';
                             </a>
                         </div>
                         <div class="progress-bar-div">
-                            <div class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
+                            <div id="progress-bar<?php echo $i; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
                                 <div class="progress-bar progress"></div>
                             </div>
                         </div>
@@ -133,7 +135,32 @@ require '../templates/header.php';
 <!--</table>-->
 <!--</div>-->
 <!--</section>-->
-<script src="js/progress.js"></script>
+<script>
+    // on page load...
+    moveProgressBar();
+    // on browser resize...
+    $(window).resize(function() {
+        moveProgressBar();
+    });
+
+    // SIGNATURE PROGRESS
+    function moveProgressBar() {
+        console.log("moveProgressBar");
+        let i;
+        for (i = 0; i < <?php echo $i; ?>; i++) {
+            var getPercent = ($('#progress-bar' + i).data('progress-percent') / 100);
+            var getProgressWrapWidth = $('#progress-bar' + i).width();
+            var progressTotal = getPercent * getProgressWrapWidth;
+            var animationLength = 1000;
+
+            // on page load, animate percentage bar to data percentage length
+            // .stop() used to prevent animation queueing
+            $('.progress-bar').stop().animate({
+                left: progressTotal
+            }, animationLength);
+        }
+    }
+</script>
 <?php
 require '../templates/footer.php';
 ?>
