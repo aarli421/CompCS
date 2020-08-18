@@ -41,12 +41,14 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
 //    }
 //}
 ?>
+<section>
 <form method="post" action="questionUpload.php" enctype="multipart/form-data">
     Unlock Value: <input name="unlock_value" type="number" /> <br>
     Test Case Value: <input name="testcase_value" type="number" /> <br>
     Send this file: <input name="questionInput" type="file" />
     <input type="submit" value="Send File" />
-</form> <br>
+</form>
+</section>
 <!--<form method="post" action="questionUpload.php">-->
 <!--    <input name="addToSQL" value="true" hidden>-->
 <!--    <input type="submit" value="Add to SQL" />-->
