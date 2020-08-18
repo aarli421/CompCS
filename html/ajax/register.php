@@ -24,7 +24,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     if ($passArr[0][0] == 0) {
 //        echo "Passed ";
         if ((preg_match($pattern, $mail) === 1) && (preg_match($usernameReg, $username) === 1) && (preg_match($passwordReg, $password) === 1)) {
-            $msg = `sudo /home/compcs/createUser.sh $username $password`;
+            $msg = `sudo /home/compcs/scripts/createUser.sh $username $password`;
             echo "MESSAGE . $msg";
 
             if (!hasValue($msg)) {
@@ -58,7 +58,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                         $sth = $db->prepare("COMMIT");
                         $sth->execute();
 
-                        `mkdir ../users/$username`;
+//                        `mkdir ../users/$username`;
 
                         echo "Success";
                     } else {
