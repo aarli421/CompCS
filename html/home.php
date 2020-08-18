@@ -77,13 +77,24 @@ require '../templates/header.php';
                         <a href="">
                             <div class="categories-div">
                                 <div class="category">
-                                    <h4>Swapity-Swapity Swap</h4>
+                                    <h4>Problem</h4>
                                 </div>
                                 <div class="category">
-                                    <h4>Unlock Value: 10</h4>
+                                    <h4>Unlock Value</h4>
                                 </div>
                                 <div class="category">
-                                    <h4>Points/Testcase: 10</h4>
+                                    <h4>Points/Testcase</h4>
+                                </div>
+                            </div>
+                            <div class="categories-div">
+                                <div class="category">
+                                    <h5>Swapasdfasdfasdfasdf</h5>
+                                </div>
+                                <div class="category">
+                                    <h5>10</h5>
+                                </div>
+                                <div class="category">
+                                    <h5>10</h5>
                                 </div>
                             </div>
                         </a>
