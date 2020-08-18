@@ -28,83 +28,74 @@ require '../templates/header.php';
 <section data-stellar-background-ratio="0.5" style="padding-top: 0px;">
     <div class="container">
         <ol>
+            <?php
+            $divisions = array(0 => array('lower' => 0, 'upper' => 999));
+            $numDivisions = 1;
+
+            for ($i = 0; $i < $numDivisions; $i++) {
+                $lower = $divisions[$i]['lower'];
+                $upper = $divisions[$i]['upper'];
+                ?>
             <li>
                 <div class="division-title"><hr class="line div-line"></div>
                 <div>
                     <br>
                     <br>
-                    <h2 class="division">Points: 1000 - 2000</h2>
+                    <h2 class="division">Points: <?php echo $lower; ?> - <?php echo $upper; ?></h2>
                 </div>
             </li>
             <ol class="questions">
-                <li class="question">
-                    <div class="categories">
-                        <div><hr class="line question-line"></div>
-                        <a href="">
-                            <div class="categories-div">
-                                <div class="category">
-                                    <h4>Problem</h4>
+                <?php
+                $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<? ORDER BY `unlock_value`");
+                $sth->execute([$lower, $upper]);
+                $passArr = $sth->fetchAll();
+
+                $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
+                $sth->execute([$user_id, $passArr[0]['question_id']]);
+                $max = $sth->fetchAll();
+
+                $i = 0;
+                foreach ($passArr as $value) {
+                    $i++;
+                ?>
+                    <li class="question">
+                        <div class="categories">
+                            <div><hr class="line question-line"></div>
+                            <a href="">
+                                <div class="categories-div">
+                                    <div class="category">
+                                        <h4>Problem</h4>
+                                    </div>
+                                    <div class="category">
+                                        <h4>Unlock Value</h4>
+                                    </div>
+                                    <div class="category">
+                                        <h4>Total Points</h4>
+                                    </div>
                                 </div>
-                                <div class="category">
-                                    <h4>Unlock Value</h4>
+                                <div class="categories-div">
+                                    <div class="category">
+                                        <h5><?php echo $value['name']; ?></h5>
+                                    </div>
+                                    <div class="category">
+                                        <h5><?php echo $value['unlock_value']; ?></h5>
+                                    </div>
+                                    <div class="category">
+                                        <h5><?php echo ($value['testcase_value'] * $value['testcases']);?></h5>
+                                    </div>
                                 </div>
-                                <div class="category">
-                                    <h4>Points/Testcase</h4>
-                                </div>
-                            </div>
-                            <div class="categories-div">
-                                <div class="category">
-                                    <h5>Where am I</h5>
-                                </div>
-                                <div class="category">
-                                    <h5>10</h5>
-                                </div>
-                                <div class="category">
-                                    <h5>10</h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="progress-bar-div">
-                        <div class="progress-wrap progress" data-progress-percent="90">
-                            <div class="progress-bar progress"></div>
+                            </a>
                         </div>
-                    </div>
-                </li>
-                <li class="question">
-                    <div class="categories">
-                        <div><hr class="line question-line"></div>
-                        <a href="">
-                            <div class="categories-div">
-                                <div class="category">
-                                    <h4>Problem</h4>
-                                </div>
-                                <div class="category">
-                                    <h4>Unlock Value</h4>
-                                </div>
-                                <div class="category">
-                                    <h4>Points/Testcase</h4>
-                                </div>
+                        <div class="progress-bar-div">
+                            <div class="progress-wrap progress" data-progress-percent="<?php echo round($max[0][0] / ($value['testcases'] / 100),2); ?>">
+                                <div class="progress-bar progress"></div>
                             </div>
-                            <div class="categories-div">
-                                <div class="category">
-                                    <h5>swap</h5>
-                                </div>
-                                <div class="category">
-                                    <h5>10</h5>
-                                </div>
-                                <div class="category">
-                                    <h5>10</h5>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="progress-bar-div">
-                        <div class="progress-wrap progress" data-progress-percent="90">
-                            <div class="progress-bar progress"></div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                <?php
+                }
+            }
+            ?>
             </ol>
         </ol>
     </div>
