@@ -1,19 +1,19 @@
 <?php
-//require '../templates/helper.php';
-//
-//if (hasValue($_POST['logout'])) {
-//    unset($_SESSION['user']);
-//}
-//
-//if (!isset($_SESSION['user'])) {
-//    redirect("login");
-//    exit();
-//}
-//
-//$sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
-//$sth->execute([$_SESSION['user']]);
-//$passArr = $sth->fetchAll();
-//$points = $passArr[0]['points'];
+require '../templates/helper.php';
+
+if (hasValue($_POST['logout'])) {
+    unset($_SESSION['user']);
+}
+
+if (!isset($_SESSION['user'])) {
+    redirect("login");
+    exit();
+}
+
+$sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
+$sth->execute([$_SESSION['user']]);
+$passArr = $sth->fetchAll();
+$points = $passArr[0]['points'];
 
 require '../templates/header.php';
 ?>
