@@ -51,16 +51,10 @@ $cName = $questionName . ".exec";
 $arr['correct_cases'] = 0;
 
 if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
-//    echo "File is valid, and was successfully uploaded.\n";
 
     $fileVal = `cat $uploadFile`;
     $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $fileVal, date('Y-m-d H:i:s', time())]);
-
-//    $ioDirAmount = `ls $questionDir | wc -l`;
-//    echo "IO Dir:" . $ioDirAmount;
-//    $testAmount = ((int) ($ioDirAmount - 1)) / 2;
-    //echo "Test:" . $testAmount . "<br>";
 
     $testAmount = $question[0]['testcases'];
 
@@ -69,40 +63,9 @@ if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
         try {
             for ($i = 1; $i <= $testAmount; $i++) {
                 $runResults = run('../' . $questionDir, $questionName, $i, "python3 $fileName", 4);
-                $symbol = $runResults['symbol'];
-
-                if ($i == 1 && $symbol != '*') {
-//                $arr['error_symbol'] = $symbol;
-                    $arr['error'] = "Did not pass because outcome was " . $symbol . "<br>";
-//                echo "Did not pass because outcome was " . $symbol . "<br>";
-                    if ($symbol != '!' && $symbol != 'T') {
-                        if (hasValue($runResults['stdout'])) {
-                            $arr['error'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
-//                        echo "The following was printed in stdout <br>";
-//                        echo $runResults['stdout'];
-                        }
-
-                        if (hasValue($runResults['fout'])) {
-                            $arr['error'] .= "The following was printed in fout <br>" . $runResults['fout'];
-//                        echo "The following was printed in fout <br>";
-//                        echo $runResults['fout'];
-                        }
-                    } else if ($symbol == '!') {
-                        $arr['error'] .= "The following was printed in error <br>" . $runResults['output'];
-                    }
+                if (!parse_results($runResults, $i)) {
                     break;
                 }
-
-                if ($symbol != '*') {
-                    $arr[$i] = array("symbol" => $symbol);
-//                echo $symbol;
-                } else {
-                    $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
-                    $arr['correct_cases'] += 1;
-//                echo $symbol . "<br>" . $runResults['time'];
-                }
-
-//                if ($i == $testAmount) echo json_encode($arr);
             }
         } catch (Exception $e) {
             $arr['error'] = $e;
@@ -166,58 +129,52 @@ if (!hasValue($arr['error'])) {
     $sth->execute();
 }
 
+function parse_results($runResults, $i) {
+    $symbol = $runResults['symbol'];
+
+    if ($i == 1 && $symbol != '*') {
+//                $arr['error_symbol'] = $symbol;
+        $arr['error'] = "Did not pass because outcome was " . $symbol . "<br>";
+//                echo "Did not pass because outcome was " . $symbol . "<br>";
+        if ($symbol != '!' && $symbol != 'T') {
+            if (hasValue($runResults['stdout'])) {
+                $arr['error'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
+//                        echo "The following was printed in stdout <br>";
+//                        echo $runResults['stdout'];
+            }
+
+            if (hasValue($runResults['fout'])) {
+                $arr['error'] .= "The following was printed in fout <br>" . $runResults['fout'];
+//                        echo "The following was printed in fout <br>";
+//                        echo $runResults['fout'];
+            }
+        } else if ($symbol == '!') {
+            $arr['error'] .= "The following was printed in error <br>" . $runResults['output'];
+        }
+        return false;
+    }
+
+    if ($symbol != '*') {
+        $arr[$i] = array("symbol" => $symbol);
+    } else {
+        $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
+        $arr['correct_cases'] += 1;
+    }
+
+    return true;
+}
+
 function full_run($questionDir, $questionName, $compCmd, $runCmd, $compileTimeout, $runTimeout, $testAmount, &$arr) {
     $result = exec_timeout($compCmd, $compileTimeout);
-//    echo $result['output'];
 
     if (!empty($result['errors'])) {
         $arr['error'] = "Compilation failed!<br>" . $result['errors'];
-//        die();
-//        echo 'Compilation failed!' . '<br>';
-//        echo $result['errors'];
-//        echo '<br>';
     } else {
-//        echo 'Compiled in ' . $result['time'] . '<br>';
-
         for ($i = 1; $i <= $testAmount; $i++) {
             $runResults = run($questionDir, $questionName, $i, $runCmd, $runTimeout);
-            $symbol = $runResults['symbol'];
-
-            if ($i == 1 && $symbol != '*') {
-//                $arr['error_symbol'] = $symbol;
-                $arr['error'] = "Did not pass because outcome was " . $symbol . "<br>";
-//                echo "Did not pass because outcome was " . $symbol . "<br>";
-                if ($symbol != '!' && $symbol != 'T') {
-                    if (hasValue($runResults['stdout'])) {
-                        $arr['error'] .= "The following was printed in stdout <br>" . $runResults['stdout'];
-//                        echo "The following was printed in stdout <br>";
-//                        echo $runResults['stdout'];
-                    }
-
-                    if (hasValue($runResults['fout'])) {
-                        $arr['error'] .= "The following was printed in fout <br>" . $runResults['fout'];
-//                        echo "The following was printed in fout <br>";
-//                        echo $runResults['fout'];
-                    }
-                } else if ($symbol == '!') {
-                    $arr['error'] .= "The following was printed in error <br>" . $runResults['output'];
-                }
+            if (!parse_results($runResults, $i)) {
                 break;
             }
-
-            if ($symbol != '*') {
-                $arr[$i] = array("symbol" => $symbol);
-//                echo $symbol;
-            } else {
-                $arr[$i] = array("symbol" => $symbol, "time" => $runResults['time']);
-                $arr['correct_cases'] += 1;
-//                echo $symbol . "<br>" . $runResults['time'];
-            }
-//            echo "<br>";
-
-//            if ($i == $testAmount) echo json_encode($arr);
-
-//            print_r($arr);
         }
     }
 }
