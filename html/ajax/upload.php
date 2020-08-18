@@ -194,7 +194,7 @@ function run($questionDir, $uploadDir, $questionName, $i, $cmd, $timeout, $scrip
         die();
     }
 
-    `sudo $scriptsDirectory/executeAsUser.sh $username "rm {$question}.out"`;
+    `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$question}.out"`;
 
     $result = exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username);
 
@@ -209,12 +209,12 @@ function run($questionDir, $uploadDir, $questionName, $i, $cmd, $timeout, $scrip
     $contents = `cat {$question}.out`;
 
     $output = `test -f {$question}.out || echo "does not exist"`;
-    if(str_replace(array("\n", "\r"), '', $output) == 'does not exist') {
+    if (str_replace(array("\n", "\r"), '', $output) == 'does not exist') {
         return array('symbol' => 'M', 'stdout' => $result['output']);
     }
 
     $output = `diff -w {$questionDir}/{$i}.out {$question}.out && echo "alike"`;
-    if(str_replace(array("\n", "\r"), '', $output) == 'alike') {
+    if (str_replace(array("\n", "\r"), '', $output) == 'alike') {
         return array("symbol" => '*', 'time' => $result['time']);
     } else {
         $output = `[ -s {$question}.out ] || echo "empty"`;
