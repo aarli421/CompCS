@@ -50,13 +50,14 @@ require '../templates/header.php';
                 $sth->execute([$lower, $upper]);
                 $passArr = $sth->fetchAll();
 
-                $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
-                $sth->execute([$user_id, $passArr[0]['question_id']]);
-                $max = $sth->fetchAll();
+
 
                 $i = 0;
                 foreach ($passArr as $value) {
                     $i++;
+                    $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
+                    $sth->execute([$user_id, $value['question_id']]);
+                    $max = $sth->fetchAll();
                 ?>
                     <li class="question">
                         <div class="categories">
