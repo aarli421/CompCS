@@ -255,8 +255,10 @@ function exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username) 
     // Set the stderr stream to non-blocking.
     stream_set_blocking($pipes[2], 0);
 
+    $cd_offset = 0.4;
+
     // Turn the timeout into microseconds.
-    $timeout = $timeout * 1000000;
+    $timeout = ($timeout + $cd_offset) * 1000000;
 
     // Output buffer.
     $buffer = '';
@@ -311,5 +313,5 @@ function exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username) 
 
     proc_close($process);
 
-    return array("output" => $buffer, "time" => $time, "errors" => $errors, "isTimedOut" => $timedOut);
+    return array("output" => $buffer, "time" => $time - $cd_offset, "errors" => $errors, "isTimedOut" => $timedOut);
 }
