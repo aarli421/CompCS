@@ -89,8 +89,8 @@ require '../templates/header.php';
                             </a>
                         </div>
                         <div class="progress-bar-div">
-                            <div id="progress-bar<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
-                                <div class="progress-bar progress"></div>
+                            <div id="progress-wrapper<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
+                                <div id="progress-bar<?php echo $j; ?>" class="progress-bar progress"></div>
                             </div>
                         </div>
                     </li>
@@ -146,8 +146,8 @@ require '../templates/header.php';
         console.log("moveProgressBar");
         let i;
         for (i = 1; i <= <?php echo $j; ?>; i++) {
-            var getPercent = ($('#progress-bar' + i.toString()).data('progress-percent') / 100);
-            var getProgressWrapWidth = $('#progress-bar' + i.toString()).width();
+            var getPercent = ($('#progress-wrapper' + i.toString()).data('progress-percent') / 100);
+            var getProgressWrapWidth = $('#progress-wrapper' + i.toString()).width();
 
             console.log(i);
             console.log(getPercent);
