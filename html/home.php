@@ -38,17 +38,17 @@ require '../templates/header.php';
             </li>
             <ol class="questions">
                 <li class="question">
-                    <div style="width: 80%; display: table; padding-top: 1%">
+                    <div class="categories">
                         <div><hr class="line question-line"></div>
                         <a href="">
-                            <div class="question-name-div">
-                                <div style="width: 33%; display: table-cell">
+                            <div class="categories-div">
+                                <div class="category">
                                     <h4>Problem: Where am I</h4>
                                 </div>
-                                <div style="width: 33%; display: table-cell">
+                                <div class="category">
                                     <h4>Unlock Value: 10</h4>
                                 </div>
-                                <div style="width: 33%; display: table-cell">
+                                <div class="category">
                                     <h4>Points/Testcase: 10</h4>
                                 </div>
                             </div>
@@ -61,17 +61,17 @@ require '../templates/header.php';
                     </div>
                 </li>
                 <li class="question">
-                    <div style="width: 80%; display: table; padding-top: 1%">
+                    <div class="categories">
                         <div><hr class="line question-line"></div>
                         <a href="">
-                            <div class="question-name-div">
-                                <div style="width: 33%; display: table-cell">
+                            <div class="categories-div">
+                                <div class="category">
                                     <h4>Swapity-Swapity Swap</h4>
                                 </div>
-                                <div style="width: 33%; height: 65%; display: table-cell">
+                                <div class="category">
                                     <h4>Unlock Value: 10</h4>
                                 </div>
-                                <div style="width: 33%; display: table-cell">
+                                <div class="category">
                                     <h4>Points/Testcase: 10</h4>
                                 </div>
                             </div>

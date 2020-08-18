@@ -5,10 +5,10 @@
 /*  width:90%;*/
 /*}*/
 
-.categories th{
-	text-align: center;
-	padding: 2px;
-}
+/*.categories th{*/
+/*	text-align: center;*/
+/*	padding: 2px;*/
+/*}*/
 td{
 	text-align: center;
 	margin:20px;
@@ -73,13 +73,23 @@ ol {
 	width: 105%;
 }
 
-.question-name-div {
+.categories-div {
 	display: table-row;
-	height: 100px;
 	width: 100%;
 }
 
 .progress-bar-div {
 	width: 70%;
 	display: table;
+}
+
+.category {
+	width: 33%;
+	display: table-cell
+}
+
+.categories {
+	width: 80%;
+	display: table;
+	padding-top: 1%
 }
