@@ -48,16 +48,18 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
 </style>
 <script>
     $(function () {
-        $("#register").submit(function(e) {
-            e.preventDefault();
-            // console.log("Passed here 1");
-
+        $('#registerPassword, #registerCPassword').on('keyup', function () {
             if ($("#registerPassword").val() == $("#registerCPassword").val()) {
                 $("#registerCPassword")[0].setCustomValidity('');
             } else {
                 $("#registerCPassword")[0].setCustomValidity('The passwords do not match.');
-                return;
+                $("#registerCPassword").focus();
             }
+        });
+
+        $("#register").submit(function(e) {
+            e.preventDefault();
+            // console.log("Passed here 1");
 
             var formData = $(this).serialize();
 
