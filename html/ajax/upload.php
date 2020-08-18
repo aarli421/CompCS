@@ -47,6 +47,7 @@ $fileType = $name[1];
 
 $fileName = $questionName . '.' . $fileType;
 $uploadFile = $uploadDir . $fileName;
+$tempFile = $_FILES['fileInput']['tmp_name'];
 
 $file = $uploadDir . "/" . $fileName;
 $javaName = $uploadDir . "/" . $questionName;
@@ -55,7 +56,9 @@ $cName = $uploadDir . "/" . $questionName . ".exec";
 
 $arr['correct_cases'] = 0;
 
-if (move_uploaded_file($_FILES['fileInput']['tmp_name'], $uploadFile)) {
+$msg = `sudo $scriptsDirectory/executeAsUser.sh admin "mv $tempFile $uploadFile"`;
+
+if (!hasValue($msg)) {
 
     $fileVal = `cat $uploadFile`;
     $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
