@@ -120,7 +120,7 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
                         <form id="register" method="post">
                             <div class="form-group"><label for="registerUsername">Username (Only letters and numbers)</label><input type="text" id="registerUsername" name="signUpUsername" required="required" pattern="<?php echo $usernameReg; ?>" /></div>
                             <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" pattern="<?php echo $emailReg; ?>" /></div>
-                            <div class="form-group"><label for="registerPassword">Password</label><input type="password" id="registerPassword" name="signUpPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
+                            <div class="form-group"><label for="registerPassword">Password (>8 letters, numbers, and symbols)</label><input type="password" id="registerPassword" name="signUpPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
                             <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
                             <div class="form-group"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to Terms of Service</label></div>
                             <div class="form-group"><button id="registerBtn" form="register" type="submit">Register</button></div>
