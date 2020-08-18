@@ -255,7 +255,7 @@ function exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username) 
     // Set the stderr stream to non-blocking.
     stream_set_blocking($pipes[2], 0);
 
-    $cd_offset = 0.04;
+    $cd_offset = 0.035;
 
     // Turn the timeout into microseconds.
     $timeout = ($timeout + $cd_offset) * 1000000;
