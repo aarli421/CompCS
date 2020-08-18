@@ -157,7 +157,7 @@ require '../templates/header.php';
 
             // on page load, animate percentage bar to data percentage length
             // .stop() used to prevent animation queueing
-            $('.progress-bar').stop().animate({
+            $('#progress-bar' + i.toString()).stop().animate({
                 left: progressTotal
             }, animationLength);
         }
