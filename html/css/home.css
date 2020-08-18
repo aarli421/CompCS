@@ -99,13 +99,14 @@ ol {
 	padding-top: 2%
 }
 
-div.locked:hover {
-	cursor: not-allowed;
-}
+/*div.locked:hover {*/
+/*	cursor: not-allowed;*/
+/*}*/
 
 .locked {
 	pointer-events: none;
 	background-color: gray;
 	opacity: 0.5;
 	padding: 1%;
+	width: 84.5%;
 }

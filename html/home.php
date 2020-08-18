@@ -52,16 +52,24 @@ require '../templates/header.php';
                 $passArr = $sth->fetchAll();
 
                 foreach ($passArr as $value) {
-                    if ($points >= $value['unlock_value']) {
-                        $j++;
+                    $locked = false;
+                    if ($points < $value['unlock_value']) {
+                        $locked = true;
                     }
+
                     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
                     $sth->execute([$user_id, $value['question_id']]);
                     $max = $sth->fetchAll();
                     if (empty($max)) $max[0][0] = 0;
                 ?>
                     <li class="question">
+                        <?php
+                        if ($locked) {
+                        ?>
                         <div class="locked">
+                        <?php
+                        }
+                        ?>
                             <div class="categories">
                                 <div><hr class="line question-line"></div>
                                 <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
@@ -94,9 +102,18 @@ require '../templates/header.php';
                                     <div id="progress-bar<?php echo $j; ?>" class="progress-bar progress"></div>
                                 </div>
                             </div>
+                        <?php
+                        if ($locked) {
+                        ?>
                         </div>
+                        <?php
+                        }
+                        ?>
                     </li>
                 <?php
+                    if ($points >= $value['unlock_value']) {
+                        $j++;
+                    }
                 }
             }
             ?>
