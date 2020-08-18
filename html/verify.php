@@ -49,7 +49,12 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
             <?php
         } else {
             $username = $passArr[0]['username'];
+
+            `sudo /home/compcs/scripts/loginUser.sh $username`;
+            echo `whoami`;
             $msg = `mkdir users/$username`;
+            `exit`;
+            echo `whoami`;
 
             if (hasValue($msg)) {
                 ?>
