@@ -63,7 +63,7 @@ require '../templates/header.php';
                     <li class="question">
                         <div class="categories">
                             <div><hr class="line question-line"></div>
-                            <a href="">
+                            <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
                                 <div class="categories-div">
                                     <div class="category">
                                         <h4>Problem</h4>
