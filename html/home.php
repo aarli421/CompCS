@@ -29,7 +29,7 @@ require '../templates/header.php';
     <div class="container">
         <ol>
             <?php
-            $divisions = array(0 => array('lower' => 100, 'upper' => 101));
+            $divisions = array(0 => array('lower' => 0, 'upper' => 9999));
             $numDivisions = 1;
 
             for ($i = 0; $i < $numDivisions; $i++) {
