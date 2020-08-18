@@ -148,6 +148,10 @@ require '../templates/header.php';
         for (i = 1; i <= <?php echo $j; ?>; i++) {
             var getPercent = ($('#progress-bar' + i.toString()).data('progress-percent') / 100);
             var getProgressWrapWidth = $('#progress-bar' + i.toString()).width();
+
+            console.log(i);
+            console.log(getPercent);
+
             var progressTotal = getPercent * getProgressWrapWidth;
             var animationLength = 1000;
 
