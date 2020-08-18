@@ -50,11 +50,8 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
         } else {
             $username = $passArr[0]['username'];
 
-            `sudo /home/compcs/scripts/loginUser.sh $username`;
-            echo `whoami`;
-            $msg = `mkdir users/$username`;
-            `exit`;
-            echo `whoami`;
+            $root = $_SERVER['DOCUMENT_ROOT'];
+            $msg = `sudo /home/compcs/scripts/executeAsUser.sh $username "mkdir $root/users/$username"`;
 
             if (hasValue($msg)) {
                 ?>
