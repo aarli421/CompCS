@@ -10,7 +10,7 @@ $targetFolder = $root . '/questions/' . $name[0];
 $tempFile = $_FILES['fileInput']['tmp_name'];
 
 if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['testcase_value'])) {
-    $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile`;
+    $msg = `sudo $scriptsDirectory/uploadQuestion.sh $tempFile $uploadFile`;
 
     if (!hasValue($msg)) {
         `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
