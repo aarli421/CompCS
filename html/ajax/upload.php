@@ -90,7 +90,7 @@ if (!hasValue($msg)) {
         }
     } else if ($fileType == "cpp") {
         try {
-            full_run($questionDir, $questionName, $uploadDir, "g++ -o $cppName $file", "$cppName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
+            full_run($questionDir, $questionName, $uploadDir, "g++ -o $cppName $file", "./$cppName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
