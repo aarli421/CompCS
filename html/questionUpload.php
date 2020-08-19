@@ -7,9 +7,10 @@ $name = explode(".",  basename($_FILES['questionInput']['name']));
 $root = $_SERVER['DOCUMENT_ROOT'];
 $uploadFile = $root . '/questions/' . $_FILES['questionInput']['name'];
 $targetFolder = $root . '/questions/' . $name[0];
+$tempFile = $_FILES['fileInput']['tmp_name'];
 
 if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['testcase_value'])) {
-    $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
+    $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile`;
 
     if (!hasValue($msg)) {
         `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
