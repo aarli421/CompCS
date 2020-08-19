@@ -113,7 +113,7 @@ $output = $sth->fetchAll();
 <section data-stellar-background-ratio="0.5" class="questionlist" style="padding-bottom: 0px;">
     <div class="container">
         <h1 class="problemtitle" style="margin-bottom: 3px;">Problem: <?php echo $_GET['questionName']; ?></h1>
-        <h3 class="problemtitle" style="margin-top: 0px">Points/Case: <?php echo $passArr[0]['testcases']; ?></h3>
+        <h3 class="problemtitle" style="margin-top: 0px">Testcases: <?php echo $passArr[0]['testcases']; ?></h3>
         <h3 class="problemtitle" style="margin-top: 0px">Points/Case: <?php echo $passArr[0]['testcase_value']; ?></h3>
     </div>
 
