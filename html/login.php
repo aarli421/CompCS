@@ -44,7 +44,7 @@ require '../templates/header.php';
 <script>
     function clear() {
         $("#loginUsername").val("");
-        $("loginPassword").val("");
+        $("#loginPassword").val("");
     }
 
     $(function () {
