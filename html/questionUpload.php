@@ -4,23 +4,24 @@ require '../templates/header.php';
 
 $name = explode(".",  basename($_FILES['questionInput']['name']));
 
-$uploadFile = 'questions/' . $_FILES['questionInput']['name'];
-$targetFolder = 'questions/' . $name[0];
+$root = $_SERVER['DOCUMENT_ROOT'];
+$uploadFile = $root . '/questions/' . $_FILES['questionInput']['name'];
+$targetFolder = $root . '/questions/' . $name[0];
 
 if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['testcase_value'])) {
-    if (move_uploaded_file($_FILES['questionInput']['tmp_name'], $uploadFile)) {
-        `unzip $uploadFile -d $targetFolder`;
-        `rm $uploadFile`;
+    $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
+
+    if (!hasValue($msg)) {
+        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
 
         $ioDirAmount = `ls $targetFolder | wc -l`;
-        echo "IO Dir:" . $ioDirAmount;
         $testAmount = ((int) ($ioDirAmount - 1)) / 2;
 
         $sth = $db->prepare("INSERT INTO `questions` (`name`, `unlock_value`, `testcase_value`, `testcases`) VALUES (?, ?);");
         $sth->execute([$name[0], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount]);
         ?>
         <script>
-            $("#dialogDiv").html("Successfully uploaded. Don't refresh and confirm submission or else it will be duplicated!");
+            $("#dialogDiv").html("Successfully uploaded. Don't refresh and confirm submission or else the question will be duplicated!");
         </script>
         <?php
         echo 'Successfully uploaded';
