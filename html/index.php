@@ -226,7 +226,6 @@ require '../templates/header.php';
                         <p>Language Specifications</p>
                         <ul>
                             <li>C++ - g++ 7.5.0</li>
-                            <li>C - gcc 7.5.0</li>
                             <li>Java 8 - OpenJDK</li>
                             <li>Python - 3.6.9</li>
                         </ul>

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/login-register.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/curriculum.css">
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/templatemo-style.css">
@@ -85,6 +86,7 @@
                 <?php
                 }
                 ?>
+                <li><a href="curriculum" class="smoothScroll" style="font-size: 18px">Curriculum</a></li>
                 <li><a href="contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
             </ul>
 

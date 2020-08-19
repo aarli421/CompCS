@@ -1,0 +1,29 @@
+.curriculum{
+    width: 40%;
+    display: table;
+    margin:auto;
+}
+
+.curriculum-div{
+    display: table-row;
+    height: 100px;
+}
+.divisions{
+    width: 40%;
+    display: table-cell;
+    padding-right: 2%;
+    text-align:right;
+}
+
+.topics{
+    display: table-cell;
+    width: 60%
+}
+
+.bullet li{
+    float:left;
+}
+
+ol{
+    list-style-type: none;
+}/* CSS Document */
