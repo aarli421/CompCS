@@ -29,8 +29,11 @@ require '../templates/header.php';
     <div class="container">
         <ol>
             <?php
-            $divisions = array(0 => array('lower' => 0, 'upper' => 9999));
-            $numDivisions = 1;
+            $sth = $db->prepare("SELECT * FROM `divisions`");
+            $sth->execute();
+            $divisions = $sth->fetchAll();
+
+            $numDivisions = sizeof($divisions);
             $j = 0;
 
             for ($i = 0; $i < $numDivisions; $i++) {
@@ -42,12 +45,13 @@ require '../templates/header.php';
                 <div>
                     <br>
                     <br>
-                    <h2 class="division">Points: <?php echo $lower; ?> - <?php echo $upper; ?></h2>
+                    <h2 class="division">Division <?php echo $i + 1; ?></h2>
+                    <h4>Points: <?php echo $lower; ?> - <?php echo $upper; ?></h4>
                 </div>
             </li>
             <ol class="questions">
                 <?php
-                $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<? ORDER BY `unlock_value`");
+                $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? ORDER BY `unlock_value`");
                 $sth->execute([$lower, $upper]);
                 $passArr = $sth->fetchAll();
 
