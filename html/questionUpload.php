@@ -18,7 +18,7 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
         $ioDirAmount = `ls $targetFolder | wc -l`;
         $testAmount = ((int) ($ioDirAmount - 1)) / 2;
 
-        $sth = $db->prepare("INSERT INTO `questions` (`name`, `unlock_value`, `testcase_value`, `testcases`) VALUES (?, ?);");
+        $sth = $db->prepare("INSERT INTO `questions` (`name`, `unlock_value`, `testcase_value`, `testcases`) VALUES (?, ?, ?, ?);");
         $sth->execute([$name[0], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount]);
         ?>
         <script>
