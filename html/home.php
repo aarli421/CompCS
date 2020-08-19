@@ -118,10 +118,11 @@ require '../templates/header.php';
                     if ($points >= $value['unlock_value']) {
                         $j++;
                     }
-                }
+                }?>
+            </ol>
+            <?php
             }
             ?>
-            </ol>
         </ol>
     </div>
 </section>
