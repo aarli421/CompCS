@@ -47,6 +47,13 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
     }
 </style>
 <script>
+    function clear() {
+        $("#registerUsername").val("");
+        $("#registerEmail").val("");
+        $("#registerPassword").val("");
+        $("#registerCPassword").val("");
+    }
+
     $(function () {
         $('#registerPassword, #registerCPassword').on('keyup', function () {
             if ($("#registerPassword").val() == $("#registerCPassword").val()) {
@@ -75,6 +82,8 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
                         $("#registerError").css("display", "none");
                         $("#registerError").html("");
 
+                        clear();
+
                         let btn = $("#registerBtn");
                         btn.attr("disabled", true);
                         setTimeout(function() {
@@ -92,6 +101,7 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
                     $("#registerSuccess").html("");
                     $("#registerError").css("display", "inline");
                     $("#registerError").html(data);
+                    clear();
                 }
             });
         });

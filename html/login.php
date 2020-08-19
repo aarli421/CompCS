@@ -42,6 +42,11 @@ require '../templates/header.php';
     }
 </style>
 <script>
+    function clear() {
+        $("#loginUsername").val("");
+        $("loginPassword").val("");
+    }
+
     $(function () {
         $("#login").submit(function(e) {
             e.preventDefault();
@@ -54,24 +59,28 @@ require '../templates/header.php';
                 success: function(data) {
                     if (data == "Success") {
                         $("#loginSuccess").css("display", "inline");
-                        $("#loginSuccess").html("Successfully logged you in. Redirecting you in 3 seconds... If you are not redirected you can click <a href='http://www.compcs.codes/home'>this</a>.");
+                        $("#loginSuccess").html("Successfully logged you in. Redirecting you... If you are not redirected you can click <a href='http://www.compcs.codes/home'>this</a>.");
                         $("#loginError").css("display", "none");
                         $("#loginError").html("");
-                        setTimeout(function () {
-                            $(location).attr("href", "https://www.compcs.codes/home");
-                        }, 3000);
+                        $(location).attr("href", "https://www.compcs.codes/home");
+                        // setTimeout(function () {
+                        //     $(location).attr("href", "https://www.compcs.codes/home");
+                        // }, 3000);
                     } else {
                         $("#loginSuccess").css("display", "none");
                         $("#loginSuccess").html("");
                         $("#loginError").css("display", "inline");
                         $("#loginError").html(data);
                     }
+
+                    clear();
                 },
                 error: function(data) {
                     $("#loginSuccess").css("display", "none");
                     $("#loginSuccess").html("");
                     $("#loginError").css("display", "inline");
                     $("#loginError").html(data);
+                    clear();
                 }
             });
         });
