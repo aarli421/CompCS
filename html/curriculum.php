@@ -6,8 +6,8 @@ require '../templates/header.php';
     <div class="container">
         <h1>Curriculum</h1>
     </div>
-    <div class="container">
-        <div class="curriculum">
+    <div class="curriculum">
+        <div class="container">
             <div class="curriculum-div">
                 <div class="topics">
                     <ol>
