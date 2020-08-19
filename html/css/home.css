@@ -65,7 +65,7 @@ ol {
 
 .div-line {
 	height:10px;
-	width: 85%;
+	width: 100%;
 }
 
 .question-line {
@@ -108,5 +108,5 @@ ol {
 	background-color: gray;
 	opacity: 0.5;
 	padding: 1%;
-	width: 84.5%;
+	width: 100%;
 }
