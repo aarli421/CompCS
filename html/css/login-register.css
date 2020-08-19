@@ -24,7 +24,7 @@ html {
 	 z-index: 15;
 	 position: relative;
 	 background: #fff;
-	 width: 600px;
+	 width: 60%;
 	 border-radius: 4px;
 	 box-shadow: 0 0 30px rgba(0, 0, 0, .1);
 	 box-sizing: border-box;
@@ -270,4 +270,10 @@ html {
 button[disabled] {
 	cursor: not-allowed;
 	pointer-events: all !important;
+}
+
+@media only screen and (max-width: 767px) {
+	.form {
+		width: 80%;
+	}
 }

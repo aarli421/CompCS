@@ -209,7 +209,7 @@ require '../templates/header.php';
     </div>
 </section>
 
-<section id="about" data-stellar-background-ratio="0.5">
+<section id="usage" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12 col-lg-12">
