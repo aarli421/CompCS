@@ -37,15 +37,15 @@ require '../templates/header.php';
                                 </li>
                                 <li class="bullet">
                                     OOP (Object Oriented Programming)
-                                    <ul>
-                                        <li>
-                                            Creating a class and objects
-                                        </li>
-                                        <br>
-                                        <li>
-                                            Constructors
-                                        </li>
-                                    </ul>
+<!--                                    <ul>-->
+<!--                                        <li>-->
+<!--                                            Creating a class and objects-->
+<!--                                        </li>-->
+<!--                                        <br>-->
+<!--                                        <li>-->
+<!--                                            Constructors-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
                                 </li>
                             </ul>
                         </li>
