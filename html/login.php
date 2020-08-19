@@ -71,6 +71,9 @@ require '../templates/header.php';
                         $("#loginSuccess").html("");
                         $("#loginError").css("display", "inline");
                         $("#loginError").html(data);
+                        setTimeout(function () {
+                            $("#loginError").html("");
+                        }, 3000);
                     }
 
                     clear();
