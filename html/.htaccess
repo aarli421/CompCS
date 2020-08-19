@@ -1,6 +1,22 @@
 RewriteEngine On 
+
+# Redirect to https
 RewriteCond %{HTTPS}  !=on 
-RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R=301,L]
+
+# Remove php extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Set authentication
+#Protect single file
+<Files questionUpload.php>
+AuthName "Secret Files"
+AuthType Basic
+AuthUserFile /var/www/private/.htpasswd
+Require valid-user
+</Files>
+
 
 # set max post size
 php_value post_max_size 100M
