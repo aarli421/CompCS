@@ -184,7 +184,7 @@ $output = $sth->fetchAll();
         var moreText = document.getElementById("more");
         var btnText = document.getElementById("myBtn");
 
-        console.log("works")
+        console.log("works");
 
         if (dots.style.display === "none") {
             dots.style.display = "inline";
