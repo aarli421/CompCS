@@ -162,9 +162,7 @@ $output = $sth->fetchAll();
                     </p>
                 </div>
                 <div class="col-md-6 col-sm-12 col-lg-12">
-                    <div class="section-title">
-                        <h2>Leaderboard</h2>
-                    </div>
+                    <p>Leaderboard</p>
                     <p>
                         <ol type="1">
                             <li>Coffee - Random</li>
