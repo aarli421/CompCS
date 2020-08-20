@@ -144,11 +144,12 @@ $output = $sth->fetchAll();
 </section>
 <div class="container">
     <div class="row">
-        <p>Note: Submissions are governed as follows</p>
+        <p>Note:</p>
+        <p>Submissions are governed as follows</p>
         <ul>
             <li>C++ g++ 7.5.0 - 30 second compilation time, 2 second submission time</li>
-            <li>Java 8 OpenJDK - 30 second compilation time, 2 second submission time</li>
-            <li>Python 3.6.9 - 30 second compilation time, 2 second submission time</li>
+            <li>Java 8 OpenJDK - 30 second compilation time, 4 second submission time</li>
+            <li>Python 3.6.9 - 4 second submission time</li>
         </ul>
     </div>
 </div>
