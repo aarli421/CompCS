@@ -435,7 +435,6 @@
   -----------------------------------------*/
 
   #about {
-    padding-top: 4.5%;
     padding-bottom: 0;
   }
 
@@ -448,6 +447,7 @@
   }
 
   .about-image {
+    padding-top: 4.5%;
     position: absolute;
   }
 
