@@ -146,31 +146,19 @@ $output = $sth->fetchAll();
     <div class="container">
         <div class="row">
             <div>
-                <div class="col-md-6 col-sm-12 col-lg-12">
-                    <p>Note: Submission times can vary, meaning your submission could be on time for one try but be out of time on another try. Moreover,
-                        submission answers may also differ while running your program multiple times if you access out of bounds memory slots, use unintialized
-                        variables etc. If any issues regarding uncertainty in results occur, be sure to check look into those issues. Also, it is good practice
-                        to make sure your program works every time, not just because of some serendipitous occasion. Lastly, our grading server is not top
-                        quality due to limited funds, so timing might be different from official websites such as USACO, but it should still be close enough.</p>
-                    <p>Submissions are governed as follows:</p>
-                    <p>
-                        <ul>
-                            <li>C++ | g++ 7.5.0 | 30 second compilation time | 2 second submission time</li>
-                            <li>Java | OpenJDK 8 | 30 second compilation time | 4 second submission time</li>
-                            <li>Python | 3.6.9 | 4 second submission time</li>
-                        </ul>
-                    </p>
-                </div>
-                <div class="col-md-6 col-sm-12 col-lg-12">
-                    <p>Leaderboard</p>
-                    <p>
-                        <ol type="1">
-                            <li>Coffee - Random</li>
-                            <li>Tea</li>
-                            <li>Milk</li>
-                        </ol>
-                    </p>
-                </div>
+                <p>Note: Submission times can vary, meaning your submission could be on time for one try but be out of time on another try. Moreover,
+                    submission answers may also differ while running your program multiple times if you access out of bounds memory slots, use unintialized
+                    variables etc. If any issues regarding uncertainty in results occur, be sure to check look into those issues. Also, it is good practice
+                    to make sure your program works every time, not just because of some serendipitous occasion. Lastly, our grading server is not top
+                    quality due to limited funds, so timing might be different from official websites such as USACO, but it should still be close enough.</p>
+                <p>Submissions are governed as follows:</p>
+                <p>
+                    <ul>
+                        <li>C++ | g++ 7.5.0 | 30 second compilation time | 2 second submission time</li>
+                        <li>Java | OpenJDK 8 | 30 second compilation time | 4 second submission time</li>
+                        <li>Python | 3.6.9 | 4 second submission time</li>
+                    </ul>
+                </p>
             </div>
         </div>
     </div>
