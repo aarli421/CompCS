@@ -173,25 +173,12 @@ $output = $sth->fetchAll();
                     <li><h5>Karen Liu - 45pts</h5></li>
                     <li><h5>Elton Lee - 5pts</h5></li>
                 </span>
-                <button onclick="open()" id="myBtn" class="section-btn">Read more</button>
+                <button onclick="open();" id="myBtn" class="section-btn">Read more</button>
             </ol>
         </div>
     </div>
 </section>
 <script>
-    <?php
-    if (!empty($output)) {
-    ?>
-    $(function () {
-        $(window).load(function() {
-            stopUpload();
-            parseJSON(JSON.parse('<?php echo $output[0]['output_json']; ?>'));
-        });
-    });
-    <?php
-    }
-    ?>
-
     function open() {
         var dots = document.getElementById("dots");
         var moreText = document.getElementById("more");
@@ -207,6 +194,20 @@ $output = $sth->fetchAll();
             moreText.style.display = "inline";
         }
     }
+</script>
+<script>
+    <?php
+    if (!empty($output)) {
+    ?>
+    $(function () {
+        $(window).load(function() {
+            stopUpload();
+            parseJSON(JSON.parse('<?php echo $output[0]['output_json']; ?>'));
+        });
+    });
+    <?php
+    }
+    ?>
 </script>
 <script src="js/question.js"></script>
 <?php
