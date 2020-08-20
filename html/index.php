@@ -61,12 +61,14 @@ require '../templates/header.php';
                     </div>
 
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>This website is a tool that can be used to become more proficient at competitive computing style
-                            competitions. The main competition this focuses on is USACO, where you will need to incorporate different
-                            algorithms and coding logic to solve the problems.</p>
-                        <p>This is a unique website where problems can be unlocked after certain points and doing problems allows
-                            you to gain points. Thus, the more points you have, the harder questions you are able to unlock. The ranking
-                            is handpicked by our team based on our experience with the questions.</p>
+                        <p>With the rapid development of the Computer Science Industry comes new styles of computing competitions for high school students.
+                            Our goal is to help high school students who are interested in pursuing CS-related majors by preparing them for competitions like
+                            USACO, Codeforces, etc. Our team has handpicked essential algorithms, and data structures tested in said competitions and put them
+                            in our curriculum. As we teach the curriculum, we will have either created or selected a problem to test your understanding of each algorithm. </p>
+                        <p>We started this club because we saw a keen interest in Computer Science at our school, but most of the clubs focused on the basics,
+                            leaving out many important algorithms used in competitions and the real world. That’s why we created the Competitive Computing Club.
+                            As of right now, we are a Branch of Computer Science First Club at American High School, but we hope to expand further to different high
+                            schools so that more and more people can use our resources to help develop their interests for Computer Science. </p>
                     </div>
                 </div>
             </div>
@@ -219,10 +221,14 @@ require '../templates/header.php';
                     </div>
 
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>First, you can register an account with your email, username, and a password. To prevent spam, you must check your email and verify your account in order to login. You can then login into your account.</p>
-                        <p>After logging in you are able to go to your home and see all the questions available. By clicking on a button corresponding to a question you have you go to that question.</p>
-                        <p>When you are on a question, you can submit the question by choosing the file and clicking the Send File button. The file language is calculated through the file extension, where .cpp is c++, .c is c, .java is java, .py is python.</p>
-                        <p>Answers are displayed similar to USACO. Submission rules are also similar to USACO, where you get 4 seconds for python and java and 2 seconds for c++ and c. Memory limits are same unless otherwise stated. No toleration whatsoever of submitting harmful code or trying to disrupt website. Your account will be banned and legal action may be taken.</p>
+                        <p>After registering for an account, go to your email and confirm your account. (Make sure to read all the terms of service)</p>
+                        <p>When you log into your account, you will arrive at the homepage. You can see your current points at the top.
+                            Each problem on the website has an unlock value and a total point value. </p>
+                        <p>When you click on one of the unlocked problems, you will see the problem and a place to submit your code. After uploading your file,
+                            our system will automatically check multiple test cases to ensure that your code satisfies all test cases. The bar above the problem
+                            will show you the number of test cases you have completed as well as the ones you have not. You can continue uploading code until all
+                            test cases satisfy your code. For each test case completed you get a percentage of the total points the question is worth.</p>
+<!--                        <p></p>-->
                         <p>Language Specifications</p>
                         <ul>
                             <li>C++ - g++ 7.5.0</li>
