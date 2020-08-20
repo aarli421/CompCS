@@ -164,9 +164,9 @@ $output = $sth->fetchAll();
         <div class="row">
             <h4>Leaderboard</h4>
             <ol type="1">
-                <li class="topthree"><h5>John Smith - 100pts</h5></li>
-                <li class="topthree"><h5>John Doe - 90pts</h5></li>
-                <li class="topthree"><h5>Jane Doe - 69pts</h5></li>
+                <li class="top"><h5>John Smith - 100pts</h5></li>
+                <li class="top"><h5>John Doe - 90pts</h5></li>
+                <li class="top"><h5>Jane Doe - 69pts</h5></li>
                 <span id="dots"></span>
                 <span id="more">
                     <li><h5>Jeffrey Chao - 68pts</h5></li>
@@ -193,9 +193,9 @@ $output = $sth->fetchAll();
     ?>
 
     function open() {
-        var dots = $("#dots");
-        var moreText = $("#more");
-        var btnText = $("#myBtn");
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
 
         if (dots.style.display === "none") {
             dots.style.display = "inline";
