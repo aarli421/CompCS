@@ -45,7 +45,7 @@ $output = $sth->fetchAll();
     }
     
     function parseJSON(output) {
-        console.log(output);
+        // console.log(output);
 
         if (output.hasOwnProperty('error')) {
             $("#prompt-center").css("text-align", "left");
@@ -55,13 +55,13 @@ $output = $sth->fetchAll();
             Object.keys(output).forEach(function(k) {
                 if (k == "correct_cases") return;
 
-                console.log(k);
+                // console.log(k);
 
                 var symbol = output[k]["symbol"];
                 if (symbol == "*") {
                     var time = Math.round(output[k]["time"] * 1000);
                     $("#dialogDiv").append("<div class=\"trial-result trial-status-yes\"><div class=\"res-symbol\">*</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"><span class=\"msize\">" + time + "ms</span></div></div>");
-                    console.log(time);
+                    // console.log(time);
                 } else {
                     $("#dialogDiv").append("<div class=\"trial-result trial-status-no\"><div class=\"res-X\">" + symbol + "</div><div class=\"trial-num\">" + k + "</div><div class=\"info\"></div></div>");
                 }
@@ -173,7 +173,7 @@ $output = $sth->fetchAll();
                     <li><h5>Karen Liu - 45pts</h5></li>
                     <li><h5>Elton Lee - 5pts</h5></li>
                 </span>
-                <button onclick="open();" id="myBtn" class="section-btn">Read more</button>
+                <button onclick="open()" id="myBtn" class="section-btn">Read more</button>
             </ol>
         </div>
     </div>
@@ -183,6 +183,8 @@ $output = $sth->fetchAll();
         var dots = document.getElementById("dots");
         var moreText = document.getElementById("more");
         var btnText = document.getElementById("myBtn");
+
+        console.log("works")
 
         if (dots.style.display === "none") {
             dots.style.display = "inline";
