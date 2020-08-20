@@ -13,7 +13,7 @@ require '../templates/header.php';
                     <div class="topics">
                         <ol>
                             <li>
-                                <h2>Division 1</h2>
+                                <h2>Division 0</h2>
                                 <ul>
                                     <li class="bullet">
                                         Big O Notation
@@ -51,7 +51,7 @@ require '../templates/header.php';
                                 </ul>
                             </li>
                             <li>
-                                <h2>Division 2</h2>
+                                <h2>Division 1</h2>
                                 <ul>
                                     <li class="bullet">
                                         Math

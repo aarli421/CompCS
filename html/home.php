@@ -46,7 +46,7 @@ require '../templates/header.php';
                 <div>
                     <br>
                     <br>
-                    <h2 class="division">Division <?php echo $i + 1; ?></h2>
+                    <h2 class="division">Division <?php echo $i; ?></h2>
                     <h4>Points: <?php echo $lower; ?> - <?php echo $upper; ?></h4>
                 </div>
             </li>
