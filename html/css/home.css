@@ -9,7 +9,7 @@
 /*	text-align: center;*/
 /*	padding: 2px;*/
 /*}*/
-.home-divisions .questions ol{
+ol{
 	list-style-type:none;
 	/*padding-left: 17%;*/
 }
