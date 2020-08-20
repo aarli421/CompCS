@@ -9,6 +9,11 @@
 /*	text-align: center;*/
 /*	padding: 2px;*/
 /*}*/
+.home-divisions .questions ol{
+	list-style-type:none;
+	/*padding-left: 17%;*/
+}
+
 td{
 	text-align: center;
 	margin:20px;
@@ -44,11 +49,6 @@ th, td {
 
 .division h2 {
 	text-align: left;
-}
-
-.home-divisions .questions ol{
-	list-style-type:none;
-	/*padding-left: 17%;*/
 }
 
 .info div{
