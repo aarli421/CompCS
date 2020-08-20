@@ -173,7 +173,7 @@ $output = $sth->fetchAll();
                     <li><h5>Karen Liu - 45pts</h5></li>
                     <li><h5>Elton Lee - 5pts</h5></li>
                 </span>
-                <button onclick="open()" id="myBtn" class="section-btn">Read more</button>
+                <button onclick="open(); return false;" id="myBtn" class="section-btn">Read more</button>
             </ol>
         </div>
     </div>
