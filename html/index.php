@@ -229,12 +229,13 @@ require '../templates/header.php';
                             will show you the number of test cases you have completed as well as the ones you have not. You can continue uploading code until all
                             test cases satisfy your code. For each test case completed you get a percentage of the total points the question is worth.</p>
 <!--                        <p></p>-->
-                        <p>Language Specifications</p>
-                        <ul>
-                            <li>C++ - g++ 7.5.0</li>
-                            <li>Java 8 - OpenJDK</li>
-                            <li>Python - 3.6.9</li>
-                        </ul>
+<!--                        <p></p>-->
+<!--                        <p>Language Specifications</p>-->
+<!--                        <ul>-->
+<!--                            <li>C++ - g++ 7.5.0</li>-->
+<!--                            <li>Java 8 - OpenJDK</li>-->
+<!--                            <li>Python - 3.6.9</li>-->
+<!--                        </ul>-->
                     </div>
                 </div>
             </div>
