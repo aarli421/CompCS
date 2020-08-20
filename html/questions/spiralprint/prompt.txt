@@ -1,0 +1,36 @@
+Farmer John gained an interest in spirals ever since he discovered the fibonacci numbers made a spiral. He now sees spirals in every object, especially in square matrices. However, when the square matrices get too big, it becomes hard for him to picture the spirals.
+
+Help Farmer John picture a spiral for an N by N matrix (1<=N<=1000) where each element, X_ij (1<=X<=1000000), is printed once in as you spirally traverse the matrix.
+
+Farmer John likes his spirals to spiral in this pattern: top left -> top right -> bottom right -> bottom left -> top left...
+
+INPUT FORMAT (file spiralprint.in)
+
+The first line contains an integer N. The next N lines contain N integers X_ij, where X_ij is the in the ith row and jth column of the matrix.
+
+OUTPUT FORMAT (file spiralprint.out)
+
+The output contains N^2 lines that are elements from the matrix.
+
+SAMPLE INPUT:
+
+3
+10 2 3
+6 5 3
+11 8 9
+
+SAMPLE OUTPUT:
+
+10
+2
+3
+3
+9
+8
+11
+6
+5
+
+The matrix is printed as follows: 10 -> 3 -> 9 -> 11 -> 6 -> 5.
+
+Problem Credits: Aaron Li
