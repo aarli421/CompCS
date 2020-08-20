@@ -161,6 +161,21 @@ $output = $sth->fetchAll();
                 </p>
             </div>
         </div>
+        <div class="row">
+            <h4>Leaderboard</h4>
+            <ol type="1">
+                <li class="topthree"><h5>John Smith - 100pts</h5></li>
+                <li class="topthree"><h5>John Doe - 90pts</h5></li>
+                <li class="topthree"><h5>Jane Doe - 69pts</h5></li>
+                <span id="dots"></span>
+                <span id="more">
+                    <li><h5>Jeffrey Chao - 68pts</h5></li>
+                    <li><h5>Karen Liu - 45pts</h5></li>
+                    <li><h5>Elton Lee - 5pts</h5></li>
+                </span>
+                <button onclick="open()" id="myBtn" class="section-btn">Read more</button>
+            </ol>
+        </div>
     </div>
 </section>
 <script>
@@ -176,6 +191,22 @@ $output = $sth->fetchAll();
     <?php
     }
     ?>
+
+    function open() {
+        var dots = $("#dots");
+        var moreText = $("#more");
+        var btnText = $("#myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less";
+            moreText.style.display = "inline";
+        }
+    }
 </script>
 <script src="js/question.js"></script>
 <?php
