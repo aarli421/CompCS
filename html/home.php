@@ -27,7 +27,7 @@ require '../templates/header.php';
 </section>
 <section data-stellar-background-ratio="0.5" style="padding-top: 0px;">
     <div class="container">
-        <ol class="divisions">
+        <ol class="home-divisions">
             <?php
             $sth = $db->prepare("SELECT * FROM `divisions`");
             $sth->execute();
