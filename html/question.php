@@ -129,7 +129,7 @@ $output = $sth->fetchAll();
     <pre id="prompt"></pre>
 </div>
 <center>
-    <div>
+    <div class="submission">
         <form id="fileSubmission" method="post" enctype="multipart/form-data">
             <input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
             <input type="hidden" name="questionName" value="<?php echo $_GET['questionName']; ?>" />
@@ -144,13 +144,18 @@ $output = $sth->fetchAll();
 </section>
 <div class="container">
     <div class="row">
-        <p>Note:</p>
-        <p>Submissions are governed as follows</p>
-        <ul>
-            <li>C++ g++ 7.5.0 - 30 second compilation time, 2 second submission time</li>
-            <li>Java 8 OpenJDK - 30 second compilation time, 4 second submission time</li>
-            <li>Python 3.6.9 - 4 second submission time</li>
-        </ul>
+        <div class="footnote">
+            <p>Note: Submission times can vary, meaning your submission could be on time for one try but be out of time on another try. Moreover,
+                submission answers may also differ while running your program multiple times if you access out of bounds memory slots, use unintialized
+                variables etc. If any issues regarding uncertainty in results occur, be sure to check look into those issues. Our grading server is not
+                top quality due to limited funds, so timing might be different from official websites such as USACO.</p>
+            <p>Submissions are governed as followed:</p>
+            <ul>
+                <li>C++ | g++ 7.5.0 | 30 second compilation time | 2 second submission time</li>
+                <li>Java | OpenJDK 8 | 30 second compilation time | 4 second submission time</li>
+                <li>Python | 3.6.9 | 4 second submission time</li>
+            </ul>
+        </div>
     </div>
 </div>
 <script>
