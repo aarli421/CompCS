@@ -119,7 +119,7 @@ $output = $sth->fetchAll();
     </center>
 </section>
 <div class="container">
-    <pre id="prompt"><?php echo $passArr[0]['prompt']; ?></pre>
+    <p id="prompt"><?php echo $passArr[0]['prompt']; ?></p>
 </div>
 <center>
     <div class="submission">
