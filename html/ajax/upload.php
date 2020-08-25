@@ -55,12 +55,12 @@ $cppName = $questionName . ".execpp";
 $cName = $questionName . ".exec";
 
 $date = date('Y-m-d H:i:s', time());
+$fileVal = `cat $uploadFile`;
 
 $arr['correct_cases'] = 0;
 $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
 
 if (!hasValue($msg)) {
-    $fileVal = `cat $uploadFile`;
 
 //    if (hasValue($msg)) {
 //        $arr['error'] = "Could not upload file. Server error.";
@@ -128,7 +128,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth->execute();
     $id = $sth->fetchAll();
 
-    $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id` `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?, ?, ?)");
+    $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $date]);
 
     $sth = $db->prepare("COMMIT;");
