@@ -1,7 +1,8 @@
 #prompt{
-	padding:10px;
-    white-space: pre-line;
+	padding: 10px;
+    white-space: pre;
     background-color: #f8f8f8;
+    font-family: monospace;
 }
 
 .square{
