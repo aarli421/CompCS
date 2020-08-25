@@ -126,7 +126,7 @@ $output = $sth->fetchAll();
     </center>
 </section>
 <div class="container">
-    <p id="random">$0 \leq N \leq 10 \over 10$</p>
+    <pre id="prompt"></pre>
 </div>
 <center>
     <div class="submission">

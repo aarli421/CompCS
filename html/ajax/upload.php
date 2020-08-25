@@ -54,6 +54,8 @@ $javaName = $questionName;
 $cppName = $questionName . ".execpp";
 $cName = $questionName . ".exec";
 
+$date = date('Y-m-d H:i:s', time());
+
 $arr['correct_cases'] = 0;
 $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
 
@@ -64,9 +66,6 @@ if (!hasValue($msg)) {
 //        $arr['error'] = "Could not upload file. Server error.";
 //        die();
 //    }
-
-    $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, date('Y-m-d H:i:s', time())]);
 
     $testAmount = $question[0]['testcases'];
 
@@ -112,15 +111,17 @@ if (!hasValue($msg)) {
 
 echo json_encode($arr);
 
-if (!hasValue($arr['error'])) {
+if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
     $sth->execute([$user_id, $question[0]['question_id']]);
     $max = $sth->fetchAll();
 
 //    print_r($max);
+    $sth = $db->prepare("INSERT INTO `submissions` (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
+    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
 
-    $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `output_json`, `correct_cases`) VALUES (?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], json_encode($arr), $arr['correct_cases']]);
+    $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?)");
+    $sth->execute([$user_id, $question[0]['question_id'], json_encode($arr), $arr['correct_cases'], $date]);
 
     $points = 0;
     if (empty($max)) {
