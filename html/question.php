@@ -126,7 +126,7 @@ $output = $sth->fetchAll();
     </center>
 </section>
 <div class="container">
-    <pre id="prompt"></pre>
+    <p id="prompt"></p>
 </div>
 <center>
     <div class="submission">
@@ -151,29 +151,14 @@ $output = $sth->fetchAll();
                     variables etc. If any issues regarding uncertainty in results occur, be sure to check look into those issues. Also, it is good practice
                     to make sure your program works every time, not just because of some serendipitous occasion. Lastly, our grading server is not top
                     quality due to limited funds, so timing might be different from official websites such as USACO, but it should still be close enough.</p>
-                <p>Submissions are governed as follows: $a \leq b$</p>
+                <p>Submissions are governed as follows:</p>
                 <ul>
-                    <li><p>C++ | g++ 7.5.0 | $30$ second compilation time | $2$ second submission time</p></li>
-                    <li><p>Java | OpenJDK 8 | $30$ second compilation time | $4$ second submission time</p></li>
-                    <li><p>Python | 3.6.9 | $4$ second submission time</p></li>
+                    <li><p>C++ | g++ 7.5.0 | 30 second compilation time | 2 second submission time</p></li>
+                    <li><p>Java | OpenJDK 8 | 30 second compilation time | 4 second submission time</p></li>
+                    <li><p>Python | 3.6.9 | 4 second submission time</p></li>
                 </ul>
             </div>
         </div>
-<!--        <div class="row">-->
-<!--            <h4>Leaderboard</h4>-->
-<!--            <ol type="1">-->
-<!--                <li class="top"><h5>John Smith - 100pts</h5></li>-->
-<!--                <li class="top"><h5>John Doe - 90pts</h5></li>-->
-<!--                <li class="top"><h5>Jane Doe - 69pts</h5></li>-->
-<!--                <span id="dots"></span>-->
-<!--                <span id="more">-->
-<!--                    <li><h5>Jeffrey Chao - 68pts</h5></li>-->
-<!--                    <li><h5>Karen Liu - 45pts</h5></li>-->
-<!--                    <li><h5>Elton Lee - 5pts</h5></li>-->
-<!--                </span>-->
-<!--                <button type="button" onclick="open();" id="myBtn" class="section-btn">Read more</button>-->
-<!--            </ol>-->
-<!--        </div>-->
     </div>
 </section>
 <script>
