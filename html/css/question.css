@@ -1,6 +1,6 @@
 #prompt{
 	padding: 10px;
-    white-space: pre;
+    white-space: pre-line;
     background-color: #f8f8f8;
     font-family: monospace;
 }
