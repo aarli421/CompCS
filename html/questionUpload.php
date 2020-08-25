@@ -36,21 +36,18 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
     }
 }
 
-//if (isset($_POST['addToSQL'])) {
-//    $dir = new DirectoryIterator("questions");
-//    foreach ($dir as $fileinfo) {
-//        if (!$fileinfo->isDot()) {
-////            echo $fileinfo->getFilename() . "<br>";
-//
-//            $sql = "
-//            INSERT INTO `questions` (`name`, `difficulty`)
-//            SELECT * FROM (SELECT ? AS `name`, ? AS `difficulty`) AS temp
-//            WHERE NOT EXISTS (SELECT * FROM `questions` WHERE `name`=?) LIMIT 1;";
-//            $sth = $db->prepare($sql);
-//            $sth->execute([$fileinfo->getFilename(), 100, $fileinfo->getFilename()]);
-//        }
-//    }
-//}
+if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['questionName'])) {
+    $sth = $db->prepare("UPDATE `questions` SET `prompt`=? WHERE `name`=?");
+    $sth->execute([$_POST['prompt'], $_POST['questionName']]);
+
+    if (!$sth) {
+    ?>
+        <script>
+        $("#dialogDiv").html("Updating question failed.");
+        </script>
+    <?php
+    }
+}
 ?>
 <section>
     <p id="dialogDiv"></p>
@@ -69,9 +66,5 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
     <input type="submit" value="Edit Prompt">
 </form>
 </section>
-<!--<form method="post" action="questionUpload.php">-->
-<!--    <input name="addToSQL" value="true" hidden>-->
-<!--    <input type="submit" value="Add to SQL" />-->
-<!--</form>-->
 <?php
 require  '../templates/footer.php';
