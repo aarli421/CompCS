@@ -1,7 +1,7 @@
 <?php
 require '../templates/helper.php';
 
-$sth = $db->prepare("SELECT `question_id`, `testcase_value`, `unlock_value`, `testcases` FROM questions WHERE `name`=?");
+$sth = $db->prepare("SELECT `question_id`, `prompt`, `testcase_value`, `unlock_value`, `testcases` FROM questions WHERE `name`=?");
 $sth->execute([$_GET['questionName']]);
 $passArr = $sth->fetchAll();
 
@@ -101,13 +101,6 @@ $output = $sth->fetchAll();
                 processData: false
             });
         });
-
-        $.ajax({
-            url: "questions/<?php echo $_GET['questionName']; ?>/prompt.txt",
-            success: function(data) {
-                $("#prompt").html(data);
-            }
-        });
     });
 </script>
 <section data-stellar-background-ratio="0.5" class="questionlist" style="padding-bottom: 0px;">
@@ -126,7 +119,7 @@ $output = $sth->fetchAll();
     </center>
 </section>
 <div class="container">
-    <pre id="prompt"></pre>
+    <pre id="prompt"><?php echo $passArr[0]['prompt']; ?></pre>
 </div>
 <center>
     <div class="submission">
