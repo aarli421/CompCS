@@ -50,7 +50,7 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
 }
 ?>
 <section>
-    <p id="dialogDiv"></p>
+<p id="dialogDiv"></p>
 <form method="post" action="questionUpload" enctype="multipart/form-data">
     Unlock Value: <input name="unlock_value" type="number" /> <br>
     Test Case Value: <input name="testcase_value" type="number" /> <br>
