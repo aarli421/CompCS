@@ -30,14 +30,12 @@
             <div class="col-md-4 col-sm-8">
                 <div class="footer-info footer-open-hour">
                     <div class="section-title">
-                        <h2 class="wow fadeInUp" data-wow-delay="0.2s">Beginner Instructions</h2>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.2s">Credits</h2>
                     </div>
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>Register account<br>
-                            Verify account<br>
-                            Login<br>
-                            View questions in home<br>
-                            Solve a question!</p>
+                        <p>Functionality: Aaron Li</p>
+                        <p>Front End: Aaron Li, Andrew Zheng, Brandon Liu</p>
+                        <p>Curriculum: Aaron Li, Andrew Zheng, Austin Wang</p>
                     </div>
                 </div>
             </div>
@@ -51,9 +49,6 @@
 <!--                </ul>-->
 
                 <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
-                    <p>Functionality: Aaron Li</p>
-                    <p>Front End: Aaron Li, Andrew Zheng, Brandon Liu</p>
-                    <p>Curriculum: Aaron Li, Andrew Zheng, Austin Wang</p>
                     <p>Copyright &copy; 2020 <br>CompCS</p>
 
                     <!--   <br><br>Design: <a rel="nofollow" href="http://templatemo.com" target="_parent">TemplateMo</a></p> -->
