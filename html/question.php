@@ -147,18 +147,16 @@ $output = $sth->fetchAll();
         <div class="row">
             <div>
                 <p>Note: Submission times can vary, meaning your submission could be on time for one try but be out of time on another try. Moreover,
-                    submission answers may also differ while running your program multiple times if you access out of bounds memory slots, use unintialized
+                    submission answers may also differ while running your program multiple times if you access out of bounds memory slots, use uninitialized
                     variables etc. If any issues regarding uncertainty in results occur, be sure to check look into those issues. Also, it is good practice
                     to make sure your program works every time, not just because of some serendipitous occasion. Lastly, our grading server is not top
                     quality due to limited funds, so timing might be different from official websites such as USACO, but it should still be close enough.</p>
-                <p>Submissions are governed as follows:</p>
-                <p>
-                    <ul>
-                        <li>C++ | g++ 7.5.0 | $30$ second compilation time | $2$ second submission time</li>
-                        <li>Java | OpenJDK 8 | $30$ second compilation time | $4$ second submission time</li>
-                        <li>Python | 3.6.9 | $4$ second submission time</li>
-                    </ul>
-                </p>
+                <p>Submissions are governed as follows: $a \leq b$</p>
+                <ul>
+                    <li><p>C++ | g++ 7.5.0 | $30$ second compilation time | $2$ second submission time</p></li>
+                    <li><p>Java | OpenJDK 8 | $30$ second compilation time | $4$ second submission time</p></li>
+                    <li><p>Python | 3.6.9 | $4$ second submission time</p></li>
+                </ul>
             </div>
         </div>
 <!--        <div class="row">-->
