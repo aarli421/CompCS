@@ -2,6 +2,7 @@
 	padding:10px;
     white-space: pre-line;
 }
+
 .square{
 	background:#00C03F;
     width: 20px;
@@ -28,11 +29,11 @@
 	color: green;
 }
 
-.status-no
-{
+.status-no {
 	font-weight: bold;
 	color: #900;
 }
+
 .redtext span{
 	text-size: 20px;
 	color:#993333;

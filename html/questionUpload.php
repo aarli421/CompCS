@@ -9,7 +9,7 @@ $uploadFile = $root . '/questions/' . $_FILES['questionInput']['name'];
 $targetFolder = $root . '/questions/' . $name[0];
 $tempFile = $_FILES['questionInput']['tmp_name'];
 
-if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['testcase_value'])) {
+if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['testcase_value']) && isset($_POST['prompt'])) {
     $msg = `sudo $scriptsDirectory/uploadQuestion.sh $tempFile $uploadFile`;
 
     if (!hasValue($msg)) {
@@ -57,8 +57,16 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
 <form method="post" action="questionUpload" enctype="multipart/form-data">
     Unlock Value: <input name="unlock_value" type="number" /> <br>
     Test Case Value: <input name="testcase_value" type="number" /> <br>
-    Send this file: <input name="questionInput" type="file" />
+    Send this file: <input name="questionInput" type="file" /> <br>
+    Prompt: <textarea name="prompt"></textarea> <br>
     <input type="submit" value="Send File" />
+</form>
+<br>
+<form method="post" action="questionUpload">
+    Question Name: <input name="questionName"> <br>
+    Edit Prompt: <textarea name="prompt"></textarea> <br>
+    <input type="hidden" name="editPrompt" value="true">
+    <input type="submit" value="Edit Prompt">
 </form>
 </section>
 <!--<form method="post" action="questionUpload.php">-->
