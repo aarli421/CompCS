@@ -126,7 +126,7 @@ $output = $sth->fetchAll();
     </center>
 </section>
 <div class="container">
-    <p id="prompt"></p>
+    <p>$0 \leq N \leq 10^10$</p>
 </div>
 <center>
     <div class="submission">
