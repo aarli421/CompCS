@@ -51,7 +51,10 @@
 <!--                </ul>-->
 
                 <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
-                    <p>Functionality: Aaron Li<br>Front End: Aaron Li, Andrew Zheng, Brandon Liu<br>Curriculum: Aaron Li, Andrew Zheng, Austin Wang<br>Copyright &copy; 2020 <br>CompCS</p>
+                    <p>Functionality: Aaron Li</p>
+                    <p>Front End: Aaron Li, Andrew Zheng, Brandon Liu</p>
+                    <p>Curriculum: Aaron Li, Andrew Zheng, Austin Wang</p>
+                    <p>Copyright &copy; 2020 <br>CompCS</p>
 
                     <!--   <br><br>Design: <a rel="nofollow" href="http://templatemo.com" target="_parent">TemplateMo</a></p> -->
                 </div>
