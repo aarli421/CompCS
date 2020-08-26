@@ -2,7 +2,69 @@
 require '../templates/helper.php';
 require '../vendor/autoload.php';
 require '../templates/header.php';
+?>
+<div class="background">
+    <section data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="form">
+                <div class="form-panel one">
+<?php
+if (hasValue($_GET['hash']) && hasValue($_GET['email'])) {
+    $sth = $db->prepare("SELECT `user_id` FROM `users` WHERE `email`=? AND `hash`=? AND `change_password`=1 AND `active`=1");
+    $sth->execute([$_GET['email'], $_GET['hash']]);
+    $user = $sth->fetchAll();
 
+    if (empty($user)) {
+        redirect("forgot");
+    }
+?>
+    <script>
+        $('#newPassword, #newCPassword').on('keyup', function () {
+            if ($("#newPassword").val() == $("#newCPassword").val()) {
+                $("#newCPassword")[0].setCustomValidity('');
+            } else {
+                $("#newCPassword")[0].setCustomValidity('The passwords do not match.');
+            }
+        });
+    </script>
+
+    <div class="form-header">
+        <h1>Change Password</h1>
+    </div>
+    <div class="form-content">
+        <form id="change" action="forgot" method="post">
+            <div class="form-group"><label for="newPassword">New Password</label><input type="password" id="newPassword" name="newPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
+            <div class="form-group"><label for="newCPassword">Confirm Password</label><input type="password" id="newCPassword" name="newCPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
+            <input type="hidden" name="userID" value="<?php echo $user[0]['user_id']; ?>">
+            <input type="hidden" name="hash" value="<?php echo $_GET['hash']; ?>">
+            <div class="form-group"><button form="change" type="submit">Change Password</button></div>
+        </form>
+    </div>
+    <h6 id="changeSuccess" class="text-success"></h6>
+    <h6 id="changeError" class="text-danger"></h6>
+<?php
+} else {
+?>
+    <div class="form-header">
+        <h1>Forgot Password</h1>
+    </div>
+    <div class="form-content">
+        <form id="forgot" action="forgot" method="post">
+            <div class="form-group"><label for="forgotEmail">Email</label><input type="email" id="forgotEmail" name="forgotEmail" required="required" /></div>
+            <div class="form-group"><button form="forgot" type="submit">Request Change</button></div>
+        </form>
+    </div>
+    <h6 id="forgotSuccess" class="text-success"></h6>
+    <h6 id="forgotError" class="text-danger"></h6>
+<?php
+}
+?>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<?php
 if (hasValue($_POST['forgotEmail'])) {
     $sth = $db->prepare("SELECT `change_password` FROM `users` WHERE `email`=? AND `active`=1");
     $sth->execute([$_POST['forgotEmail']]);
@@ -355,67 +417,5 @@ if (hasValue($_POST['newPassword']) && hasValue($_POST['newCPassword']) && hasVa
         exit();
     }
 }
-?>
-<div class="background">
-    <section data-stellar-background-ratio="0.5">
-        <div class="container">
-            <div class="form">
-                <div class="form-panel one">
-<?php
-if (hasValue($_GET['hash']) && hasValue($_GET['email'])) {
-    $sth = $db->prepare("SELECT `user_id` FROM `users` WHERE `email`=? AND `hash`=? AND `change_password`=1 AND `active`=1");
-    $sth->execute([$_GET['email'], $_GET['hash']]);
-    $user = $sth->fetchAll();
 
-    if (empty($user)) {
-        redirect("forgot");
-    }
-?>
-    <script>
-        $('#newPassword, #newCPassword').on('keyup', function () {
-            if ($("#newPassword").val() == $("#newCPassword").val()) {
-                $("#newCPassword")[0].setCustomValidity('');
-            } else {
-                $("#newCPassword")[0].setCustomValidity('The passwords do not match.');
-            }
-        });
-    </script>
-
-    <div class="form-header">
-        <h1>Change Password</h1>
-    </div>
-    <div class="form-content">
-        <form id="change" action="forgot" method="post">
-            <div class="form-group"><label for="newPassword">New Password</label><input type="password" id="newPassword" name="newPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
-            <div class="form-group"><label for="newCPassword">Confirm Password</label><input type="password" id="newCPassword" name="newCPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
-            <input type="hidden" name="userID" value="<?php echo $user[0]['user_id']; ?>">
-            <input type="hidden" name="hash" value="<?php echo $_GET['hash']; ?>">
-            <div class="form-group"><button form="change" type="submit">Change Password</button></div>
-        </form>
-    </div>
-    <h6 id="changeSuccess" class="text-success"></h6>
-    <h6 id="changeError" class="text-danger"></h6>
-<?php
-} else {
-?>
-    <div class="form-header">
-        <h1>Forgot Password</h1>
-    </div>
-    <div class="form-content">
-        <form id="forgot" action="forgot" method="post">
-            <div class="form-group"><label for="forgotEmail">Email</label><input type="email" id="forgotEmail" name="forgotEmail" required="required" /></div>
-            <div class="form-group"><button form="forgot" type="submit">Request Change</button></div>
-        </form>
-    </div>
-    <h6 id="forgotSuccess" class="text-success"></h6>
-    <h6 id="forgotError" class="text-danger"></h6>
-<?php
-}
-?>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-<?php
 require '../templates/footer.php';
