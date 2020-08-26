@@ -18,9 +18,8 @@ require '../templates/header.php';
         <li class="TOS">Company (referred to as either "the Club", "We", "Us" or "Our" in this Agreement) refers to CCC, 123 CCC Street.</span></li>
         <li class="TOS">Device means any device that can access the Service such as a computer, a cellphone or a digital tablet.</span></li>
         <li class="TOS">Service refers to the Website.</span></li>
-        <li class="TOS">Terms and Conditions (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service. This Terms and Conditions agreement has been created with the help of the </span><a href="https://www.termsfeed.com/terms-conditions-generator/">Terms and Conditions Generator</span></a>.</span></li>
         <li class="TOS">Third-party Social Media Service means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Website.</span></li>
-        <li class="TOS">Website refers to Competitive Computing Club, accessible from </span><a href="https://compcs.codes/">https://compcs.codes/</span></a></li>
+        <li class="TOS">Website refers to Competitive Computing Club, accessible from </span><a href="https://www.compcs.codes/">this website</span></a></li>
         <li class="TOS"><span class="TOS">You means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Website, as applicable.</span></li>
     </ul>
     <h2><strong>Acknowledgment</strong></h2>

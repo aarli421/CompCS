@@ -34,7 +34,7 @@
                     </div>
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
                         <p>Functionality: Aaron Li</p>
-                        <p>Front End: Aaron Li, Andrew Zheng, Brandon Liu</p>
+                        <p>Front End: Aaron Li, Andrew Zheng, Brandon Liu, Austin Wang</p>
                         <p>Curriculum: Aaron Li, Andrew Zheng, Austin Wang</p>
                     </div>
                 </div>

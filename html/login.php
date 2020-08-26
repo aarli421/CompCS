@@ -102,7 +102,7 @@ require '../templates/header.php';
                     <form id="login" method="post">
                         <div class="form-group"><label for="loginUsername">Username</label><input type="text" id="loginUsername" name="loginUsername" required="required" /></div>
                         <div class="form-group"><label for="loginPassword">Password</label><input type="password" id="loginPassword" name="loginPassword" required="required" /></div>
-                        <div class="form-group"><a class="form-recovery" href="#">Forgot Password?</a></div>
+                        <div class="form-group"><a class="form-recovery" href="forgot">Forgot Password?</a></div>
                         <div class="form-group"><button form="login" type="submit">Log In</button></div>
                     </form>
                 </div>
