@@ -28,7 +28,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             if (!hasValue($msg)) {
                 $host = $_SERVER["HTTP_HOST"];
                 $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-                $verLink = 'http://' . $host . '/verify?email=' . $mail . '&hash=' . $hash;
+                $verLink = 'https://' . $host . '/verify?email=' . $mail . '&hash=' . $hash;
 
                 $handle = fopen('../../private/keys.csv', 'r');
                 $data = fgetcsv($handle, 5, ',');

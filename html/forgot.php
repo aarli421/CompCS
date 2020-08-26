@@ -16,9 +16,9 @@ if (hasValue($_POST['forgotEmail'])) {
 
     $host = $_SERVER["HTTP_HOST"];
     $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-    $forgotLink = 'http://' . $host . '/forgot?email=' . $_POST['forgotEmail'] . '&hash=' . $hash;
+    $forgotLink = 'https://' . $host . '/forgot?email=' . $_POST['forgotEmail'] . '&hash=' . $hash;
 
-    $handle = fopen('../../private/keys.csv', 'r');
+    $handle = fopen('../private/keys.csv', 'r');
     $data = fgetcsv($handle, 5, ',');
 
     $content = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
