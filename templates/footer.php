@@ -9,7 +9,7 @@
                         <h2 class="wow fadeInUp" data-wow-delay="0.2s">Policy</h2>
                     </div>
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>No submitting malicious code<br>Follow good etiquette<br>Learn about cs</p>
+                        <p><a href="tos">Terms of Service</a></p>
                     </address>
                 </div>
             </div>
