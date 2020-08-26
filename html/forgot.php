@@ -1,6 +1,7 @@
 <?php
 require '../templates/helper.php';
 require '../vendor/autoload.php';
+require '../templates/header.php';
 
 if (hasValue($_POST['forgotEmail'])) {
     $sth = $db->prepare("SELECT `change_password` FROM `users` WHERE `email`=? AND `active`=1");
@@ -354,8 +355,6 @@ if (hasValue($_POST['newPassword']) && hasValue($_POST['newCPassword']) && hasVa
         exit();
     }
 }
-
-require '../templates/header.php';
 ?>
 <div class="background">
     <section data-stellar-background-ratio="0.5">
@@ -391,7 +390,7 @@ if (hasValue($_GET['hash']) && hasValue($_GET['email'])) {
             <div class="form-group"><label for="newCPassword">Confirm Password</label><input type="password" id="newCPassword" name="newCPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
             <input type="hidden" name="userID" value="<?php echo $user[0]['user_id']; ?>">
             <input type="hidden" name="hash" value="<?php echo $_GET['hash']; ?>">
-            <div class="form-group"><button form="change" type="submit">Request Change</button></div>
+            <div class="form-group"><button form="change" type="submit">Change Password</button></div>
         </form>
     </div>
     <h6 id="changeSuccess" class="text-success"></h6>
