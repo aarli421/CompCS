@@ -186,7 +186,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                             <table cellpadding=\"0\" cellspacing=\"0\" class=\"icons-inner\" role=\"presentation\" style=\"table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: NaNpx; padding-right: NaNpx;\" valign=\"top\">
                             
                             <tr style=\"vertical-align: top;\" valign=\"top\">
-                            <td align=\"center\" style=\"word-break: break-word; vertical-align: top; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px;\" valign=\"top\"><a href=\"https://compcs.codes/\"><img align=\"center\" class=\"icon\" height=\"128\" src=\"https://www.compcs.codes/images/ccc-logo.svg\" style=\"border:0;\" width=\"null\"/></a></td>
+                            <td align=\"center\" style=\"word-break: break-word; vertical-align: top; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px;\" valign=\"top\"><a href=\"https://compcs.codes/\"><img align=\"center\" class=\"icon\" height=\"128\" src=\"cid:logo\" style=\"border:0;\" width=\"null\"/></a></td>
                             </tr>
                             </table>
                             </td>
@@ -377,6 +377,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                 $email->addContent(
                     "text/html", $content
                 );
+                $email->addAttachment("../images/ccc-logo.svg", "logo.png", "logo");
                 $sendgrid = new \SendGrid($data[1]);
                 try {
                     $response = $sendgrid->send($email);
