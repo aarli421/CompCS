@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="css/login-register.css">
-    <link rel="stylesheet" href="css/curriculum.css">
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="css/templatemo-style.css">

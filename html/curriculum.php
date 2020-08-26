@@ -2,6 +2,7 @@
 require '../templates/helper.php';
 require '../templates/header.php';
 ?>
+<link rel="stylesheet" href="css/curriculum.css">
 <section>
     <div class="container">
         <h1>Curriculum</h1>
