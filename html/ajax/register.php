@@ -178,40 +178,6 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                             
                             <div style=\"border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;\">
                             
-                            <table cellpadding=\"0\" cellspacing=\"0\" role=\"presentation\" style=\"table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" valign=\"top\" width=\"100%\">
-                            <tr style=\"vertical-align: top;\" valign=\"top\">
-                            <td align=\"center\" style=\"word-break: break-word; vertical-align: top; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; text-align: center;\" valign=\"top\">
-                            
-                            
-                            <table cellpadding=\"0\" cellspacing=\"0\" class=\"icons-inner\" role=\"presentation\" style=\"table-layout: fixed; vertical-align: top; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: NaNpx; padding-right: NaNpx;\" valign=\"top\">
-                            
-                            <tr style=\"vertical-align: top;\" valign=\"top\">
-                            <td align=\"center\" style=\"word-break: break-word; vertical-align: top; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px;\" valign=\"top\"><a href=\"https://www.compcs.codes/\"><img align=\"center\" class=\"icon\" height=\"128\" src=\"data-image/png;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNy42OSAxNC42MiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMyZDNjNmI7fS5jbHMtMntmaWxsOiNmZmM4Mzk7fS5jbHMtM3tmaWxsOiNmZjkxMDA7fS5jbHMtNHtmaWxsOiM0ZDRkNGQ7ZmlsbC1ydWxlOmV2ZW5vZGQ7fTwvc3R5bGU+PC9kZWZzPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJMYXllcl8xLTIiIGRhdGEtbmFtZT0iTGF5ZXIgMSI+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSIzLjI0IiB5PSIxMy4wOSIgd2lkdGg9IjExLjIyIiBoZWlnaHQ9IjEuNTMiIHJ4PSIwLjc2Ii8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTMsMTMuMDlINC42Nkw2LjUzLDkuNTZoNC42M1oiLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik02LjQzLDEybC43NC0xLjM5aDMuMzVMMTEuMjYsMTJaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNC43NSwwVjUuMzNhMy40NSwzLjQ1LDAsMCwwLDEuNzgsM2g0LjYzYTMuNDUsMy40NSwwLDAsMCwxLjc5LTNWMFoiLz48cGF0aCBjbGFzcz0iY2xzLTMiIGQ9Ik02LjM3LDguMjdoNVY5LjU2SDYuMzdaIi8+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMTUuNy40SDEzLjIzVjEuNTRIMTUuN2EuODUuODUsMCwwLDEsLjg1Ljg1VjQuMkEuODUuODUsMCwwLDEsMTUuOSw1bC0yLjczLjY1QTMuNjgsMy42OCwwLDAsMSwxMi42OSw3bDMuNDctLjgzQTIsMiwwLDAsMCwxNy42OSw0LjJWMi4zOUEyLDIsMCwwLDAsMTUuNy40WiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTIsLjRINC40NlYxLjU0SDJhLjg1Ljg1LDAsMCwwLS44NS44NVY0LjJBLjg2Ljg2LDAsMCwwLDEuNzksNWwyLjczLjY1QTMuNywzLjcsMCwwLDAsNSw3TDEuNTMsNi4xM0EyLDIsMCwwLDEsMCw0LjJWMi4zOUEyLDIsMCwwLDEsMiwuNFoiLz48ZyBpZD0iUGFnZS0xIj48ZyBpZD0iRHJpYmJibGUtTGlnaHQtUHJldmlldyI+PGcgaWQ9Imljb25zIj48cGF0aCBpZD0iY29kZS1fMTExNV8iIGRhdGEtbmFtZT0iY29kZS1bIzExMTVdIiBjbGFzcz0iY2xzLTQiIGQ9Ik03Ljc0LDIuNzZhLjI3LjI3LDAsMCwwLDAtLjM5aDBhLjI2LjI2LDAsMCwwLS4zOCwwbC0xLDFhLjI2LjI2LDAsMCwwLDAsLjM4bDEsMWEuMjYuMjYsMCwwLDAsLjM4LDBoMGEuMjcuMjcsMCwwLDAsMC0uMzlsLS41OC0uNTlhLjI2LjI2LDAsMCwxLDAtLjM4Wm0zLjczLjU5LTEtMWEuMjcuMjcsMCwwLDAtLjM5LDBoMGEuMjkuMjksMCwwLDAsMCwuMzlsLjU4LjU5YS4yNi4yNiwwLDAsMSwwLC4zOGwtLjU4LjU5YS4yOS4yOSwwLDAsMCwwLC4zOWgwYS4yNy4yNywwLDAsMCwuMzksMGwxLTFhLjI4LjI4LDAsMCwwLDAtLjM4Wk05Ljg0LDIuMmwtMS40LDNjMCwuMDktLjEyLjIxLS4yMi4yMWgwQS4zMi4zMiwwLDAsMSw4LDVMOS4zNiwyYzAtLjA5LjIxLS4xNy4yMS0uMTdoMGEuMjYuMjYsMCwwLDEsLjI3LjM5WiIvPjwvZz48L2c+PC9nPjwvZz48L2c+PC9zdmc+\" style=\"border:0;\" width=\"null\"/></a></td>
-                            </tr>
-                            </table>
-                            </td>
-                            </tr>
-                            </table>
-                            
-                            </div>
-                            
-                            </div>
-                            </div>
-                            
-                            
-                            </div>
-                            </div>
-                            </div>
-                            <div style=\"background-color:transparent;\">
-                            <div class=\"block-grid\" style=\"Margin: 0 auto; min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;\">
-                            <div style=\"border-collapse: collapse;display: table;width: 100%;background-color:transparent;\">
-                            
-                            
-                            <div class=\"col num12\" style=\"min-width: 320px; max-width: 500px; display: table-cell; vertical-align: top; width: 500px;\">
-                            <div style=\"width:100% !important;\">
-                            
-                            <div style=\"border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;\">
-                            
                             
                             <div style=\"color:#555555;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;\">
                             <div style=\"line-height: 1.2; font-size: 12px; color: #555555; font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; mso-line-height-alt: 14px;\">
