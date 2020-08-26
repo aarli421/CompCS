@@ -24,6 +24,17 @@ if (hasValue($_POST['newPassword']) && hasValue($_POST['newCPassword']) && hasVa
         exit();
     }
 }
+
+if (hasValue($_POST['forgotEmail'])) {
+    $sth = $db->prepare("SELECT `change_password` FROM `users` WHERE `email`=? AND `active`=1");
+    $sth->execute([$_POST['forgotEmail']]);
+    $user = $sth->fetchAll();
+
+    if (empty($user)) {
+        redirect("forgot");
+        exit();
+    }
+}
 ?>
 <div class="background">
     <section data-stellar-background-ratio="0.5">
@@ -88,15 +99,6 @@ if (hasValue($_GET['hash']) && hasValue($_GET['email'])) {
 </div>
 <?php
 if (hasValue($_POST['forgotEmail'])) {
-    $sth = $db->prepare("SELECT `change_password` FROM `users` WHERE `email`=? AND `active`=1");
-    $sth->execute([$_POST['forgotEmail']]);
-    $user = $sth->fetchAll();
-
-    if (empty($user)) {
-        redirect("forgot");
-        exit();
-    }
-
     if ($user[0]['change_password'] == 1) {
         ?>
         <script>
