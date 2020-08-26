@@ -295,7 +295,7 @@ if (hasValue($_POST['forgotEmail'])) {
 
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("noreply@compcs.codes", "CompCS");
-    $email->setSubject("Verify your CompCS Account");
+    $email->setSubject("Password Change CompCS Account");
     $email->addTo($_POST['forgotEmail'], "CompCS Codes User");
     $email->addContent(
         "text/html", $content

@@ -337,7 +337,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 
                 $email = new \SendGrid\Mail\Mail();
                 $email->setFrom("noreply@compcs.codes", "CompCS");
-                $email->setSubject("Verify your CompCS Account");
+                $email->setSubject("Verify CompCS Account");
                 $email->addTo($mail, "CompCS Codes User");
                 $email->addContent(
                     "text/html", $content
