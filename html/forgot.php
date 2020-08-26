@@ -2,6 +2,28 @@
 require '../templates/helper.php';
 require '../vendor/autoload.php';
 require '../templates/header.php';
+
+if (hasValue($_POST['newPassword']) && hasValue($_POST['newCPassword']) && hasValue($_POST['userID']) && hasValue($_POST['hash'])) {
+    $sth = $db->prepare("SELECT `user_id` FROM `users` WHERE `user_id`=? AND `hash`=? AND `change_password`=1 AND `active`=1");
+    $sth->execute([$_POST['userID'], $_POST['hash']]);
+    $passArr = $sth->fetchAll();
+
+    if (empty($passArr)) {
+        redirect("forgot");
+        exit();
+    }
+
+    $passwordRegPHP = "/" . $passwordReg . "/iD";
+
+    if (preg_match($passwordRegPHP, $_POST['newPassword']) === 1) {
+        $password = hash('sha256', $_POST['newPassword']);
+
+        $sth = $db->prepare("UPDATE `users` SET `password`=?, `change_password`=0 WHERE `user_id`=? AND `active`=1");
+        $sth->execute([$password, $_POST['userID']]);
+        redirect("login");
+        exit();
+    }
+}
 ?>
 <div class="background">
     <section data-stellar-background-ratio="0.5">
@@ -393,28 +415,6 @@ if (hasValue($_POST['forgotEmail'])) {
             </script>
             <?php
         }
-    }
-}
-
-if (hasValue($_POST['newPassword']) && hasValue($_POST['newCPassword']) && hasValue($_POST['userID']) && hasValue($_POST['hash'])) {
-    $sth = $db->prepare("SELECT `user_id` FROM `users` WHERE `user_id`=? AND `hash`=? AND `change_password`=1 AND `active`=1");
-    $sth->execute([$_POST['userID'], $_POST['hash']]);
-    $passArr = $sth->fetchAll();
-
-    if (empty($passArr)) {
-        redirect("forgot");
-        exit();
-    }
-
-    $passwordRegPHP = "/" . $passwordReg . "/iD";
-
-    if (preg_match($passwordRegPHP, $_POST['newPassword']) === 1) {
-        $password = hash('sha256', $_POST['newPassword']);
-
-        $sth = $db->prepare("UPDATE `users` SET `password`=?, `change_password`=0 WHERE `user_id`=? AND `active`=1");
-        $sth->execute([$password, $_POST['userID']]);
-        redirect("login");
-        exit();
     }
 }
 
