@@ -8,13 +8,6 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
 
 ?>
 <style>
-    .background {
-        background-image: url("images/bg.png");
-        background-repeat: no-repeat, repeat;
-        /*background-size: cover;*/
-    }
-</style>
-<style>
     .alert {
         position: relative;
         padding: 20px;
@@ -122,7 +115,7 @@ $emailReg = "^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x
                             <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" pattern="<?php echo $emailReg; ?>" /></div>
                             <div class="form-group"><label for="registerPassword">Password (>8 letters, numbers, and symbols)</label><input type="password" id="registerPassword" name="signUpPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
                             <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
-                            <div class="form-group"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to <a href="tos">Terms of Service</a></label></div>
+                            <div class="form-group"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to <a href="tos" target="_blank">Terms of Service</a></label></div>
                             <div class="form-group"><button id="registerBtn" form="register" type="submit">Register</button></div>
                         </form>
                     </div>

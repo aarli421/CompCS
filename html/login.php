@@ -3,13 +3,6 @@ require '../templates/helper.php';
 require '../templates/header.php';
 ?>
 <style>
-    .background {
-        background-image: url("images/bg.png");
-        background-repeat: no-repeat, repeat;
-        /*background-size: cover;*/
-    }
-</style>
-<style>
     .alert {
         position: relative;
         padding: 20px;
