@@ -130,7 +130,7 @@ require '../templates/header.php';
                 </div>
                 <div class="team-info">
                     <h3>Andrew Zheng</h3>
-                    <p>Officer Position</p>
+                    <p>Vice President</p>
                 </div>
             </div>
 
@@ -142,14 +142,14 @@ require '../templates/header.php';
                             <h4></h4>
                             <ul class="social-icon">
 <!--                                <li><a href="#" class="fa fa-github"></a></li>-->
-<!--                                <li><a href="#" class="fa fa-google"></a></li>-->
+                                <li><a href="https://www.facebook.com/profile.php?id=100011261383353" target="_blank" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="team-info">
                     <h3>Brandon Liu</h3>
-                    <p>Officer Position</p>
+                    <p>Publicist</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -160,53 +160,48 @@ require '../templates/header.php';
                             <h4></h4>
                             <ul class="social-icon">
 <!--                                <li><a href="#" class="fa fa-github"></a></li>-->
-<!--                                <li><a href="#" class="fa fa-google"></a></li>-->
+                                <li><a href="https://www.facebook.com/profile.php?id=100011261383353" target="_blank" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="team-info">
                     <h3>Austin Wang</h3>
-                    <p>Officer Position</p>
+                    <p>Secretary</p>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
-                    <img src="images/team-image5.png" class="img-responsive" alt="">
-                    <div class="team-hover">
-                        <div class="team-item">
-                            <h4></h4>
-                            <ul class="social-icon">
-<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
-<!--                                <li><a href="#" class="fa fa-google"></a></li>-->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3>TBD</h3>
-                    <p>TBD</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="0.8s">
-                    <img src="images/team-image5.png" class="img-responsive" alt="">
-                    <div class="team-hover">
-                        <div class="team-item">
-                            <h4></h4>
-                            <ul class="social-icon">
-<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
-<!--                                <li><a href="#" class="fa fa-google"></a></li>-->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3>TBD</h3>
-                    <p>TBD</p>
-                </div>
-            </div>
-
+<!--            <div class="col-md-4 col-sm-4">-->
+<!--                <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">-->
+<!--                    <img src="images/team-image5.png" class="img-responsive" alt="">-->
+<!--                    <div class="team-hover">-->
+<!--                        <div class="team-item">-->
+<!--                            <h4></h4>-->
+<!--                            <ul class="social-icon">-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="team-info">-->
+<!--                    <h3>TBD</h3>-->
+<!--                    <p>TBD</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4 col-sm-4">-->
+<!--                <div class="team-thumb wow fadeInUp" data-wow-delay="0.8s">-->
+<!--                    <img src="images/team-image5.png" class="img-responsive" alt="">-->
+<!--                    <div class="team-hover">-->
+<!--                        <div class="team-item">-->
+<!--                            <h4></h4>-->
+<!--                            <ul class="social-icon">-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="team-info">-->
+<!--                    <h3>TBD</h3>-->
+<!--                    <p>TBD</p>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </section>
@@ -228,14 +223,6 @@ require '../templates/header.php';
                             our system will automatically check multiple test cases to ensure that your code satisfies all test cases. The bar above the problem
                             will show you the number of test cases you have completed as well as the ones you have not. You can continue uploading code until all
                             test cases satisfy your code. For each test case completed you get a percentage of the total points the question is worth.</p>
-<!--                        <p></p>-->
-<!--                        <p></p>-->
-<!--                        <p>Language Specifications</p>-->
-<!--                        <ul>-->
-<!--                            <li>C++ - g++ 7.5.0</li>-->
-<!--                            <li>Java 8 - OpenJDK</li>-->
-<!--                            <li>Python - 3.6.9</li>-->
-<!--                        </ul>-->
                     </div>
                 </div>
             </div>
