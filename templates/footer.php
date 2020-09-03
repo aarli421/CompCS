@@ -50,8 +50,8 @@
 
                 <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
                     <ul class="wow fadeInUp social-icon animated">
-                        <li><a href="https://www.tinyurl.com/compcscodes" class="fa fa-facebook-square"></a></li>
-                        <li><a href="https://www.tinyurl.com/compcscodesyoutube" class="fa fa-youtube-square"></a></li>
+                        <li><a href="https://www.facebook.com/groups/compcscodes" class="fa fa-facebook-square" target="_blank"></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCYvajojJ28O5E4ATysE0eVQ" class="fa fa-youtube-play" target="_blank"></a></li>
                     </ul>
                     <p>Copyright &copy; 2020 <br>CompCS</p>
 
