@@ -91,7 +91,7 @@
                 }
                 ?>
                 <li><a href="curriculum" class="smoothScroll" style="font-size: 18px">Curriculum</a></li>
-                <li><a href="contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>
+<!--                <li><a href="contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>-->
             </ul>
 
 
@@ -108,7 +108,7 @@
             } else {
             ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <a href="#footer" class="section-btn smoothScroll">Learn to Code?</a>
+                    <a href="#footer" class="section-btn smoothScroll">Contact</a>
                 </ul>
             <?php
             }

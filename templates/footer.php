@@ -22,8 +22,8 @@
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
 <!--                        <p>090-080-0650 | 090-070-0430</p>-->
                         <p><a href="mailto:compcscodes@gmail.com">compcscodes@gmail.com</a></p>
-                        <p><a href="https://www.tinyurl.com/compcscodes">Facebook Page</a></p>
-                        <p><a href="https://www.tinyurl.com/compcscodesyoutube">Youtube</a></p>
+                        <p><a href="https://www.tinyurl.com/compcscodes" target="_blank">Facebook Page</a></p>
+                        <p><a href="https://www.tinyurl.com/compcscodesyoutube" target="_blank">Youtube</a></p>
 <!--                        <p>LINE: eatery247 </p>-->
                     </address>
                 </div>
