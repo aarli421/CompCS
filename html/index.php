@@ -92,7 +92,7 @@ require '../templates/header.php';
             <div class="col-md-12 col-sm-12">
                 <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
                     <h2>Meet our team</h2>
-                    <h4>They are nice &amp; friendly</h4>
+                    <h4>Login to facebook to view profiles</h4>
                 </div>
             </div>
 
@@ -103,7 +103,7 @@ require '../templates/header.php';
                         <div class="team-item">
                             <h4></h4>
                             <ul class="social-icon">
-                                <li><a href="https://github.com/5up3rN00b" target="_blank" class="fa fa-github"></a></li>
+                                <li><a href="https://www.github.com/5up3rN00b" target="_blank" class="fa fa-github"></a></li>
                                 <li><a href="https://www.facebook.com/profile.php?id=100010404820757" target="_blank" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
@@ -142,7 +142,7 @@ require '../templates/header.php';
                             <h4></h4>
                             <ul class="social-icon">
 <!--                                <li><a href="#" class="fa fa-github"></a></li>-->
-                                <li><a href="https://www.facebook.com/profile.php?id=100011261383353" target="_blank" class="fa fa-facebook"></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100024927677577" target="_blank" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
