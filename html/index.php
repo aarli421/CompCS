@@ -170,38 +170,38 @@ require '../templates/header.php';
                     <p>Secretary</p>
                 </div>
             </div>
-<!--            <div class="col-md-4 col-sm-4">-->
-<!--                <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">-->
-<!--                    <img src="images/team-image5.png" class="img-responsive" alt="">-->
-<!--                    <div class="team-hover">-->
-<!--                        <div class="team-item">-->
-<!--                            <h4></h4>-->
-<!--                            <ul class="social-icon">-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="team-info">-->
-<!--                    <h3>TBD</h3>-->
-<!--                    <p>TBD</p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-md-4 col-sm-4">-->
-<!--                <div class="team-thumb wow fadeInUp" data-wow-delay="0.8s">-->
-<!--                    <img src="images/team-image5.png" class="img-responsive" alt="">-->
-<!--                    <div class="team-hover">-->
-<!--                        <div class="team-item">-->
-<!--                            <h4></h4>-->
-<!--                            <ul class="social-icon">-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="team-info">-->
-<!--                    <h3>TBD</h3>-->
-<!--                    <p>TBD</p>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="col-md-4 col-sm-4">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
+                    <img src="images/team-image6.jpg" class="img-responsive" alt="">
+                    <div class="team-hover">
+                        <div class="team-item">
+                            <h4></h4>
+                            <ul class="social-icon">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>TBD</h3>
+                    <p>TBD</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="0.8s">
+                    <img src="images/team-image6.jpg" class="img-responsive" alt="">
+                    <div class="team-hover">
+                        <div class="team-item">
+                            <h4></h4>
+                            <ul class="social-icon">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>TBD</h3>
+                    <p>TBD</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
