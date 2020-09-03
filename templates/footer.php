@@ -51,6 +51,10 @@
 <!--                </ul>-->
 
                 <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
+                    <ul class="wow fadeInUp social-icon animated">
+                        <li><a href="" class="fa fa-facebook-square"></a></li>
+                        <li><a href="" class="fa fa-youtube-square"></a></li>
+                    </ul>
                     <p>Copyright &copy; 2020 <br>CompCS</p>
 
                     <!--   <br><br>Design: <a rel="nofollow" href="http://templatemo.com" target="_parent">TemplateMo</a></p> -->
