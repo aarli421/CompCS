@@ -96,6 +96,7 @@
 
 
             <?php
+            echo dirname(__FILE__);
             if (isset($_SESSION['user'])) {
             ?>
                 <ul class="nav navbar-nav navbar-right">

@@ -44,7 +44,7 @@ require '../templates/header.php';
 
                 if ($bonus == 1) $upper = $points;
                 ?>
-            <li>
+            <li id="division<?php echo $i; ?>">
                 <div class="division-title"><hr class="line div-line"></div>
                 <div>
                     <br>
