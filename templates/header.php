@@ -100,7 +100,7 @@
                                 <a href="#division0">Division 0</a>
                                 <a href="#division1">Division 1</a>
                                 <a href="#division2">Division 2</a>
-                                <a href="#">Bonus Questions</a>
+                                <a href="#bonusquestions">Bonus Questions</a>
                             </div>
                         </li>
                         <?php
