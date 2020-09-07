@@ -37,7 +37,7 @@ require '../templates/header.php';
                         <div class="col-md-8 col-sm-12">
                             <h3>Responsive and Supportive</h3>
                             <h1>Our website helps beginners become advanced through support from the team</h1>
-                            <a href="contact" class="section-btn btn btn-default smoothScroll">Contact</a>
+                            <a href="#footer" class="section-btn btn btn-default smoothScroll">Contact</a>
                         </div>
                     </div>
                 </div>
