@@ -96,7 +96,7 @@
 
 
             <?php
-            var_dump($argv);
+            echo __FILE__;
             if (isset($_SESSION['user'])) {
             ?>
                 <ul class="nav navbar-nav navbar-right">
