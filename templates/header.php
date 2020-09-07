@@ -94,7 +94,7 @@
                 <?php
                     if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == "home") {
                         ?>
-                        <li><div class="dropdown"><button class="section-btn dropbtn" onclick="myFunction()">Divisions</button>
+                        <li><div class="dropdown"><a class="dropbtn smoothScroll" onclick="myFunction()" style="font-size: 18px">Divisions</a>
                                 <div id ="myDropdown" class="dropdown-content">
                                     <a href="#">Link 1</a>
                                     <a href="#">Link 2</a>
