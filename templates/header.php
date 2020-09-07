@@ -96,7 +96,7 @@
 
 
             <?php
-            echo $_SERVER["SCRIPT_FILENAME"];
+            echo basename($_SERVER["SCRIPT_FILENAME"], '.php');
             if (isset($_SESSION['user'])) {
             ?>
                 <ul class="nav navbar-nav navbar-right">
