@@ -2,6 +2,11 @@
 require '../templates/helper.php';
 require '../templates/header.php';
 
+ini_set('upload_max_filesize', '10M');
+ini_set('post_max_size', '10M');
+ini_set('max_input_time', 500);
+ini_set('max_execution_time', 500);
+
 $name = explode(".",  basename($_FILES['questionInput']['name']));
 
 $root = $_SERVER['DOCUMENT_ROOT'];
