@@ -77,6 +77,41 @@ require '../templates/header.php';
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                <h2>Division 2</h2>
+                                <ul>
+                                    <li class="bullet">
+                                        Math
+                                    </li>
+                                    <li class="bullet">
+                                        String Processing
+                                    </li>
+                                    <li class="bullet">
+                                        Prefix Sums
+                                    </li>
+                                    <li class="bullet">
+                                        Custom Sort
+                                    </li>
+                                    <li class="bullet">
+                                        Tree &#38; Graph Traversal &#38; Flood Fill (DFS, BFS)
+                                    </li>
+                                    <li class="bullet">
+                                        Tree &#38; Directed Graphs
+                                    </li>
+                                    <li class="bullet">
+                                        Data Structures (Priority Queue, Set, Map)
+                                    </li>
+                                    <li class="bullet">
+                                        Recursion
+                                    </li>
+                                    <li class="bullet">
+                                        Lower Bound &#38; Upper Bound
+                                    </li>
+                                    <li class="bullet">
+                                        Greedy Algorithm
+                                    </li>
+                                </ul>
+                            </li>
                         </ol>
                     </div>
                 </div>
