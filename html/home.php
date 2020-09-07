@@ -40,20 +40,23 @@ require '../templates/header.php';
             for ($i = 0; $i < $numDivisions; $i++) {
                 $lower = $divisions[$i]['lower'];
                 $upper = $divisions[$i]['upper'];
+                $bonus = $divisions[$i]['bonus'];
+
+                if ($bonus == 1) $upper = $points;
                 ?>
             <li>
                 <div class="division-title"><hr class="line div-line"></div>
                 <div>
                     <br>
                     <br>
-                    <h2 class="division">Division <?php echo $i; ?></h2>
+                    <h2 class="division"><?php echo $divisions[$i]['division_name'] ?></h2>
                     <h4>Points: <?php echo $lower; ?> - <?php echo $upper; ?></h4>
                 </div>
             </li>
             <ol class="questions">
                 <?php
-                $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? ORDER BY `unlock_value`");
-                $sth->execute([$lower, $upper]);
+                $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `bonus`=? ORDER BY `unlock_value`");
+                $sth->execute([$lower, $upper, $bonus]);
                 $passArr = $sth->fetchAll();
 
                 foreach ($passArr as $value) {
