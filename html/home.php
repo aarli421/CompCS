@@ -42,14 +42,17 @@ require '../templates/header.php';
                 $upper = $divisions[$i]['upper'];
                 $bonus = $divisions[$i]['bonus'];
 
+                $name = $divisions[$i]['division_name'];
+                $name_id = strtolower(preg_replace('/\s*/', '', $name));
+
                 if ($bonus == 1) $upper = $points;
                 ?>
-            <li id="division<?php echo $i; ?>">
+            <li id="<?php echo $name_id; ?>">
                 <div class="division-title"><hr class="line div-line"></div>
                 <div>
                     <br>
                     <br>
-                    <h2 class="division"><?php echo $divisions[$i]['division_name'] ?></h2>
+                    <h2 class="division"><?php echo $name; ?></h2>
                     <h4>Points: <?php echo $lower; ?> - <?php echo $upper; ?></h4>
                 </div>
             </li>

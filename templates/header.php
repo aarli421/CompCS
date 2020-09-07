@@ -94,12 +94,13 @@
                 <?php
                     if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == "home") {
                         ?>
-                        <li><div class="dropdown"><a class="dropbtn smoothScroll" onclick="myFunction()" style="font-size: 18px">Divisions</a>
-                                <div id ="myDropdown" class="dropdown-content">
-                                    <a href="#">Link 1</a>
-                                    <a href="#">Link 2</a>
-                                    <a href="#">Link 3</a>
-                                </div>
+                        <li>
+                            <a class="dropbtn smoothScroll" onclick="myFunction()" style="font-size: 18px">Divisions</a>
+                            <div id ="myDropdown" class="dropdown-content">
+                                <a href="#division0">Division 0</a>
+                                <a href="#division1">Division 1</a>
+                                <a href="#division2">Division 2</a>
+                                <a href="#">Bonus Questions</a>
                             </div>
                         </li>
                         <?php
