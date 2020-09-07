@@ -91,12 +91,25 @@
                 }
                 ?>
                 <li><a href="curriculum" class="smoothScroll" style="font-size: 18px">Curriculum</a></li>
+                <?php
+                    if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == "home") {
+                        ?>
+                        <li><div class="dropdown"><button class="section-btn dropbtn" onclick="myFunction()">Divisions</button>
+                                <div id ="myDropdown" class="dropdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                </div>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                ?>
 <!--                <li><a href="contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>-->
             </ul>
 
 
             <?php
-            echo basename($_SERVER["SCRIPT_FILENAME"], '.php');
             if (isset($_SESSION['user'])) {
             ?>
                 <ul class="nav navbar-nav navbar-right">
