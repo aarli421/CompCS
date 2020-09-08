@@ -32,18 +32,6 @@ require '../templates/header.php';
                     <span class="list_num">5</span>
                     <h2>Charles Barkley<span class="number">2,651</span</h2>
                 </li>
-                <li>
-                    <span class="list_num">5</span>
-                    <h2>Charles Barkley<span class="number">2,651</span</h2>
-                </li>
-                <li>
-                    <span class="list_num">5</span>
-                    <h2>Charles Barkley<span class="number">2,651</span</h2>
-                </li>
-                <li>
-                    <span class="list_num">5</span>
-                    <h2>Charles Barkley<span class="number">2,651</span</h2>
-                </li>
             </ul>
         </div>
     </div>
