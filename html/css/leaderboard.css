@@ -29,7 +29,7 @@
     overflow: hidden;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 }
-.leader li .list_num {
+.leader li .list {
     float: left;
     line-height: 40px;
     font-size: 18px;

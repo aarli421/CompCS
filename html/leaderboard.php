@@ -1,6 +1,10 @@
 <?php
 require '../templates/helper.php';
 require '../templates/header.php';
+
+$sth = $db->prepare("SELECT `username`, `points` FROM users ORDER BY `points` DESC LIMIT 5");
+$sth->execute();
+$users = $sth->fetchAll();
 ?>
 <link rel="stylesheet" href="css/leaderboard.css">
 <section>
@@ -8,30 +12,22 @@ require '../templates/header.php';
         <h1>Leaderboard</h1>
     </center>
     <div class="table">
-
         <div class="table-cell">
-
-            <ul class="leader" style="padding-bottom: 20%">
+            <ul class="leader">
+                <?php
+                $i = 1;
+                foreach ($users as $index => $user) {
+                    $add = "";
+                    if ($i == 1 || $i == 2 || $i == 3) $add = "Top";
+                    ?>
                 <li>
-                    <span class="listTop">1</span>
-                    <h2 class="top">Drew Vosburg<span class="numberTop">9,654</span></h2>
+                    <span class="list<?php echo $add; ?>"><?php echo $i; ?></span>
+                    <h2 class="<?php echo strtolower($add); ?>"><?php echo $user['username']; ?><span class="number<?php echo $add; ?>"><?php echo $user['points'] ?></span></h2>
                 </li>
-                <li>
-                    <span class="listTop">2</span>
-                    <h2 class="top">Jesse Nelson<span class="numberTop">8,364</span</h2>
-                </li>
-                <li>
-                    <span class="listTop">3</span>
-                    <h2 class="top">Joel Bullis<span class="numberTop">7,621</span</h2>
-                </li>
-                <li>
-                    <span class="list_num">4</span>
-                    <h2>Carmen SanDiego<span class="number">4,582</span</h2>
-                </li>
-                <li>
-                    <span class="list_num">5</span>
-                    <h2>Charles Barkley<span class="number">2,651</span</h2>
-                </li>
+                    <?php
+                    $i++;
+                }
+                ?>
             </ul>
         </div>
     </div>
