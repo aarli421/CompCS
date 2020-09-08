@@ -141,7 +141,7 @@ $output = $sth->fetchAll();
             <div>
                 <p>Note: Submission times can vary, meaning your submission could be on time for one try but be out of time on another try. Moreover,
                     submission answers may also differ while running your program multiple times if you access out of bounds memory slots, use uninitialized
-                    variables etc. If any issues regarding uncertainty in results occur, be sure to check look into those issues. Also, it is good practice
+                    variables etc. If any issues regarding uncertainty in results occur, be sure to look into those issues. Also, it is good practice
                     to make sure your program works every time, not just because of some serendipitous occasion. Lastly, our grading server is not top
                     quality due to limited funds, so timing might be different from official websites such as USACO, but it should still be close enough.</p>
                 <p>Submissions are governed as follows:</p>
