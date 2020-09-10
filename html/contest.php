@@ -1,8 +1,6 @@
 <?php
 require '../templates/helper.php';
 
-unset($_SESSION['contest']);
-
 if (!isset($_SESSION['user'])) {
     redirect("login");
     exit();
