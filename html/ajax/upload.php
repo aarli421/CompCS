@@ -54,7 +54,7 @@ $javaName = $questionName;
 $cppName = $questionName . ".execpp";
 $cName = $questionName . ".exec";
 
-$date = date('Y-m-d H:i:s', time());
+$date = getCurrDate();
 $fileVal = `cat $uploadFile`;
 
 $arr['correct_cases'] = 0;

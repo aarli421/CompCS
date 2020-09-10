@@ -5,6 +5,10 @@ function getRootDir() {
     return $dir;
 }
 
+function getCurrDate() {
+    return date('Y-m-d H:i:s', time());
+}
+
 function setupDb() {
     $dsn = 'mysql:host=localhost;dbname=compcs';
     $user = 'aaron';
