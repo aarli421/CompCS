@@ -28,14 +28,15 @@ if (hasValue($_SESSION['contest'])) {
     if ($passArr[0]['contest_id'] != 0 && $passArr[0]['contest_id'] != $_SESSION['contest']) {
         redirect("home");
         exit();
-    } else {
-        $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
-        $sth->execute([$user_id, $_SESSION['contest']]);
-        $try = $sth->fetchAll();
-
-        $diff = strtotime(getCurrDate()) - strtotime($try[0]['end']);
-        header("refresh:{$diff};url=contest.php");
     }
+//    } else {
+//        $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
+//        $sth->execute([$user_id, $_SESSION['contest']]);
+//        $try = $sth->fetchAll();
+//
+//        $diff = strtotime(getCurrDate()) - strtotime($try[0]['end']);
+//        header("refresh:{$diff};url=contest.php");
+//    }
 } else {
     if ($passArr[0]['contest_id'] != 0) {
         redirect("home");

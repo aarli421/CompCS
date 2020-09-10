@@ -6,17 +6,17 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-if (hasValue($_SESSION['contest'])) {
-    $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
-    $sth->execute([$user_id, $_SESSION['contest']]);
-    $try = $sth->fetchAll();
-
-    $diff = strtotime($try[0]['end']) - strtotime(getCurrDate());
-    if ($diff < 0) $diff = 0;
-    header("refresh: {$diff};url= https://www.compcs.codes/contest");
-
-    echo $diff;
-}
+//if (hasValue($_SESSION['contest'])) {
+//    $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
+//    $sth->execute([$user_id, $_SESSION['contest']]);
+//    $try = $sth->fetchAll();
+//
+//    $diff = strtotime($try[0]['end']) - strtotime(getCurrDate());
+//    if ($diff < 0) $diff = 0;
+//    header("refresh: {$diff};url= https://www.compcs.codes/contest");
+//
+//    echo $diff;
+//}
 
 require '../templates/header.php';
 

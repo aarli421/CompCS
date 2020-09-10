@@ -15,6 +15,6 @@ var x = setInterval(function() {
     if (distance < 0) {
         clearInterval(x);
         document.getElementById("countdown").innerHTML = "EXPIRED";
-        // $(location).attr("href", "https://www.compcs.codes/contest");
+        $(location).attr("href", "https://www.compcs.codes/contest");
     }
 }, 1000);
