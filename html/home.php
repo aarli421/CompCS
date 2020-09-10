@@ -58,7 +58,7 @@ require '../templates/header.php';
             </li>
             <ol class="questions">
                 <?php
-                $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `bonus`=? ORDER BY `unlock_value`");
+                $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");
                 $sth->execute([$lower, $upper, $bonus]);
                 $passArr = $sth->fetchAll();
 
