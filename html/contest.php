@@ -11,7 +11,7 @@ if (hasValue($_SESSION['contest'])) {
     $sth->execute([$user_id, $_SESSION['contest']]);
     $try = $sth->fetchAll();
 
-    $diff = strtotime($try[0]['end']) -  strtotime(getCurrDate());
+    $diff = strtotime($try[0]['end']) - strtotime(getCurrDate());
     echo $diff;
     header("refresh:{$diff};url=contest");
 }
@@ -112,6 +112,9 @@ if (!hasValue($_SESSION['contest'])) {
         echo "Finished";
         unset($_SESSION['contest']);
     } else {
+        $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
+        $sth->execute([$user_id, $_SESSION['contest']]);
+        $try = $sth->fetchAll();
 
         $sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
         $sth->execute([$_SESSION['user']]);
