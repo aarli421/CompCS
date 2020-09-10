@@ -121,22 +121,24 @@ $output = $sth->fetchAll();
 <section data-stellar-background-ratio="0.5" class="questionlist" style="padding-bottom: 0px;">
     <div class="container">
         <h1 class="problemtitle" style="margin-bottom: 3px;">Problem: <?php echo $_GET['questionName']; ?></h1>
-        <h3 class="problemtitle" style="margin-top: 0px">Testcases: <?php echo $passArr[0]['testcases']; ?></h3>
-        <h3 class="problemtitle" style="margin-top: 0px">Points/Case: <?php echo $passArr[0]['testcase_value']; ?></h3>
+
         <?php
         if (hasValue($_SESSION['contest'])) {
             $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
             $sth->execute([$user_id, $_SESSION['contest']]);
             $try = $sth->fetchAll();
-        ?>
-            <h3 id="countdown" class="problemtitle" style="margin-top: 0px">Updating...</h3>
+            ?>
+            <h3 id="countdown" class="problemtitle" style="margin-top: 0px; color: #CE3232">Updating...</h3>
             <script>
                 var countDownDate = new Date(<?php echo strtotime($try[0]['end']); ?> * 1000).getTime();
             </script>
             <script src="js/countdown.js"></script>
-        <?php
+            <?php
         }
         ?>
+
+        <h3 class="problemtitle" style="margin-top: 0px">Testcases: <?php echo $passArr[0]['testcases']; ?></h3>
+        <h3 class="problemtitle" style="margin-top: 0px">Points/Case: <?php echo $passArr[0]['testcase_value']; ?></h3>
     </div>
 
     <center id="prompt-center">
