@@ -100,10 +100,11 @@ if (!hasValue($_SESSION['contest'])) {
     $try = $sth->fetchAll();
 
     $end = new DateTime($try[0]['end']);
-    $curr = new DateTime($curr_date);
+    $curr = new DateTime(getCurrDate());
 
     if ($end >= $curr) {
         echo "Finished";
+        unset($_SESSION['contest']);
     } else {
 
         $sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
