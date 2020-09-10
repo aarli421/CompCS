@@ -12,7 +12,8 @@ if (hasValue($_SESSION['contest'])) {
     $try = $sth->fetchAll();
 
     $diff = strtotime($try[0]['end']) -  strtotime(getCurrDate());
-    header("refresh:{$diff};url=contest.php");
+    echo $diff;
+    header("refresh:{$diff};url=contest");
 }
 
 require '../templates/header.php';
