@@ -141,13 +141,14 @@ if (!hasValue($_SESSION['contest'])) {
                     $sth->execute([$_SESSION['contest']]);
                     $passArr = $sth->fetchAll();
 
+                    $j = 0;
                     foreach ($passArr as $value) {
                         $locked = false;
                         if ($points < $value['unlock_value']) {
                             $locked = true;
                         }
 
-                        $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
+                        $sth = $db->prepare("SELECT MAX(correct_cases) FROM `grades` WHERE `user_id`=? AND `question_id`=?");
                         $sth->execute([$user_id, $value['question_id']]);
                         $max = $sth->fetchAll();
                         if (empty($max)) $max[0][0] = 0;
