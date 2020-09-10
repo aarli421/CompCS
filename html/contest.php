@@ -7,27 +7,22 @@ if (!isset($_SESSION['user'])) {
 }
 
 require '../templates/header.php';
-?>
-<script>
-<?php
 function time_to_interval($time) {
     $parts = explode(':',$time);
     return new DateInterval('PT'.$parts[0] .'H'. $parts[1] .'M'. $parts[2] .'S');
 }
 
+$redirect = false;
 $success = "";
 $error = "";
 
 if (hasValue($_GET['contestCode'])) {
     $sth = $db->prepare("SELECT `contest_id`, `start`, `end`, `length` FROM `contests` WHERE `hash`=?");
     $sth->execute([$_GET['contestCode']]);
-    $passArr = $sth->fetchAll();
+    $contest = $sth->fetchAll();
 
     if (empty($passArr)) {
-        ?>
-        $("#contestSuccess").html("");
-        $("#contestError").html("The code you entered was not found.");
-        <?php
+        $error = "The code you entered was not found.";
     } else {
         $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `tries` WHERE `user_id`=? AND `contest_id`=?) LIMIT 1");
         $sth->execute([$user_id, $passArr[0]['contest_id']]);
@@ -35,53 +30,33 @@ if (hasValue($_GET['contestCode'])) {
 
         if ($passArr[0][0] == 0) {
             try {
-                echo $passArr[0]['start'] . "<br>";
-                echo $passArr[0]['end'] . "<br>";
-
-                $start = new DateTime($passArr[0]['start']);
-                $end = new DateTime($passArr[0]['end']);
+                $start = new DateTime($contest[0]['start']);
+                $end = new DateTime($contest[0]['end']);
                 $curr_date = getCurrDate();
                 $curr = new DateTime($curr_date);
                 $curr_copy = new DateTime($curr_date);
 
-                echo $start->format('Y-m-d H:i:s');
-                echo $end->format('Y-m-d H:i:s');
-
                 if ($curr >= $start && $curr < $end) {
-                    $_SESSION['contest'] = $passArr[0]['contest_id'];
+                    $_SESSION['contest'] = $contest[0]['contest_id'];
 
-                    $curr->add(time_to_interval($passArr[0]['length']));
+                    $curr->add(time_to_interval($contest[0]['length']));
 
                     $sth = $db->prepare("INSERT INTO `tries` (`user_id`, `contest_id`, `start`, `end`) VALUES (?, ?, ?, ?)");
-                    $sth->execute([$user_id, $passArr[0]['contest_id'], $curr_copy->format('Y-m-d H:i:s'), $curr->format('Y-m-d H:i:s')]);
-                ?>
-                    $("#contestSuccess").html("If you are not redirected, please refresh the page.");
-                    $("#contestError").html("");
-                    $(location).attr("href", "https://www.compcs.codes/contest");
-                <?php
+                    $sth->execute([$user_id, $contest[0]['contest_id'], $curr_copy->format('Y-m-d H:i:s'), $curr->format('Y-m-d H:i:s')]);
+
+                    $success = "If you are not redirected, please refresh the page.";
                 } else {
-                ?>
-                    $("#contestSuccess").html("");
-                    $("#contestError").html("The contest has not begun or has already ended.");
-                <?php
+                    $error = "The contest has not begun or has already ended.";
                 }
             } catch (Exception $e) {
-                ?>
-                $("#contestSuccess").html("");
-                $("#contestError").html("A server error occurred.");
-                <?php
+                $error = "A server error occurred.";
             }
         } else {
-            ?>
-            $("#contestSuccess").html("");
-            $("#contestError").html("You have already taken this contest.");
-            <?php
+            $error = "You have already taken this contest.";
         }
     }
 }
-?>
-</script>
-<?php
+
 if (!hasValue($_SESSION['contest'])) {
 ?>
 <div class="background">
@@ -100,6 +75,17 @@ if (!hasValue($_SESSION['contest'])) {
                     </div>
                     <h6 id="contestSuccess" class="text-success"></h6>
                     <h6 id="contestError" class="text-danger"></h6>
+                    <script>
+                        $("#contestSuccess").html("<?php echo $success; ?>");
+                        $("#contestError").html("<?php echo $error; ?>");
+                        <?php
+                        if ($redirect) {
+                        ?>
+                            $(location).attr("href", "https://www.compcs.codes/contest");
+                        <?php
+                        }
+                        ?>
+                    </script>
                 </div>
             </div>
         </div>
