@@ -128,7 +128,7 @@ $output = $sth->fetchAll();
             $sth->execute([$user_id, $_SESSION['contest']]);
             $try = $sth->fetchAll();
             ?>
-            <h3 id="countdown" class="problemtitle" style="margin-top: 0px; color: #CE3232">Updating...</h3>
+            <h3 id="countdown" class="problemtitle" style="margin-top: 0px;">Updating...</h3>
             <script>
                 var countDownDate = new Date(<?php echo strtotime($try[0]['end']); ?> * 1000).getTime();
             </script>
