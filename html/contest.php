@@ -1,8 +1,6 @@
 <?php
 require '../templates/helper.php';
 
-unset($_SESSION['contest']);
-
 if (!isset($_SESSION['user'])) {
     redirect("login");
     exit();
@@ -18,7 +16,7 @@ $redirect = false;
 $success = "";
 $error = "";
 
-if (hasValue($_GET['code'])) {
+if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
     $sth = $db->prepare("SELECT `contest_id`, `start`, `end`, `length` FROM `contests` WHERE `hash`=?");
     $sth->execute([$_GET['code']]);
     $contest = $sth->fetchAll();
@@ -97,18 +95,25 @@ if (!hasValue($_SESSION['contest'])) {
 </div>
 <?php
 } else {
-    $sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
-    $sth->execute([$_SESSION['user']]);
-    $passArr = $sth->fetchAll();
-    $points = $passArr[0]['points'];
-
-    $sth = $db->prepare("SELECT `name` FROM contests WHERE `contest_id`=?");
-    $sth->execute([$_SESSION['contest']]);
-    $contest = $sth->fetchAll();
-
     $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
     $sth->execute([$user_id, $_SESSION['contest']]);
     $try = $sth->fetchAll();
+
+    $end = new DateTime($try[0]['end']);
+    $curr = new DateTime($curr_date);
+
+    if ($end >= $curr) {
+        echo "Finished";
+    } else {
+
+        $sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
+        $sth->execute([$_SESSION['user']]);
+        $passArr = $sth->fetchAll();
+        $points = $passArr[0]['points'];
+
+        $sth = $db->prepare("SELECT `name` FROM contests WHERE `contest_id`=?");
+        $sth->execute([$_SESSION['contest']]);
+        $contest = $sth->fetchAll();
 ?>
     <link rel="stylesheet" href="css/progress.css">
     <link rel="stylesheet" href="css/home.css">
@@ -241,5 +246,6 @@ if (!hasValue($_SESSION['contest'])) {
         }
     </script>
 <?php
+    }
 }
 require '../templates/footer.php';
