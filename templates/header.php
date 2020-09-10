@@ -69,7 +69,7 @@
                 <img src="images/ccc-logo.svg" alt="" width="67" height="67" style="padding-bottom: 10px">
 
             </a>
-            <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px;">
+            <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px; text-align: left;">
                 Competitive<span><br>Computing</span><br>Club
             </a>
 
