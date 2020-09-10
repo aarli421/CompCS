@@ -15,7 +15,8 @@ if (hasValue($_SESSION['contest'])) {
 
     $diff = strtotime($try[0]['end']) - strtotime(getCurrDate());
     if ($diff < 0) $diff = 0;
-    header("refresh:{$diff};url=https://www.compcs.codes/contest");
+    header("refresh: {$diff};url= https://www.compcs.codes/contest");
+    exit();
 }
 
 require '../templates/header.php';
