@@ -15,6 +15,9 @@ function time_to_interval($time) {
     return new DateInterval('PT'.$parts[0] .'H'. $parts[1] .'M'. $parts[2] .'S');
 }
 
+$success = "";
+$error = "";
+
 if (hasValue($_GET['contestCode'])) {
     $sth = $db->prepare("SELECT `contest_id`, `start`, `end`, `length` FROM `contests` WHERE `hash`=?");
     $sth->execute([$_GET['contestCode']]);
@@ -37,6 +40,9 @@ if (hasValue($_GET['contestCode'])) {
                 $curr_date = getCurrDate();
                 $curr = new DateTime($curr_date);
                 $curr_copy = new DateTime($curr_date);
+
+                echo $start->format('Y-m-d H:i:s');
+                echo $end->format('Y-m-d H:i:s');
 
                 if ($curr >= $start && $curr < $end) {
                     $_SESSION['contest'] = $passArr[0]['contest_id'];
