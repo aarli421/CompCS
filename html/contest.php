@@ -35,6 +35,9 @@ if (hasValue($_GET['contestCode'])) {
 
         if ($passArr[0][0] == 0) {
             try {
+                echo $passArr[0]['start'] . "<br>";
+                echo $passArr[0]['end'] . "<br>";
+
                 $start = new DateTime($passArr[0]['start']);
                 $end = new DateTime($passArr[0]['end']);
                 $curr_date = getCurrDate();
