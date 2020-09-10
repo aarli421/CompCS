@@ -102,7 +102,7 @@ if (!hasValue($_SESSION['contest'])) {
     $end = new DateTime($try[0]['end']);
     $curr = new DateTime(getCurrDate());
 
-    if ($end >= $curr) {
+    if ($curr >= $end) {
         echo "Finished";
         unset($_SESSION['contest']);
     } else {
