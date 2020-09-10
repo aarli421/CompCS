@@ -16,9 +16,9 @@ $redirect = false;
 $success = "";
 $error = "";
 
-if (hasValue($_GET['contestCode'])) {
+if (hasValue($_GET['code'])) {
     $sth = $db->prepare("SELECT `contest_id`, `start`, `end`, `length` FROM `contests` WHERE `hash`=?");
-    $sth->execute([$_GET['contestCode']]);
+    $sth->execute([$_GET['code']]);
     $contest = $sth->fetchAll();
 
     if (empty($passArr)) {
@@ -71,7 +71,7 @@ if (!hasValue($_SESSION['contest'])) {
                     </div>
                     <div class="form-content">
                         <form id="contest" action="contest" method="get">
-                            <div class="form-group"><label for="contestCode">Contest Code</label><input type="text" id="contestCode" name="contestCode" required="required" /></div>
+                            <div class="form-group"><label for="code">Contest Code</label><input type="text" id="code" name="code" required="required" /></div>
                             <div class="form-group"><button form="contest" type="submit">Submit Code and Start</button></div>
                         </form>
                     </div>
