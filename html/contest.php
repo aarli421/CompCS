@@ -9,9 +9,9 @@ function time_to_interval($time) {
     return new DateInterval('PT'.$parts[0] .'H'. $parts[1] .'M'. $parts[2] .'S');
 }
 
-if (hasValue($_POST['contestCode'])) {
+if (hasValue($_GET['contestCode'])) {
     $sth = $db->prepare("SELECT `contest_id`, `start`, `end`, `length` FROM `contests` WHERE `hash`=?");
-    $sth->execute([$_POST['contestCode']]);
+    $sth->execute([$_GET['contestCode']]);
     $passArr = $sth->fetchAll();
 
     if (empty($passArr)) {
@@ -78,7 +78,7 @@ if (!hasValue($_SESSION['contest'])) {
                         <h1>Enter Contest</h1>
                     </div>
                     <div class="form-content">
-                        <form id="contest" action="contest" method="post">
+                        <form id="contest" action="contest" method="get">
                             <div class="form-group"><label for="contestCode">Contest Code</label><input type="text" id="contestCode" name="contestCode" required="required" /></div>
                             <div class="form-group"><button form="contest" type="submit">Submit Code and Start</button></div>
                         </form>
