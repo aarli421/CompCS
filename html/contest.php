@@ -11,7 +11,7 @@ if (hasValue($_SESSION['contest'])) {
     $sth->execute([$user_id, $_SESSION['contest']]);
     $try = $sth->fetchAll();
 
-    $diff = strtotime(getCurrDate()) - strtotime($try[0]['end']);
+    $diff = strtotime($try[0]['end']) -  strtotime(getCurrDate());
     header("refresh:{$diff};url=contest.php");
 }
 
