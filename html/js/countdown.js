@@ -14,6 +14,7 @@ var x = setInterval(function() {
     // If the count down is finished, write some text
     if (distance < 0) {
         clearInterval(x);
-        $(location).attr("href", "https://www.compcs.codes/contest");
+        document.getElementById("demo").innerHTML = "EXPIRED";
+        // $(location).attr("href", "https://www.compcs.codes/contest");
     }
 }, 1000);
