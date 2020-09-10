@@ -21,11 +21,11 @@ if (hasValue($_GET['code'])) {
     $sth->execute([$_GET['code']]);
     $contest = $sth->fetchAll();
 
-    if (empty($passArr)) {
+    if (empty($contest)) {
         $error = "The code you entered was not found.";
     } else {
         $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `tries` WHERE `user_id`=? AND `contest_id`=?) LIMIT 1");
-        $sth->execute([$user_id, $passArr[0]['contest_id']]);
+        $sth->execute([$user_id, $contest[0]['contest_id']]);
         $passArr = $sth->fetchAll();
 
         if ($passArr[0][0] == 0) {
