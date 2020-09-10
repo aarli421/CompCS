@@ -11,12 +11,11 @@ if (hasValue($_SESSION['contest'])) {
     $sth->execute([$user_id, $_SESSION['contest']]);
     $try = $sth->fetchAll();
 
-    echo "HELAIDOISHDOHA";
-
     $diff = strtotime($try[0]['end']) - strtotime(getCurrDate());
     if ($diff < 0) $diff = 0;
     header("refresh: {$diff};url= https://www.compcs.codes/contest");
-    exit();
+
+    echo $diff;
 }
 
 require '../templates/header.php';
