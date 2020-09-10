@@ -11,12 +11,15 @@ if (hasValue($_SESSION['contest'])) {
     $sth->execute([$user_id, $_SESSION['contest']]);
     $try = $sth->fetchAll();
 
+    echo "HELAIDOISHDOHA";
+
     $diff = strtotime($try[0]['end']) - strtotime(getCurrDate());
     echo $diff;
     header("refresh:{$diff};url=contest");
 }
 
 require '../templates/header.php';
+
 function time_to_interval($time) {
     $parts = explode(':',$time);
     return new DateInterval('PT'.$parts[0] .'H'. $parts[1] .'M'. $parts[2] .'S');
