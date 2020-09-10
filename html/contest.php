@@ -108,6 +108,10 @@ if (!hasValue($_SESSION['contest'])) {
 </div>
 <?php
 } else {
+    $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
+    $sth->execute([$user_id, $_SESSION['contest']]);
+    $try = $sth->fetchAll();
+
     $end = new DateTime($try[0]['end']);
     $curr = new DateTime(getCurrDate());
 
