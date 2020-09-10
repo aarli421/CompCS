@@ -1,5 +1,11 @@
 <?php
 require '../templates/helper.php';
+
+if (!isset($_SESSION['user'])) {
+    redirect("login");
+    exit();
+}
+
 require '../templates/header.php';
 ?>
 <script>
