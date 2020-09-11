@@ -29,6 +29,26 @@ if ($user[0]['points'] < $question[0]['unlock_value']) {
     $err = true;
 }
 
+if (hasValue($_SESSION['contest'])) {
+    if ($passArr[0]['contest_id'] != 0 && $passArr[0]['contest_id'] != $_SESSION['contest']) {
+        $arr['error'] = "You are not part of this question's contest.";
+        $err = true;
+    }
+//    } else {
+//        $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
+//        $sth->execute([$user_id, $_SESSION['contest']]);
+//        $try = $sth->fetchAll();
+//
+//        $diff = strtotime(getCurrDate()) - strtotime($try[0]['end']);
+//        header("refresh:{$diff};url=contest.php");
+//    }
+} else {
+    if ($passArr[0]['contest_id'] != 0) {
+        $arr['error'] = "You are not part of any contest.";
+        $err = true;
+    }
+}
+
 if ($err) {
     echo json_encode($arr);
     exit();
@@ -232,7 +252,7 @@ function run($questionDir, $uploadDir, $questionName, $i, $cmd, $timeout, $scrip
         $output = `[ -s {$question}.out ] || echo "empty"`;
         if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
             if ($i == 1 && $result['output'] != '') {
-                return array('symbol' => 'X', 'stdout' => $result['output']);
+                return array('symbol' => 'E', 'stdout' => $result['output']);
             } else {
                 return array('symbol' => 'E', 'stdout' => $result['output']);
             }
