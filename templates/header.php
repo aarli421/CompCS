@@ -114,7 +114,7 @@
 
             <?php
             if (isset($_SESSION['user'])) {
-                if (isset($_SESSION['contest'])) {
+                if (isset($_SESSION['contest']) && !isset($_SESSION['finish'])) {
                 ?>
                     <ul class="nav navbar-nav navbar-right">
                         <form action="contest" method="post">
