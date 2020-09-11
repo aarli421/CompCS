@@ -6,17 +6,10 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-//if (hasValue($_SESSION['contest'])) {
-//    $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
-//    $sth->execute([$user_id, $_SESSION['contest']]);
-//    $try = $sth->fetchAll();
-//
-//    $diff = strtotime($try[0]['end']) - strtotime(getCurrDate());
-//    if ($diff < 0) $diff = 0;
-//    header("refresh: {$diff};url= https://www.compcs.codes/contest");
-//
-//    echo $diff;
-//}
+$finished = false;
+if (hasValue($_POST['finish'])) {
+    $finished = true;
+}
 
 require '../templates/header.php';
 
@@ -114,9 +107,72 @@ if (!hasValue($_SESSION['contest'])) {
 
     $end = new DateTime($try[0]['end']);
     $curr = new DateTime(getCurrDate());
+    ?>
+    <link rel="stylesheet" href="css/progress.css">
+    <link rel="stylesheet" href="css/home.css">
+    <?php
+    if ($curr >= $end || $finished = true) {
+        ?>
+    <div class="background">
+        <section data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="form">
+                    <div class="form-panel one">
+                        <div class="categories">
+                            <h1>Results</h1>
+                            <h2>Total Score:</h2>
+                        </div>
+                        <ol class="questions">
+                            <?php
+                            $sth = $db->prepare("SELECT * FROM `questions` WHERE `contest_id`=? ORDER BY `unlock_value`, `testcase_value`");
+                            $sth->execute([$_SESSION['contest']]);
+                            $passArr = $sth->fetchAll();
 
-    if ($curr >= $end) {
-        echo "Finished";
+                            $j = 0;
+                            foreach ($passArr as $value) {
+                                $sth = $db->prepare("SELECT MAX(correct_cases) FROM `grades` WHERE `user_id`=? AND `question_id`=?");
+                                $sth->execute([$user_id, $value['question_id']]);
+                                $max = $sth->fetchAll();
+                                if (empty($max)) $max[0][0] = 0;
+                                ?>
+                                <li class="question">
+                                    <div class="categories">
+                                        <div><hr class="line question-line"></div>
+                                        <div class="categories-div">
+                                            <div class="category">
+                                                <h4>Problem</h4>
+                                            </div>
+                                            <div class="category">
+                                                <h4>Total Points</h4>
+                                            </div>
+                                        </div>
+                                        <div class="categories-div">
+                                            <div class="category">
+                                                <h5><?php echo $value['name']; ?></h5>
+                                            </div>
+                                            <div class="category">
+                                                <h5><?php echo $max[0][0] * $value['testcase_value']; ?></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="progress-bar-div">
+                                        <div id="progress-wrapper<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
+                                            <div id="progress-bar<?php echo $j; ?>" class="progress-bar progress"></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php
+                                if ($points >= $value['unlock_value']) {
+                                    $j++;
+                                }
+                            }?>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <?php
         unset($_SESSION['contest']);
     } else {
         $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
@@ -132,8 +188,6 @@ if (!hasValue($_SESSION['contest'])) {
         $sth->execute([$_SESSION['contest']]);
         $contest = $sth->fetchAll();
 ?>
-    <link rel="stylesheet" href="css/progress.css">
-    <link rel="stylesheet" href="css/home.css">
     <!-- Greeting Message -->
     <section data-stellar-background-ratio="0.5" style="padding-bottom: 25px;">
         <div class="container">
@@ -232,6 +286,9 @@ if (!hasValue($_SESSION['contest'])) {
             </ol>
         </div>
     </section>
+<?php
+    }
+    ?>
     <script>
         // on page load...
         moveProgressBar();
@@ -263,6 +320,5 @@ if (!hasValue($_SESSION['contest'])) {
         }
     </script>
 <?php
-    }
 }
 require '../templates/footer.php';
