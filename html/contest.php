@@ -59,6 +59,7 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
                 $error = "A server error occurred.";
             }
         } else {
+            $_SESSION['contest'] = $contest[0]['contest_id'];
             $_SESSION['finish'] = true;
             redirect("contest");
             exit();
