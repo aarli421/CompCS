@@ -266,10 +266,11 @@ function exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username) 
     $newCmd = "sudo $scriptsDirectory" . "/executeAsUser.sh $username \"cd $uploadDir; $cmd\"";
 
     // File descriptors passed to the process.
+    $child_id = uniqid();
     $descriptors = array(
         0 => array('pipe', 'r'),  // stdin
         1 => array('pipe', 'w'),  // stdout
-        2 => array('pipe', 'w')   // stderr
+        2 => array("file", "/tmp/$child_id", "a")  // stderr
     );
 
     // Start the process.
@@ -345,5 +346,5 @@ function exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username) 
 
     proc_close($process);
 
-    return array("output" => $buffer, "time" => $time - $cd_offset, "errors" => $errors, "isTimedOut" => $timedOut);
+    return array("output" => $buffer, "time" => $time - $cd_offset, "errors" => file_get_contents("/tmp/$child_id"), "isTimedOut" => $timedOut);
 }
