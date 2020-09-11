@@ -12,8 +12,6 @@ if (hasValue($_POST['finish'])) {
     exit();
 }
 
-require '../templates/header.php';
-
 function time_to_interval($time) {
     $parts = explode(':',$time);
     return new DateInterval('PT'.$parts[0] .'H'. $parts[1] .'M'. $parts[2] .'S');
@@ -61,10 +59,14 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
                 $error = "A server error occurred.";
             }
         } else {
-            $error = "You have already taken this contest.";
+            $_SESSION['finish'] = true;
+            redirect("contest");
+            exit();
         }
     }
 }
+
+require '../templates/header.php';
 
 if (!hasValue($_SESSION['contest'])) {
 ?>

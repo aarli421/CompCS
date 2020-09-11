@@ -34,6 +34,18 @@ if (hasValue($_SESSION['contest'])) {
         $arr['error'] = "You are not part of this question's contest.";
         $err = true;
     }
+
+    $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
+    $sth->execute([$user_id, $_SESSION['contest']]);
+    $try = $sth->fetchAll();
+
+    $end = new DateTime($try[0]['end']);
+    $curr = new DateTime(getCurrDate());
+
+    if ($curr >= $end) {
+        $arr['error'] = "Your contest has already ended. Please refresh your page or go back to contest page.";
+        $err = true;
+    }
 //    } else {
 //        $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
 //        $sth->execute([$user_id, $_SESSION['contest']]);
@@ -48,6 +60,8 @@ if (hasValue($_SESSION['contest'])) {
         $err = true;
     }
 }
+
+
 
 if ($err) {
     echo json_encode($arr);
