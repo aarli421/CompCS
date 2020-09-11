@@ -116,6 +116,9 @@ if (!hasValue($_SESSION['contest'])) {
     <link rel="stylesheet" href="css/home.css">
     <?php
     if ($curr >= $end || hasValue($_SESSION['finish'])) {
+        $sth = $db->prepare("SELECT `name` FROM contests WHERE `contest_id`=?");
+        $sth->execute([$_SESSION['contest']]);
+        $contest = $sth->fetchAll();
         ?>
     <style>
         .form {
@@ -137,7 +140,7 @@ if (!hasValue($_SESSION['contest'])) {
                 <div class="form">
                     <div class="form-panel one" style="color:black">
                         <div class="categories">
-                            <h1>Results</h1>
+                            <h1><?php echo $contest[0]['name']; ?> - Results</h1>
                             <h2 id="total">Total Score: </h2>
                         </div>
                         <ol class="questions">
