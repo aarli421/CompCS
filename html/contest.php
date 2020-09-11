@@ -6,9 +6,10 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-$finished = false;
 if (hasValue($_POST['finish'])) {
-    $finished = true;
+    $_SESSION['finish'] = true;
+    redirect("contest");
+    exit();
 }
 
 require '../templates/header.php';
@@ -111,7 +112,7 @@ if (!hasValue($_SESSION['contest'])) {
     <link rel="stylesheet" href="css/progress.css">
     <link rel="stylesheet" href="css/home.css">
     <?php
-    if ($curr >= $end || $finished == true) {
+    if ($curr >= $end || hasValue($_SESSION['finish'])) {
         ?>
     <style>
         .form {
@@ -193,6 +194,7 @@ if (!hasValue($_SESSION['contest'])) {
     </div>
     <?php
         unset($_SESSION['contest']);
+        unset($_SESSION['finish']);
     } else {
         $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
         $sth->execute([$user_id, $_SESSION['contest']]);
