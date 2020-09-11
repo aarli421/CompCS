@@ -234,7 +234,7 @@ if (!hasValue($_SESSION['contest'])) {
                 </li>
                 <ol class="questions">
                     <?php
-                    $sth = $db->prepare("SELECT * FROM `questions` WHERE `contest_id`=? ORDER BY `unlock_value`, `testcase_value`");
+                    $sth = $db->prepare("SELECT * FROM `questions` WHERE `contest_id`=? ORDER BY `testcase_value`");
                     $sth->execute([$_SESSION['contest']]);
                     $passArr = $sth->fetchAll();
 
