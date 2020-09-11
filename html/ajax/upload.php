@@ -270,7 +270,7 @@ function exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username) 
     $descriptors = array(
         0 => array('pipe', 'r'),  // stdin
         1 => array('pipe', 'w'),  // stdout
-        2 => array("file", "/tmp/$child_id", "a")  // stderr
+        2 => array('pipe', 'w')   // stderr
     );
 
     // Start the process.
@@ -346,5 +346,5 @@ function exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username) 
 
     proc_close($process);
 
-    return array("output" => $buffer, "time" => $time - $cd_offset, "errors" => file_get_contents("/tmp/$child_id"), "isTimedOut" => $timedOut);
+    return array("output" => $buffer, "time" => $time - $cd_offset, "errors" => $errors, "isTimedOut" => $timedOut);
 }
