@@ -114,14 +114,25 @@
 
             <?php
             if (isset($_SESSION['user'])) {
-            ?>
-                <ul class="nav navbar-nav navbar-right">
-                    <form action="home" method="post">
-                        <input type="hidden" name="logout" value="true">
-                        <input type="submit" class="section-btn" value="Logout">
-                    </form>
-                </ul>
+                if (isset($_SESSION['contest'])) {
+                ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form action="contest" method="post">
+                            <input type="hidden" name="finish" value="true">
+                            <input type="submit" class="section-btn" value="End Contest">
+                        </form>
+                    </ul>
             <?php
+                } else {
+            ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <form action="home" method="post">
+                            <input type="hidden" name="logout" value="true">
+                            <input type="submit" class="section-btn" value="Logout">
+                        </form>
+                    </ul>
+            <?php
+                }
             } else {
             ?>
                 <ul class="nav navbar-nav navbar-right">
