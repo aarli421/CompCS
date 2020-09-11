@@ -111,7 +111,7 @@ if (!hasValue($_SESSION['contest'])) {
     <link rel="stylesheet" href="css/progress.css">
     <link rel="stylesheet" href="css/home.css">
     <?php
-    if ($curr >= $end || $finished = true) {
+    if ($curr >= $end || $finished == true) {
         ?>
     <div class="background">
         <section data-stellar-background-ratio="0.5">
