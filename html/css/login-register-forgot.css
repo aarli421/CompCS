@@ -30,14 +30,13 @@ html {
  .form {
 	 z-index: 15;
 	 position: relative;
+	 width: 60%;
 	 background: #fff;
 	 border-radius: 4px;
 	 box-shadow: 0 0 30px rgba(0, 0, 0, .1);
 	 box-sizing: border-box;
 	 margin: 100px auto 10px;
 	 overflow: hidden;
-	 height: auto;
-	 width: auto;
 }
  .form-toggle {
 	 z-index: 10;

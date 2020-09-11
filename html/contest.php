@@ -113,6 +113,12 @@ if (!hasValue($_SESSION['contest'])) {
     <?php
     if ($curr >= $end || $finished == true) {
         ?>
+    <style>
+        .form {
+            height: auto;
+            width: auto;
+        }
+    </style>
     <div class="background">
         <section data-stellar-background-ratio="0.5">
             <div class="container">
