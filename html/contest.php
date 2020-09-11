@@ -118,15 +118,23 @@ if (!hasValue($_SESSION['contest'])) {
             height: auto;
             width: auto;
         }
+
+        .form-panel {
+            padding: 20px calc(5% + 60px) 60px 60px;
+        }
+
+        .question-line {
+            width: 205%;
+        }
     </style>
     <div class="background">
         <section data-stellar-background-ratio="0.5">
             <div class="container">
                 <div class="form">
-                    <div class="form-panel one">
+                    <div class="form-panel one" style="color:black">
                         <div class="categories">
                             <h1>Results</h1>
-                            <h2>Total Score:</h2>
+                            <h2 id="total">Total Score: </h2>
                         </div>
                         <ol class="questions">
                             <?php
@@ -135,11 +143,15 @@ if (!hasValue($_SESSION['contest'])) {
                             $passArr = $sth->fetchAll();
 
                             $j = 0;
+                            $total = 0;
                             foreach ($passArr as $value) {
                                 $sth = $db->prepare("SELECT MAX(correct_cases) FROM `grades` WHERE `user_id`=? AND `question_id`=?");
                                 $sth->execute([$user_id, $value['question_id']]);
                                 $max = $sth->fetchAll();
                                 if (empty($max)) $max[0][0] = 0;
+
+                                $question_points = $max[0][0] * $value['testcase_value'];
+                                $total += $question_points;
                                 ?>
                                 <li class="question">
                                     <div class="categories">
@@ -149,7 +161,7 @@ if (!hasValue($_SESSION['contest'])) {
                                                 <h4>Problem</h4>
                                             </div>
                                             <div class="category">
-                                                <h4>Total Points</h4>
+                                                <h4>Your Points</h4>
                                             </div>
                                         </div>
                                         <div class="categories-div">
@@ -157,7 +169,7 @@ if (!hasValue($_SESSION['contest'])) {
                                                 <h5><?php echo $value['name']; ?></h5>
                                             </div>
                                             <div class="category">
-                                                <h5><?php echo $max[0][0] * $value['testcase_value']; ?></h5>
+                                                <h5><?php echo $question_points; ?></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -168,11 +180,12 @@ if (!hasValue($_SESSION['contest'])) {
                                     </div>
                                 </li>
                                 <?php
-                                if ($points >= $value['unlock_value']) {
-                                    $j++;
-                                }
+                                $j++;
                             }?>
                         </ol>
+                        <script>
+                            $("#total").append("<?php echo $total; ?>");
+                        </script>
                     </div>
                 </div>
             </div>
@@ -236,57 +249,35 @@ if (!hasValue($_SESSION['contest'])) {
                         if (empty($max)) $max[0][0] = 0;
                         ?>
                         <li class="question">
-                            <?php
-                            if ($locked) {
-                            ?>
-                            <div class="locked">
-                                <?php
-                                }
-                                ?>
-                                <div class="categories">
-                                    <div><hr class="line question-line"></div>
-                                    <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
-                                        <div class="categories-div">
-                                            <div class="category">
-                                                <h4>Problem</h4>
-                                            </div>
-                                            <div class="category">
-                                                <h4>Unlock Value</h4>
-                                            </div>
-                                            <div class="category">
-                                                <h4>Total Points</h4>
-                                            </div>
+                            <div class="categories">
+                                <div><hr class="line question-line"></div>
+                                <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
+                                    <div class="categories-div">
+                                        <div class="category">
+                                            <h4>Problem</h4>
                                         </div>
-                                        <div class="categories-div">
-                                            <div class="category">
-                                                <h5><?php echo $value['name']; ?></h5>
-                                            </div>
-                                            <div class="category">
-                                                <h5><?php echo $value['unlock_value']; ?></h5>
-                                            </div>
-                                            <div class="category">
-                                                <h5><?php echo ($value['testcase_value'] * $value['testcases']);?></h5>
-                                            </div>
+                                        <div class="category">
+                                            <h4>Total Points</h4>
                                         </div>
-                                    </a>
-                                </div>
-                                <div class="progress-bar-div">
-                                    <div id="progress-wrapper<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
-                                        <div id="progress-bar<?php echo $j; ?>" class="progress-bar progress"></div>
                                     </div>
-                                </div>
-                                <?php
-                                if ($locked) {
-                                ?>
+                                    <div class="categories-div">
+                                        <div class="category">
+                                            <h5><?php echo $value['name']; ?></h5>
+                                        </div>
+                                        <div class="category">
+                                            <h5><?php echo ($value['testcase_value'] * $value['testcases']);?></h5>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        <?php
-                        }
-                        ?>
+                            <div class="progress-bar-div">
+                                <div id="progress-wrapper<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
+                                    <div id="progress-bar<?php echo $j; ?>" class="progress-bar progress"></div>
+                                </div>
+                            </div>
                         </li>
                         <?php
-                        if ($points >= $value['unlock_value']) {
-                            $j++;
-                        }
+                        $j++;
                     }?>
                 </ol>
             </ol>
