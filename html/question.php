@@ -234,9 +234,9 @@ $output = $sth->fetchAll();
                         <div class="form-header">
 
                             <img src="images/question-error1.jpg" alt="" height="368" width="299" style="padding-bottom:17px">
-                            <h2>You do not have access to this question.</h2>
+                            <h3>You do not have access to this question. How did you even get to this page?</h3>
                         </div>
-                        <p> Click <a href="home">here</a> to go back to the home screen!</p>
+                        <p>Click <a href="home">here</a> to go back to the home screen!</p>
                     </center>
                 </div>
 
