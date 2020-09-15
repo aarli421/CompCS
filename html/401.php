@@ -10,9 +10,9 @@ require '../templates/header.php';
                 <div class="form-panel one">
                     <center>
                         <div class="form-header">
-                            <img src="images/403.svg" alt="403" width="200" height="200" style="padding-bottom: 17px">
+                            <img src="images/401.svg" alt="401" width="200" height="200" style="padding-bottom: 17px">
                             <h1>403</h1>
-                            <h3>The page you are trying to access is forbidden.</h3>
+                            <h3>You do not have the credentials to access this page.</h3>
                         </div>
                         <p> Click <a href="index">here</a> to go back to the main page.</p>
                     </center>
