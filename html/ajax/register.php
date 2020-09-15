@@ -47,7 +47,6 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                 if ($pos !== false) {
                     $content = substr_replace($content, $verLink, $pos, strlen($search));
                 } else {
-                    echo "second";
                     die("Server error.");
                 }
 
