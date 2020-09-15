@@ -117,23 +117,23 @@ if (!hasValue($msg)) {
                     break;
                 }
             }
-            `rm -f {$uploadDir}/{$file}`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$file}"`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
     } else if ($fileType == "java") {
         try {
             full_run($questionDir, $questionName, $uploadDir, "javac $file", "java $javaName", 30, 4, $testAmount, $arr, $scriptsDirectory, $username);
-            `rm -f {$uploadDir}/{$file}`;
-            `rm -f {$uploadDir}/{$javaName}`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$file}"`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$javaName}"`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
     } else if ($fileType == "cpp") {
         try {
             full_run($questionDir, $questionName, $uploadDir, "g++ -o $cppName $file", "./$cppName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
-            `rm -f {$uploadDir}/{$file}`;
-            `rm -f {$uploadDir}/{$cppName}`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$file}"`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$cppName}"`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
