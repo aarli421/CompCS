@@ -33,14 +33,13 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                 $handle = fopen('../../private/keys.csv', 'r');
                 $data = fgetcsv($handle, 5, ',');
 
-                $content = file_get_contents("emails/register.html");
+                $content = file_get_contents("../emails/register.html");
                 $search = "{}";
 
                 $pos = strpos($content, $search);
                 if ($pos !== false) {
                     $content = substr_replace($content, $username, $pos, strlen($search));
                 } else {
-                    echo $content;
                     die("Server error.");
                 }
 
