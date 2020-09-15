@@ -11,7 +11,7 @@ require '../templates/header.php';
                     <center>
                         <div class="form-header">
                             <img src="images/401.svg" alt="401" width="200" height="200" style="padding-bottom: 17px">
-                            <h1>403</h1>
+                            <h1>401</h1>
                             <h3>You do not have the credentials to access this page.</h3>
                         </div>
                         <p> Click <a href="index">here</a> to go back to the main page.</p>
