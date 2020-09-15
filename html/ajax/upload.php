@@ -125,7 +125,7 @@ if (!hasValue($msg)) {
         try {
             full_run($questionDir, $questionName, $uploadDir, "javac $file", "java $javaName", 30, 4, $testAmount, $arr, $scriptsDirectory, $username);
             `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$file}"`;
-            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$javaName}"`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$javaName}.class"`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
