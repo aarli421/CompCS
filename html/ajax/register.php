@@ -43,7 +43,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                     die("Server error.");
                 }
 
-                $pos = strrpos($content, $search);
+                $pos = strpos($content, $search, $pos + 1);
                 if ($pos !== false) {
                     $content = substr_replace($content, $verLink, $pos, strlen($search));
                 } else {
