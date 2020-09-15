@@ -14,7 +14,7 @@ require '../templates/header.php';
                             <h1>403</h1>
                             <h3>The page you are trying to access is forbidden.</h3>
                         </div>
-                        <p> Click <a href="index"> here </a> to go back to the home screen.</p>
+                        <p> Click <a href="index">here</a> to go back to the home screen.</p>
                     </center>
                 </div>
             </div>

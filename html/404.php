@@ -14,7 +14,7 @@ require '../templates/header.php';
                             <h1>404</h1>
                             <h3>This is not the web page you are looking for.</h3>
                         </div>
-                        <p> Click <a href="index"> here </a> to go back to the main page.</p>
+                        <p> Click <a href="index">here</a> to go back to the main page.</p>
                     </center>
                 </div>
 

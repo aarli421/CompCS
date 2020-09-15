@@ -15,28 +15,28 @@ if (!isset($_SESSION['user'])) {
 }
 
 if (empty($passArr)) {
-    http_response_code(404);
-    exit();
-}
-
-if ($points[0]['points'] < $passArr[0]['unlock_value']) {
     redirect("home");
     exit();
 }
 
+$access = true;
+if ($points[0]['points'] < $passArr[0]['unlock_value']) {
+    $access = false;
+}
+
 if (hasValue($_SESSION['contest'])) {
     if ($passArr[0]['contest_id'] != 0 && $passArr[0]['contest_id'] != $_SESSION['contest']) {
-        redirect("home");
-        exit();
+        $access = false;
     }
 } else {
     if ($passArr[0]['contest_id'] != 0) {
-        redirect("home");
-        exit();
+        $access = false;
     }
 }
 
 require '../templates/header.php';
+
+if ($access) {
 
 $sth = $db->prepare("SELECT `output_json` FROM `grades` WHERE `user_id`=? AND `question_id`=? ORDER BY `grade_id` DESC LIMIT 1;");
 $sth->execute([$user_id, $passArr[0]['question_id']]);
@@ -222,5 +222,29 @@ $output = $sth->fetchAll();
 </script>
 <script src="js/question.js"></script>
 <?php
+} else {
+?>
+<div class="background">
+    <section data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="form">
+                <div class="form-toggle"></div>
+                <div class="form-panel one">
+                    <center>
+                        <div class="form-header">
+
+                            <img src="images/question-error1.jpg" alt="" height="368" width="299" style="padding-bottom:17px">
+                            <h2>You do not have access to this question.</h2>
+                        </div>
+                        <p> Click <a href="home">here</a> to go back to the home screen!</p>
+                    </center>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+<?php
+}
 require '../templates/footer.php';
 ?>
