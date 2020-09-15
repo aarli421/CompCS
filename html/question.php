@@ -14,23 +14,24 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-if (empty($passArr)) {
-    redirect("home");
-    exit();
-}
-
 $access = true;
-if ($points[0]['points'] < $passArr[0]['unlock_value']) {
+$found = true;
+if (empty($passArr)) {
     $access = false;
-}
-
-if (hasValue($_SESSION['contest'])) {
-    if ($passArr[0]['contest_id'] != 0 && $passArr[0]['contest_id'] != $_SESSION['contest']) {
+    $found = false;
+} else {
+    if ($points[0]['points'] < $passArr[0]['unlock_value']) {
         $access = false;
     }
-} else {
-    if ($passArr[0]['contest_id'] != 0) {
-        $access = false;
+
+    if (hasValue($_SESSION['contest'])) {
+        if ($passArr[0]['contest_id'] != 0 && $passArr[0]['contest_id'] != $_SESSION['contest']) {
+            $access = false;
+        }
+    } else {
+        if ($passArr[0]['contest_id'] != 0) {
+            $access = false;
+        }
     }
 }
 
@@ -223,23 +224,32 @@ $output = $sth->fetchAll();
 <script src="js/question.js"></script>
 <?php
 } else {
-?>
+    ?>
 <div class="background">
     <section data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="form">
-                <div class="form-toggle"></div>
+            <div class="form-toggle"></div>
                 <div class="form-panel one">
                     <center>
                         <div class="form-header">
-
-                            <img src="images/question-error1.jpg" alt="" height="368" width="299" style="padding-bottom:17px">
-                            <h3>You do not have access to this question. How did you even get to this page?</h3>
+<?php
+    if ($found) {
+?>
+        <img src="images/question-error1.jpg" alt="" height="368" width="299" style="padding-bottom:17px">
+        <h3>You do not have access to this question. How did you even get to this page?</h3>
+<?php
+    } else {
+?>
+        <img src="images/404.svg" alt="404" width="200" height="200" style="padding-bottom: 17px">
+        <h3>This question does not exist. How did you even get to this page?</h3>
+<?php
+    }
+?>
                         </div>
                         <p>Click <a href="home">here</a> to go back to the home screen!</p>
                     </center>
                 </div>
-
             </div>
         </div>
     </section>
