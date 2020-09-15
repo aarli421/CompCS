@@ -108,22 +108,32 @@ if (!hasValue($msg)) {
         try {
             for ($i = 1; $i <= $testAmount; $i++) {
                 $runResults = run($questionDir,  $uploadDir, $questionName, $i, "python3 $file", 4, $scriptsDirectory, $username);
+
+                $question = $uploadDir . '/' . $questionName;
+                `sudo $scriptsDirectory/executeAsUser.sh admin "rm -f {$question}.in"`;
+                `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$question}.out"`;
+
                 if (!parse_results($runResults, $i, $arr)) {
                     break;
                 }
             }
+            `rm -f {$uploadDir}/{$file}`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
     } else if ($fileType == "java") {
         try {
             full_run($questionDir, $questionName, $uploadDir, "javac $file", "java $javaName", 30, 4, $testAmount, $arr, $scriptsDirectory, $username);
+            `rm -f {$uploadDir}/{$file}`;
+            `rm -f {$uploadDir}/{$javaName}`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
     } else if ($fileType == "cpp") {
         try {
             full_run($questionDir, $questionName, $uploadDir, "g++ -o $cppName $file", "./$cppName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
+            `rm -f {$uploadDir}/{$file}`;
+            `rm -f {$uploadDir}/{$cppName}`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
@@ -224,6 +234,11 @@ function full_run($questionDir, $questionName, $uploadDir, $compCmd, $runCmd, $c
     } else {
         for ($i = 1; $i <= $testAmount; $i++) {
             $runResults = run($questionDir, $uploadDir, $questionName, $i, $runCmd, $runTimeout, $scriptsDirectory, $username);
+
+            $question = $uploadDir . '/' . $questionName;
+            `sudo $scriptsDirectory/executeAsUser.sh admin "rm -f {$question}.in"`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$question}.out"`;
+
             if (!parse_results($runResults, $i, $arr)) {
                 break;
             }
