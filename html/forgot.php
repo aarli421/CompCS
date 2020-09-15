@@ -123,6 +123,8 @@ if (hasValue($_POST['forgotEmail'])) {
         $pos = strpos($content, $search);
         if ($pos !== false) {
             $content = substr_replace($content, $forgotLink, $pos, strlen($search));
+        } else {
+            die("Server error.");
         }
 
         $email = new \SendGrid\Mail\Mail();
