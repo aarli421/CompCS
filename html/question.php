@@ -130,7 +130,7 @@ $output = $sth->fetchAll();
         <h1 class="problemtitle" style="margin-bottom: 3px;">Problem: <?php echo $_GET['questionName']; ?></h1>
 
         <?php
-        if (hasValue($_SESSION['contest'])) {
+        if (hasValue($_SESSION['contest']) && $passArr[0]['contest_id'] == $_SESSION['contest']) {
             $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
             $sth->execute([$user_id, $_SESSION['contest']]);
             $try = $sth->fetchAll();
