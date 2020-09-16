@@ -79,14 +79,13 @@ $ajaxDir = '../../ajax/';
 $name = explode(".",  basename($_FILES['fileInput']['name']));
 $fileType = $name[1];
 
-$fileName = $questionName . '.' . $fileType;
+$fileName = $name[0] . '.' . $fileType;
 $uploadFile = $uploadDir . "/" . $fileName;
 $tempFile = $_FILES['fileInput']['tmp_name'];
 
-$file = $fileName;
-$javaName = $questionName;
-$cppName = $questionName . ".execpp";
-$cName = $questionName . ".exec";
+$javaName = $name[0];
+$cppName = $name[0] . ".execpp";
+$cName = $name[0] . ".exec";
 
 $date = getCurrDate();
 $fileVal = `cat $uploadFile`;
@@ -107,7 +106,7 @@ if (!hasValue($msg)) {
     if ($fileType == "py") {
         try {
             for ($i = 1; $i <= $testAmount; $i++) {
-                $runResults = run($questionDir,  $uploadDir, $questionName, $i, "python3 $file", 4, $scriptsDirectory, $username);
+                $runResults = run($questionDir,  $uploadDir, $questionName, $i, "python3 $fileName", 4, $scriptsDirectory, $username);
 
                 $question = $uploadDir . '/' . $questionName;
                 `sudo $scriptsDirectory/executeAsUser.sh admin "rm -f {$question}.in"`;
@@ -117,29 +116,29 @@ if (!hasValue($msg)) {
                     break;
                 }
             }
-            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$file}"`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$fileName}"`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
     } else if ($fileType == "java") {
         try {
-            full_run($questionDir, $questionName, $uploadDir, "javac $file", "java $javaName", 30, 4, $testAmount, $arr, $scriptsDirectory, $username);
-            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$file}"`;
+            full_run($questionDir, $questionName, $uploadDir, "javac $fileName", "java $javaName", 30, 4, $testAmount, $arr, $scriptsDirectory, $username);
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$fileName}"`;
             `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$javaName}.class"`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
     } else if ($fileType == "cpp") {
         try {
-            full_run($questionDir, $questionName, $uploadDir, "g++ -o $cppName $file", "./$cppName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
-            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$file}"`;
+            full_run($questionDir, $questionName, $uploadDir, "g++ -o $cppName $fileName", "./$cppName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$fileName}"`;
             `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$uploadDir}/{$cppName}"`;
         } catch (Exception $e) {
             $arr['error'] = $e;
         }
 //    } else if ($fileType == "c") {
 //        try {
-//            full_run($questionDir, $questionName, $uploadDir, "gcc -o $cName $file", "$cName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
+//            full_run($questionDir, $questionName, $uploadDir, "gcc -o $cName $fileName", "$cName", 30, 2, $testAmount, $arr, $scriptsDirectory, $username);
 //        } catch (Exception $e) {
 //            $arr['error'] = $e;
 //        }
