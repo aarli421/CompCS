@@ -20,7 +20,7 @@ if (empty($passArr)) {
     $access = false;
     $found = false;
 } else {
-    if ($points[0]['points'] < $passArr[0]['unlock_value']) {
+    if ($points[0]['points'] < $passArr[0]['unlock_value'] && !hasValue($_SESSION['contest'])) {
         $access = false;
     }
 
