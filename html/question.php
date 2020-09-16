@@ -20,8 +20,14 @@ if (empty($passArr)) {
     $access = false;
     $found = false;
 } else {
-    if ($points[0]['points'] < $passArr[0]['unlock_value'] && !hasValue($_SESSION['contest'])) {
-        $access = false;
+    if ($points[0]['points'] < $passArr[0]['unlock_value']) {
+        if (hasValue($_SESSION['contest'])) {
+            if ($passArr[0]['contest_id'] != $_SESSION['contest']) {
+                $access = false;
+            }
+        } else {
+            $access = false;
+        }
     }
 
     if (hasValue($_SESSION['contest'])) {
