@@ -153,7 +153,7 @@ require '../templates/header.php';
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="0.8s">
                     <img src="images/team-image4.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
@@ -171,7 +171,7 @@ require '../templates/header.php';
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="1.0s">
                     <img src="images/team-image6.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
@@ -187,7 +187,7 @@ require '../templates/header.php';
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="0.8s">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="1.2s">
                     <img src="images/team-image6.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
