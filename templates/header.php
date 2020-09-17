@@ -1,8 +1,11 @@
+<?php
+$fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-    <title>CCC</title>
+    <title>CCC | <?php echo ucfirst($fileName); ?></title>
     <link rel="shortcut icon" href="images/ccc-logo.svg" type="image/svg+xml">
 
     <meta charset="UTF-8">
@@ -93,7 +96,7 @@
                 ?>
                 <li><a href="curriculum" class="smoothScroll" style="font-size: 18px">Curriculum</a></li>
                 <?php
-                    if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == "home") {
+                    if ($fileName == "home") {
                         ?>
                         <li>
                             <a class="dropbtn smoothScroll" onclick="myFunction()" style="font-size: 18px">Divisions</a>
