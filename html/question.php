@@ -110,6 +110,7 @@ $output = $sth->fetchAll();
                 data: formData,
                 success: function(data) {
                     stopUpload();
+                    console.log(data);
                     parseJSON(data);
                 },
                 error: function(data) {

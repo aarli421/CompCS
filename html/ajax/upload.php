@@ -63,8 +63,6 @@ if (hasValue($_SESSION['contest'])) {
     }
 }
 
-
-
 if ($err) {
     echo json_encode($arr);
     exit();
