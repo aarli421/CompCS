@@ -17,7 +17,7 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
         <?php
             } else if ($fileName == "home") {
         ?>
-                | <?php echo $_SERVER['user']; ?>
+                | <?php echo $_SESSION['user']; ?>
         <?php
             }
         }
