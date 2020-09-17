@@ -41,7 +41,7 @@ function hasValue($value) {
 
 $db = setupDb();
 if (!$db) {
-    echo "Database could not load";
+    die("Database could not load");
 }
 
 $sth = $db->prepare("SELECT `user_id` FROM users WHERE `username`=?");
