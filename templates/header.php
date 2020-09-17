@@ -5,7 +5,24 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
 <html lang="en">
 <head>
 
-    <title>CCC | <?php echo ucfirst($fileName); ?></title>
+    <title>CCC
+        <?php
+        if ($fileName != "index") {
+        ?>
+            | <?php echo ucwords($fileName); ?>
+        <?php
+            if ($fileName == "question") {
+        ?>
+                | <?php echo $_GET['questionName']; ?>
+        <?php
+            } else if ($fileName == "home") {
+        ?>
+                | <?php echo $_SERVER['user']; ?>
+        <?php
+            }
+        }
+        ?>
+    </title>
     <link rel="shortcut icon" href="images/ccc-logo.svg" type="image/svg+xml">
 
     <meta charset="UTF-8">
