@@ -161,14 +161,14 @@ require '../templates/header.php';
 
     // SIGNATURE PROGRESS
     function moveProgressBar() {
-        console.log("moveProgressBar");
+        // console.log("moveProgressBar");
         let i;
         for (i = 0; i < <?php echo $j; ?>; i++) {
             var getPercent = ($('#progress-wrapper' + i.toString()).data('progress-percent') / 100);
             var getProgressWrapWidth = $('#progress-wrapper' + i.toString()).width();
 
-            console.log(i);
-            console.log(getPercent);
+            // console.log(i);
+            // console.log(getPercent);
 
             var progressTotal = getPercent * getProgressWrapWidth;
             var animationLength = 1000;

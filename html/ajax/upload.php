@@ -169,10 +169,12 @@ if (!hasValue($arr['error']) && hasValue($date)) {
 
     print_r($sth);
 
-    $id = $sth->lastInsertId();
+    $sth = $db->prepare("SELECT LAST_INSERT_ID();");
+    $sth->execute();
+    $id = $sth->fetchAll();
 
     $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], $id, json_encode($arr), $arr['correct_cases'], $date]);
+    $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $date]);
 
 //    $sth = $db->prepare("COMMIT;");
 //    $sth->execute();
