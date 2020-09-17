@@ -25,8 +25,15 @@ if (empty($question)) {
 }
 
 if ($user[0]['points'] < $question[0]['unlock_value']) {
-    $arr['error'] = "You do not have enough points.";
-    $err = true;
+    if (hasValue($_SESSION['contest'])) {
+        if ($question[0]['contest_id'] != $_SESSION['contest']) {
+            $arr['error'] = "You are not part of this contest.";
+            $err = true;
+        }
+    } else {
+        $arr['error'] = "You do not have enough points.";
+        $err = true;
+    }
 }
 
 if (hasValue($_SESSION['contest'])) {
