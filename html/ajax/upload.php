@@ -88,10 +88,11 @@ $cppName = $name[0] . ".execpp";
 $cName = $name[0] . ".exec";
 
 $date = getCurrDate();
-$fileVal = `cat $uploadFile`;
 
 $arr['correct_cases'] = 0;
 $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
+
+$fileVal = `cat $uploadFile`;
 
 if (!hasValue($msg)) {
 
