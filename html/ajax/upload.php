@@ -30,21 +30,23 @@ if ($user[0]['points'] < $question[0]['unlock_value']) {
 }
 
 if (hasValue($_SESSION['contest'])) {
-    if ($passArr[0]['contest_id'] != 0 && $passArr[0]['contest_id'] != $_SESSION['contest']) {
+    if ($question[0]['contest_id'] != 0 && $question[0]['contest_id'] != $_SESSION['contest']) {
         $arr['error'] = "You are not part of this question's contest.";
         $err = true;
     }
 
-    $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
-    $sth->execute([$user_id, $_SESSION['contest']]);
-    $try = $sth->fetchAll();
+    if ($question[0]['contest_id'] == $_SESSION['contest']) {
+        $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
+        $sth->execute([$user_id, $_SESSION['contest']]);
+        $try = $sth->fetchAll();
 
-    $end = new DateTime($try[0]['end']);
-    $curr = new DateTime(getCurrDate());
+        $end = new DateTime($try[0]['end']);
+        $curr = new DateTime(getCurrDate());
 
-    if ($curr >= $end) {
-        $arr['error'] = "Your contest has already ended. Please refresh your page or go back to contest page.";
-        $err = true;
+        if ($curr >= $end) {
+            $arr['error'] = "Your contest has already ended. Please refresh your page or go back to contest page.";
+            $err = true;
+        }
     }
 //    } else {
 //        $sth = $db->prepare("SELECT `start`, `end` FROM tries WHERE `user_id`=? AND `contest_id`=?");
