@@ -209,14 +209,15 @@ require '../templates/header.php';
 <section id="usage" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-12 col-lg-12">
-                <div class="about-info">
-                    <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                        <h2>How to use the website</h2>
-                    </div>
+            <div class="about-info">
+                <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                    <h2>How to use the website</h2>
+                </div>
 
-                    <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <iframe allowfullscreen="" allow="autoplay; encrypted-media" frameborder="0" src="https://www.youtube.com/embed/nsxNZFj6sTk" height="630" width="1120"></iframe>
+                <div class="wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="resp-container">
+                        <iframe class="resp-iframe" src="https://www.youtube.com/embed/nsxNZFj6sTk" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
+                    </div>
 <!--                        <p>After registering for an account, go to your email and confirm your account. (Make sure to read all the terms of service)</p>-->
 <!--                        <p>When you log into your account, you will arrive at the homepage. You can see your current points at the top.-->
 <!--                            Each problem on the website has an unlock value and a total point value. </p>-->
@@ -224,7 +225,6 @@ require '../templates/header.php';
 <!--                            our system will automatically check multiple test cases to ensure that your code satisfies all test cases. The bar above the problem-->
 <!--                            will show you the number of test cases you have completed as well as the ones you have not. You can continue uploading code until all-->
 <!--                            test cases satisfy your code. For each test case completed you get a percentage of the total points the question is worth.</p>-->
-                    </div>
                 </div>
             </div>
         </div>

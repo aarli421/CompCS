@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/tos.css">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <!-- SCRIPTS -->
     <script src="js/jquery.js"></script>
