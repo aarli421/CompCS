@@ -150,6 +150,8 @@ require '../templates/header.php';
             }
         }
     }
+
+    console.log("<?php echo $_SESSION['user'] ?>");
 </script>
 <script>
     // on page load...
