@@ -42,7 +42,7 @@ function hasValue($value) {
 function postDiscord($msg) {
     $url = "https://discordapp.com/api/webhooks/756314285231046766/axZYJ85XJ6-goEPa3pgAsxDzqpV2FAEDc1yd8m_i4OctUCnjLRJRHIwMfYe9g0AH5-Ca";
     $data = array(
-        'username' => 'Debugging',
+        'username' => 'Logs',
         'content' => $msg
     );
 
