@@ -55,7 +55,7 @@ function postDiscord($link, $msg) {
     );
 
     $context  = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
+    return file_get_contents($url, false, $context);
 }
 
 $db = setupDb();

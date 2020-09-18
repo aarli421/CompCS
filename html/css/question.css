@@ -5,6 +5,11 @@
     font-family: monospace;
 }
 
+#dialogDiv {
+    white-space: pre-line;
+    font-family: monospace;
+}
+
 .square{
 	background:#00C03F;
     width: 20px;
