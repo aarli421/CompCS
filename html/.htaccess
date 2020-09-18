@@ -15,8 +15,20 @@ AuthName "Secret Files"
 AuthType Basic
 AuthUserFile /var/www/private/.htpasswd
 Require valid-user
+
+#php_value upload_max_filesize 10M
+#php_value post_max_size 10M
+#php_value max_input_time 500
+#php_value max_execution_time 500
 </Files>
 
+<Files contact.php>
+AuthName "Secret Files"
+AuthType Basic
+AuthUserFile /var/www/private/.htpasswd
+Require valid-user
+</Files>
 
-# set max post size
-php_value post_max_size 100M
+ErrorDocument 401 /401.php
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php

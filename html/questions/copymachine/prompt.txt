@@ -7,12 +7,12 @@ SCORING:
     •Test cases 1 - 10 statisfy N ≤ 20 and X ≤ 50.
     •Test cases 11 - 50 will satisfy no additional constraints
 
-INPUT FORMAT (file copy.in):
+INPUT FORMAT (file copymachine.in):
 
 The first line of the input file contains one positive integer N. The next N lines will each contain the integers
 with a value of X.
 
-OUTPUT FORMAT (file copy.out):
+OUTPUT FORMAT (file copymachine.out):
 
 Print out N lines of integers.
 

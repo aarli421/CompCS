@@ -1,6 +1,6 @@
 Farmer John gained an interest in spirals ever since he discovered the fibonacci numbers made a spiral. He now sees spirals in every object, especially in square matrices. However, when the square matrices get too big, it becomes hard for him to picture the spirals.
 
-Help Farmer John picture a spiral for an N by N matrix (1<=N<=1000) where each element, X_ij (1<=X<=1000000), is printed once in as you spirally traverse the matrix.
+Help Farmer John picture a spiral for an N by N matrix (1<=N<=500) where each element, X_ij (1<=X<=1000000), is printed once as you spirally traverse the matrix.
 
 Farmer John likes his spirals to spiral in this pattern: top left -> top right -> bottom right -> bottom left -> top left...
 

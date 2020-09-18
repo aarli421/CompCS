@@ -1,0 +1,29 @@
+Farmer John has a circular bracelet with N (1<=N<=100) different grass seeds on it (it's a flex for farmers).
+
+Each grass seed is able to be sold for a different value X (-10^6<=X<=10^6) at the nearby market. However, because some seeds have been on his necklace for a long time, Farmer John has to actually pay money to get some seeds off of his hands.
+
+Farmer John, being lazy, just wants to take a continuous section from his circular bracelet and bring it to the market to sell. Assuming that he is able to sell all of the seeds he takes to the market, find the highest amount of money he can gain from selling all the seeds.
+
+INPUT FORMAT (file circlesum.in)
+
+The first line contains an integer N (0<=N<=100). The next N lines contains X_i where X_i corresponds to the ith bead going clockwise around a certain bead in the necklace.
+
+OUTPUT FORMAT (file circlesum.out)
+
+Output the largest contiguous circular sum for Farmer John.
+
+SAMPLE INPUT:
+
+4
+10
+-20
+1
+4
+
+SAMPLE OUTPUT:
+
+15
+
+The biggest sum would be if Farmer John takes all beads from the third to the first.
+
+Problem Credits: Aaron Li

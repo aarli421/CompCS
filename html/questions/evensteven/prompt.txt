@@ -1,0 +1,27 @@
+Even Steven, Enginner John's cousin, is over at EJ's house for dinner today. During dinner, ES asked EJ to help him solve a problem. The problem contained a single integer N (1≤N≤10^5). ES wants EJ to tell him all the even numbers between 1 - N. However, like always, EJ is too lazy and would like to use his handy-dandy computer to do the problem.
+
+Help EJ write a program to print all even numbers from 1 - N;
+
+INPUT FORMAT (file evensteven.in):
+
+The first line of the input file contains one positive integer N.
+
+OUTPUT FORMAT (file evensteven.out):
+
+Print out all even numbers from 1 - N
+
+SAMPLE INPUT:
+
+10
+
+SAMPLE OUTPUT:
+
+2
+4
+6
+8
+10
+
+2, 4, 6, 8, and 10 are all even numbers between 1 - 10.
+
+Problem credits: Andrew Zheng

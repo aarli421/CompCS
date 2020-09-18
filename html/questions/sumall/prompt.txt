@@ -1,0 +1,26 @@
+Engineer John needs to practice his addition skills, but he thinks he has better things to do, such as watching Farmer John's cows. For his addition practice, he needs to take N numbers (1≤N≤40) with values of X (1≤X≤10^9) and sum them up. However, engineer John is lazy and does not
+want to add them by hand. Instead, John wants to use his handy-dandy computer to help him do the work.
+
+Please help John write a program to print out the sum of N numbers each with a value of X.
+
+INPUT FORMAT (file sumall.in):
+
+The first line of the input file contains one positive integer N. The next N lines will each contain the integers
+with a value of X.
+
+OUTPUT FORMAT (file sumall.out):
+
+Print out the sum of all N numbers.
+
+SAMPLE INPUT:
+3
+1
+2
+3
+
+SAMPLE OUTPUT:
+6
+
+The answer is 6 because 1 + 2 + 3 = 6.
+
+Problem credits: Andrew Zheng
