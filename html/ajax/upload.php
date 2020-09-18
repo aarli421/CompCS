@@ -169,11 +169,11 @@ if (!hasValue($arr['error']) && hasValue($date)) {
 
 //    print_r($max);
 
-    $sth = $db->prepare("START TRANSACTION;");
-    $sth->execute();
+//    $sth = $db->prepare("START TRANSACTION;");
+//    $sth->execute();
 
-//    $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
-//    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
+    $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
+    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
 
 //    print_r($sth);
 
