@@ -172,8 +172,8 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
 
-    $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
+//    $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
+//    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
 
 //    print_r($sth);
 
@@ -184,8 +184,8 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $date]);
 
-    $sth = $db->prepare("COMMIT;");
-    $sth->execute();
+//    $sth = $db->prepare("COMMIT;");
+//    $sth->execute();
 
     $points = 0;
     if (empty($max)) {
@@ -196,14 +196,14 @@ if (!hasValue($arr['error']) && hasValue($date)) {
         }
     }
 
-    $sth = $db->prepare("START TRANSACTION;");
-    $sth->execute();
+//    $sth = $db->prepare("START TRANSACTION;");
+//    $sth->execute();
 
     $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
     $sth->execute([$points, $user_id]);
 
-    $sth = $db->prepare("COMMIT;");
-    $sth->execute();
+//    $sth = $db->prepare("COMMIT;");
+//    $sth->execute();
 }
 
 function parse_results($runResults, $i, &$arr) {

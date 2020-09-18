@@ -152,6 +152,7 @@ require '../templates/header.php';
     }
 
     console.log("<?php echo $_SESSION['user'] ?>");
+    console.log("<?php echo $user_id ?>");
 </script>
 <script>
     // on page load...
