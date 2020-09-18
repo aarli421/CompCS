@@ -101,14 +101,8 @@ $fileVal = `cat $uploadFile`;
 
 if (!hasValue($msg)) {
 
-//    if (hasValue($msg)) {
-//        $arr['error'] = "Could not upload file. Server error.";
-//        die();
-//    }
-
     $testAmount = $question[0]['testcases'];
 
-//    chdir($uploadDir);
     if ($fileType == "py") {
         try {
             for ($i = 1; $i <= $testAmount; $i++) {
@@ -151,9 +145,6 @@ if (!hasValue($msg)) {
     } else {
         $arr['error'] = "Only Python3, Java, and C++ supported!";
     }
-
-//    chdir($ajaxDir);
-
 } else {
     $arr['error'] = "Could not upload file. Server error.";
 }
@@ -211,7 +202,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
     $sth->execute([$points, $user_id]);
 
-    if ($points != 0) postDiscord($_SESSION['user'] . " earned " . $points . " points on " . $questionName .  ".");
+    if ($points != 0) postDiscord($_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
 
     $sth = $db->prepare("COMMIT;");
     $sth->execute();
