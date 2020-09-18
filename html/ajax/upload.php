@@ -178,7 +178,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
 
-    postDiscord($_SESSION['user'] . " - Insert Submission- " . json_encode($sth->errorInfo()));
+    postDiscord($_SESSION['user'] . " - Insert Submission- " . json_encode($sth->errorInfo()) . " | " . json_encode($question));
 
 //    print_r($sth);
 
@@ -189,7 +189,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $date]);
 
-    postDiscord($_SESSION['user'] . " - Insert Grades- " . json_encode($sth->errorInfo()));
+    postDiscord($_SESSION['user'] . " - Insert Grades- " . json_encode($sth->errorInfo()) . " | " . json_encode($question));
 
     $sth = $db->prepare("COMMIT;");
     $sth->execute();
