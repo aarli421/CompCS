@@ -160,7 +160,7 @@ if (!hasValue($msg)) {
 
 echo json_encode($arr);
 
-file_put_contents("test.txt",$_SESSION['user'] . "Uploaded");
+file_put_contents("test.txt",$_SESSION['user'] . "Echoed");
 
 $date = getCurrDate();
 if (!hasValue($arr['error']) && hasValue($date)) {
