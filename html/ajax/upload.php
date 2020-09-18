@@ -160,6 +160,8 @@ if (!hasValue($msg)) {
 
 echo json_encode($arr);
 
+file_put_contents("test.txt",$_SESSION['user'] . "Uploaded");
+
 $date = getCurrDate();
 if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
@@ -168,8 +170,10 @@ if (!hasValue($arr['error']) && hasValue($date)) {
 
 //    print_r($max);
 
-//    $sth = $db->prepare("START TRANSACTION;");
-//    $sth->execute();
+    file_put_contents("test.txt",$_SESSION['user'] . "Uploaded");
+
+    $sth = $db->prepare("START TRANSACTION;");
+    $sth->execute();
 
     $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
@@ -183,8 +187,8 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $date]);
 
-//    $sth = $db->prepare("COMMIT;");
-//    $sth->execute();
+    $sth = $db->prepare("COMMIT;");
+    $sth->execute();
 
     $points = 0;
     if (empty($max)) {
@@ -195,14 +199,14 @@ if (!hasValue($arr['error']) && hasValue($date)) {
         }
     }
 
-//    $sth = $db->prepare("START TRANSACTION;");
-//    $sth->execute();
+    $sth = $db->prepare("START TRANSACTION;");
+    $sth->execute();
 
     $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
     $sth->execute([$points, $user_id]);
 
-//    $sth = $db->prepare("COMMIT;");
-//    $sth->execute();
+    $sth = $db->prepare("COMMIT;");
+    $sth->execute();
 }
 
 function parse_results($runResults, $i, &$arr) {
