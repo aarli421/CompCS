@@ -94,8 +94,6 @@ $javaName = $name[0];
 $cppName = $name[0] . ".execpp";
 $cName = $name[0] . ".exec";
 
-$date = getCurrDate();
-
 $arr['correct_cases'] = 0;
 $msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
 
@@ -162,6 +160,7 @@ if (!hasValue($msg)) {
 
 echo json_encode($arr);
 
+$date = getCurrDate();
 if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
     $sth->execute([$user_id, $question[0]['question_id']]);
