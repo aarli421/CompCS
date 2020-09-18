@@ -114,9 +114,9 @@ if (!hasValue($msg)) {
             for ($i = 1; $i <= $testAmount; $i++) {
                 $runResults = run($questionDir,  $uploadDir, $questionName, $i, "python3 $fileName", 4, $scriptsDirectory, $username);
 
-                $question = $uploadDir . '/' . $questionName;
-                `sudo $scriptsDirectory/executeAsUser.sh admin "rm -f {$question}.in"`;
-                `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$question}.out"`;
+                $questionComb = $uploadDir . '/' . $questionName;
+                `sudo $scriptsDirectory/executeAsUser.sh admin "rm -f {$questionComb}.in"`;
+                `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$questionComb}.out"`;
 
                 if (!parse_results($runResults, $i, $arr)) {
                     break;
@@ -257,9 +257,9 @@ function full_run($questionDir, $questionName, $uploadDir, $compCmd, $runCmd, $c
         for ($i = 1; $i <= $testAmount; $i++) {
             $runResults = run($questionDir, $uploadDir, $questionName, $i, $runCmd, $runTimeout, $scriptsDirectory, $username);
 
-            $question = $uploadDir . '/' . $questionName;
-            `sudo $scriptsDirectory/executeAsUser.sh admin "rm -f {$question}.in"`;
-            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$question}.out"`;
+            $questionComb = $uploadDir . '/' . $questionName;
+            `sudo $scriptsDirectory/executeAsUser.sh admin "rm -f {$questionComb}.in"`;
+            `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$questionComb}.out"`;
 
             if (!parse_results($runResults, $i, $arr)) {
                 break;
@@ -269,15 +269,15 @@ function full_run($questionDir, $questionName, $uploadDir, $compCmd, $runCmd, $c
 }
 
 function run($questionDir, $uploadDir, $questionName, $i, $cmd, $timeout, $scriptsDirectory, $username) {
-    $question = $uploadDir . '/' . $questionName;
+    $questionComb = $uploadDir . '/' . $questionName;
 
-    $output = `sudo $scriptsDirectory/executeAsUser.sh admin "cp -f {$questionDir}/{$i}.in {$question}.in"`;
+    $output = `sudo $scriptsDirectory/executeAsUser.sh admin "cp -f {$questionDir}/{$i}.in {$questionComb}.in"`;
     if (!empty($output)) {
         $arr['error'] = array("message" => "Server error.");
         die();
     }
 
-    `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$question}.out"`;
+    `sudo $scriptsDirectory/executeAsUser.sh $username "rm -f {$questionComb}.out"`;
 
     $result = exec_timeout($cmd, $timeout, $uploadDir, $scriptsDirectory, $username);
 
@@ -289,18 +289,18 @@ function run($questionDir, $uploadDir, $questionName, $i, $cmd, $timeout, $scrip
         }
     }
 
-    $contents = `cat {$question}.out`;
+    $contents = `cat {$questionComb}.out`;
 
-    $output = `test -f {$question}.out || echo "does not exist"`;
+    $output = `test -f {$questionComb}.out || echo "does not exist"`;
     if (str_replace(array("\n", "\r"), '', $output) == 'does not exist') {
         return array('symbol' => 'M', 'stdout' => $result['output']);
     }
 
-    $output = `diff -w {$questionDir}/{$i}.out {$question}.out && echo "alike"`;
+    $output = `diff -w {$questionDir}/{$i}.out {$questionComb}.out && echo "alike"`;
     if (str_replace(array("\n", "\r"), '', $output) == 'alike') {
         return array("symbol" => '*', 'time' => $result['time']);
     } else {
-        $output = `[ -s {$question}.out ] || echo "empty"`;
+        $output = `[ -s {$questionComb}.out ] || echo "empty"`;
         if (str_replace(array("\n", "\r"), '', $output) == 'empty') {
             if ($i == 1 && $result['output'] != '') {
                 return array('symbol' => 'E', 'stdout' => $result['output']);
