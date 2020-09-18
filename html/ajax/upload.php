@@ -211,7 +211,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
     $sth->execute([$points, $user_id]);
 
-//    postDiscord($_SESSION['user'] . " - Added Points - " . json_encode($sth->errorInfo()));
+    postDiscord($_SESSION['user'] . " earned " . $points . " points on " . $questionName .  ".");
 
     $sth = $db->prepare("COMMIT;");
     $sth->execute();
