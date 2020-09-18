@@ -39,6 +39,25 @@ function hasValue($value) {
     return isset($value) && !empty($value);
 }
 
+function postDiscord($msg) {
+    $url = "https://discordapp.com/api/webhooks/756308730584498237/7LhT7u1soeXARQxtWJj6Y1cAaF-W4xyzr97RLaUxeO_7umg6P1X_sfDjb7Dl1dQapT95";
+    $data = array(
+        'username' => 'Debugging',
+        'content' => $msg
+    );
+
+    $options = array(
+        'http' => array(
+            'method'  => 'POST',
+            'content' => json_encode($data),
+            'header' =>  "Content-Type: application/json\r\n"
+        )
+    );
+
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+}
+
 $db = setupDb();
 if (!$db) {
     die("Database could not load");

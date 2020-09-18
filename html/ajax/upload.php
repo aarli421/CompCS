@@ -160,7 +160,7 @@ if (!hasValue($msg)) {
 
 echo json_encode($arr);
 
-file_put_contents("test.txt",$_SESSION['user'] . "Echoed");
+postDiscord($_SESSION['user'] . " - Echoed output");
 
 $date = getCurrDate();
 if (!hasValue($arr['error']) && hasValue($date)) {
@@ -170,7 +170,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
 
 //    print_r($max);
 
-    file_put_contents("test.txt",$_SESSION['user'] . "Uploaded");
+    postDiscord($_SESSION['user'] . " - Adding submissions");
 
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
