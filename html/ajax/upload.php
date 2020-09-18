@@ -178,7 +178,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
     $sth->execute([$points, $user_id]);
 
-    if ($points != 0) postDiscord($_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
+    if ($points != 0) postDiscord($csFirstDiscord, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
 
     $sth = $db->prepare("COMMIT;");
     $sth->execute();
