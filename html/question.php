@@ -55,6 +55,7 @@ $output = $sth->fetchAll();
     function startUpload(){
         $(function() {
             $("#prompt-center").css("text-align", "center");
+            $("#dialogDiv").css("padding", "");
             $('#dialogDiv').html("<div id=\"upload_process\" class=\"loader triangle\"> <svg viewBox=\"0 0 86 80\"><polygon points=\"43 8 79 72 7 72\"></polygon></svg></div>");
         });
     }
@@ -62,6 +63,7 @@ $output = $sth->fetchAll();
     function stopUpload(){
         $(function() {
             $('#dialogDiv').html("");
+            $("#dialogDiv").css("padding", "");
             $("#prompt-center").css("text-align", "center");
         });
     }
@@ -215,18 +217,22 @@ $output = $sth->fetchAll();
     }
 </script>
 <script>
+    $(function () {
+        $(window).load(function() {
     <?php
     if (!empty($output)) {
     ?>
-    $(function () {
-        $(window).load(function() {
             stopUpload();
             parseJSON(JSON.parse('<?php echo $output[0]['output_json']; ?>'));
-        });
-    });
+    <?php
+    } else {
+    ?>
+            $("#dialogDiv").css("padding", 0);
     <?php
     }
     ?>
+        });
+    });
 </script>
 <script src="js/question.js"></script>
 <?php
