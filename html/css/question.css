@@ -8,6 +8,7 @@
 #dialogDiv {
     white-space: pre-line;
     font-family: monospace;
+    padding: 0;
 }
 
 .square{
