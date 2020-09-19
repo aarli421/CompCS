@@ -131,16 +131,16 @@ echo json_encode($arr);
 
 $date = getCurrDate();
 if (!hasValue($arr['error']) && hasValue($date)) {
-    $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
-    $sth->execute([$user_id, $question[0]['question_id']]);
-    $max = $sth->fetchAll();
-
 //    print_r($max);
 
 //    postDiscord($_SESSION['user'] . " - Adding submissions");
 
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
+
+    $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
+    $sth->execute([$user_id, $question[0]['question_id']]);
+    $max = $sth->fetchAll();
 
     $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
