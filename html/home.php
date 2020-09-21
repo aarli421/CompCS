@@ -42,7 +42,7 @@ require '../templates/header.php';
                 $upper = $divisions[$i]['upper'];
                 $bonus = $divisions[$i]['bonus'];
 
-                $name = $divisions[$i]['division_name'];
+                $name = $divisions[$i]['name'];
                 $name_id = strtolower(preg_replace('/\s*/', '', $name));
 
                 if ($bonus == 1) $upper = $points;

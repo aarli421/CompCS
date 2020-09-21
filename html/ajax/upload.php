@@ -172,16 +172,30 @@ if (!hasValue($arr['error']) && hasValue($date)) {
         }
     }
 
+    $sth = $db->prepare("SELECT `upper` FROM `divisions` WHERE `bonus`=0;");
+    $sth->execute();
+    $divisions = $sth->fetchAll();
+
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
 
     $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
     $sth->execute([$points, $user_id]);
 
-    if ($points != 0) postDiscord($csFirstDiscord, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
-
     $sth = $db->prepare("COMMIT;");
     $sth->execute();
+
+    if ($points != 0) postDiscord($csFirstDiscord, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
+
+    $sth = $db->prepare("SELECT `name`, `upper` FROM `divisions` WHERE `bonus`=0;");
+    $sth->execute();
+    $divisions = $sth->fetchAll();
+
+    foreach ($divisions as $key => $value) {
+        if ($user[0]['points'] <= $value['upper'] && $user[0]['points'] + $points > $value['upper']) {
+            postDiscord($csFirstDiscord, $_SESSION['user'] . " passed " . $value['name'] . ". :partying_face: :confetti_ball:");
+        }
+    }
 
 //    postDiscord($_SESSION['user'] . " - Commit Points - " . json_encode($sth->errorInfo()));
 }
