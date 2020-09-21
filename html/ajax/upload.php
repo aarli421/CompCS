@@ -193,7 +193,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
 
     foreach ($divisions as $key => $value) {
         if ($user[0]['points'] <= $value['upper'] && $user[0]['points'] + $points > $value['upper']) {
-            postDiscord($csFirstDiscord, $_SESSION['user'] . " passed " . $value['name'] . ". :partying_face: :confetti_ball:");
+            postDiscord($csFirstDiscord, ":partying_face: :confetti_ball:" . $_SESSION['user'] . " passed " . $value['name'] . "! :partying_face: :confetti_ball:");
         }
     }
 
