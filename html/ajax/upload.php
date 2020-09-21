@@ -135,6 +135,18 @@ if (!hasValue($arr['error']) && hasValue($date)) {
 
 //    postDiscord($_SESSION['user'] . " - Adding submissions");
 
+    $language = "error";
+
+    if ($fileType == "py") {
+        $language = "python";
+    } else if ($fileType == "java") {
+        $language = "java";
+    } else if ($fileType == "cpp") {
+        $language = "c++";
+    }
+
+    if ($language == "error") die();
+
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
 
@@ -142,8 +154,8 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth->execute([$user_id, $question[0]['question_id']]);
     $max = $sth->fetchAll();
 
-    $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `timestamp`) VALUES (?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $date]);
+    $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `language`, `timestamp`) VALUES (?, ?, ?, ?, ?)");
+    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $language, $date]);
 
 //    postDiscord($_SESSION['user'] . " - Insert Submission- " . json_encode($sth->errorInfo()) . " | " . json_encode($question));
 
