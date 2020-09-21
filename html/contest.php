@@ -22,7 +22,7 @@ $success = "";
 $error = "";
 
 if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
-    $sth = $db->prepare("SELECT `contest_id`, `start`, `end`, `length` FROM `contests` WHERE `hash`=?");
+    $sth = $db->prepare("SELECT `contest_id`, `unlock_value`, `start`, `end`, `length` FROM `contests` WHERE `hash`=?");
     $sth->execute([$_GET['code']]);
     $contest = $sth->fetchAll();
 
@@ -33,36 +33,44 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
         $sth->execute([$user_id, $contest[0]['contest_id']]);
         $passArr = $sth->fetchAll();
 
-        if ($passArr[0][0] == 0) {
-            try {
-                $start = new DateTime($contest[0]['start']);
-                $end = new DateTime($contest[0]['end']);
-                $curr_date = getCurrDate();
-                $curr = new DateTime($curr_date);
-                $curr_copy = new DateTime($curr_date);
+        $sth = $db->prepare("SELECT `points` FROM users WHERE `user_id`=?");
+        $sth->execute([$user_id]);
+        $points = $sth->fetchAll();
 
-                if ($curr >= $start && $curr < $end) {
-                    $_SESSION['contest'] = $contest[0]['contest_id'];
+        if ($points[0]['points'] >= $contest[0]['unlock_value']) {
+            if ($passArr[0][0] == 0) {
+                try {
+                    $start = new DateTime($contest[0]['start']);
+                    $end = new DateTime($contest[0]['end']);
+                    $curr_date = getCurrDate();
+                    $curr = new DateTime($curr_date);
+                    $curr_copy = new DateTime($curr_date);
 
-                    $curr->add(time_to_interval($contest[0]['length']));
+                    if ($curr >= $start && $curr < $end) {
+                        $_SESSION['contest'] = $contest[0]['contest_id'];
 
-                    if ($curr > $end) $curr = $end;
+                        $curr->add(time_to_interval($contest[0]['length']));
 
-                    $sth = $db->prepare("INSERT INTO `tries` (`user_id`, `contest_id`, `start`, `end`) VALUES (?, ?, ?, ?)");
-                    $sth->execute([$user_id, $contest[0]['contest_id'], $curr_copy->format('Y-m-d H:i:s'), $curr->format('Y-m-d H:i:s')]);
+                        if ($curr > $end) $curr = $end;
 
-                    $success = "If you are not redirected, please refresh the page.";
-                } else {
-                    $error = "The contest has not begun or has already ended.";
+                        $sth = $db->prepare("INSERT INTO `tries` (`user_id`, `contest_id`, `start`, `end`) VALUES (?, ?, ?, ?)");
+                        $sth->execute([$user_id, $contest[0]['contest_id'], $curr_copy->format('Y-m-d H:i:s'), $curr->format('Y-m-d H:i:s')]);
+
+                        $success = "If you are not redirected, please refresh the page.";
+                    } else {
+                        $error = "The contest has not begun or has already ended.";
+                    }
+                } catch (Exception $e) {
+                    $error = "A server error occurred.";
                 }
-            } catch (Exception $e) {
-                $error = "A server error occurred.";
+            } else {
+                $_SESSION['contest'] = $contest[0]['contest_id'];
+                $_SESSION['finish'] = true;
+                redirect("contest");
+                exit();
             }
         } else {
-            $_SESSION['contest'] = $contest[0]['contest_id'];
-            $_SESSION['finish'] = true;
-            redirect("contest");
-            exit();
+            $error = "You do not have enough points to access this contest.";
         }
     }
 }
