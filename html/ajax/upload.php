@@ -94,36 +94,37 @@ $cppName = $name[0] . ".execpp";
 $cName = $name[0] . ".exec";
 
 $arr['correct_cases'] = 0;
-$msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
+//$msg = `sudo $scriptsDirectory/uploadProgram.sh $tempFile $uploadFile $username`;
 
-$fileVal = `cat $uploadFile`;
+$fileVal = file_get_contents($tempFile);
 
 $testAmount = $question[0]['testcases'];
 
-if (!hasValue($msg)) {
-    $client = new GearmanClient();
-    $client->addServer();
+//if (!hasValue($msg)) {
+$client = new GearmanClient();
+$client->addServer('73.71.24.214', 4730);
 
-    $params = array(
-        "fileType" => $fileType,
-        "testAmount" => $testAmount,
-        "questionDir" => $questionDir,
-        "uploadDir" => $uploadDir,
-        "questionName" => $questionName,
-        "fileName" => $fileName,
-        "scriptsDirectory" => $scriptsDirectory,
-        "username" => $username,
-        "javaName" => $javaName,
-        "cppName" => $cppName
-    );
+$params = array(
+    "fileType" => $fileType,
+    "testAmount" => $testAmount,
+//    "questionDir" => $questionDir,
+//    "uploadDir" => $uploadDir,
+    "questionName" => $questionName,
+    "fileName" => $fileName,
+    "fileVal" => $fileVal,
+//    "scriptsDirectory" => $scriptsDirectory,
+    "username" => $username,
+    "javaName" => $javaName,
+    "cppName" => $cppName
+);
 
-    $data = serialize($params);
-    $result = $client->doNormal("test", $data);
+$data = serialize($params);
+$result = $client->doNormal("test", $data);
 
-    $arr = unserialize($result);
-} else {
-    $arr['error'] = "Could not upload file. Server error.";
-}
+$arr = unserialize($result);
+//} else {
+//    $arr['error'] = "Could not upload file. Server error.";
+//}
 
 echo json_encode($arr);
 
