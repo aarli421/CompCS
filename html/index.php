@@ -201,7 +201,7 @@ require '../templates/header.php';
                 </div>
                 <div class="team-info">
                     <h3>Larry Zhi</h3>
-                    <p>Substitute Instructor</p>
+                    <p>Instructor</p>
                 </div>
             </div>
         </div>
