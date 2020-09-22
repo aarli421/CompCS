@@ -172,18 +172,19 @@ require '../templates/header.php';
             </div>
             <div class="col-md-4 col-sm-4">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="1.0s">
-                    <img src="images/team-image6.jpg" class="img-responsive" alt="">
+                    <img src="images/team-image5.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
                             <h4></h4>
                             <ul class="social-icon">
+                                <li><a href="https://www.facebook.com/manas.korimilli.5" target="_blank" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="team-info">
-                    <h3>TBD</h3>
-                    <p>TBD</p>
+                    <h3>Manas Korimilli</h3>
+                    <p>Instructor</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -193,13 +194,14 @@ require '../templates/header.php';
                         <div class="team-item">
                             <h4></h4>
                             <ul class="social-icon">
+                                <li><a href="https://www.facebook.com/larry.zhi.58" target="_blank" class="fa fa-facebook"></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="team-info">
-                    <h3>TBD</h3>
-                    <p>TBD</p>
+                    <h3>Larry Zhi</h3>
+                    <p>Substitute Instructor</p>
                 </div>
             </div>
         </div>
