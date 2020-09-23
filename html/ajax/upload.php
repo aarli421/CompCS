@@ -7,7 +7,7 @@ $sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");
 $sth->execute([$questionName]);
 $question = $sth->fetchAll();
 
-$sth = $db->prepare("SELECT `username`, `points` FROM users WHERE `user_id`=?");
+$sth = $db->prepare("SELECT `username`, `points`, `start` FROM users WHERE `user_id`=?");
 $sth->execute([$user_id]);
 $user = $sth->fetchAll();
 
@@ -189,14 +189,16 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $sth->execute();
     $divisions = $sth->fetchAll();
 
-    $sth = $db->prepare("START TRANSACTION;");
-    $sth->execute();
+    if ($question[0]['unlock_value'] >= $user[0]['start']) {
+        $sth = $db->prepare("START TRANSACTION;");
+        $sth->execute();
 
-    $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
-    $sth->execute([$points, $user_id]);
+        $sth = $db->prepare("UPDATE `users` SET `points`=`points`+? WHERE `user_id`=?;");
+        $sth->execute([$points, $user_id]);
 
-    $sth = $db->prepare("COMMIT;");
-    $sth->execute();
+        $sth = $db->prepare("COMMIT;");
+        $sth->execute();
+    }
 
     if ($points != 0) postDiscord($csFirstDiscord, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
 
