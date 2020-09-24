@@ -57,8 +57,8 @@ if ($access) {
     $exists = $sth->fetchAll();
 
     if ($exists[0][0] == 0) {
-        $sth = $db->prepare("INSERT INTO `views` (`user_id`, `question_id`, `timestamp`) VALUES (?, ?, ?);");
-        $sth->execute([$user_id, $passArr[0]['question_id'], $curr->format('Y-m-d H:i:s'), $curr->format('Y-m-d H:i:s')]);
+        $sth = $db->prepare("INSERT INTO `views` (`user_id`, `question_id`, `timestamp`) VALUES (?, ?, ?)");
+        $sth->execute([$user_id, $passArr[0]['question_id'], $curr->format('Y-m-d H:i:s')]);
 
     } else {
         $sth = $db->prepare("UPDATE `views` SET `timestamp`=? WHERE `user_id`=? AND `question_id`=?");
