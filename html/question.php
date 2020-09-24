@@ -44,10 +44,24 @@ if (empty($passArr)) {
 require '../templates/header.php';
 
 if ($access) {
+    $curr_date = getCurrDate();
+    $curr = new DateTime($curr_date);
+    $curr_copy = new DateTime($curr_date);
+    $curr_copy->add(new DateInterval("PT01H00M00S"));
 
-$sth = $db->prepare("SELECT `output_json` FROM `grades` WHERE `user_id`=? AND `question_id`=? ORDER BY `grade_id` DESC LIMIT 1;");
-$sth->execute([$user_id, $passArr[0]['question_id']]);
-$output = $sth->fetchAll();
+    $sth = $db->prepare("DELETE FROM `views` WHERE `question_id`=? AND `timestamp`<?");
+    $sth->execute([$passArr[0]['question_id'], $curr_copy->format('Y-m-d H:i:s')]);
+
+    $sth = $db->prepare("INSERT INTO `views` (`user_id`, `question_id`, `timestamp`) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE `timestamp`=?");
+    $sth->execute([$user_id, $passArr[0]['question_id'], $curr->format('Y-m-d H:i:s'), $curr->format('Y-m-d H:i:s')]);
+
+    $sth = $db->prepare("SELECT COUNT(`user_id`) FROM `views` WHERE `question_id`=?");
+    $sth->execute([$passArr[0]['question_id']]);
+    $count = $sth->fetchAll();
+
+    $sth = $db->prepare("SELECT `output_json` FROM `grades` WHERE `user_id`=? AND `question_id`=? ORDER BY `grade_id` DESC LIMIT 1;");
+    $sth->execute([$user_id, $passArr[0]['question_id']]);
+    $output = $sth->fetchAll();
 ?>
 <link rel="stylesheet" href="css/question.css">
 <link rel="stylesheet" href="css/loader.css">
@@ -149,6 +163,7 @@ $output = $sth->fetchAll();
 
         <h3 class="problemtitle" style="margin-top: 0px">Testcases: <?php echo $passArr[0]['testcases']; ?></h3>
         <h3 class="problemtitle" style="margin-top: 0px">Points/Case: <?php echo $passArr[0]['testcase_value']; ?></h3>
+        <h3 class="problemtitle" style="margin-top: 0px">Current Viewers: <?php echo $count[0][0]; ?></h3>
     </div>
 
     <center id="prompt-center">
