@@ -101,32 +101,37 @@ $fileVal = file_get_contents($tempFile);
 $testAmount = $question[0]['testcases'];
 
 //if (!hasValue($msg)) {
-$client = new GearmanClient();
-$client->addServer('73.71.24.214', 4730);
 
-$params = array(
-    "fileType" => $fileType,
-    "testAmount" => $testAmount,
+try {
+    $client = new GearmanClient();
+    $client->addServer('73.71.24.214', 4730);
+
+    $params = array(
+        "fileType" => $fileType,
+        "testAmount" => $testAmount,
 //    "questionDir" => $questionDir,
 //    "uploadDir" => $uploadDir,
-    "questionName" => $questionName,
-    "fileName" => $fileName,
-    "fileVal" => $fileVal,
+        "questionName" => $questionName,
+        "fileName" => $fileName,
+        "fileVal" => $fileVal,
 //    "scriptsDirectory" => $scriptsDirectory,
-    "username" => $username,
-    "javaName" => $javaName,
-    "cppName" => $cppName
-);
+        "username" => $username,
+        "javaName" => $javaName,
+        "cppName" => $cppName
+    );
 
-$data = serialize($params);
-$result = $client->doNormal("test", $data);
+    $data = serialize($params);
+    $result = $client->doNormal("test", $data);
 
-$arr = unserialize($result);
+    $arr = unserialize($result);
 //} else {
 //    $arr['error'] = "Could not upload file. Server error.";
 //}
 
-echo json_encode($arr);
+    echo json_encode($arr);
+} catch (Exception $e) {
+    $arr['error'] = "The testing server is down or has an error. Please check any announcements about whether this is intentional.";
+}
 
 //postDiscord($_SESSION['user'] . " - Echoed output");
 
