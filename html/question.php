@@ -47,7 +47,7 @@ if ($access) {
     $curr_date = getCurrDate();
     $curr = new DateTime($curr_date);
     $curr_copy = new DateTime($curr_date);
-    $curr_copy->sub(new DateInterval("PT01H00M00S"));
+    $curr_copy->sub(new DateInterval("PT00H10M00S"));
 
     $sth = $db->prepare("DELETE FROM `views` WHERE `question_id`=? AND `timestamp`<?");
     $sth->execute([$passArr[0]['question_id'], $curr_copy->format('Y-m-d H:i:s')]);
