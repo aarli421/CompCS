@@ -49,6 +49,9 @@ if ($access) {
     $curr_copy = new DateTime($curr_date);
     $curr_copy->sub(new DateInterval("PT00H10M00S"));
 
+    $sth = $db->prepare("START TRANSACTION;");
+    $sth->execute();
+
     $sth = $db->prepare("DELETE FROM `views` WHERE `question_id`=? AND `timestamp`<?");
     $sth->execute([$passArr[0]['question_id'], $curr_copy->format('Y-m-d H:i:s')]);
 
@@ -64,6 +67,9 @@ if ($access) {
         $sth = $db->prepare("UPDATE `views` SET `timestamp`=? WHERE `user_id`=? AND `question_id`=?");
         $sth->execute([$curr->format('Y-m-d H:i:s'), $user_id, $passArr[0]['question_id']]);
     }
+
+    $sth = $db->prepare("COMMIT;");
+    $sth->execute();
 
     $sth = $db->prepare("SELECT COUNT(`user_id`) FROM `views` WHERE `question_id`=?");
     $sth->execute([$passArr[0]['question_id']]);
