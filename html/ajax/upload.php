@@ -81,6 +81,10 @@ if ($err) {
     exit();
 }
 
+$curr = new DateTime(getCurrDate());
+$sth = $db->prepare("UPDATE `views` SET `timestamp`=? WHERE `user_id`=? AND `question_id`=?");
+$sth->execute([$curr->format('Y-m-d H:i:s'), $user_id, $question[0]['question_id']]);
+
 $rootDir = $_SERVER['DOCUMENT_ROOT'];
 
 $username = $user[0]['username'];
@@ -141,8 +145,7 @@ try {
 
 //postDiscord($_SESSION['user'] . " - Echoed output");
 
-$date = getCurrDate();
-if (!hasValue($arr['error']) && hasValue($date)) {
+if (!hasValue($arr['error']) && hasValue($curr)) {
 //    print_r($max);
 
 //    postDiscord($_SESSION['user'] . " - Adding submissions");
@@ -167,7 +170,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $max = $sth->fetchAll();
 
     $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `language`, `timestamp`) VALUES (?, ?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $language, $date]);
+    $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $language, $curr->format('Y-m-d H:i:s')]);
 
 //    postDiscord($_SESSION['user'] . " - Insert Submission- " . json_encode($sth->errorInfo()) . " | " . json_encode($question));
 
@@ -178,7 +181,7 @@ if (!hasValue($arr['error']) && hasValue($date)) {
     $id = $sth->fetchAll();
 
     $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $date]);
+    $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s')]);
 
 //    postDiscord($_SESSION['user'] . " - Insert Grades- " . json_encode($sth->errorInfo()));
 
