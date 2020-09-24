@@ -70,6 +70,9 @@ if (hasValue($_SESSION['contest'])) {
     }
 }
 
+$off = true;
+if ($off) $arr['error'] = "The testing server is intentially down right now. Please check back later.";
+
 if ($err) {
     echo json_encode($arr);
     exit();
