@@ -47,7 +47,7 @@ if ($access) {
     $curr_date = getCurrDate();
     $curr = new DateTime($curr_date);
     $curr_copy = new DateTime($curr_date);
-    $curr_copy->sub(new DateInterval("PT01H00M00S"));
+    $curr_copy->sub(new DateInterval("PT00H30M00S"));
 
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
