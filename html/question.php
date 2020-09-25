@@ -41,7 +41,16 @@ if (empty($passArr)) {
         }
     } else {
         if ($passArr[0]['contest_id'] != 0) {
-            $access = false;
+            $sth = $db->prepare("SELECT `end` FROM contests WHERE `contest_id`=?");
+            $sth->execute([$passArr[0]['contest_id']]);
+            $contest = $sth->fetchAll();
+
+            $curr = new DateTime(getCurrDate());
+            $end = new DateTime($contest[0]['end']);
+
+            if ($curr <= $end) {
+                $access = false;
+            }
         }
     }
 }
