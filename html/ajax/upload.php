@@ -65,8 +65,17 @@ if (hasValue($_SESSION['contest'])) {
 //    }
 } else {
     if ($question[0]['contest_id'] != 0) {
-        $arr['error'] = "You are not part of any contest.";
-        $err = true;
+        $sth = $db->prepare("SELECT `end` FROM contests WHERE `contest_id`=?");
+        $sth->execute([$question[0]['contest_id']]);
+        $contest = $sth->fetchAll();
+
+        $curr = new DateTime(getCurrDate());
+        $end = new DateTime($contest[0]['end']);
+
+        if ($curr <= $end) {
+            $arr['error'] = "You are not part of any contest.";
+            $err = true;
+        }
     }
 }
 
