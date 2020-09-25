@@ -122,6 +122,7 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
                                 <a href="#division1">Division 1</a>
                                 <a href="#division2">Division 2</a>
                                 <a href="#bonusquestions">Bonus</a>
+                                <a href="#contestquestions">Past Contests</a>
                             </div>
                         </li>
                         <?php
