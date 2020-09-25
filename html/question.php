@@ -52,7 +52,7 @@ if ($access) {
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
 
-    $sth = $db->prepare("DELETE FROM `views` WHERE `timestamp`<?");
+    $sth = $db->prepare("UPDATE `views` SET `active`=0 FROM `views` WHERE `timestamp`<?");
     $sth->execute([$curr_copy->format('Y-m-d H:i:s')]);
 
     $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `views` WHERE `user_id`=? AND `question_id`=?) LIMIT 1");
@@ -60,18 +60,18 @@ if ($access) {
     $exists = $sth->fetchAll();
 
     if ($exists[0][0] == 0) {
-        $sth = $db->prepare("INSERT INTO `views` (`user_id`, `question_id`, `timestamp`) VALUES (?, ?, ?)");
+        $sth = $db->prepare("INSERT INTO `views` (`user_id`, `question_id`, `timestamp`) VALUES (?, ?, ?, ?)");
         $sth->execute([$user_id, $passArr[0]['question_id'], $curr->format('Y-m-d H:i:s')]);
 
     } else {
-        $sth = $db->prepare("UPDATE `views` SET `timestamp`=? WHERE `user_id`=? AND `question_id`=?");
+        $sth = $db->prepare("UPDATE `views` SET `timestamp`=?, `active`=1 WHERE `user_id`=? AND `question_id`=?");
         $sth->execute([$curr->format('Y-m-d H:i:s'), $user_id, $passArr[0]['question_id']]);
     }
 
     $sth = $db->prepare("COMMIT;");
     $sth->execute();
 
-    $sth = $db->prepare("SELECT COUNT(`user_id`) FROM `views` WHERE `question_id`=?");
+    $sth = $db->prepare("SELECT COUNT(`user_id`) FROM `views` WHERE `question_id`=? AND `active`=1");
     $sth->execute([$passArr[0]['question_id']]);
     $count = $sth->fetchAll();
 
