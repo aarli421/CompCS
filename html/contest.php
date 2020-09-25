@@ -207,6 +207,15 @@ if (!hasValue($_SESSION['contest'])) {
         </section>
     </div>
     <?php
+        $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `results` WHERE `user_id`=? AND `contest_id`=?) LIMIT 1");
+        $sth->execute([$user_id, $_SESSION['contest']]);
+        $exists = $sth->fetchAll();
+
+        if ($exists[0][0] == 0) {
+            $sth = $db->prepare("INSERT INTO `results` (`user_id`, `contest_id`, `score`) VALUES (?, ?, ?)");
+            $sth->execute([$user_id, $_SESSION['contest'], $total]);
+        }
+
         unset($_SESSION['contest']);
         unset($_SESSION['finish']);
     } else {

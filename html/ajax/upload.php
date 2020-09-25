@@ -50,7 +50,7 @@ if (hasValue($_SESSION['contest'])) {
         $end = new DateTime($try[0]['end']);
         $curr = new DateTime(getCurrDate());
 
-        if ($curr >= $end) {
+        if ($curr >= $end || hasValue($_SESSION['finish'])) {
             $arr['error'] = "Your contest has already ended. Please refresh your page or go back to contest page.";
             $err = true;
         }

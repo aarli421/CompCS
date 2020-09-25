@@ -14,6 +14,11 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
+if (hasValue($_SESSION['finish'])) {
+    redirect("contest");
+    exit();
+}
+
 $access = true;
 $found = true;
 if (empty($passArr)) {
