@@ -12,9 +12,16 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['result'])) {
     if (empty($contest)) {
         $error = "The code you entered was not found.";
     } else {
-        $_SESSION['result'] = $contest[0]['contest_id'];
-        redirect("result");
-        exit();
+        $curr = new DateTime(getCurrDate());
+        $end = new DateTime($contest[0]['end']);
+
+        if ($curr > $end) {
+            $_SESSION['result'] = $contest[0]['contest_id'];
+            redirect("result");
+            exit();
+        } else {
+            $error = "Please wait until the end of the contest to view the results.";
+        }
     }
 }
 
