@@ -1,6 +1,5 @@
 <?php
 $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
-print_r($_SESSION['timeout']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,3 +167,4 @@ print_r($_SESSION['timeout']);
 
     </div>
 </section>
+<?php print_r($_SESSION); ?>
