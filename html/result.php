@@ -13,7 +13,7 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['result'])) {
         $error = "The code you entered was not found.";
     } else {
         $_SESSION['result'] = $contest[0]['contest_id'];
-        redirect("contest");
+        redirect("result");
         exit();
     }
 }
