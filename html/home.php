@@ -45,7 +45,7 @@ require '../templates/header.php';
                 $name = $divisions[$i]['name'];
                 $name_id = strtolower(preg_replace('/\s*/', '', $name));
 
-                if ($bonus == 1) $upper = $points;
+                if ($bonus != 0) $upper = $points;
                 ?>
             <li id="<?php echo $name_id; ?>">
                 <div class="division-title"><hr class="line div-line"></div>
@@ -58,9 +58,15 @@ require '../templates/header.php';
             </li>
             <ol class="questions">
                 <?php
-                $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");
-                $sth->execute([$lower, $upper, $bonus]);
-                $passArr = $sth->fetchAll();
+                if ($bonus == 2) {
+                    $sth = $db->prepare("SELECT * FROM `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` WHERE `contests`.`unlock_value`<=? AND `end`<?");
+                    $sth->execute([$upper, getCurrDate()]);
+                    $passArr = $sth->fetchAll();
+                } else {
+                    $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");
+                    $sth->execute([$lower, $upper, $bonus]);
+                    $passArr = $sth->fetchAll();
+                }
 
                 foreach ($passArr as $value) {
                     $locked = false;
@@ -150,10 +156,6 @@ require '../templates/header.php';
             }
         }
     }
-
-    console.log("<?php echo $_SESSION['user'] ?>");
-    console.log("<?php echo $user_id ?>");
-    console.log("<?php echo getCurrDate(); ?>");
 </script>
 <script>
     // on page load...
