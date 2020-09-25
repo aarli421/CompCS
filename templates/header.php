@@ -111,12 +111,13 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
                 <?php
                 }
                 ?>
+                <li><a href="result" class="smoothScroll" style="font-size: 18px">Result</a></li>
                 <li><a href="curriculum" class="smoothScroll" style="font-size: 18px">Curriculum</a></li>
                 <?php
                     if ($fileName == "home") {
                         ?>
                         <li>
-                            <a class="dropbtn smoothScroll" onclick="myFunction()" style="font-size: 18px">Divisions</a>
+                            <a class="dropbtn smoothScroll" onclick="myFunction()" style="font-size: 18px">Sections</a>
                             <div id ="myDropdown" class="dropdown-content">
                                 <a href="#division0">Division 0</a>
                                 <a href="#division1">Division 1</a>
