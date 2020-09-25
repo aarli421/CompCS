@@ -52,8 +52,8 @@ if ($access) {
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
 
-    $sth = $db->prepare("DELETE FROM `views` WHERE `question_id`=? AND `timestamp`<?");
-    $sth->execute([$passArr[0]['question_id'], $curr_copy->format('Y-m-d H:i:s')]);
+    $sth = $db->prepare("DELETE FROM `views` WHERE `timestamp`<?");
+    $sth->execute([$curr_copy->format('Y-m-d H:i:s')]);
 
     $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `views` WHERE `user_id`=? AND `question_id`=?) LIMIT 1");
     $sth->execute([$user_id, $passArr[0]['question_id']]);
