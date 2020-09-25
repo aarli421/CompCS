@@ -64,7 +64,7 @@ if (hasValue($_SESSION['contest'])) {
 //        header("refresh:{$diff};url=contest.php");
 //    }
 } else {
-    if ($passArr[0]['contest_id'] != 0) {
+    if ($question[0]['contest_id'] != 0) {
         $arr['error'] = "You are not part of any contest.";
         $err = true;
     }
