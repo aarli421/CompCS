@@ -2,7 +2,7 @@
 require '../templates/helper.php';
 require '../templates/header.php';
 
-$sth = $db->prepare("SELECT `username`, `points` FROM users WHERE `admin`=0 AND `active`=1 ORDER BY `points` DESC LIMIT 5");
+$sth = $db->prepare("SELECT `username`, `points` FROM users WHERE `admin`=0 AND `active`=1 ORDER BY `points`-`start` DESC LIMIT 5");
 $sth->execute();
 $users = $sth->fetchAll();
 ?>

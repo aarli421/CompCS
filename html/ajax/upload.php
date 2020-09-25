@@ -176,6 +176,9 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
     $sth->execute([$user_id, $question[0]['question_id']]);
     $max = $sth->fetchAll();
 
+    $contest = 0;
+    if (hasValue($_SESSION['contest'])) $contest = $_SESSION['contest'];
+
     $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `language`, `timestamp`) VALUES (?, ?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $language, $curr->format('Y-m-d H:i:s')]);
 
@@ -187,8 +190,8 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
     $sth->execute();
     $id = $sth->fetchAll();
 
-    $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`) VALUES (?, ?, ?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s')]);
+    $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`, `contest`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s'), $contest]);
 
 //    postDiscord($_SESSION['user'] . " - Insert Grades- " . json_encode($sth->errorInfo()));
 
