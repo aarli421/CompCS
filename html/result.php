@@ -67,7 +67,7 @@ if (!hasValue($_SESSION['result'])) {
 <link rel="stylesheet" href="css/leaderboard.css">
 <section>
     <center>
-        <h1><?php echo $contest[0]['name']; ?> Results</h1>
+        <h1><?php echo $contest[0]['name']; ?> - Results</h1>
     </center>
     <div class="table">
         <div class="table-cell">

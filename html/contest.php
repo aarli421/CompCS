@@ -148,7 +148,7 @@ if (!hasValue($_SESSION['contest'])) {
                 <div class="form">
                     <div class="form-panel one" style="color:black">
                         <div class="categories">
-                            <h1><?php echo $contest[0]['name']; ?> - Results</h1>
+                            <h1><?php echo $contest[0]['name']; ?> - Your Results</h1>
                             <h2 id="total">Total Score: </h2>
                         </div>
                         <ol class="questions">
