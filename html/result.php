@@ -49,6 +49,10 @@ if (!hasValue($_SESSION['result'])) {
 </div>
 <?php
 } else {
+    $sth = $db->prepare("SELECT `name` FROM contests WHERE `contest_id`=?");
+    $sth->execute([$_SESSION['result']]);
+    $contest = $sth->fetchAll();
+
     $sth = $db->prepare("SELECT `username`, `score` FROM results INNER JOIN `users` ON `users`.`user_id`=`results`.`user_id` WHERE `contest_id`=? ORDER BY `score` DESC LIMIT 5");
     $sth->execute([$_SESSION['result']]);
     $users = $sth->fetchAll();
@@ -56,7 +60,7 @@ if (!hasValue($_SESSION['result'])) {
 <link rel="stylesheet" href="css/leaderboard.css">
 <section>
     <center>
-        <h1>Contest Results</h1>
+        <h1><?php echo $contest[0]['name']; ?> Results</h1>
     </center>
     <div class="table">
         <div class="table-cell">
