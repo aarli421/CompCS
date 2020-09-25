@@ -212,8 +212,8 @@ if (!hasValue($_SESSION['contest'])) {
         $exists = $sth->fetchAll();
 
         if ($exists[0][0] == 0) {
-            $sth = $db->prepare("INSERT INTO `results` (`user_id`, `contest_id`, `score`) VALUES (?, ?, ?)");
-            $sth->execute([$user_id, $_SESSION['contest'], $total]);
+            $sth = $db->prepare("INSERT INTO `results` (`user_id`, `contest_id`, `score`, `timestamp`) VALUES (?, ?, ?, ?)");
+            $sth->execute([$user_id, $_SESSION['contest'], $total, getCurrDate()]);
         }
 
         unset($_SESSION['contest']);
