@@ -160,8 +160,8 @@ if (!hasValue($_SESSION['contest'])) {
                             $j = 0;
                             $total = 0;
                             foreach ($passArr as $value) {
-                                $sth = $db->prepare("SELECT MAX(correct_cases) FROM `grades` WHERE `user_id`=? AND `question_id`=?");
-                                $sth->execute([$user_id, $value['question_id']]);
+                                $sth = $db->prepare("SELECT MAX(correct_cases) FROM `grades` WHERE `user_id`=? AND `question_id`=? AND `contest_id`=?");
+                                $sth->execute([$user_id, $value['question_id'], $_SESSION['contest']]);
                                 $max = $sth->fetchAll();
                                 if (empty($max)) $max[0][0] = 0;
 
