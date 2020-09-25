@@ -52,7 +52,7 @@ if ($access) {
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
 
-    $sth = $db->prepare("UPDATE `views` SET `active`=0 FROM `views` WHERE `timestamp`<?");
+    $sth = $db->prepare("UPDATE `views` SET `active`=0 WHERE `timestamp`<?");
     $sth->execute([$curr_copy->format('Y-m-d H:i:s')]);
 
     $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `views` WHERE `user_id`=? AND `question_id`=?) LIMIT 1");
