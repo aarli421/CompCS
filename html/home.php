@@ -59,7 +59,7 @@ require '../templates/header.php';
             <ol class="questions">
                 <?php
                 if ($bonus == 2) {
-                    $sth = $db->prepare("SELECT `questions`.`name`, `contest`.`unlock_value`, `testcase_value`, `testcases` FROM `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` WHERE `contests`.`unlock_value`<=? AND `end`<?");
+                    $sth = $db->prepare("SELECT `questions`.`name`, `contests`.`unlock_value`, `testcase_value`, `testcases` FROM `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` WHERE `contests`.`unlock_value`<=? AND `end`<?");
                     $sth->execute([$upper, getCurrDate()]);
                     $passArr = $sth->fetchAll();
                 } else {
