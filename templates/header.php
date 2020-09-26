@@ -167,4 +167,3 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
 
     </div>
 </section>
-<?php print_r($_SESSION); ?>
