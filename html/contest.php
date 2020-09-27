@@ -33,11 +33,11 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
         $sth->execute([$user_id, $contest[0]['contest_id']]);
         $passArr = $sth->fetchAll();
 
-        $sth = $db->prepare("SELECT `points` FROM users WHERE `user_id`=?");
+        $sth = $db->prepare("SELECT `points`, `admin` FROM users WHERE `user_id`=?");
         $sth->execute([$user_id]);
-        $points = $sth->fetchAll();
+        $user = $sth->fetchAll();
 
-        if ($points[0]['points'] >= $contest[0]['unlock_value']) {
+        if ($user[0]['points'] >= $contest[0]['unlock_value']) {
             if ($passArr[0][0] == 0) {
                 try {
                     $start = new DateTime($contest[0]['start']);
@@ -46,12 +46,12 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
                     $curr = new DateTime($curr_date);
                     $curr_copy = new DateTime($curr_date);
 
-                    if ($curr >= $start && $curr < $end) {
+                    if (($curr >= $start && $curr < $end) || $user[0]['admin'] == 1) {
                         $_SESSION['contest'] = $contest[0]['contest_id'];
 
                         $curr->add(time_to_interval($contest[0]['length']));
 
-                        if ($curr > $end) $curr = $end;
+                        if ($user[0]['admin'] != 1 && $curr > $end) $curr = $end;
 
                         $sth = $db->prepare("INSERT INTO `tries` (`user_id`, `contest_id`, `start`, `end`) VALUES (?, ?, ?, ?)");
                         $sth->execute([$user_id, $contest[0]['contest_id'], $curr_copy->format('Y-m-d H:i:s'), $curr->format('Y-m-d H:i:s')]);
