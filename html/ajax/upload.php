@@ -79,7 +79,7 @@ if (hasValue($_SESSION['contest'])) {
     }
 }
 
-$off = true;
+$off = false;
 if ($off) {
     $err = true;
     $arr['error'] = "The testing server is intentionally down right now. Please check back later.";
