@@ -129,7 +129,7 @@ $testAmount = $question[0]['testcases'];
 //if (!hasValue($msg)) {
 
 try {
-    $handle = fopen('../private/keys.csv', 'r');
+    $handle = fopen('../../private/keys.csv', 'r');
     $data = fgetcsv($handle, 5, ',');
 
     $client = new GearmanClient();
