@@ -51,12 +51,14 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
 
                         $curr->add(time_to_interval($contest[0]['length']));
 
-                        if ($user[0]['admin'] != 1 && $curr > $end) $curr = $end;
+                        if ($user[0]['admin'] == 0 && $curr > $end) $curr = $end;
 
                         $sth = $db->prepare("INSERT INTO `tries` (`user_id`, `contest_id`, `start`, `end`) VALUES (?, ?, ?, ?)");
                         $sth->execute([$user_id, $contest[0]['contest_id'], $curr_copy->format('Y-m-d H:i:s'), $curr->format('Y-m-d H:i:s')]);
 
                         $success = "If you are not redirected, please refresh the page.";
+
+                        redirect("contest");
                     } else {
                         $error = "The contest has not begun or has already ended.";
                     }
