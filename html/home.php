@@ -59,8 +59,14 @@ require '../templates/header.php';
             <ol class="questions">
                 <?php
                 if ($bonus == 2) {
+                    $curr_date = getCurrDate();
+
+                    $sth = $db->prepare("UPDATE `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` SET `testcase_value`=0 WHERE `end`<?");
+                    $sth->execute([$curr_date]);
+                    $passArr = $sth->fetchAll();
+
                     $sth = $db->prepare("SELECT `questions`.`name`, `contests`.`unlock_value`, `question_id`, `testcase_value`, `testcases` FROM `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` WHERE `contests`.`unlock_value`<=? AND `end`<?");
-                    $sth->execute([$upper, getCurrDate()]);
+                    $sth->execute([$upper, $curr_date]);
                     $passArr = $sth->fetchAll();
                 } else {
                     $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");
