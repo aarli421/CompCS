@@ -55,7 +55,6 @@ if (empty($passArr)) {
 
                 $sth = $db->prepare("UPDATE `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` SET `testcase_value`=0 WHERE `end`<?");
                 $sth->execute([$curr_date]);
-                $passArr = $sth->fetchAll();
             }
         }
     }
