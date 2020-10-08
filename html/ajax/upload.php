@@ -189,42 +189,40 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
 
-    $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
+    $sth = $db->prepare("SELECT MAX(correct_cases), `contest_id` FROM grades WHERE user_id=? AND question_id=? GROUP BY `correct_cases`, `contest_id`");
     $sth->execute([$user_id, $question[0]['question_id']]);
     $max = $sth->fetchAll();
 
     $contest = 0;
-    if (hasValue($_SESSION['contest'])) $contest = $_SESSION['contest'];
+    if (hasValue($_SESSION['contest']) && $question[0]['contest_id'] != 0) $contest = $_SESSION['contest'];
 
     $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `language`, `timestamp`) VALUES (?, ?, ?, ?, ?)");
     $sth->execute([$user_id, $question[0]['question_id'], $fileVal, $language, $curr->format('Y-m-d H:i:s')]);
-
-//    postDiscord($_SESSION['user'] . " - Insert Submission- " . json_encode($sth->errorInfo()) . " | " . json_encode($question));
-
-//    print_r($sth);
 
     $sth = $db->prepare("SELECT LAST_INSERT_ID();");
     $sth->execute();
     $id = $sth->fetchAll();
 
-    $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s'), $contest]);
+    $points = 0;
+    if (empty($max) || $max[0]['contest_id'] != $contest) {
+
+        $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s'), $contest]);
 
 //    postDiscord($_SESSION['user'] . " - Insert Grades- " . json_encode($sth->errorInfo()));
 
-    $sth = $db->prepare("COMMIT;");
-    $sth->execute();
-
-//    postDiscord($_SESSION['user'] . " - Commit Submission + Grades - " . json_encode($sth->errorInfo()));
-
-    $points = 0;
-    if (empty($max)) {
         $points = $arr['correct_cases'] * $question[0]['testcase_value'];
     } else {
         if ($arr['correct_cases'] > $max[0][0]) {
+            $sth = $db->prepare("UPDATE grades SET `submission_id`=?, `output_json`=?, `currect_cases`=?, `timestamp`=?, WHERE `user_id`=? AND `question_id`=? AND `contest_id`=?");
+            $sth->execute([$id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s'), $user_id, $question[0]['question_id'], $contest]);
+
             $points = ($arr['correct_cases'] - $max[0][0]) * $question[0]['testcase_value'];
         }
     }
+
+    $sth = $db->prepare("COMMIT;");
+    $sth->execute();
 
     $sth = $db->prepare("SELECT `upper` FROM `divisions` WHERE `bonus`=0;");
     $sth->execute();

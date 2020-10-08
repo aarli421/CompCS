@@ -23,9 +23,9 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     if ($passArr[0][0] == 0) {
 //        echo "Passed ";
         if ((preg_match($emailRegPHP, $mail) === 1) && (preg_match($usernameRegPHP, $username) === 1) && (preg_match($passwordRegPHP, $password) === 1)) {
-            $msg = `sudo $scriptsDirectory/createUser.sh $username $password`;
+//            $msg = `sudo $scriptsDirectory/createUser.sh $username $password`;
 
-            if (!hasValue($msg)) {
+//            if (!hasValue($msg)) {
                 $host = $_SERVER["HTTP_HOST"];
                 $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
                 $verLink = 'https://' . $host . '/verify?email=' . $mail . '&hash=' . $hash;
@@ -81,9 +81,9 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                     die("Server error.");
 //                    die("Caught exception: " . $e->getMessage() . "\n");
                 }
-            } else {
-                echo "The username already exists";
-            }
+//            } else {
+//                echo "The username already exists";
+//            }
         } else {
             echo "Invalid email.";
         }
