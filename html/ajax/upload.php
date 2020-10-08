@@ -214,7 +214,7 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
         $points = $arr['correct_cases'] * $question[0]['testcase_value'];
     } else {
         if ($arr['correct_cases'] > $max[0][0]) {
-            $sth = $db->prepare("UPDATE grades SET `submission_id`=?, `output_json`=?, `currect_cases`=?, `timestamp`=?, WHERE `user_id`=? AND `question_id`=? AND `contest_id`=?");
+            $sth = $db->prepare("UPDATE grades SET `submission_id`=?, `output_json`=?, `currect_cases`=?, `timestamp`=? WHERE `user_id`=? AND `question_id`=? AND `contest_id`=?");
             $sth->execute([$id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s'), $user_id, $question[0]['question_id'], $contest]);
 
             $points = ($arr['correct_cases'] - $max[0][0]) * $question[0]['testcase_value'];
