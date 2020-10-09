@@ -110,7 +110,15 @@ require '../templates/header.php';
                             <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" pattern="<?php echo $emailReg; ?>" /></div>
                             <div class="form-group"><label for="registerPassword">Password (>8 letters, numbers, and symbols)</label><input type="password" id="registerPassword" name="signUpPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
                             <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
+                            <div class="form-group" >
+                                <ul class="list-unstyled">
+                                    <li class="init item">Select School</li>
+                                    <li class="item" data-value="value 1" style="padding-top: 10%">American</li>
+                                    <li class="item" data-value="value 2">Irvington</li>
+                                </ul>
+                            </div>
                             <div class="form-group"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to <a href="tos" target="_blank">Terms of Service</a></label></div>
+                            <input id="registerSchool" name="registerSchool" type="hidden" value="">
                             <div class="form-group"><button id="registerBtn" form="register" type="submit">Register</button></div>
                         </form>
                     </div>
@@ -120,7 +128,6 @@ require '../templates/header.php';
             </div>
         </div>
     </section>
-</div>
 </div>
 <script src="js/login-register.js"></script>
 <?php

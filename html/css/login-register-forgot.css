@@ -274,6 +274,56 @@ html {
 	display: none;
 }
 
+.init{
+
+	outline: none;
+	display: block;
+	background: rgba(0, 0, 0, 0.1);
+	width: 100%;
+	border: 0;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding: 12px 20px;
+	color: rgba(0, 0, 0, 0.6);
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: 500;
+	line-height: inherit;
+	transition: 0.3s ease;
+}
+.list-unstyled .item {
+	position: relative;
+
+}
+.list-unstyled{
+	position: absolute; z-index: 1;
+}
+.list-unstyled .item:not(.init) {
+
+	padding-left: 5%;
+	padding-right: 5%;
+	display: none;
+	background: #ddd;
+	padding-bottom: 10%;
+
+	position: relative;
+}
+.list-unstyled .item:not(.init):hover, .list-unstyled .item.selected:not(.init) {
+	color: #ce3232;
+	cursor: pointer;
+}
+.item.init { cursor: pointer; }
+
+
+.school{
+	margin-bottom: 0%;
+}
+a#submit { z-index: 1; }
+
+.agree{
+	padding-top: 15%;
+}
+
 button[disabled] {
 	cursor: not-allowed;
 	pointer-events: all !important;
