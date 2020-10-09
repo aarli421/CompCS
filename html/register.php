@@ -1,6 +1,10 @@
 <?php
 require '../templates/helper.php';
 require '../templates/header.php';
+
+$sth = $db->prepare("SELECT * FROM schools");
+$sth->execute();
+$schools = $sth->fetchAll();
 ?>
 <style>
     .alert {
@@ -114,12 +118,18 @@ require '../templates/header.php';
                             <div class="form-group">
                                 <ul class="list-unstyled">
                                     <li class="init item">Select School</li>
-                                    <li class="item" data-value="value 1" style="padding-top: 10%">American</li>
-                                    <li class="item" data-value="value 2">Irvington</li>
+                                    <?php
+                                    $len = count($schools);
+                                    for ($i = 0; $i < $len; $i++) {
+                                    ?>
+                                    <li class="item" data-value="value <?php echo $i + 1; ?>" style="<?php if ($i == 0) { ?>padding-top: 10% <?php } ?>"><?php echo $schools[$i]['name']; ?></li>
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                             <div class="form-group agree after"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to <a href="tos" target="_blank">Terms of Service</a></label></div>
-                            <input id="registerSchool" name="registerSchool" type="hidden" value="">
+                            <input id="registerSchool" name="signUpSchool" type="hidden" value="" required>
                             <div class="form-group after"><button id="registerBtn" form="register" type="submit">Register</button></div>
                         </form>
                     </div>
@@ -140,11 +150,11 @@ require '../templates/header.php';
         allOptions.removeClass('selected');
         $(this).addClass('selected');
         $(".list-unstyled").children('.init').html($(this).html());
-        console.log($(this).html());
+        $("#registerSchool").val($(this).html());
+        // console.log($(this).html());
         allOptions.toggle();
     });
 </script>
-<script src="js/login-register.js"></script>
 <?php
 require '../templates/footer.php'
 ?>

@@ -106,8 +106,6 @@ require '../templates/header.php';
     </div>
 </section>
 </div>
-</div>
-<script src="js/login-register.js"></script>
 <?php
 require '../templates/footer.php'
 ?>

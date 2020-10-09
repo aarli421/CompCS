@@ -2,10 +2,11 @@
 require '../../templates/helper.php';
 require '../../vendor/autoload.php';
 
-if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && hasValue($_POST['signUpEmail']) && hasValue($_POST['tos'])) {
+if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && hasValue($_POST['signUpEmail']) && hasValue($_POST['signUpSchool']) && hasValue($_POST['tos'])) {
     $mail = $_POST['signUpEmail'];
     $username = $_POST['signUpUsername'];
     $password = $_POST['signUpPassword'];
+    $school = $_POST['signUpSchool'];
     $hashedPw = hash('sha256', $_POST['signUpPassword']);
     $hash = md5(rand(0, 10000));
 
@@ -23,6 +24,19 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
     if ($passArr[0][0] == 0) {
 //        echo "Passed ";
         if ((preg_match($emailRegPHP, $mail) === 1) && (preg_match($usernameRegPHP, $username) === 1) && (preg_match($passwordRegPHP, $password) === 1)) {
+            $sth = $db->prepare("SELECT * FROM schools");
+            $sth->execute();
+            $schools = $sth->fetchAll();
+
+            $works = true;
+            foreach ($schools as $key => $value) {
+                if ($value['name'] != $school) {
+                    $works = false;
+                    break;
+                }
+            }
+
+            if ($works) {
 //            $msg = `sudo $scriptsDirectory/createUser.sh $username $password`;
 
 //            if (!hasValue($msg)) {
@@ -62,11 +76,11 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                     $response = $sendgrid->send($email);
                     if ($response->statusCode() == 202) {
                         $sql = "
-                    INSERT INTO `users` (`username`, `password`, `email`, `hash`)
-                    SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? AS `hash`) AS temp 
+                    INSERT INTO `users` (`username`, `password`, `email`, `school`, `hash`)
+                    SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? as `school`, ? AS `hash`) AS temp 
                     WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
                         $sth = $db->prepare($sql);
-                        $sth->execute([$username, $hashedPw, $mail, $hash, $username, $mail]);
+                        $sth->execute([$username, $hashedPw, $mail, $school, $hash, $username, $mail]);
 
                         $sth = $db->prepare("COMMIT");
                         $sth->execute();
@@ -81,9 +95,9 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                     die("Server error.");
 //                    die("Caught exception: " . $e->getMessage() . "\n");
                 }
-//            } else {
-//                echo "The username already exists";
-//            }
+            } else {
+                echo "Your school is not registered as part of CCC.";
+            }
         } else {
             echo "Invalid email.";
         }
