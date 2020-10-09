@@ -140,6 +140,7 @@ require '../templates/header.php';
         allOptions.removeClass('selected');
         $(this).addClass('selected');
         $(".list-unstyled").children('.init').html($(this).html());
+        console.log($(this).html());
         allOptions.toggle();
     });
 </script>
