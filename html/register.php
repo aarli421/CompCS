@@ -110,7 +110,8 @@ require '../templates/header.php';
                             <div class="form-group"><label for="registerEmail">Email Address</label><input type="email" id="registerEmail" name="signUpEmail" required="required" pattern="<?php echo $emailReg; ?>" /></div>
                             <div class="form-group"><label for="registerPassword">Password (>8 letters, numbers, and symbols)</label><input type="password" id="registerPassword" name="signUpPassword" required="required" pattern="<?php echo $passwordReg; ?>" /></div>
                             <div class="form-group"><label for="registerCPassword">Confirm Password</label><input type="password" id="registerCPassword" name="signUpCPassword" required="required" /></div>
-                            <div class="form-group" >
+                            <div class="form-group school"><label>School</label></div>
+                            <div class="form-group">
                                 <ul class="list-unstyled">
                                     <li class="init item">Select School</li>
                                     <li class="item" data-value="value 1" style="padding-top: 10%">American</li>
