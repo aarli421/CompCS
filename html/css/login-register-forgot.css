@@ -321,8 +321,13 @@ html {
 }
 a#submit { z-index: 1; }
 
+.after {
+	position: relative;
+	z-index: 0;
+}
+
 .agree{
-	padding-top: 15%;
+	padding-top: 10%;
 }
 
 button[disabled] {
