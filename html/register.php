@@ -118,9 +118,9 @@ require '../templates/header.php';
                                     <li class="item" data-value="value 2">Irvington</li>
                                 </ul>
                             </div>
-                            <div class="form-group"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to <a href="tos" target="_blank">Terms of Service</a></label></div>
+                            <div class="form-group agree" style="position: relative; z-index: 0;"><label class="form-remember"><input type="checkbox" name="tos" checked="checked" required="required"/>Agree to <a href="tos" target="_blank">Terms of Service</a></label></div>
                             <input id="registerSchool" name="registerSchool" type="hidden" value="">
-                            <div class="form-group"><button id="registerBtn" form="register" type="submit">Register</button></div>
+                            <div class="form-group" style="position: relative; z-index: 0;"><button id="registerBtn" form="register" type="submit">Register</button></div>
                         </form>
                     </div>
                     <h6 id="registerSuccess" class="text-success"></h6>
