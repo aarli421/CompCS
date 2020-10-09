@@ -129,6 +129,19 @@ require '../templates/header.php';
         </div>
     </section>
 </div>
+<script>
+    $(".list-unstyled").on("click", ".init", function() {
+        $(this).closest(".list-unstyled").children('.item:not(.init)').toggle();
+    });
+
+    var allOptions = $(".list-unstyled").children('.item:not(.init)');
+    $(".list-unstyled").on("click", ".item:not(.init)", function() {
+        allOptions.removeClass('selected');
+        $(this).addClass('selected');
+        $(".list-unstyled").children('.init').html($(this).html());
+        allOptions.toggle();
+    });
+</script>
 <script src="js/login-register.js"></script>
 <?php
 require '../templates/footer.php'
