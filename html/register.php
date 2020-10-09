@@ -44,6 +44,7 @@ $schools = $sth->fetchAll();
         $("#registerEmail").val("");
         $("#registerPassword").val("");
         $("#registerCPassword").val("");
+        $("#registerSchool").val("");
     }
 
     $(function () {
