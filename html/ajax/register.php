@@ -28,14 +28,10 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
             $sth->execute();
             $schools = $sth->fetchAll();
 
-            $works = true;
+            $works = false;
             foreach ($schools as $key => $value) {
-                if ($value['name'] != $school) {
-
-                    echo $value['name'];
-                    echo $school;
-
-                    $works = false;
+                if ($value['name'] == $school) {
+                    $works = true;
                     break;
                 }
             }
