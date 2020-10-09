@@ -45,6 +45,7 @@ $schools = $sth->fetchAll();
         $("#registerPassword").val("");
         $("#registerCPassword").val("");
         $("#registerSchool").val("");
+        $(".list-unstyled").children('.item:not(.init)').removeClass('selected');
     }
 
     $(function () {
