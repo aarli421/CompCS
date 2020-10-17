@@ -50,24 +50,24 @@ if (hasValue($_GET['email']) && hasValue($_GET['hash'])) {
         } else {
             $username = $passArr[0]['username'];
 
-            $root = $_SERVER['DOCUMENT_ROOT'];
-            $directory = $root . "/users/" . $username;
-            $msg = `sudo $scriptsDirectory/executeAsUser.sh $username "mkdir $directory; chmod g+w $directory;"`;
-            $msg2 = `sudo $scriptsDirectory/addAdmin.sh $username`;
+            //$root = $_SERVER['DOCUMENT_ROOT'];
+            //$directory = $root . "/users/" . $username;
+            //$msg = `sudo $scriptsDirectory/executeAsUser.sh $username "mkdir $directory; chmod g+w $directory;"`;
+            //$msg2 = `sudo $scriptsDirectory/addAdmin.sh $username`;
 
-            if (hasValue($msg) || hasValue($msg2)) {
-                ?>
-                $("#title").html("The verification process encountered an error!");
-                redirect = "https://www.compcs.codes/contact";
-                <?php
-            } else {
+            //if (hasValue($msg) || hasValue($msg2)) {
+                //?>
+                //$("#title").html("The verification process encountered an error!");
+                //redirect = "https://www.compcs.codes/register";
+                //<?php
+            //} else {
                 $sth = $db->prepare("UPDATE users SET active=1 WHERE email=? AND hash=? AND active=0");
                 $sth->execute([$_GET['email'], $_GET['hash']]);
                 ?>
                 $("#title").html("Your account was successfully verified!");
                 redirect = "https://www.compcs.codes/login";
                 <?php
-            }
+            //}
 //            echo "Account Verified!";
         }
     }
