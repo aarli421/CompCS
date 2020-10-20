@@ -67,6 +67,14 @@ $schools = $sth->fetchAll();
             }
         });
 
+        $("#registerPassword").oninvalid = function () {
+            this.setCustomValidity("Please enter at least 5 characters.");
+        };
+
+        $("#registerPassword").oninput= function () {
+            this.setCustomValidity("Please make sure your symbol is from @$!%*#?.");
+        };
+
         $("#register").submit(function(e) {
             e.preventDefault();
             // console.log("Passed here 1");
