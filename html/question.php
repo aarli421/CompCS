@@ -251,7 +251,7 @@ if ($access) {
                     quality due to limited funds, so timing might be different from official websites such as USACO, but it should still be close enough.</p>
                 <p>Submissions are governed as follows:</p>
                 <ul>
-                    <li><p>C++ | g++ 7.5.0 | 30 second compilation time | 2 second submission time</p></li>
+                    <li><p>C++ | g++ 4.8.2 | 30 second compilation time | 2 second submission time</p></li>
                     <li><p>Java | OpenJDK 8 | 30 second compilation time | 4 second submission time</p></li>
                     <li><p>Python | 3.6.9 | 4 second submission time</p></li>
                 </ul>
