@@ -46,7 +46,7 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
                     $curr = new DateTime($curr_date);
                     $curr_copy = new DateTime($curr_date);
 
-                    if (($curr >= $start && $curr < $end) || $user[0]['admin'] == 1) {
+                    if (($curr >= $start && $curr < $end) || $user[0]['admin'] > 1) {
                         $_SESSION['contest'] = $contest[0]['contest_id'];
 
                         $curr->add(time_to_interval($contest[0]['length']));

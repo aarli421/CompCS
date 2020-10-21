@@ -1,11 +1,11 @@
 <?php
 require '../templates/helper.php';
 
-$sth = $db->prepare("SELECT `question_id`, `prompt`, `testcase_value`, `unlock_value`, `testcases`, `contest_id` FROM questions WHERE `name`=?");
+$sth = $db->prepare("SELECT `question_id`, `prompt`, `testcase_value`, `unlock_value`, `testcases`, `admin`, `contest_id` FROM questions WHERE `name`=?");
 $sth->execute([$_GET['questionName']]);
 $passArr = $sth->fetchAll();
 
-$sth = $db->prepare("SELECT `points` FROM users WHERE `user_id`=?");
+$sth = $db->prepare("SELECT `points`, `admin` FROM users WHERE `user_id`=?");
 $sth->execute([$user_id]);
 $points = $sth->fetchAll();
 
@@ -25,6 +25,10 @@ if (empty($passArr)) {
     $access = false;
     $found = false;
 } else {
+    if ($passArr[0]['admin'] > $points[0]['admin']) {
+        $access = false;
+    }
+
     if ($points[0]['points'] < $passArr[0]['unlock_value']) {
         if (hasValue($_SESSION['contest'])) {
             if ($passArr[0]['contest_id'] != $_SESSION['contest']) {

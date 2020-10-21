@@ -10,10 +10,10 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-$sth = $db->prepare("SELECT `points` FROM `users` WHERE `username`=?");
+$sth = $db->prepare("SELECT `points`, `admin` FROM `users` WHERE `username`=?");
 $sth->execute([$_SESSION['user']]);
-$passArr = $sth->fetchAll();
-$points = $passArr[0]['points'];
+$user = $sth->fetchAll();
+$points = $user[0]['points'];
 
 require '../templates/header.php';
 ?>
@@ -68,8 +68,8 @@ require '../templates/header.php';
                     $sth->execute([$upper, $curr_date]);
                     $passArr = $sth->fetchAll();
                 } else {
-                    $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");
-                    $sth->execute([$lower, $upper, $bonus]);
+                    $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `admin`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");
+                    $sth->execute([$lower, $upper, $user[0]['admin'], $bonus]);
                     $passArr = $sth->fetchAll();
                 }
 

@@ -7,7 +7,7 @@ $sth = $db->prepare("SELECT * FROM questions WHERE `name`=?");
 $sth->execute([$questionName]);
 $question = $sth->fetchAll();
 
-$sth = $db->prepare("SELECT `username`, `points`, `start` FROM users WHERE `user_id`=?");
+$sth = $db->prepare("SELECT `username`, `points`, `start`, `admin` FROM users WHERE `user_id`=?");
 $sth->execute([$user_id]);
 $user = $sth->fetchAll();
 
@@ -21,6 +21,11 @@ if (!isset($_SESSION['user'])) {
 
 if (empty($question)) {
     $arr['error'] = "Question does not exist!";
+    $err = true;
+}
+
+if ($question[0]['admin'] > $user[0]['admin']) {
+    $arr['error'] = "You do not have permission to answer this question!";
     $err = true;
 }
 

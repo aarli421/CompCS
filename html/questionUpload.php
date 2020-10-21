@@ -9,7 +9,7 @@ $uploadFile = $root . '/questions/' . $_FILES['questionInput']['name'];
 $targetFolder = $root . '/questions/' . $name[0];
 $tempFile = $_FILES['questionInput']['tmp_name'];
 
-if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['bonus']) && isset($_POST['testcase_value']) && isset($_POST['prompt']) && isset($_POST['contest'])) {
+if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['bonus']) && isset($_POST['admin']) && isset($_POST['testcase_value']) && isset($_POST['prompt']) && isset($_POST['contest'])) {
     $msg = `sudo $scriptsDirectory/uploadQuestion.sh $tempFile $uploadFile`;
 
     if (!hasValue($msg)) {
@@ -18,8 +18,8 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
         $ioDirAmount = `ls $targetFolder | wc -l`;
         $testAmount = ((int) ($ioDirAmount)) / 2;
 
-        $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?);");
-        $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['bonus'], $_POST['contest']]);
+        $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+        $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
         ?>
         <script>
             $("#dialogDiv").html("Successfully uploaded. Don't refresh and confirm submission or else the question will be duplicated!");
@@ -55,6 +55,7 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
     Unlock Value: <input name="unlock_value" type="number" /> <br>
     Test Case Value: <input name="testcase_value" type="number" /> <br>
     Bonus: <input name="bonus" type="number" /> <br>
+    Admin: <input name="admin" type="number" /> <br>
     Contest: <input name="contest" type="number" /> <br>
     Send this file: <input name="questionInput" type="file" /> <br>
     Prompt: <textarea name="prompt"></textarea> <br>
