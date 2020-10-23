@@ -167,6 +167,12 @@ try {
 //    $arr['error'] = "Could not upload file. Server error.";
 //}
 
+    if (hasValue($arr['error'])) {
+        if (strpos($arr['error'], "Permission denied") !== false) {
+            $arr['error'] = "Server error. Try resubmitting the problem";
+        }
+    }
+
     echo json_encode($arr);
 } catch (Exception $e) {
     $arr['error'] = "The testing server is down or has an error. Please check any announcements about whether this is intentional.";
