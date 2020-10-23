@@ -97,7 +97,7 @@ if (!hasValue($_SESSION['contest'])) {
                         <?php
                         foreach ($contests as $id => $contest) {
                         ?>
-                            <h4><?php echo $contest['name']; ?>: <?php echo $contest['hash']; ?></h4>
+                            <h4 class="text-desc"><?php echo $contest['name']; ?>: <?php echo $contest['hash']; ?></h4>
                         <?php
                         }
                         ?>
