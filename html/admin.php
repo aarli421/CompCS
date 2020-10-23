@@ -47,7 +47,7 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
             $message = "Your input testcase files seem incorrect. Make sure you do not have a folder inside of the zip and instead just have all of the testcases";
         }
     } else {
-        $message = "Unable to move file. Server error.";
+        $message = "Unable to move file because " . $msg . ".";
 //        echo 'Unable to move file';
     }
 }
