@@ -81,8 +81,10 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
 require '../templates/header.php';
 
 if (!hasValue($_SESSION['contest'])) {
+    $curr_date = getCurrDate();
+
     $sth = $db->prepare("SELECT `name`, `hash` FROM `contests` WHERE `start`<=? AND `end`>=?");
-    $sth->execute([getCurrDate()]);
+    $sth->execute([$curr_date, $curr_date]);
     $contests = $sth->fetchAll();
 ?>
 <div class="background">
