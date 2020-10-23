@@ -73,9 +73,9 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
     Bonus: <input name="bonus" type="number" /> <br>
     Admin: <input name="admin" type="number" /> <br>
     Contest: <input name="contest" type="number" /> <br>
-    Send this file: <input name="questionInput" type="file" /> <br>
+    Testcases: <input name="questionInput" type="file" /> <br>
     Prompt: <textarea name="prompt"></textarea> <br>
-    <input type="submit" value="Send File" />
+    <input type="submit" value="Send Question" />
 </form>
 <br>
 <form method="post" action="questionUpload">
