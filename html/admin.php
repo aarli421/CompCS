@@ -26,7 +26,7 @@ $uploadFolder = "/home/compcs/uploads/" . $name[0];
 $message = "";
 
 if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['bonus']) && isset($_POST['admin']) && isset($_POST['testcase_value']) && isset($_POST['prompt']) && isset($_POST['contest'])) {
-    $msg = `unzip $tempFile -d $uploadFolder`;
+    $msg = `unzip -q $tempFile -d $uploadFolder`;
 
     if (!hasValue($msg)) {
         $ioDirAmount = `ls $targetFolder | wc -l`;
