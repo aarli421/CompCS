@@ -42,7 +42,7 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
 
             $msg = `rm -r $uploadFolder`;
 
-            $message = "Successfully uploaded. Don't refresh and confirm submission or else the question will be duplicated! " . $msg;
+            $message = "Successfully uploaded. Don't refresh or else the question will be duplicated!";
 
 //        echo 'Successfully uploaded';
         } else {
