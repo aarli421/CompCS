@@ -98,9 +98,16 @@ if ($access) {
     $sth->execute([$passArr[0]['question_id']]);
     $count = $sth->fetchAll();
 
-    $sth = $db->prepare("SELECT `output_json` FROM `grades` WHERE `user_id`=? AND `question_id`=? ORDER BY `grade_id` DESC LIMIT 1;");
-    $sth->execute([$user_id, $passArr[0]['question_id']]);
-    $output = $sth->fetchAll();
+    $output = array();
+    if (hasValue($_SESSION['contest'])) {
+        $sth = $db->prepare("SELECT `output_json` FROM `grades` WHERE `user_id`=? AND `question_id`=? AND `contest_id`=? ORDER BY `grade_id` DESC LIMIT 1;");
+        $sth->execute([$user_id, $passArr[0]['question_id'], $_SESSION['contest']]);
+        $output = $sth->fetchAll();
+    } else {
+        $sth = $db->prepare("SELECT `output_json` FROM `grades` WHERE `user_id`=? AND `question_id`=? ORDER BY `grade_id` DESC LIMIT 1;");
+        $sth->execute([$user_id, $passArr[0]['question_id']]);
+        $output = $sth->fetchAll();
+    }
 ?>
 <link rel="stylesheet" href="css/question.css">
 <link rel="stylesheet" href="css/loader.css">
