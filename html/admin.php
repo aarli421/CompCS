@@ -118,7 +118,7 @@ if (isset($_POST['deleteQuestion']) && isset($_POST['questionName'])) {
 <br>
 <form method="post" action="admin">
     Question Name: <input name="questionName"> <br>
-    <input type="hidden" name="deleteQuestions" value="true">
+    <input type="hidden" name="deleteQuestion" value="true">
     <input type="submit" value="Delete Question">
 </form>
 </section>
