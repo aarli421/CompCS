@@ -41,7 +41,6 @@ if (empty($passArr)) {
 
     if (hasValue($_SESSION['contest'])) {
         if ($passArr[0]['contest_id'] != 0 && $passArr[0]['contest_id'] != $_SESSION['contest']) {
-            echo "did not pass here";
             $access = false;
         }
     } else {
