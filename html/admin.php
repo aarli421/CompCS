@@ -76,7 +76,7 @@ if (isset($_POST['deleteQuestion']) && isset($_POST['questionName'])) {
     $sth->execute([$_POST['questionName']]);
     $passArr = $sth->fetchAll();
 
-    if ($passArr[0][0] == 0) {
+    if ($passArr[0][0] != 0) {
         $sth = $db->prepare("DELETE FROM `questions` WHERE `name`=?");
         $sth->execute([$_POST['questionName']]);
 
@@ -92,7 +92,7 @@ if (isset($_POST['deleteQuestion']) && isset($_POST['questionName'])) {
             $message = "Could not delete question " . $msg;
         }
     } else {
-
+        $message = "This question does not exist";
     }
 }
 ?>
