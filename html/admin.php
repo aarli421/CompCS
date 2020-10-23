@@ -34,6 +34,8 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
         if ($ioDirAmount % 2 == 0) {
             $testAmount = ((int) ($ioDirAmount)) / 2;
 
+            $message = "sudo " . $scriptsDirectory . "/uploadQuestion.sh " . $uploadFolder;
+
             `sudo $scriptsDirectory/uploadQuestion.sh $uploadFolder`;
 //        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
 
