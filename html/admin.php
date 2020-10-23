@@ -67,7 +67,7 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
 ?>
 <section>
 <p id="dialogDiv"></p>
-<form method="post" action="questionUpload" enctype="multipart/form-data">
+<form method="post" action="admin" enctype="multipart/form-data">
     Unlock Value: <input name="unlock_value" type="number" /> <br>
     Test Case Value: <input name="testcase_value" type="number" /> <br>
     Bonus: <input name="bonus" type="number" /> <br>
@@ -78,7 +78,7 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
     <input type="submit" value="Send Question" />
 </form>
 <br>
-<form method="post" action="questionUpload">
+<form method="post" action="admin">
     Question Name: <input name="questionName"> <br>
     Edit Prompt: <textarea name="prompt"></textarea> <br>
     <input type="hidden" name="editPrompt" value="true">
