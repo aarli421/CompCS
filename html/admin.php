@@ -57,11 +57,7 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
     $sth->execute([$_POST['prompt'], $_POST['questionName']]);
 
     if (!$sth) {
-    ?>
-        <script>
-        $("#dialogDiv").html("Updating question failed.");
-        </script>
-    <?php
+        $message = "Updating question failed.";
     }
 }
 ?>
