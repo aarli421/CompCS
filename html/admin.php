@@ -9,7 +9,7 @@ $sth = $db->prepare("SELECT `admin` FROM users WHERE `user_id`=?");
 $sth->execute([$user_id]);
 $user = $sth->fetchAll();
 
-if ($user[0]['admin'] < 1) {
+if ($user[0]['admin'] < 2) {
     redirect("401");
 }
 
