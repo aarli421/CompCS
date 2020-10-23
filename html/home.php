@@ -64,8 +64,8 @@ require '../templates/header.php';
                     $sth = $db->prepare("UPDATE `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` SET `testcase_value`=0 WHERE `end`<?");
                     $sth->execute([$curr_date]);
 
-                    $sth = $db->prepare("SELECT `questions`.`name`, `contests`.`unlock_value`, `question_id`, `testcase_value`, `testcases` FROM `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` WHERE `contests`.`unlock_value`<=? AND `end`<?");
-                    $sth->execute([$upper, $curr_date]);
+                    $sth = $db->prepare("SELECT `questions`.`name`, `contests`.`unlock_value`, `question_id`, `testcase_value`, `testcases` FROM `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` WHERE `contests`.`unlock_value`<=? AND `end`<? AND `admin`<=?");
+                    $sth->execute([$upper, $curr_date, $user[0]['admin']]);
                     $passArr = $sth->fetchAll();
                 } else {
                     $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `admin`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");

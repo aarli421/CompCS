@@ -63,11 +63,19 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
 }
 
 if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['questionName'])) {
-    $sth = $db->prepare("UPDATE `questions` SET `prompt`=? WHERE `name`=?");
-    $sth->execute([$_POST['prompt'], $_POST['questionName']]);
+    $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `questions` WHERE `name`=?) LIMIT 1");
+    $sth->execute([$_POST['questionName']]);
+    $passArr = $sth->fetchAll();
 
-    if (!$sth) {
-        $message = "Updating question failed.";
+    if ($passArr[0][0] != 0) {
+        $sth = $db->prepare("UPDATE `questions` SET `prompt`=? WHERE `name`=?");
+        $sth->execute([$_POST['prompt'], $_POST['questionName']]);
+
+        if (!$sth) {
+            $message = "Updating question failed.";
+        }
+    } else {
+        $message = "This question does not exist.";
     }
 }
 
@@ -87,17 +95,38 @@ if (isset($_POST['deleteQuestion']) && isset($_POST['questionName'])) {
         if (!hasValue($msg) || !$sth) {
             `sudo $scriptsDirectory/syncQuestion.sh --delete`;
 
-            $message = "Successfully removed the question";
+            $message = "Successfully removed the question.";
         } else {
             $message = "Could not delete question " . $msg;
         }
     } else {
-        $message = "This question does not exist";
+        $message = "This question does not exist.";
+    }
+}
+
+if (isset($_POST['editContest']) && isset($_POST['questionName']) && isset($_POST['contestId'])) {
+    $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `questions` WHERE `name`=?) LIMIT 1");
+    $sth->execute([$_POST['questionName']]);
+    $passArr = $sth->fetchAll();
+
+    if ($passArr[0][0] != 0) {
+        $sth = $db->prepare("UPDATE `questions` SET `bonus`=0, `admin`=0, `contest_id`=? WHERE `name`=?");
+        $sth->execute([$_POST['contestId'], $_POST['questionName']]);
+
+        if (!$sth) {
+            $message = "Updating question failed.";
+        }
+    } else {
+        $message = "This question does not exist.";
     }
 }
 ?>
 <section>
 <p id="dialogDiv"></p>
+<p>Schematics for uploading questions:<br>
+    Normal Question: Bonus = 0, Admin = 0, Contest = 0<br>
+    Bonus Question: Bonus = 1, Admin = 0, Contest = 0<br>
+    Testing Contest Question: Bonus = 2, Admin = 1, Contest = 0</p>
 <form method="post" action="admin" enctype="multipart/form-data">
     Unlock Value: <input name="unlock_value" type="number" /> <br>
     Test Case Value: <input name="testcase_value" type="number" /> <br>
@@ -120,6 +149,13 @@ if (isset($_POST['deleteQuestion']) && isset($_POST['questionName'])) {
     Question Name: <input name="questionName"> <br>
     <input type="hidden" name="deleteQuestion" value="true">
     <input type="submit" value="Delete Question">
+</form>
+<br>
+<form method="post" action="admin">
+    Question Name: <input name="questionName"> <br>
+    Contest Id: <input name="contestId" type="number"> <br>
+    <input type="hidden" name="editContest" value="true">
+    <input type="submit" value="Change Question to Contest Question">
 </form>
 </section>
 <script>
