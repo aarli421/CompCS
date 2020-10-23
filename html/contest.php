@@ -81,6 +81,9 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
 require '../templates/header.php';
 
 if (!hasValue($_SESSION['contest'])) {
+    $sth = $db->prepare("SELECT `name`, `hash` FROM `contests` WHERE `start`<=? AND `end`>=?");
+    $sth->execute([getCurrDate()]);
+    $contests = $sth->fetchAll();
 ?>
 <div class="background">
     <section data-stellar-background-ratio="0.5">
@@ -89,6 +92,13 @@ if (!hasValue($_SESSION['contest'])) {
                 <div class="form-panel one">
                     <div class="form-header">
                         <h1>Enter Contest</h1>
+                        <?php
+                        foreach ($contests as $id => $contest) {
+                        ?>
+                            <h4><?php echo $contest['name']; ?>: <?php echo $contest['hash']; ?></h4>
+                        <?php
+                        }
+                        ?>
                     </div>
                     <div class="form-content">
                         <form id="contest" action="contest" method="get">
