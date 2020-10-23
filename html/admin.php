@@ -34,13 +34,13 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
         if ($ioDirAmount % 2 == 0) {
             $testAmount = ((int) ($ioDirAmount)) / 2;
 
-            $message = "sudo " . $scriptsDirectory . "/uploadQuestion.sh " . $uploadFolder;
-
             `sudo $scriptsDirectory/uploadQuestion.sh $uploadFolder`;
 //        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
 
             $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
             $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
+
+            rmdir($uploadFolder);
 
             $message = "Successfully uploaded. Don't refresh and confirm submission or else the question will be duplicated!";
 
