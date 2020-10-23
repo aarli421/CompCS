@@ -15,42 +15,50 @@ if ($user[0]['admin'] < 2) {
 
 require '../templates/header.php';
 
-$name = explode(".",  basename($_FILES['questionInput']['name']));
-
-$root = $_SERVER['DOCUMENT_ROOT'];
-$uploadFile = $root . '/questions/' . $_FILES['questionInput']['name'];
-$targetFolder = $root . '/questions/' . $name[0];
-$tempFile = $_FILES['questionInput']['tmp_name'];
-$uploadFolder = "/home/compcs/uploads/" . $name[0];
-
 $message = "";
 
 if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['bonus']) && isset($_POST['admin']) && isset($_POST['testcase_value']) && isset($_POST['prompt']) && isset($_POST['contest'])) {
-    $msg = `unzip -q $tempFile -d $uploadFolder`;
+    $name = explode(".",  basename($_FILES['questionInput']['name']));
 
-    if (!hasValue($msg)) {
-        $ioDirAmount = `ls $targetFolder | wc -l`;
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    $uploadFile = $root . '/questions/' . $_FILES['questionInput']['name'];
+    $targetFolder = $root . '/questions/' . $name[0];
+    $tempFile = $_FILES['questionInput']['tmp_name'];
+    $uploadFolder = "/home/compcs/questions/" . $name[0];
 
-        if ($ioDirAmount % 2 == 0) {
-            $testAmount = ((int) ($ioDirAmount)) / 2;
+    $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `questions` WHERE `name`=?) LIMIT 1");
+    $sth->execute([$name[0]]);
+    $passArr = $sth->fetchAll();
 
-            `sudo $scriptsDirectory/uploadQuestion.sh $uploadFolder`;
+    if ($passArr[0][0] == 0) {
+        $msg = `unzip -q $tempFile -d $uploadFolder`;
+
+        if (!hasValue($msg)) {
+            $ioDirAmount = `ls $targetFolder | wc -l`;
+
+            if ($ioDirAmount % 2 == 0) {
+                $testAmount = ((int)($ioDirAmount)) / 2;
+
+                `sudo $scriptsDirectory/syncQuestion.sh`;
 //        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
 
-            $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
-            $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
+                $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+                $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
 
-            $msg = `rm -r $uploadFolder`;
+                $msg = `rm -r $uploadFolder`;
 
-            $message = "Successfully uploaded. Don't refresh or else the question will be duplicated!";
+                $message = "Successfully uploaded.";
 
 //        echo 'Successfully uploaded';
+            } else {
+                $message = "Your input testcase files seem incorrect. Make sure you do not have a folder inside of the zip and instead just have all of the testcases";
+            }
         } else {
-            $message = "Your input testcase files seem incorrect. Make sure you do not have a folder inside of the zip and instead just have all of the testcases";
+            $message = "Unable to move file because " . $msg . ".";
+//        echo 'Unable to move file';
         }
     } else {
-        $message = "Unable to move file because " . $msg . ".";
-//        echo 'Unable to move file';
+        $message = "A question with this name already exists.";
     }
 }
 
@@ -60,6 +68,31 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
 
     if (!$sth) {
         $message = "Updating question failed.";
+    }
+}
+
+if (isset($_POST['deleteQuestion']) && isset($_POST['questionName'])) {
+    $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `questions` WHERE `name`=?) LIMIT 1");
+    $sth->execute([$_POST['questionName']]);
+    $passArr = $sth->fetchAll();
+
+    if ($passArr[0][0] == 0) {
+        $sth = $db->prepare("DELETE FROM `questions` WHERE `name`=?");
+        $sth->execute([$_POST['questionName']]);
+
+        $targetFolder = "/home/compcs/questions/" . $_POST['questionName'];
+
+        $msg = `rm -r $targetFolder`;
+
+        if (!hasValue($msg) || !$sth) {
+            `sudo $scriptsDirectory/syncQuestion.sh --delete`;
+
+            $message = "Successfully removed the question";
+        } else {
+            $message = "Could not delete question " . $msg;
+        }
+    } else {
+
     }
 }
 ?>
@@ -81,6 +114,12 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
     Edit Prompt: <textarea name="prompt"></textarea> <br>
     <input type="hidden" name="editPrompt" value="true">
     <input type="submit" value="Edit Prompt">
+</form>
+<br>
+<form method="post" action="admin">
+    Question Name: <input name="questionName"> <br>
+    <input type="hidden" name="deleteQuestions" value="true">
+    <input type="submit" value="Delete Question">
 </form>
 </section>
 <script>
