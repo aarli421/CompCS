@@ -59,6 +59,7 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
                         $success = "If you are not redirected, please refresh the page.";
 
                         redirect("contest");
+                        exit();
                     } else {
                         $error = "The contest has not begun or has already ended.";
                     }
