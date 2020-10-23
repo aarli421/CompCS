@@ -40,9 +40,9 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
             $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
             $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
 
-            `rm -r $uploadFolder`;
+            $msg = `rm -r $uploadFolder`;
 
-            $message = "Successfully uploaded. Don't refresh and confirm submission or else the question will be duplicated!";
+            $message = "Successfully uploaded. Don't refresh and confirm submission or else the question will be duplicated! " . $msg;
 
 //        echo 'Successfully uploaded';
         } else {
