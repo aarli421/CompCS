@@ -8,30 +8,33 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 $uploadFile = $root . '/questions/' . $_FILES['questionInput']['name'];
 $targetFolder = $root . '/questions/' . $name[0];
 $tempFile = $_FILES['questionInput']['tmp_name'];
+$uploadFolder = "/home/compcs/uploads/" . $name[0];
+
+$message = "";
 
 if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['bonus']) && isset($_POST['admin']) && isset($_POST['testcase_value']) && isset($_POST['prompt']) && isset($_POST['contest'])) {
-    $msg = `sudo $scriptsDirectory/uploadQuestion.sh $tempFile $uploadFile`;
+    $msg = `unzip $tempFile -d $uploadFolder`;
 
     if (!hasValue($msg)) {
-        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
-
         $ioDirAmount = `ls $targetFolder | wc -l`;
-        $testAmount = ((int) ($ioDirAmount)) / 2;
 
-        $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
-        $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
-        ?>
-        <script>
-            $("#dialogDiv").html("Successfully uploaded. Don't refresh and confirm submission or else the question will be duplicated!");
-        </script>
-        <?php
+        if ($ioDirAmount % 2 == 0) {
+            $testAmount = ((int) ($ioDirAmount)) / 2;
+
+            `sudo $scriptsDirectory/uploadQuestion.sh $uploadFolder`;
+//        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
+
+            $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+            $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
+
+            $message = "Successfully uploaded. Don't refresh and confirm submission or else the question will be duplicated!";
+
 //        echo 'Successfully uploaded';
+        } else {
+            $message = "Your input testcase files seem incorrect. Make sure you do not have a folder inside of the zip and instead just have all of the testcases";
+        }
     } else {
-        ?>
-        <script>
-            $("#dialogDiv").html("Unable to move file. Don't refresh and confirm submission or else it will be duplicated!");
-        </script>
-        <?php
+        $message = "Unable to move file. Server error.";
 //        echo 'Unable to move file';
     }
 }
@@ -69,5 +72,8 @@ if (isset($_POST['editPrompt']) && isset($_POST['prompt']) && isset($_POST['ques
     <input type="submit" value="Edit Prompt">
 </form>
 </section>
+<script>
+    $("#dialogDiv").html("<?php echo $message; ?>");
+</script>
 <?php
 require  '../templates/footer.php';
