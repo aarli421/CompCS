@@ -1,5 +1,18 @@
 <?php
 require '../templates/helper.php';
+
+if (!isset($_SESSION['user'])) {
+    redirect("login");
+}
+
+$sth = $db->prepare("SELECT `admin` FROM users WHERE `user_id`=?");
+$sth->execute([$user_id]);
+$user = $sth->fetchAll();
+
+if ($user[0]['admin'] < 1) {
+    redirect("401");
+}
+
 require '../templates/header.php';
 
 $name = explode(".",  basename($_FILES['questionInput']['name']));
