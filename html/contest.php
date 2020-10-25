@@ -248,9 +248,6 @@ if (!hasValue($_SESSION['contest'])) {
         $contest = $sth->fetchAll();
 ?>
     <script src="js/refresh.js"></script>
-    <script>
-        refreshSession();
-    </script>
     <!-- Greeting Message -->
     <section data-stellar-background-ratio="0.5" style="padding-bottom: 25px;">
         <div class="container">
