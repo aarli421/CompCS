@@ -1,4 +1,6 @@
 <?php
+require '../../templates/helper.php';
+
 if (isset($_SESSION['user'])) {
     echo "Logged in";
 } else {
