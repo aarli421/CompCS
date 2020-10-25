@@ -98,7 +98,7 @@ if ($access) {
     $count = $sth->fetchAll();
 
     $output = array();
-    if (hasValue($_SESSION['contest'])) {
+    if (hasValue($_SESSION['contest']) && $passArr[0]['contest_id'] == $_SESSION['contest']) {
         $sth = $db->prepare("SELECT `output_json` FROM `grades` WHERE `user_id`=? AND `question_id`=? AND `contest_id`=? ORDER BY `grade_id` DESC LIMIT 1;");
         $sth->execute([$user_id, $passArr[0]['question_id'], $_SESSION['contest']]);
         $output = $sth->fetchAll();
