@@ -102,13 +102,13 @@ if ($err) {
 
 $curr_date = getCurrDate();
 $curr = new DateTime($curr_date);
-$sth = $db->prepare("UPDATE `views` SET `timestamp`=?, `active`=1 WHERE `user_id`=? AND `question_id`=?");
+$sth = $db->prepare("UPDATE `views` SET `timestamp`=? WHERE `user_id`=? AND `question_id`=?");
 $sth->execute([$curr->format('Y-m-d H:i:s'), $user_id, $question[0]['question_id']]);
 
 $curr_copy = new DateTime($curr_date);
 $curr_copy->sub(new DateInterval("PT00H30M00S"));
 
-$sth = $db->prepare("UPDATE `views` SET `active`=0 WHERE `timestamp`<?");
+$sth = $db->prepare("DELETE FROM `views` WHERE `timestamp`<?");
 $sth->execute([$curr_copy->format('Y-m-d H:i:s')]);
 
 $rootDir = $_SERVER['DOCUMENT_ROOT'];
