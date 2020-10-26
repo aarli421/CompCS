@@ -112,8 +112,6 @@ if ($access) {
 <link rel="stylesheet" href="css/loader.css">
 <script src="js/refresh.js"></script>
 <script>
-    refreshSession();
-
     function startUpload(){
         $(function() {
             $("#prompt-center").css("text-align", "center");
