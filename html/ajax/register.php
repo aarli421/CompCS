@@ -64,36 +64,44 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                     die("Server error.");
                 }
 
-                $email = new \SendGrid\Mail\Mail();
-                $email->setFrom("noreply@compcs.codes", "CompCS");
-                $email->setSubject("Verify CompCS Account");
-                $email->addTo($mail, "CompCS Codes User");
-                $email->addContent(
-                    "text/html", $content
-                );
-                $sendgrid = new \SendGrid($data[1]);
-                try {
-                    $response = $sendgrid->send($email);
-                    if ($response->statusCode() == 202) {
-                        $sql = "
-                    INSERT INTO `users` (`username`, `password`, `email`, `school`, `hash`)
-                    SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? as `school`, ? AS `hash`) AS temp 
-                    WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
-                        $sth = $db->prepare($sql);
-                        $sth->execute([$username, $hashedPw, $mail, $school, $hash, $username, $mail]);
+                $email = new PHPMailer\PHPMailer\PHPMailer();
+                $email->IsSMTP();
+                $email->Mailer = "smtp";
 
-                        $sth = $db->prepare("COMMIT");
-                        $sth->execute();
+                $handle = fopen('../private/keys.csv', 'r');
+                $data = fgetcsv($handle, 5, ',');
+
+                //$mail->SMTPDebug  = 1;
+                $email->SMTPAuth   = TRUE;
+                $email->SMTPSecure = "tls";
+                $email->Port       = 587;
+                $email->Host       = "smtp.gmail.com";
+                $email->Username   = "compcscodes@gmail.com";
+                $email->Password   = $data[3];
+
+                $email->IsHTML(true);
+                $email->AddAddress($mail, $username);
+                $email->SetFrom("noreply@compcs.codes", "CompCS");
+                $email->Subject = "CompCS Verification";
+
+                $mail->MsgHTML($content);
+
+                if ($mail->Send()) {
+                    $sql = "
+                INSERT INTO `users` (`username`, `password`, `email`, `school`, `hash`)
+                SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? as `school`, ? AS `hash`) AS temp 
+                WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
+                    $sth = $db->prepare($sql);
+                    $sth->execute([$username, $hashedPw, $mail, $school, $hash, $username, $mail]);
+
+                    $sth = $db->prepare("COMMIT");
+                    $sth->execute();
 
 //                        `mkdir ../users/$username`;
 
-                        echo "Success";
-                    } else {
-                        die("Mail was unable to send.");
-                    }
-                } catch (Exception $e) {
-                    die("Server error.");
-//                    die("Caught exception: " . $e->getMessage() . "\n");
+                    echo "Success";
+                } else {
+                    die("Mail was unable to send.");
                 }
             } else {
                 echo "Your school is not registered as part of CCC.";
