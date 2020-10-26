@@ -14,7 +14,7 @@ $schools = $sth->fetchAll();
                 <div class="form-panel one">
                     <div class="form-header">
                         <h1>Register Account</h1>
-                        <h6 class="text-desc">Our emailing system is temporarily down. Please register later, sorry for the inconvenience!</h6>
+<!--                        <h6 class="text-desc">Our emailing system is temporarily down. Please register later, sorry for the inconvenience!</h6>-->
                     </div>
                     <div class="form-content">
                         <form id="register" method="post">
