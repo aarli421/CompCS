@@ -19,11 +19,6 @@ require '../templates/header.php';
 ?>
 <link rel="stylesheet" href="css/progress.css">
 <link rel="stylesheet" href="css/home.css">
-<?php if (isset($_SESSION['contest'])) { ?>
-<script src="js/refresh.js"></script>
-<?php } else { ?>
-<script src="js/loggedin.js"></script>
-<?php } ?>
 <!-- Greeting Message -->
 <section data-stellar-background-ratio="0.5" style="padding-bottom: 25px;">
     <div class="container">

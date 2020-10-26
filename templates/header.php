@@ -57,6 +57,24 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
     </script>
     <script src="js/latex.js"></script>
 
+    <?php
+    if (isset($_SESSION['contest'])) {
+    ?>
+        <script src="js/refresh.js"></script>
+    <?php
+    } else {
+        if ($fileName == "question") {
+            ?>
+        <script src="js/refresh.js"></script>
+    <?php
+        } else {
+        ?>
+        <script src="js/loggedin.js"></script>
+        <?php
+        }
+    }
+    ?>
+
 </head>
 <body>
 
