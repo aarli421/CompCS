@@ -8,7 +8,7 @@ $mail->Mailer = "smtp";
 $handle = fopen('../private/keys.csv', 'r');
 $data = fgetcsv($handle, 5, ',');
 
-$mail->SMTPDebug  = 1;
+//$mail->SMTPDebug  = 1;
 $mail->SMTPAuth   = TRUE;
 $mail->SMTPSecure = "tls";
 $mail->Port       = 587;
