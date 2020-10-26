@@ -4,6 +4,7 @@ require '../templates/helper.php';
 if (hasValue($_POST['logout'])) {
     session_unset();
     session_destroy();
+    redirect("login");
     exit();
 }
 
