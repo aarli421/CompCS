@@ -2,7 +2,9 @@
 require '../templates/helper.php';
 
 if (hasValue($_POST['logout'])) {
-    unset($_SESSION['user']);
+    session_unset();
+    session_destroy();
+    exit();
 }
 
 if (!isset($_SESSION['user'])) {
