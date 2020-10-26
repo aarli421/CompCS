@@ -1,7 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 
-$mail = new PHPMailer();
+$mail = new PHPMailer\PHPMailer\PHPMailer();
 $mail->IsSMTP();
 $mail->Mailer = "smtp";
 
