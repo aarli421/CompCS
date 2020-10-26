@@ -68,9 +68,6 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                 $email->IsSMTP();
                 $email->Mailer = "smtp";
 
-                $handle = fopen('../private/keys.csv', 'r');
-                $data = fgetcsv($handle, 5, ',');
-
                 //$mail->SMTPDebug  = 1;
                 $email->SMTPAuth   = TRUE;
                 $email->SMTPSecure = "tls";
