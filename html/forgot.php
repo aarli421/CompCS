@@ -26,7 +26,7 @@ if (hasValue($_POST['newPassword']) && hasValue($_POST['newCPassword']) && hasVa
 }
 
 if (hasValue($_POST['forgotEmail'])) {
-    $sth = $db->prepare("SELECT `change_password` FROM `users` WHERE `email`=? AND `active`=1");
+    $sth = $db->prepare("SELECT `change_password`, `username` FROM `users` WHERE `email`=? AND `active`=1");
     $sth->execute([$_POST['forgotEmail']]);
     $user = $sth->fetchAll();
 
@@ -99,6 +99,10 @@ if (hasValue($_GET['hash']) && hasValue($_GET['email'])) {
 </div>
 <?php
 if (hasValue($_POST['forgotEmail'])) {
+    $sth = $db->prepare("SELECT `change_password`, `username` FROM `users` WHERE `email`=? AND `active`=1");
+    $sth->execute([$_POST['forgotEmail']]);
+    $user = $sth->fetchAll();
+
     if ($user[0]['change_password'] == 1) {
         ?>
         <script>
@@ -127,17 +131,26 @@ if (hasValue($_POST['forgotEmail'])) {
             die("Server error.");
         }
 
-        $email = new \SendGrid\Mail\Mail();
-        $email->setFrom("noreply@compcs.codes", "CompCS");
-        $email->setSubject("Password Change CompCS Account");
-        $email->addTo($_POST['forgotEmail'], "CompCS Codes User");
-        $email->addContent(
-            "text/html", $content
-        );
-        $sendgrid = new \SendGrid($data[1]);
-        try {
-            $response = $sendgrid->send($email);
+        $email = new PHPMailer\PHPMailer\PHPMailer();
+        $email->IsSMTP();
+        $email->Mailer = "smtp";
 
+        //$mail->SMTPDebug  = 1;
+        $email->SMTPAuth   = TRUE;
+        $email->SMTPSecure = "tls";
+        $email->Port       = 587;
+        $email->Host       = "smtp.gmail.com";
+        $email->Username   = "compcscodes@gmail.com";
+        $email->Password   = $data[3];
+
+        $email->IsHTML(true);
+        $email->AddAddress($_POST['forgotEmail'], $user[0]['username']);
+        $email->SetFrom("noreply@compcs.codes", "CompCS");
+        $email->Subject = "CompCS Password Change";
+
+        $email->MsgHTML($content);
+
+        if ($email->Send()) {
             $sth = $db->prepare("UPDATE `users` SET `hash`=?, `change_password`=1 WHERE `email`=? AND `active`=1");
             $sth->execute([$hash, $_POST['forgotEmail']]);
             ?>
@@ -146,14 +159,13 @@ if (hasValue($_POST['forgotEmail'])) {
                 $("#forgotError").html("");
             </script>
             <?php
-        } catch (Exception $e) {
-            echo 'Caught exception: ' . $e->getMessage() . "\n";
+        } else {
             ?>
             <script>
                 $("#forgotSuccess").html("");
-                $("#forgotError").html("Server error!");
+                $("#forgotError").html("Unable to send email.");
             </script>
-            <?php
+        <?php
         }
     }
 }
