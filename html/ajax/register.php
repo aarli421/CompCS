@@ -84,9 +84,9 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
                 $email->SetFrom("noreply@compcs.codes", "CompCS");
                 $email->Subject = "CompCS Verification";
 
-                $mail->MsgHTML($content);
+                $email->MsgHTML($content);
 
-                if ($mail->Send()) {
+                if ($email->Send()) {
                     $sql = "
                 INSERT INTO `users` (`username`, `password`, `email`, `school`, `hash`)
                 SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? as `school`, ? AS `hash`) AS temp 
