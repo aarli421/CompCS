@@ -250,7 +250,7 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
         $sth->execute();
     }
 
-    if ($points != 0) postDiscord($csFirstDiscord, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
+    if ($points != 0) postDiscord($logsChannel, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
 
     $sth = $db->prepare("SELECT `name`, `upper` FROM `divisions` WHERE `bonus`=0;");
     $sth->execute();
@@ -258,7 +258,7 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
 
     foreach ($divisions as $key => $value) {
         if ($user[0]['points'] <= $value['upper'] && $user[0]['points'] + $points > $value['upper']) {
-            postDiscord($csFirstDiscord, ":partying_face: :confetti_ball: " . $_SESSION['user'] . " passed " . $value['name'] . "! :partying_face: :confetti_ball:");
+            postDiscord($logsChannel, ":partying_face: :confetti_ball: " . $_SESSION['user'] . " passed " . $value['name'] . "! :partying_face: :confetti_ball:");
         }
     }
 

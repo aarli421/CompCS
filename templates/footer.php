@@ -22,6 +22,7 @@
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
 <!--                        <p>090-080-0650 | 090-070-0430</p>-->
                         <p><a href="mailto:compcscodes@gmail.com">compcscodes@gmail.com</a></p>
+                        <p><a href="https://discord.gg/5P3QHVp">Discord Server</a> (Faster response)</p>
 <!--                        <p>LINE: eatery247 </p>-->
                     </address>
                 </div>
