@@ -68,9 +68,11 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
         <script src="js/refresh.js"></script>
     <?php
         } else {
+            if (isset($_SESSION['user'])) {
         ?>
         <script src="js/loggedin.js"></script>
         <?php
+            }
         }
     }
     ?>
