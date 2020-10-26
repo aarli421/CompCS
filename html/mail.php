@@ -21,7 +21,7 @@ $mail->AddAddress("aaron.linear@gmail.com", "Aaron Li");
 $mail->SetFrom("noreply@compcs.codes", "CompCS");
 $mail->AddReplyTo("compcscodes@gmail.com", "CompCS");
 $mail->Subject = "Test is Test Email sent via Gmail SMTP Server using PHP Mailer";
-$content = "<b>This is a Test Email sent via Gmail SMTP Server using PHP mailer class.</b>";
+$content = file_get_contents("emails/register.html");;
 
 $mail->MsgHTML($content);
 if(!$mail->Send()) {
