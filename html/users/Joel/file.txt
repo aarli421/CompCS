@@ -1,4 +1,0 @@
-answer = input("Enter number: ")
-
-print(int(answer))
-
