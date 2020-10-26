@@ -32,7 +32,7 @@ function redirect($file) {
     $loc = $file; //. ".php";
     $host = $_SERVER["HTTP_HOST"];
     $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-    header("Location: https://$host/$loc");
+    header("Location: https://www.compcs.codes/$loc");
 }
 
 function hasValue($value) {
