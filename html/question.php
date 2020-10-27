@@ -110,7 +110,6 @@ if ($access) {
 ?>
 <link rel="stylesheet" href="css/question.css">
 <link rel="stylesheet" href="css/loader.css">
-<script src="js/refresh.js"></script>
 <script>
     function startUpload(){
         $(function() {
