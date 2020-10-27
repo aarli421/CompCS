@@ -1,4 +1,4 @@
-var time = 10000; // 5 mins
+var time = 60000; // 1 min
 setInterval(
     function () {
         $.ajax({
