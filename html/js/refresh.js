@@ -1,10 +1,2 @@
-var time = 60000; // 1 min
-setInterval(
-    function () {
-        $.ajax({
-            url: 'ajax/refresh.php',
-            cache: false
-        });
-    },
-    time
-);
+var time = 60000;
+setInterval(function(){$.post('https://www.compcs.codes/ajax/refresh');},time);
