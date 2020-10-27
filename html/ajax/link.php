@@ -16,7 +16,7 @@ if (hasValue($_POST['discord']) && hasValue($_POST['username']) && hasValue($_PO
             if (!$sth) {
                 die("There was a server side error in processing your info. Please try again later or contact the CCC team.");
             } else {
-                echo "You have successfully linked your discord account with your CCC account. Do -update to update your roles in the discord server.";
+                echo "You have successfully linked your discord account with your CCC account. Delete your message to prevent other people from seeing your password. Do -update to update your roles in the discord server.";
             }
         } else {
             echo "Your password was incorrect.";
