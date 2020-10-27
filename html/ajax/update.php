@@ -14,7 +14,7 @@ if (hasValue($_POST['discord'])) {
         $divisions = $sth->fetchAll();
 
         foreach ($divisions as $id => $division) {
-            if ($user[0]['points'] >= $division[0]['lower']) {
+            if ($user[0]['points'] >= $division['lower']) {
                 $s .= "|" . $division[0]['name'];
             }
         }
