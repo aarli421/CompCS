@@ -139,9 +139,9 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
                         <li>
                             <a class="dropbtn smoothScroll" onclick="myFunction()" style="font-size: 18px">Sections</a>
                             <div id ="myDropdown" class="dropdown-content">
-                                <a href="#division0">Division 0</a>
-                                <a href="#division1">Division 1</a>
-                                <a href="#division2">Division 2</a>
+                                <a href="#div0">Division 0</a>
+                                <a href="#div1">Division 1</a>
+                                <a href="#div2">Division 2</a>
                                 <a href="#bonusquestions">Bonus</a>
                                 <a href="#contestquestions">Contest Q's</a>
                             </div>
