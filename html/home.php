@@ -123,8 +123,8 @@ require '../templates/header.php';
                                 </a>
                             </div>
                             <div class="progress-bar-div">
-                                <div id="progress-wrapper<?php echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
-                                    <div id="progress-bar<?php echo $j; ?>" class="progress-bar progress"></div>
+                                <div id="progress-wrapper<?php if (!$locked) echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
+                                    <div id="progress-bar<?php if (!$locked) echo $j; ?>" class="progress-bar progress"></div>
                                 </div>
                             </div>
                         <?php
@@ -136,7 +136,7 @@ require '../templates/header.php';
                         ?>
                     </li>
                 <?php
-                    if ($points >= $value['unlock_value']) {
+                    if (!$locked) {
                         $j++;
                     }
                 }?>
@@ -177,7 +177,7 @@ require '../templates/header.php';
     function moveProgressBar() {
         // console.log("moveProgressBar");
         let i;
-        console.log($("#progress-wrapper20").attr('data-progress-percent'));
+        console.log($("#progress-wrapper20").data('progress-percent'));
         for (i = 0; i < <?php echo $j; ?>; i++) {
             var getPercent = ($('#progress-wrapper' + i.toString()).data('progress-percent') / 100);
             var getProgressWrapWidth = $('#progress-wrapper' + i.toString()).width();
