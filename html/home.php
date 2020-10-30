@@ -177,7 +177,7 @@ require '../templates/header.php';
     function moveProgressBar() {
         // console.log("moveProgressBar");
         let i;
-        console.log($("#progress-wrapper20").data('progress-percent'));
+        console.log($("#progress-wrapper20").attr('data-progress-percent'));
         for (i = 0; i < <?php echo $j; ?>; i++) {
             var getPercent = ($('#progress-wrapper' + i.toString()).data('progress-percent') / 100);
             var getProgressWrapWidth = $('#progress-wrapper' + i.toString()).width();
