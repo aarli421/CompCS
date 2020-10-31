@@ -182,8 +182,8 @@ require '../templates/header.php';
             var getPercent = ($('#progress-wrapper' + i.toString()).data('progress-percent') / 100);
             var getProgressWrapWidth = $('#progress-wrapper' + i.toString()).width();
 
-            console.log(i);
-            console.log(getPercent);
+            // console.log(i);
+            // console.log(getPercent);
 
             var progressTotal = getPercent * getProgressWrapWidth;
             var animationLength = 1000;
