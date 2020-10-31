@@ -1,7 +1,7 @@
 <?php
 require '../../templates/helper.php';
 
-echo session_id();
+//echo session_id();
 
 if (hasValue($_POST['loginUsername']) && hasValue($_POST['loginPassword'])) {
     $sth = $db->prepare("SELECT `password`, `active` FROM `users` WHERE `username`=?");
