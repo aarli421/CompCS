@@ -2,38 +2,6 @@
 require '../templates/helper.php';
 require '../templates/header.php';
 ?>
-<style>
-    .alert {
-        position: relative;
-        padding: 20px;
-        background-color: #f44336;
-        color: white;
-        opacity: 1;
-        transition: opacity 0.6s;
-        margin-bottom: 15px;
-        z-index: 999;
-    }
-
-    .alert.success {background-color: #4CAF50;}
-    .alert.info {background-color: #2196F3;}
-    .alert.warning {background-color: #ff9800;}
-
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-        z-index: 9999;
-    }
-
-    .closebtn:hover {
-        color: black;
-    }
-</style>
 <script>
     console.log("<?php echo session_id(); ?>");
 
@@ -48,7 +16,7 @@ require '../templates/header.php';
             var formData = $(this).serialize();
 
             $.ajax({
-                url: "ajax/login.php",
+                url: "https://www.compcs.codes/ajax/login.php",
                 type: "POST",
                 data: formData,
                 success: function(data) {

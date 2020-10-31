@@ -77,7 +77,7 @@ $schools = $sth->fetchAll();
             // console.log("Passed here 2");
 
             $.ajax({
-                url: "ajax/register.php",
+                url: "https://www.compcs.codes/ajax/register.php",
                 type: "POST",
                 data: formData,
                 success: function(data) {
