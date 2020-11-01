@@ -29,21 +29,22 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
     if (empty($contest)) {
         $error = "The code you entered was not found.";
     } else {
-        $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `tries` WHERE `user_id`=? AND `contest_id`=?) LIMIT 1");
+        $sth = $db->prepare("SELECT * FROM `tries` WHERE `user_id`=? AND `contest_id`=?");
         $sth->execute([$user_id, $contest[0]['contest_id']]);
-        $passArr = $sth->fetchAll();
+        $try = $sth->fetchAll();
 
         $sth = $db->prepare("SELECT `points`, `admin` FROM users WHERE `user_id`=?");
         $sth->execute([$user_id]);
         $user = $sth->fetchAll();
 
+        $start = new DateTime($contest[0]['start']);
+        $end = new DateTime($contest[0]['end']);
+        $curr_date = getCurrDate();
+        $curr = new DateTime($curr_date);
+
         if ($user[0]['points'] >= $contest[0]['unlock_value']) {
-            if ($passArr[0][0] == 0) {
+            if (empty($try)) {
                 try {
-                    $start = new DateTime($contest[0]['start']);
-                    $end = new DateTime($contest[0]['end']);
-                    $curr_date = getCurrDate();
-                    $curr = new DateTime($curr_date);
                     $curr_copy = new DateTime($curr_date);
 
                     if (($curr >= $start && $curr < $end) || $user[0]['admin'] > 2) {
@@ -67,10 +68,23 @@ if (hasValue($_GET['code']) && !hasValue($_SESSION['contest'])) {
                     $error = "A server error occurred.";
                 }
             } else {
-                $_SESSION['contest'] = $contest[0]['contest_id'];
-                $_SESSION['finish'] = true;
-                redirect("contest");
-                exit();
+                $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `results` WHERE `user_id`=? AND `contest_id`=?) LIMIT 1");
+                $sth->execute([$user_id, $contest[0]['contest_id']]);
+                $passArr = $sth->fetchAll();
+
+                $try_start = new DateTime($try[0]['start']);
+                $try_end = new DateTime($try[0]['end']);
+
+                if ($passArr[0][0] == 0 && ($curr >= $try_start && $curr < $try_end)) {
+                    $_SESSION['contest'] = $contest[0]['contest_id'];
+                    redirect("contest");
+                    exit();
+                } else {
+                    $_SESSION['contest'] = $contest[0]['contest_id'];
+                    $_SESSION['finish'] = true;
+                    redirect("contest");
+                    exit();
+                }
             }
         } else {
             $error = "You do not have enough points to access this contest.";
