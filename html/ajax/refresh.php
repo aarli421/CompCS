@@ -1,5 +1,5 @@
 <?php
-require '../../templates/helper.php';
+session_start();
 
 //$_SESSION['time_refreshed'] = time();
 echo session_id();
