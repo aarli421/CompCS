@@ -70,7 +70,7 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
         } else {
             if (isset($_SESSION['user'])) {
         ?>
-        <script src="js/loggedin.js"></script>
+<!--        <script src="js/loggedin.js"></script>-->
         <?php
             }
         }
