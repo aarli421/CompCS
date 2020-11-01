@@ -32,7 +32,7 @@ if ($question[0]['admin'] > $user[0]['admin']) {
 if ($user[0]['points'] < $question[0]['unlock_value']) {
     if (hasValue($_SESSION['contest'])) {
         if ($question[0]['contest_id'] != $_SESSION['contest']) {
-            $arr['error'] = "You are not part of this contest.";
+            $arr['error'] = "You are not part of this contest. If this is an error, please reload the page and enter the contest again. Make sure to also submit a bug report to our discord server.";
             $err = true;
         }
     } else {
