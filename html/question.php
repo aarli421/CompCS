@@ -173,7 +173,7 @@ if ($access) {
                 data: formData,
                 success: function(data) {
                     stopUpload();
-                    console.log(data);
+                    // console.log(data);
                     parseJSON(data);
                 },
                 error: function(data) {
