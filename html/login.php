@@ -3,8 +3,6 @@ require '../templates/helper.php';
 require '../templates/header.php';
 ?>
 <script>
-    console.log("<?php echo session_id(); ?>");
-
     function clear() {
         $("#loginUsername").val("");
         $("#loginPassword").val("");

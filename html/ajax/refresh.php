@@ -2,7 +2,7 @@
 require '../../templates/helper.php';
 
 $_SESSION['time_refreshed'] = time();
-echo $_SESSION['time_refreshed'];
+echo session_id();
 
 if (isset($_SESSION['user'])) {
     $_SESSION['user'] = $_SESSION['user'];
