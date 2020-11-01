@@ -1,5 +1,5 @@
-// var time = 300000;
-var time = 60000;
+var time = 300000;
+// var time = 60000;
 window.setInterval( function() {
     $.ajax({
         cache: false,
