@@ -1,5 +1,6 @@
 <?php
-if (!isset($_SESSION)) session_start();
+session_start();
+
 function getRootDir() {
     $dir = dirname($_SERVER["PHP_SELF"]);
     return $dir;
