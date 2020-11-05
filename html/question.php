@@ -111,7 +111,6 @@ if ($access) {
 <link rel="stylesheet" href="css/question.css">
 <link rel="stylesheet" href="css/loader.css">
 <script>
-    console.log("<?php echo session_id(); ?>");
 
     function startUpload(){
         $(function() {
