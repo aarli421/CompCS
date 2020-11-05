@@ -6,7 +6,6 @@ window.setInterval( function() {
         type: "GET",
         url: "https://www.compcs.codes/ajax/refresh.php",
         success: function(data) {
-            console.log(data);
         }
     });
 }, time );
