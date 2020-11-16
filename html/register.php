@@ -72,6 +72,12 @@ $schools = $sth->fetchAll();
             e.preventDefault();
             // console.log("Passed here 1");
 
+            let btn = $("#registerBtn");
+            btn.attr("disabled", true);
+            setTimeout(function() {
+                btn.removeAttr("disabled");
+            }, 2000);
+
             var formData = $(this).serialize();
 
             // console.log("Passed here 2");
@@ -89,7 +95,6 @@ $schools = $sth->fetchAll();
 
                         clear();
 
-                        let btn = $("#registerBtn");
                         btn.attr("disabled", true);
                         setTimeout(function() {
                             btn.removeAttr("disabled");
