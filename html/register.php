@@ -76,7 +76,10 @@ $schools = $sth->fetchAll();
             btn.attr("disabled", true);
             setTimeout(function() {
                 btn.removeAttr("disabled");
-            }, 2000);
+            }, 3000);
+
+            $("#registerSuccess").css("display", "inline");
+            $("#registerSuccess").html("Registering...");
 
             var formData = $(this).serialize();
 
