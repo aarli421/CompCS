@@ -76,7 +76,7 @@ $schools = $sth->fetchAll();
             btn.attr("disabled", true);
             setTimeout(function() {
                 btn.removeAttr("disabled");
-            }, 3000);
+            }, 4000);
 
             $("#registerSuccess").css("display", "inline");
             $("#registerSuccess").html("Registering...");
@@ -97,11 +97,6 @@ $schools = $sth->fetchAll();
                         $("#registerError").html("");
 
                         clear();
-
-                        btn.attr("disabled", true);
-                        setTimeout(function() {
-                            btn.removeAttr("disabled");
-                        }, 5000);
                     } else {
                         $("#registerSuccess").css("display", "none");
                         $("#registerSuccess").html("");
