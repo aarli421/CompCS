@@ -6,10 +6,13 @@
             <div class="col-md-3 col-sm-8">
                 <div class="footer-info">
                     <div class="section-title">
-                        <h2 class="wow fadeInUp" data-wow-delay="0.2s">Policy</h2>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.2s">Sponsors</h2>
                     </div>
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
-                        <img src="images/wolfram.png"/>
+                        <img class="logo" src="images/wolfram.png"/>
+                        <img class="logo" src="images/hyperx.png"/>
+                        <img class="logo" src="images/aops.png"/>
+                        <img class="logo" src="images/jetbrains.png"/>
                     </address>
                 </div>
             </div>
