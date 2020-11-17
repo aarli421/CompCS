@@ -9,7 +9,7 @@
                         <h2 class="wow fadeInUp" data-wow-delay="0.2s">Policy</h2>
                     </div>
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p><a href="tos" target="_blank">Terms of Service</a></p>
+                        <img src="images/wolfram.png"/>
                     </address>
                 </div>
             </div>
