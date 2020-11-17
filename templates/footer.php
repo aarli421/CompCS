@@ -12,7 +12,7 @@
                         <img class="logo" src="images/wolfram.png"/>
                         <img class="logo" src="images/hyperx.png"/>
                         <img class="logo" src="images/aops.png"/>
-                        <img class="logo" src="images/jetbrains.png"/>
+<!--                        <img class="logo" src="images/jetbrains.png"/>-->
                     </address>
                 </div>
             </div>
