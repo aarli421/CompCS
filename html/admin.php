@@ -22,7 +22,7 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
 
     $root = $_SERVER['DOCUMENT_ROOT'];
     $uploadFile = $root . '/questions/' . $_FILES['questionInput']['name'];
-    $targetFolder = $root . '/questions/' . $name[0];
+    $targetFolder = '/home/compcs/questions/' . $name[0];
     $tempFile = $_FILES['questionInput']['tmp_name'];
     $uploadFolder = "/home/compcs/questions/" . $name[0];
 
@@ -34,18 +34,17 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
         $msg = `unzip -q $tempFile -d $uploadFolder`;
 
         if (!hasValue($msg)) {
-            $ioDirAmount = `ls $targetFolder | wc -l`;
+            $ioDirAmount = `ls $uploadFolder | wc -l`;
 
             if ($ioDirAmount % 2 == 0) {
                 $testAmount = ((int)($ioDirAmount)) / 2;
-
-                `sudo $scriptsDirectory/syncQuestion.sh`;
 //        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
 
                 $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
                 $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
 
-                $msg = `rm -r $uploadFolder`;
+
+                `sudo $scriptsDirectory/syncQuestion.sh`;
 
                 $message = "Successfully uploaded.";
 
