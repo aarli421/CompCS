@@ -79,7 +79,9 @@ $schools = $sth->fetchAll();
             }, 4000);
 
             $("#registerSuccess").css("display", "inline");
+            $("#registerError").css("display", "none");
             $("#registerSuccess").html("Registering...");
+            $("#registerError").html("");
 
             var formData = $(this).serialize();
 
