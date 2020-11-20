@@ -108,12 +108,12 @@ if (!hasValue($_SESSION['contest'])) {
                 <div class="form-panel one">
                     <div class="form-header">
                         <h1>Enter Contest</h1>
-<!--                        --><?php
-//                        foreach ($contests as $id => $contest) {
-//                        ?>
-<!--                            <h6 class="text-desc">--><?php //echo $contest['name']; ?><!--: --><?php //echo $contest['hash']; ?><!--</h6>-->
-<!--                        --><?php
-//                        }
+                        <?php
+                        foreach ($contests as $id => $contest) {
+                        ?>
+                            <h6 class="text-desc"><?php echo $contest['name']; ?>: <?php echo $contest['hash']; ?></h6>
+                        <?php
+                        }
 //                        ?>
                     </div>
                     <div class="form-content">
