@@ -16,7 +16,7 @@ require '../templates/header.php';
                     <h2>News</h2>
                 </div>
                 <?php
-                $index = 1;
+                $ind = 1;
                 $size = sizeof($posts);
                 foreach ($posts as $index => $post) {
                     ?>
@@ -25,11 +25,11 @@ require '../templates/header.php';
                         <p><?php echo $post['timestamp']; ?></p>
                         <p class="content"><?php echo $post['content']; ?></p>
                     </div>
-                    <?php if ($index != $size) { ?>
+                    <?php if ($ind != $size) { ?>
                         <hr>
                     <?php } ?>
                 <?php
-                    $index++;
+                    $ind++;
                 }
                 ?>
             </div>
