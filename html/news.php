@@ -11,7 +11,7 @@ require '../templates/header.php';
                 </div>
 
                 <div>
-                    <p style="font-size: large">Title</p>
+                    <p style="font-size: larger">Title</p>
                     <p>11/20/20</p>
                     <p style="white-space: pre-wrap;">After registering for an account, go to your email and confirm your account. (Make sure to read all the terms of service)</p>
                 </div>
