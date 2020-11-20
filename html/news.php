@@ -1,7 +1,13 @@
 <?php
 require '../templates/helper.php';
+
+$sth = $db->prepare("SELECT * FROM `posts`");
+$sth->execute();
+$posts = $sth->fetchAll();
+
 require '../templates/header.php';
 ?>
+<link rel="stylesheet" href="css/news.css">
 <section data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row">
@@ -9,20 +15,23 @@ require '../templates/header.php';
                 <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
                     <h2>News</h2>
                 </div>
-
-                <div>
-                    <p style="font-size: larger"><b>Title</b></p>
-                    <p>11/20/20</p>
-                    <p style="white-space: pre-wrap;">After registering for an account, go to your email and confirm your account. (Make sure to read all the terms of service)</p>
-                </div>
-                <hr>
-                <p>When you log into your account, you will arrive at the homepage. You can see your current points at the top.
-                    Each problem on the website has an unlock value and a total point value. </p>
-                <hr>
-                <p>When you click on one of the unlocked problems, you will see the problem and a place to submit your code. After uploading your file,
-                    our system will automatically check multiple test cases to ensure that your code satisfies all test cases. The bar above the problem
-                    will show you the number of test cases you have completed as well as the ones you have not. You can continue uploading code until all
-                    test cases satisfy your code. For each test case completed you get a percentage of the total points the question is worth.</p>
+                <?php
+                $index = 1;
+                $size = sizeof($posts);
+                foreach ($posts as $index => $post) {
+                    ?>
+                    <div>
+                        <p class="title"><b><?php echo $post['title']; ?></b></p>
+                        <p><?php echo $post['timestamp']; ?></p>
+                        <p class="content"><?php echo $post['content']; ?></p>
+                    </div>
+                    <?php if ($index != $size) { ?>
+                        <hr>
+                    <?php } ?>
+                <?php
+                    $index++;
+                }
+                ?>
             </div>
         </div>
     </div>
