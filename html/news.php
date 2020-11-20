@@ -12,7 +12,10 @@ require '../templates/header.php';
 
                 <div>
                     <p>11/20/20</p>
-                    <p>After registering for an account, go to your email and confirm your account. (Make sure to read all the terms of service)</p>
+                    <p style="white-space: pre-wrap;">After registering for an account, go to your email and confirm your account. (Make sure to read all the terms of service)
+                    Hello
+
+                    Hello</p>
                 </div>
                 <hr>
                 <p>When you log into your account, you will arrive at the homepage. You can see your current points at the top.
