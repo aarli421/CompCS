@@ -9,7 +9,11 @@ require '../templates/header.php';
                 <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
                     <h2>News</h2>
                 </div>
-                <p>After registering for an account, go to your email and confirm your account. (Make sure to read all the terms of service)<br>Posted: 11/20/20</p>
+
+                <div>
+                    <p>11/20/20</p>
+                    <p>After registering for an account, go to your email and confirm your account. (Make sure to read all the terms of service)</p>
+                </div>
                 <hr>
                 <p>When you log into your account, you will arrive at the homepage. You can see your current points at the top.
                     Each problem on the website has an unlock value and a total point value. </p>
