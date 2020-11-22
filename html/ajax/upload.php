@@ -257,7 +257,7 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
     $divisions = $sth->fetchAll();
 
     foreach ($divisions as $key => $value) {
-        if ($user[0]['points'] <= $value['upper'] && $user[0]['points'] + $points > $value['upper']) {
+        if ($user[0]['points'] <= $value['upper'] && $user[0]['points'] + $points > $value['upper'] && !isset($_SESSION['contest'])) {
             postDiscord($logsChannel, ":partying_face: :confetti_ball: " . $_SESSION['user'] . " passed " . $value['name'] . "! :partying_face: :confetti_ball:");
         }
     }
