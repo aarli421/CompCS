@@ -250,7 +250,7 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
         $sth->execute();
     }
 
-    if ($points != 0 && $contest == 0) {
+    if ($points != 0 && !hasValue($_SESSION['contest'])) {
         postDiscord($logsChannel, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
     }
 
