@@ -251,7 +251,7 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
     }
 
     if ($points != 0 && !hasValue($_SESSION['contest'])) {
-        postDiscord($logsChannel, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ". " . $contest_id);
+        postDiscord($logsChannel, $_SESSION['user'] . " got test msg " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ". " . $contest_id);
     }
 
     $sth = $db->prepare("SELECT `name`, `upper` FROM `divisions` WHERE `bonus`=0;");
