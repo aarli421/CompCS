@@ -200,11 +200,11 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
     $sth = $db->prepare("START TRANSACTION;");
     $sth->execute();
 
-    $contest = 0;
-    if (hasValue($_SESSION['contest']) && $question[0]['contest_id'] != 0) $contest = $_SESSION['contest'];
+    $contest_id = 0;
+    if (hasValue($_SESSION['contest']) && $question[0]['contest_id'] != 0) $contest_id = $_SESSION['contest'];
 
     $sth = $db->prepare("SELECT MAX(correct_cases), `grade_id` FROM grades WHERE user_id=? AND question_id=? AND `contest_id`=? GROUP BY `correct_cases`, `grade_id` ORDER BY `timestamp` DESC LIMIT 1");
-    $sth->execute([$user_id, $question[0]['question_id'], $contest]);
+    $sth->execute([$user_id, $question[0]['question_id'], $contest_id]);
     $max = $sth->fetchAll();
 
     $sth = $db->prepare("INSERT INTO submissions (`user_id`, `question_id`, `submission`, `language`, `timestamp`) VALUES (?, ?, ?, ?, ?)");
@@ -218,7 +218,7 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
     if (empty($max)) {
 
         $sth = $db->prepare("INSERT INTO grades (`user_id`, `question_id`, `submission_id`, `output_json`, `correct_cases`, `timestamp`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s'), $contest]);
+        $sth->execute([$user_id, $question[0]['question_id'], $id[0][0], json_encode($arr), $arr['correct_cases'], $curr->format('Y-m-d H:i:s'), $contest_id]);
 
 //    postDiscord($_SESSION['user'] . " - Insert Grades- " . json_encode($sth->errorInfo()));
 
@@ -251,7 +251,7 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
     }
 
     if ($points != 0 && !hasValue($_SESSION['contest'])) {
-        postDiscord($logsChannel, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ". " . $_SESSION['contest']);
+        postDiscord($logsChannel, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ". " . $contest_id);
     }
 
     $sth = $db->prepare("SELECT `name`, `upper` FROM `divisions` WHERE `bonus`=0;");
