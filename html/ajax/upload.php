@@ -250,14 +250,14 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
         $sth->execute();
     }
 
-    if ($points != 0) postDiscord($logsChannel, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
+    if ($points != 0 && !isset($_SESSION['contest'])) postDiscord($logsChannel, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
 
     $sth = $db->prepare("SELECT `name`, `upper` FROM `divisions` WHERE `bonus`=0;");
     $sth->execute();
     $divisions = $sth->fetchAll();
 
     foreach ($divisions as $key => $value) {
-        if ($user[0]['points'] <= $value['upper'] && $user[0]['points'] + $points > $value['upper'] && !isset($_SESSION['contest'])) {
+        if ($user[0]['points'] <= $value['upper'] && $user[0]['points'] + $points > $value['upper']) {
             postDiscord($logsChannel, ":partying_face: :confetti_ball: " . $_SESSION['user'] . " passed " . $value['name'] . "! :partying_face: :confetti_ball:");
         }
     }
