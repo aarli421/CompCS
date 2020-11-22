@@ -250,8 +250,15 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
         $sth->execute();
     }
 
-    if ($points != 0 && $contest_id == 0) {
-        postDiscord($logsChannel, $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".");
+    if ($points != 0) {
+        $msg = "";
+        if ($contest_id == 0) {
+            $msg = $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".";
+        } else {
+            $msg = $_SESSION['user'] . " tried " . $questionName .  ".";
+        }
+
+        postDiscord($logsChannel, $msg);
     }
 
     $sth = $db->prepare("SELECT `name`, `upper` FROM `divisions` WHERE `bonus`=0;");
