@@ -186,8 +186,15 @@ if (!hasValue($_SESSION['contest'])) {
                             $sth->execute([$_SESSION['contest']]);
                             $passArr = $sth->fetchAll();
 
+                            $sth = $db->prepare("SELECT * FROM `results` WHERE `user_id`=? AND `contest_id`=?");
+                            $sth->execute([$user_id, $_SESSION['contest']]);
+                            $result = $sth->fetchAll();
+
+                            $result_exists = !empty($result);
+
                             $j = 0;
                             $total = 0;
+                            if ($result_exists) $total = $result[0]['score'];
                             foreach ($passArr as $value) {
                                 $sth = $db->prepare("SELECT MAX(correct_cases) FROM `grades` WHERE `user_id`=? AND `question_id`=? AND `contest_id`=?");
                                 $sth->execute([$user_id, $value['question_id'], $_SESSION['contest']]);
@@ -195,7 +202,7 @@ if (!hasValue($_SESSION['contest'])) {
                                 if (empty($max)) $max[0][0] = 0;
 
                                 $question_points = $max[0][0] * $value['testcase_value'];
-                                $total += $question_points;
+                                if (!$result_exists) $total += $question_points;
                                 ?>
                                 <li class="question">
                                     <div class="categories">
@@ -236,11 +243,8 @@ if (!hasValue($_SESSION['contest'])) {
         </section>
     </div>
     <?php
-        $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `results` WHERE `user_id`=? AND `contest_id`=?) LIMIT 1");
-        $sth->execute([$user_id, $_SESSION['contest']]);
-        $exists = $sth->fetchAll();
 
-        if ($exists[0][0] == 0) {
+        if (!$result_exists) {
             $sth = $db->prepare("INSERT INTO `results` (`user_id`, `contest_id`, `score`, `timestamp`) VALUES (?, ?, ?, ?)");
             $sth->execute([$user_id, $_SESSION['contest'], $total, getCurrDate()]);
         }
