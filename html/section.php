@@ -35,9 +35,6 @@ $points = $user[0]['points'];
     </div>
     <div class="container"><?php echo $section[0]['description']; ?></div>
     <div class="container">
-        <h1>Practice Problems</h1>
-    </div>
-    <div class="container">
         <ol class="home-divisions">
             <?php
             $sth = $db->prepare("SELECT * FROM `questions` WHERE `section_id`=? ORDER BY `unlock_value`");
@@ -57,7 +54,7 @@ $points = $user[0]['points'];
                     <div>
                         <br>
                         <br>
-                        <h2 class="division"></h2>
+                        <h2 class="division"><?php echo $name; ?></h2>
                     </div>
                 </li>
                 <ol class="questions">
