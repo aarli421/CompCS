@@ -19,13 +19,6 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
         ?>
                 | <?php echo $_SESSION['user']; ?>
         <?php
-            } else if ($fileName == "section") {
-                $sth = $db->prepare("SELECT * FROM `sections` WHERE `section_id`=?");
-                $sth->execute([$_GET['id']]);
-                $section = $sth->fetchAll();
-                ?>
-                | <?php echo $section['name']; ?>
-        <?php
             }
         }
         ?>
