@@ -38,77 +38,101 @@ $points = $user[0]['points'];
         <h1>Practice Problems</h1>
     </div>
     <div class="container">
-        <ol class="questions">
+        <ol class="home-divisions">
             <?php
             $sth = $db->prepare("SELECT * FROM `questions` WHERE `section_id`=? ORDER BY `unlock_value`");
             $sth->execute([$_GET['id']]);
-            $passArr = $sth->fetchAll();
+            $questions = $sth->fetchAll();
+
+            $bonus = 2;
 
             $j = 0;
-            foreach ($passArr as $value) {
-                $locked = false;
-                if ($points < $value['unlock_value']) {
-                    $locked = true;
-                }
-
-                $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
-                $sth->execute([$user_id, $value['question_id']]);
-                $max = $sth->fetchAll();
-                if (empty($max)) $max[0][0] = 0;
+            for ($i = 0; $i < $bonus; $i++) {
+                $name = "";
+                if ($i == 0) $name = "Practice Questions";
+                if ($i == 1) $name = "Bonus Questions";
                 ?>
-                <li class="question">
+                <li>
+                    <div class="division-title"><hr class="line div-line"></div>
+                    <div>
+                        <br>
+                        <br>
+                        <h2 class="division"></h2>
+                    </div>
+                </li>
+                <ol class="questions">
                     <?php
-                    if ($locked) {
-                    ?>
-                    <div class="locked">
+
+                    foreach ($questions as $value) {
+                        if ($value['bonus'] != $i) continue;
+
+                        $locked = false;
+                        if ($points < $value['unlock_value']) {
+                            $locked = true;
+                        }
+
+                        $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
+                        $sth->execute([$user_id, $value['question_id']]);
+                        $max = $sth->fetchAll();
+                        if (empty($max)) $max[0][0] = 0;
+                        ?>
+                        <li class="question">
+                            <?php
+                            if ($locked) {
+                            ?>
+                            <div class="locked">
+                                <?php
+                                }
+                                ?>
+                                <div class="categories">
+                                    <div><hr class="line question-line"></div>
+                                    <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
+                                        <div class="categories-div">
+                                            <div class="category">
+                                                <h4>Problem</h4>
+                                            </div>
+                                            <div class="category">
+                                                <h4>Unlock Value</h4>
+                                            </div>
+                                            <div class="category">
+                                                <h4>Total Points</h4>
+                                            </div>
+                                        </div>
+                                        <div class="categories-div">
+                                            <div class="category">
+                                                <h5><?php echo $value['name']; ?></h5>
+                                            </div>
+                                            <div class="category">
+                                                <h5><?php echo $value['unlock_value']; ?></h5>
+                                            </div>
+                                            <div class="category">
+                                                <h5><?php echo ($value['testcase_value'] * $value['testcases']);?></h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="progress-bar-div">
+                                    <div id="progress-wrapper<?php if (!$locked) echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
+                                        <div id="progress-bar<?php if (!$locked) echo $j; ?>" class="progress-bar progress"></div>
+                                    </div>
+                                </div>
+                                <?php
+                                if ($locked) {
+                                ?>
+                            </div>
                         <?php
                         }
                         ?>
-                        <div class="categories">
-                            <div><hr class="line question-line"></div>
-                            <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
-                                <div class="categories-div">
-                                    <div class="category">
-                                        <h4>Problem</h4>
-                                    </div>
-                                    <div class="category">
-                                        <h4>Unlock Value</h4>
-                                    </div>
-                                    <div class="category">
-                                        <h4>Total Points</h4>
-                                    </div>
-                                </div>
-                                <div class="categories-div">
-                                    <div class="category">
-                                        <h5><?php echo $value['name']; ?></h5>
-                                    </div>
-                                    <div class="category">
-                                        <h5><?php echo $value['unlock_value']; ?></h5>
-                                    </div>
-                                    <div class="category">
-                                        <h5><?php echo ($value['testcase_value'] * $value['testcases']);?></h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="progress-bar-div">
-                            <div id="progress-wrapper<?php if (!$locked) echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
-                                <div id="progress-bar<?php if (!$locked) echo $j; ?>" class="progress-bar progress"></div>
-                            </div>
-                        </div>
+                        </li>
                         <?php
-                        if ($locked) {
-                        ?>
-                    </div>
+                        if (!$locked) {
+                            $j++;
+                        }
+                    }?>
+                </ol>
                 <?php
-                }
-                ?>
-                </li>
-                <?php
-                if (!$locked) {
-                    $j++;
-                }
-            }?>
+            }
+            ?>
         </ol>
     </div>
 </section>
