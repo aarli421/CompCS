@@ -19,10 +19,6 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
         ?>
                 | <?php echo $_SESSION['user']; ?>
         <?php
-            } else if ($fileName == "section") {
-                ?>
-                | <?php echo $_GET['name']; ?>
-        <?php
             }
         }
         ?>

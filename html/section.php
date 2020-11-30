@@ -7,13 +7,13 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
-if (!isset($_GET['name'])) {
+if (!isset($_GET['id'])) {
     redirect("home");
     exit();
 }
 
-$sth = $db->prepare("SELECT * FROM `sections` WHERE `name`=?");
-$sth->execute([$_GET['name']]);
+$sth = $db->prepare("SELECT * FROM `sections` WHERE `section_id`=?");
+$sth->execute([$_GET['id']]);
 $section = $sth->fetchAll();
 
 if (empty($section)) {
