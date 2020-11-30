@@ -44,6 +44,7 @@ $points = $user[0]['points'];
             $sth->execute([$_GET['id']]);
             $passArr = $sth->fetchAll();
 
+            $j = 0;
             foreach ($passArr as $value) {
                 $locked = false;
                 if ($points < $value['unlock_value']) {
