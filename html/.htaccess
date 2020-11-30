@@ -29,13 +29,6 @@ AuthUserFile /var/www/private/.htpasswd
 Require valid-user
 </Files>
 
-<Files update.php>
-AuthName "Secret Files"
-AuthType Basic
-AuthUserFile /var/www/private/.htpasswd
-Require valid-user
-</Files>
-
 ErrorDocument 401 /401.php
 ErrorDocument 403 /403.php
 ErrorDocument 404 /404.php
