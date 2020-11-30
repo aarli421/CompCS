@@ -1,0 +1,11 @@
+.description{
+    padding: 10px;
+    white-space: pre-wrap;
+    background-color: #f8f8f8;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: #2e2e2e;
+}
