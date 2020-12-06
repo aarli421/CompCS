@@ -131,6 +131,7 @@ if (hasValue($_POST['top20']) && hasValue($_POST['contestId'])) {
         $sth = $db->prepare("SELECT MAX(`score`) FROM `results` WHERE `contest_id`>?");
         $sth->execute([$result['contest_id']]);
         $max = $sth->fetchAll();
+        if (empty($max)) $max[0][0] = 0;
 
         if ($max[0][0] < 20) {
             $message .= $result['user_id'] . "\n";
