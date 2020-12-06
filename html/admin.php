@@ -149,7 +149,7 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
         $sth->execute([$_POST['userId'], $question_id['question_id'], $_POST['contestId']]);
         $grade = $sth->fetchAll();
 
-        $json = json_decode([0]['output_json']);
+        $json = json_decode($grade[0]['output_json']);
         echo "<pre>";
         print_r($json);
         echo "</pre>";
