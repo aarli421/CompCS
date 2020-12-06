@@ -144,6 +144,7 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
     $sth->execute([$_POST['userId'], $_POST['contestId']]);
     $question_ids = $sth->fetchAll();
 
+    $time = 0;
     foreach ($question_ids as $ind => $question_id) {
         $sth = $db->prepare("SELECT * FROM grades WHERE user_id=? AND question_id=? AND `contest_id`=? ORDER BY `correct_cases` DESC LIMIT 1");
         $sth->execute([$_POST['userId'], $question_id['question_id'], $_POST['contestId']]);
@@ -154,9 +155,13 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
         foreach ($json as $number => $result) {
             if ($number == 'correct_cases') continue;
 
-            $message .= $result->time . "\n";
+            if (property_exists($result, 'time')) {
+                $time += $result->time;
+            }
         }
     }
+
+    $message = $time;
 }
 ?>
 <section>
