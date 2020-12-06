@@ -3,6 +3,7 @@ require '../templates/helper.php';
 
 if (!isset($_SESSION['user'])) {
     redirect("login");
+    exit();
 }
 
 $sth = $db->prepare("SELECT `admin` FROM users WHERE `user_id`=?");
@@ -11,6 +12,7 @@ $user = $sth->fetchAll();
 
 if ($user[0]['admin'] < 2) {
     redirect("401");
+    exit();
 }
 
 require '../templates/header.php';
@@ -137,7 +139,7 @@ if (hasValue($_POST['top20']) && hasValue($_POST['contestId'])) {
 }
 ?>
 <section>
-<p id="dialogDiv"></p>
+<p id="dialogDiv"><?php echo $message; ?></p>
 <p>Schematics for uploading questions:<br>
     Normal Question: Bonus = 0, Admin = 0, Contest = 0<br>
     Bonus Question: Bonus = 1, Admin = 0, Contest = 0<br>
@@ -179,8 +181,5 @@ if (hasValue($_POST['top20']) && hasValue($_POST['contestId'])) {
     <input type="submit" value="Get Top 20">
 </form>
 </section>
-<script>
-    $("#dialogDiv").html("<?php echo $message; ?>");
-</script>
 <?php
 require  '../templates/footer.php';
