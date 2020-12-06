@@ -128,11 +128,11 @@ if (hasValue($_POST['top20']) && hasValue($_POST['contestId'])) {
     $results = $sth->fetchAll();
 
     foreach ($results as $ind => $result) {
-        $sth = $db->prepare("SELECT MAX(`contest_id`) FROM `results` WHERE `user_id`=?");
-        $sth->execute([$result['user_id']]);
+        $sth = $db->prepare("SELECT MAX(`score`) FROM `results` WHERE `contest_id`>?");
+        $sth->execute([$result['contest_id']]);
         $max = $sth->fetchAll();
 
-        if ($max[0][0] == $result['contest_id']) {
+        if ($max[0][0] < 20) {
             $message .= $result['user_id'] . "\n";
         }
     }
