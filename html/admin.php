@@ -119,6 +119,22 @@ if (isset($_POST['editContest']) && isset($_POST['questionName']) && isset($_POS
         $message = "This question does not exist.";
     }
 }
+
+if (hasValue($_POST['top20']) && hasValue($_POST['contestId'])) {
+    $sth = $db->prepare("SELECT * FROM `results` WHERE `contest_id`=? ORDER BY `score` DESC LIMIT 20");
+    $sth->execute([$_POST['contestId']]);
+    $results = $sth->fetchAll();
+
+    foreach ($results as $ind => $result) {
+        $sth = $db->prepare("SELECT MAX(`contest_id`) FROM `results` WHERE `user_id`=?");
+        $sth->execute([$result['user_id']]);
+        $max = $sth->fetchAll();
+
+        if ($max[0][0] == $result['contest_id']) {
+            $message .= $result['user_id'] . "\n";
+        }
+    }
+}
 ?>
 <section>
 <p id="dialogDiv"></p>
@@ -155,6 +171,12 @@ if (isset($_POST['editContest']) && isset($_POST['questionName']) && isset($_POS
     Contest Id: <input name="contestId" type="number"> <br>
     <input type="hidden" name="editContest" value="true">
     <input type="submit" value="Change Question to Contest Question">
+</form>
+<br>
+<form method="post" action="admin">
+    Contest Id: <input name="contestId" type="number"> <br>
+    <input type="hidden" name="top20" value="true">
+    <input type="submit" value="Get Top 20">
 </form>
 </section>
 <script>
