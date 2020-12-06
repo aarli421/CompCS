@@ -150,9 +150,12 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
         $grade = $sth->fetchAll();
 
         $json = json_decode($grade[0]['output_json']);
-        echo "<pre>";
-        print_r($json);
-        echo "</pre>";
+
+        foreach ($json as $number => $result) {
+            if ($number == 'correct_cases') continue;
+
+            $message .= $result->time . "\n";
+        }
     }
 }
 ?>
