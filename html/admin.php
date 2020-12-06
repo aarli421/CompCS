@@ -134,7 +134,7 @@ if (hasValue($_POST['top20']) && hasValue($_POST['contestId'])) {
         if (empty($max)) $max[0][0] = 0;
 
         if ($max[0][0] < 20) {
-            $message .= " OR `user_id`=" . $result['user_id'] . "\n";
+            $message .= " OR `result`.`user_id`=" . $result['user_id'] . "\n";
         }
     }
 }
