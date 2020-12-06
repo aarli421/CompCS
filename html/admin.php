@@ -138,6 +138,21 @@ if (hasValue($_POST['top20']) && hasValue($_POST['contestId'])) {
         }
     }
 }
+
+if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST['userId'])) {
+    $sth = $db->prepare("SELECT DISTINCT `question_id` FROM `grades` WHERE `user_id`=? AND `contest_id`=?");
+    $sth->execute([$_POST['userId'], $_POST['contestId']]);
+    $question_ids = $sth->fetchAll();
+
+    foreach ($question_ids as $ind => $question_id) {
+        $sth = $db->prepare("SELECT * FROM grades WHERE user_id=? AND question_id=? AND `contest_id`=? ORDER BY `correct_cases` DESC LIMIT 1");
+        $sth->execute([$_POST['userId'], $question_id['question_id'], $_POST['contestId']]);
+        $grade = $sth->fetchAll();
+
+        $json = json_decode([0]['output_json']);
+        $message = print_r($json);
+    }
+}
 ?>
 <section>
 <p id="dialogDiv"><?php echo $message; ?></p>
@@ -180,6 +195,13 @@ if (hasValue($_POST['top20']) && hasValue($_POST['contestId'])) {
     Contest Id: <input name="contestId" type="number"> <br>
     <input type="hidden" name="top20" value="true">
     <input type="submit" value="Get Top 20">
+</form>
+<br>
+<form method="post" action="admin">
+    Contest Id: <input name="contestId" type="number"> <br>
+    User Id: <input name="userId" type="number"> <br>
+    <input type="hidden" name="time" value="true">
+    <input type="submit" value="Get Time">
 </form>
 </section>
 <?php
