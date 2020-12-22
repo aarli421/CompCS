@@ -91,10 +91,8 @@ require '../templates/header.php';
                         </div>
                     </li>
                 <?php
-                    if (!$locked) {
-                        $j++;
-                    }
-                }?>
+                }
+                ?>
             </ol>
             <?php
             }
