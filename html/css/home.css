@@ -125,3 +125,8 @@ th, td {
 	padding: 1%;
 	width: 100%;
 }
+
+.topic{
+	font-weight: bold;
+	font-size: 20px;
+}

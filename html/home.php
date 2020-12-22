@@ -61,79 +61,34 @@ require '../templates/header.php';
             </li>
             <ol class="questions">
                 <?php
-                if ($bonus == 2) {
-                    $curr_date = getCurrDate();
+//                if ($bonus == 2) {
+//                    $curr_date = getCurrDate();
+//
+//                    $sth = $db->prepare("UPDATE `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` SET `testcase_value`=0 WHERE `end`<?");
+//                    $sth->execute([$curr_date]);
+//
+//                    $sth = $db->prepare("SELECT `questions`.`name`, `contests`.`unlock_value`, `question_id`, `testcase_value`, `testcases` FROM `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` WHERE `contests`.`unlock_value`<=? AND `end`<? AND `admin`<=?");
+//                    $sth->execute([$upper, $curr_date, $user[0]['admin']]);
+//                    $passArr = $sth->fetchAll();
+//                } else {
+//                    $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `admin`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");
+//                    $sth->execute([$lower, $upper, $user[0]['admin'], $bonus]);
+//                    $passArr = $sth->fetchAll();
+//                }
 
-                    $sth = $db->prepare("UPDATE `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` SET `testcase_value`=0 WHERE `end`<?");
-                    $sth->execute([$curr_date]);
+                $sth = $db->prepare("SELECT * FROM `sections` WHERE `division_id`=? ORDER BY `unlock_value`");
+                $sth->execute([$divisions[$i]['division_id']]);
+                $sections = $sth->fetchAll();
 
-                    $sth = $db->prepare("SELECT `questions`.`name`, `contests`.`unlock_value`, `question_id`, `testcase_value`, `testcases` FROM `questions` INNER JOIN `contests` ON `questions`.`contest_id`=`contests`.`contest_id` WHERE `contests`.`unlock_value`<=? AND `end`<? AND `admin`<=?");
-                    $sth->execute([$upper, $curr_date, $user[0]['admin']]);
-                    $passArr = $sth->fetchAll();
-                } else {
-                    $sth = $db->prepare("SELECT * FROM `questions` WHERE `unlock_value`>=? AND `unlock_value`<=? AND `admin`<=? AND `bonus`=? AND `contest_id`=0 ORDER BY `unlock_value`");
-                    $sth->execute([$lower, $upper, $user[0]['admin'], $bonus]);
-                    $passArr = $sth->fetchAll();
-                }
-
-                foreach ($passArr as $value) {
-                    $locked = false;
-                    if ($points < $value['unlock_value']) {
-                        $locked = true;
-                    }
-
-                    $sth = $db->prepare("SELECT MAX(correct_cases) FROM grades WHERE user_id=? AND question_id=?");
-                    $sth->execute([$user_id, $value['question_id']]);
-                    $max = $sth->fetchAll();
-                    if (empty($max)) $max[0][0] = 0;
+                foreach ($sections as $value) {
                 ?>
                     <li class="question">
-                        <?php
-                        if ($locked) {
-                        ?>
-                        <div class="locked">
-                        <?php
-                        }
-                        ?>
-                            <div class="categories">
-                                <div><hr class="line question-line"></div>
-                                <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
-                                    <div class="categories-div">
-                                        <div class="category">
-                                            <h4>Problem</h4>
-                                        </div>
-                                        <div class="category">
-                                            <h4>Unlock Value</h4>
-                                        </div>
-                                        <div class="category">
-                                            <h4>Total Points</h4>
-                                        </div>
-                                    </div>
-                                    <div class="categories-div">
-                                        <div class="category">
-                                            <h5><?php echo $value['name']; ?></h5>
-                                        </div>
-                                        <div class="category">
-                                            <h5><?php echo $value['unlock_value']; ?></h5>
-                                        </div>
-                                        <div class="category">
-                                            <h5><?php echo ($value['testcase_value'] * $value['testcases']);?></h5>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="progress-bar-div">
-                                <div id="progress-wrapper<?php if (!$locked) echo $j; ?>" class="progress-wrap progress" data-progress-percent="<?php echo round(($max[0][0] / $value['testcases']) * 100,2); ?>">
-                                    <div id="progress-bar<?php if (!$locked) echo $j; ?>" class="progress-bar progress"></div>
-                                </div>
-                            </div>
-                        <?php
-                        if ($locked) {
-                        ?>
+                        <div class="categories">
+                            <div><hr class="line question-line"></div>
+                            <a href="https://www.compcs.codes/section?id=<?php echo $value['section_id']; ?>">
+                                <span class="topic"><?php echo $value['name']; ?></span>
+                            </a>
                         </div>
-                        <?php
-                        }
-                        ?>
                     </li>
                 <?php
                     if (!$locked) {
