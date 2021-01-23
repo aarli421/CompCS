@@ -9,10 +9,10 @@
                         <h2 class="wow fadeInUp" data-wow-delay="0.2s">Sponsors</h2>
                     </div>
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
-                        <img class="logo" src="images/wolfram.png"/>
-                        <img class="logo" src="images/logitech.jpg"/>
-                        <img class="logo" src="images/hyperx.png"/>
-                        <img class="logo" src="images/aops.png"/>
+                        <a href="https://www.wolfram.com/"><img class="logo" src="images/wolfram.png"/></a>
+                        <a href="https://www.logitech.com/"><img class="logo" src="images/logitech.jpg"/></a>
+                        <a href="https://www.hyperxgaming.com/"><img class="logo" src="images/hyperx.png"/></a>
+                        <a href="https://artofproblemsolving.com/"><img class="logo" src="images/aops.png"/></a>
 <!--                        <img class="logo" src="images/jetbrains.png"/>-->
                     </address>
                 </div>
