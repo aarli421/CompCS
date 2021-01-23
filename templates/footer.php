@@ -10,6 +10,7 @@
                     </div>
                     <address class="wow fadeInUp" data-wow-delay="0.4s">
                         <img class="logo" src="images/wolfram.png"/>
+                        <img class="logo" src="images/logitechA.png"/>
                         <img class="logo" src="images/hyperx.png"/>
                         <img class="logo" src="images/aops.png"/>
 <!--                        <img class="logo" src="images/jetbrains.png"/>-->
