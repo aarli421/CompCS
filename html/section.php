@@ -25,6 +25,11 @@ $sth = $db->prepare("SELECT `points`, `admin` FROM `users` WHERE `username`=?");
 $sth->execute([$_SESSION['user']]);
 $user = $sth->fetchAll();
 $points = $user[0]['points'];
+
+if ($user[0]['admin'] < $section[0]['admin']) {
+    redirect("home");
+    exit();
+}
 ?>
 <link rel="stylesheet" href="css/progress.css">
 <link rel="stylesheet" href="css/home.css">

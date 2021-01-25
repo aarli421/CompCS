@@ -76,8 +76,8 @@ require '../templates/header.php';
 //                    $passArr = $sth->fetchAll();
 //                }
 
-                $sth = $db->prepare("SELECT * FROM `sections` WHERE `division_id`=? ORDER BY `unlock_value`");
-                $sth->execute([$divisions[$i]['division_id']]);
+                $sth = $db->prepare("SELECT * FROM `sections` WHERE `division_id`=? AND `admin`<=? ORDER BY `unlock_value`");
+                $sth->execute([$divisions[$i]['division_id'], $user[0]['admin']]);
                 $sections = $sth->fetchAll();
 
                 foreach ($sections as $value) {
