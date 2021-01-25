@@ -169,7 +169,7 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
 <p>Schematics for uploading questions:<br>
     Normal Question: Bonus = 0, Admin = 0, Section = Corresponding Section, Contest = 0<br>
     Bonus Question: Bonus = 1, Admin = 0, Section = Corresponding Section, Contest = 0<br>
-    Testing Contest Question: Bonus = 2, Admin = 1, Section = 34, Contest = 0</p>
+    Testing Contest Question: Bonus = 0, Admin = 0, Section = 34, Contest = 0</p>
 <form method="post" action="admin" enctype="multipart/form-data">
     Unlock Value: <input name="unlock_value" type="number" /> <br>
     Test Case Value: <input name="testcase_value" type="number" /> <br>
