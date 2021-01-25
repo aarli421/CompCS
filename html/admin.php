@@ -105,14 +105,14 @@ if (isset($_POST['deleteQuestion']) && isset($_POST['questionName'])) {
     }
 }
 
-if (isset($_POST['editContest']) && isset($_POST['questionName']) && isset($_POST['contestId'])) {
+if (isset($_POST['editContest']) && isset($_POST['questionName']) && isset($_POST['contestId']) && hasValue($_POST['section'])) {
     $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `questions` WHERE `name`=?) LIMIT 1");
     $sth->execute([$_POST['questionName']]);
     $passArr = $sth->fetchAll();
 
     if ($passArr[0][0] != 0) {
-        $sth = $db->prepare("UPDATE `questions` SET `bonus`=0, `admin`=0, `contest_id`=? WHERE `name`=?");
-        $sth->execute([$_POST['contestId'], $_POST['questionName']]);
+        $sth = $db->prepare("UPDATE `questions` SET `bonus`=0, `admin`=0, `section_id`=?, `contest_id`=? WHERE `name`=?");
+        $sth->execute([$_POST['section'], $_POST['contestId'], $_POST['questionName']]);
 
         if (!$sth) {
             $message = "Updating question failed.";
@@ -198,6 +198,7 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
 <form method="post" action="admin">
     Question Name: <input name="questionName"> <br>
     Contest Id: <input name="contestId" type="number"> <br>
+    Section: <input name="section" type="number"> <br>
     <input type="hidden" name="editContest" value="true">
     <input type="submit" value="Change Question to Contest Question">
 </form>
