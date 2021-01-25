@@ -19,7 +19,7 @@ require '../templates/header.php';
 
 $message = "";
 
-if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['bonus']) && isset($_POST['admin']) && isset($_POST['testcase_value']) && isset($_POST['prompt']) && isset($_POST['contest'])) {
+if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_POST['bonus']) && isset($_POST['admin']) && isset($_POST['testcase_value']) && isset($_POST['prompt']) && isset($_POST['contest']) && isset($_POST['section'])) {
     $name = explode(".",  basename($_FILES['questionInput']['name']));
 
     $root = $_SERVER['DOCUMENT_ROOT'];
@@ -42,8 +42,8 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
                 $testAmount = ((int)($ioDirAmount)) / 2;
 //        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
 
-                $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
-                $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['contest']]);
+                $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `section_id`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['section'], $_POST['contest']]);
 
 
                 `sudo $scriptsDirectory/syncQuestion.sh`;
@@ -167,15 +167,16 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
 <section>
 <p id="dialogDiv"><?php echo $message; ?></p>
 <p>Schematics for uploading questions:<br>
-    Normal Question: Bonus = 0, Admin = 0, Contest = 0<br>
-    Bonus Question: Bonus = 1, Admin = 0, Contest = 0<br>
-    Testing Contest Question: Bonus = 2, Admin = 1, Contest = 0</p>
+    Normal Question: Bonus = 0, Admin = 0, Section = Corresponding Section, Contest = 0<br>
+    Bonus Question: Bonus = 1, Admin = 0, Section = Corresponding Section, Contest = 0<br>
+    Testing Contest Question: Bonus = 2, Admin = 1, Section = 34, Contest = 0</p>
 <form method="post" action="admin" enctype="multipart/form-data">
     Unlock Value: <input name="unlock_value" type="number" /> <br>
     Test Case Value: <input name="testcase_value" type="number" /> <br>
     Bonus: <input name="bonus" type="number" /> <br>
     Admin: <input name="admin" type="number" /> <br>
     Contest: <input name="contest" type="number" /> <br>
+    Section: <input name="section" type="number" /> <br>
     Testcases: <input name="questionInput" type="file" /> <br>
     Prompt: <textarea name="prompt"></textarea> <br>
     <input type="submit" value="Send Question" />
