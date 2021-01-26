@@ -52,6 +52,7 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
 
 //        echo 'Successfully uploaded';
             } else {
+                `rm -r $uploadFolder`;
                 $message = "Your input testcase files seem incorrect. Make sure you do not have a folder inside of the zip and instead just have all of the testcases";
             }
         } else {
