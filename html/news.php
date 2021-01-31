@@ -1,7 +1,7 @@
 <?php
 require '../templates/helper.php';
 
-$sth = $db->prepare("SELECT * FROM `posts`");
+$sth = $db->prepare("SELECT * FROM `posts` ORDER BY `timestamp` DESC");
 $sth->execute();
 $posts = $sth->fetchAll();
 
