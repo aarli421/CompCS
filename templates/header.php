@@ -149,7 +149,7 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
                         <?php
                     }
                 ?>
-                <li><a href="news" class="smoothScroll" style="font-size: 18px">News</a></li>
+                <li><a href="rules" class="smoothScroll" style="font-size: 18px">Rules</a></li>
 <!--                <li><a href="leaderboard" class="smoothScroll" style="font-size: 18px">Leaderboard</a></li>-->
 <!--                <li><a href="contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>-->
             </ul>
