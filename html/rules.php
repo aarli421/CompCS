@@ -13,7 +13,7 @@ require '../templates/header.php';
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                    <h2>News</h2>
+                    <h2>Rules</h2>
                 </div>
                 <?php
                 $ind = 1;
