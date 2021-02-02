@@ -42,7 +42,7 @@ if ($user[0]['admin'] < $section[0]['admin']) {
     <div class="container">
         <ol class="home-divisions">
             <?php
-            $sth = $db->prepare("SELECT * FROM `questions` WHERE `section_id`=? ORDER BY `unlock_value`");
+            $sth = $db->prepare("SELECT * FROM `questions` WHERE `section_id`=? AND `contest_id`=0 ORDER BY `unlock_value`");
             $sth->execute([$_GET['id']]);
             $questions = $sth->fetchAll();
 
