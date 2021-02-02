@@ -252,11 +252,11 @@ if (!hasValue($arr['error']) && hasValue($curr)) {
 
     if ($points != 0) {
         $msg = "";
-        if ($contest_id == 0) {
-            $msg = $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".";
-        } else {
-            $msg = $_SESSION['user'] . " tried " . $questionName .  ".";
-        }
+//        if ($contest_id == 0) {
+        $msg = $_SESSION['user'] . " got " . $arr['correct_cases'] . "/" . $question[0]['testcases'] . " testcases on " . $questionName .  ".";
+//        } else {
+//            $msg = $_SESSION['user'] . " tried " . $questionName .  ".";
+//        }
 
         postDiscord($logsChannel, $msg);
     }
