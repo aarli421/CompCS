@@ -145,7 +145,7 @@ if (hasValue($_POST['forgotEmail'])) {
 
         $email->IsHTML(true);
         $email->AddAddress($_POST['forgotEmail'], $user[0]['username']);
-        $email->SetFrom("noreply@compcs.codes", "CompCS");
+        $email->SetFrom("noreply@compcs.org", "CompCS");
         $email->Subject = "CompCS Password Change";
 
         $email->MsgHTML($content);

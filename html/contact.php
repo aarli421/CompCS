@@ -7,7 +7,7 @@ if (hasValue($_POST['name']) && hasValue($_POST['email']) && hasValue($_POST['su
     $data = fgetcsv($handle, 5, ',');
 
     $email = new \SendGrid\Mail\Mail();
-    $email->setFrom("support@compcs.codes", $_POST['name']);
+    $email->setFrom("support@compcs.org", $_POST['name']);
     $email->setSubject($_POST['subject']);
     $email->addTo("compcscodes@gmail.com", "CompCS Administrators");
     $email->addContent(

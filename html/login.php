@@ -14,18 +14,18 @@ require '../templates/header.php';
             var formData = $(this).serialize();
 
             $.ajax({
-                url: "https://www.compcs.codes/ajax/login.php",
+                url: "https://www.compcs.org/ajax/login.php",
                 type: "POST",
                 data: formData,
                 success: function(data) {
                     if (data == "Success") {
                         $("#loginSuccess").css("display", "inline");
-                        $("#loginSuccess").html("Successfully logged you in. Redirecting you... If you are not redirected you can click <a href='http://www.compcs.codes/home'>this</a>.");
+                        $("#loginSuccess").html("Successfully logged you in. Redirecting you... If you are not redirected you can click <a href='http://www.compcs.org/home'>this</a>.");
                         $("#loginError").css("display", "none");
                         $("#loginError").html("");
-                        $(location).attr("href", "https://www.compcs.codes/home");
+                        $(location).attr("href", "https://www.compcs.org/home");
                         // setTimeout(function () {
-                        //     $(location).attr("href", "https://www.compcs.codes/home");
+                        //     $(location).attr("href", "https://www.compcs.org/home");
                         // }, 3000);
                     } else {
                         $("#loginSuccess").css("display", "none");

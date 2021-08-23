@@ -85,7 +85,7 @@ require '../templates/header.php';
                     <li class="question">
                         <div class="categories">
                             <div><hr class="line question-line"></div>
-                            <a href="https://www.compcs.codes/section?id=<?php echo $value['section_id']; ?>">
+                            <a href="https://www.compcs.org/section?id=<?php echo $value['section_id']; ?>">
                                 <span class="topic"><?php echo $value['name']; ?></span>
                             </a>
                         </div>

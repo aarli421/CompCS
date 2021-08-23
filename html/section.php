@@ -88,7 +88,7 @@ if ($user[0]['admin'] < $section[0]['admin']) {
                                 ?>
                                 <div class="categories">
                                     <div><hr class="line question-line"></div>
-                                    <a href="https://www.compcs.codes/question?questionName=<?php echo $value['name']; ?>">
+                                    <a href="https://www.compcs.org/question?questionName=<?php echo $value['name']; ?>">
                                         <div class="categories-div">
                                             <div class="category">
                                                 <h4>Problem</h4>

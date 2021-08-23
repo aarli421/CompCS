@@ -27,7 +27,7 @@ require '../templates/header.php';
             products or services) provided by a third-party that may be displayed, included or made available by the
             Website.</span></li>
         <li class="TOS">Website refers to Competitive Computing Club, accessible from </span><a
-                    href="https://www.compcs.codes/">this website</span></a></li>
+                    href="https://www.compcs.org/">this website</span></a></li>
         <li class="TOS"><span class="TOS">You means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Website, as applicable.</span>
         </li>
     </ul>

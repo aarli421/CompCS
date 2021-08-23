@@ -78,7 +78,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 
                 $email->IsHTML(true);
                 $email->AddAddress($mail, $username);
-                $email->SetFrom("noreply@compcs.codes", "CompCS");
+                $email->SetFrom("noreply@compcs.org", "CompCS");
                 $email->Subject = "CompCS Verification";
 
                 $email->MsgHTML($content);
