@@ -4,7 +4,7 @@ window.setInterval( function() {
     $.ajax({
         cache: false,
         type: "GET",
-        url: "https://www.compcs.codes/ajax/refresh.php",
+        url: "https://www.compcs.org/ajax/refresh.php",
         success: function(data) {
         }
     });

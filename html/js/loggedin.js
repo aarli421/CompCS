@@ -4,10 +4,10 @@ window.setInterval( function() {
     $.ajax({
         cache: false,
         type: "GET",
-        url: "https://www.compcs.codes/ajax/loggedin.php",
+        url: "https://www.compcs.org/ajax/loggedin.php",
         success: function(data) {
             if (data == "Not logged in") {
-                $(location).attr("href", "https://www.compcs.codes/login");
+                $(location).attr("href", "https://www.compcs.org/login");
             }
         }
     });
