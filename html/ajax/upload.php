@@ -169,7 +169,8 @@ try {
 
     if (hasValue($arr['error'])) {
         if (strpos($arr['error'], "Permission denied") !== false || strpos($arr['error'], "not found") !== false) {
-            $arr['error'] = "Server error. Try resubmitting the problem. If this is persistent, please contact compcscodes@gmail.com.";
+            //$arr['error'] = "Server error. Try resubmitting the problem. If this is persistent, please contact compcscodes@gmail.com.";
+            
         }
     }
 
