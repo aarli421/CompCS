@@ -55,7 +55,7 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
-    <script src="js/latex.js"></script>
+    <?php if ($fileName != "admin") { ?><script src="js/latex.js"></script><?php } ?>
 
     <?php
     if (isset($_SESSION['contest'])) {
