@@ -185,6 +185,14 @@ if (hasValue($_POST['changePrompt']) && hasValue($_POST['questionName'])) {
     }
 }
 ?>
+<style>
+    #dialogDiv {
+        padding: 10px;
+        white-space: pre-wrap;
+        background-color: #f8f8f8;
+        font-family: monospace;
+    }    
+</style>
 <section>
 <p id="dialogDiv"><?php echo $message; ?></p>
 <p>Schematics for uploading questions:<br>
