@@ -175,7 +175,7 @@ if (hasValue($_POST['changePrompt']) && hasValue($_POST['questionName'])) {
         $sth->execute([$_POST['questionName']]);
         $question = $sth->fetchAll();
 
-        $message .= '\n' . $question['prompt'];
+        $message .= '' . $question[0]['prompt'];
 
         if (!$sth) {
             $message = "Updating question failed.";
