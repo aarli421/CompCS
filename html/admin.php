@@ -40,7 +40,7 @@ if (isset($_FILES['questionInput']) && isset($_POST['unlock_value']) && isset($_
 
             if ($ioDirAmount % 2 == 0) {
                 $testAmount = ((int)($ioDirAmount)) / 2;
-//        `sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
+//        ` sudo $scriptsDirectory/executeAsUser.sh questionsadmin "unzip $uploadFile -d $targetFolder; rm $uploadFile"`;
 
                 $sth = $db->prepare("INSERT INTO `questions` (`name`, `prompt`, `unlock_value`, `testcase_value`, `testcases`, `admin`, `bonus`, `section_id`, `contest_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
                 $sth->execute([$name[0], $_POST['prompt'], $_POST['unlock_value'], $_POST['testcase_value'], $testAmount, $_POST['admin'], $_POST['bonus'], $_POST['section'], $_POST['contest']]);
@@ -164,6 +164,26 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
 
     $message = $time;
 }
+
+if (hasValue($_POST['changePrompt']) && hasValue($_POST['questionName'])) {
+    $sth = $db->prepare("SELECT EXISTS(SELECT * FROM `questions` WHERE `name`=?) LIMIT 1");
+    $sth->execute([$_POST['questionName']]);
+    $passArr = $sth->fetchAll();
+
+    if ($passArr[0][0] != 0) {
+        $sth = $db->prepare("SELECT * FROM `questions` WHERE `name`=?");
+        $sth->execute([$_POST['questionName']]);
+        $question = $sth->fetchAll();
+
+        $message .= '\n' . $question['prompt'];
+
+        if (!$sth) {
+            $message = "Updating question failed.";
+        }
+    } else {
+        $message = "This question does not exist.";
+    }
+}
 ?>
 <section>
 <p id="dialogDiv"><?php echo $message; ?></p>
@@ -215,6 +235,12 @@ if (hasValue($_POST['time']) && hasValue($_POST['contestId']) && hasValue($_POST
     User Id: <input name="userId" type="number"> <br>
     <input type="hidden" name="time" value="true">
     <input type="submit" value="Get Time">
+</form>
+<br>
+<form method="post" action="admin">
+    Question Name: <input name="questionName"> <br>
+    <input type="hidden" name="changePrompt" value="true">
+    <input type="submit" value="Get Prompt">
 </form>
 </section>
 <?php
