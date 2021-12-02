@@ -154,6 +154,17 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
 <!--                <li><a href="contact" class="smoothScroll" style="font-size: 18px">Contact</a></li>-->
             </ul>
 
+            <div class="navbar-header">
+                <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px; text-align: left;">
+                    Partnered<span><br>with</span>
+                </a>
+
+                <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
+                    <img src="images/tc.png" alt="" width="67" height="67" style="padding-bottom: 10px">
+                </a>
+
+            </div>
+
 
             <?php
             if (isset($_SESSION['user'])) {
