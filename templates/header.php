@@ -155,8 +155,8 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
             </ul>
 
             <div class="navbar-header">
-                <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 25px; font-size: 16px; text-align: left;">
-                    Partnered<span><br>with</span>
+                <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 25px; padding-right: 25px; font-size: 14px; text-align: left;">
+                    Partnered<span style="color: black;"><br>with</span>
                 </a>
 
                 <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
