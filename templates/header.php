@@ -159,7 +159,7 @@ $fileName = basename($_SERVER["SCRIPT_FILENAME"], '.php');
                     Partnered<span style="color: black;"><br>with</span>
                 </a>
 
-                <a href="index" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
+                <a href="https://www.teamscode.org/" class="navbar-brand" style="padding: 1px; padding-left: 0px;">
                     <img src="images/tc.png" alt="" width="67" height="67" style="padding-bottom: 10px">
                 </a>
 
