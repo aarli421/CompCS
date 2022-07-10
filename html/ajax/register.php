@@ -40,50 +40,50 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 //            $msg = `sudo $scriptsDirectory/createUser.sh $username $password`;
 
 //            if (!hasValue($msg)) {
-                $host = $_SERVER["HTTP_HOST"];
-                $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-                $verLink = 'https://' . $host . '/verify?email=' . $mail . '&hash=' . $hash;
-
-                $handle = fopen('../../private/keys.csv', 'r');
-                $data = fgetcsv($handle, 5, ',');
-
-                $content = file_get_contents("../emails/register.html");
-                $search = "{}";
-
-                $pos = strpos($content, $search);
-                if ($pos !== false) {
-                    $content = substr_replace($content, $username, $pos, strlen($search));
-                } else {
-                    die("Server error.");
-                }
-
-                $pos = strpos($content, $search, $pos + 1);
-                if ($pos !== false) {
-                    $content = substr_replace($content, $verLink, $pos, strlen($search));
-                } else {
-                    die("Server error.");
-                }
-
-                $email = new PHPMailer\PHPMailer\PHPMailer();
-                $email->IsSMTP();
-                $email->Mailer = "smtp";
-
-                //$mail->SMTPDebug  = 1;
-                $email->SMTPAuth   = TRUE;
-                $email->SMTPSecure = "tls";
-                $email->Port       = 587;
-                $email->Host       = "smtp.gmail.com";
-                $email->Username   = "compcscodes@gmail.com";
-                $email->Password   = $data[3];
-
-                $email->IsHTML(true);
-                $email->AddAddress($mail, $username);
-                $email->SetFrom("noreply@compcs.org", "CompCS");
-                $email->Subject = "CompCS Verification";
-
-                $email->MsgHTML($content);
-
-                if ($email->Send()) {
+//                $host = $_SERVER["HTTP_HOST"];
+//                $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
+//                $verLink = 'https://' . $host . '/verify?email=' . $mail . '&hash=' . $hash;
+//
+//                $handle = fopen('../../private/keys.csv', 'r');
+//                $data = fgetcsv($handle, 5, ',');
+//
+//                $content = file_get_contents("../emails/register.html");
+//                $search = "{}";
+//
+//                $pos = strpos($content, $search);
+//                if ($pos !== false) {
+//                    $content = substr_replace($content, $username, $pos, strlen($search));
+//                } else {
+//                    die("Server error.");
+//                }
+//
+//                $pos = strpos($content, $search, $pos + 1);
+//                if ($pos !== false) {
+//                    $content = substr_replace($content, $verLink, $pos, strlen($search));
+//                } else {
+//                    die("Server error.");
+//                }
+//
+//                $email = new PHPMailer\PHPMailer\PHPMailer();
+//                $email->IsSMTP();
+//                $email->Mailer = "smtp";
+//
+//                //$mail->SMTPDebug  = 1;
+//                $email->SMTPAuth   = TRUE;
+//                $email->SMTPSecure = "tls";
+//                $email->Port       = 587;
+//                $email->Host       = "smtp.gmail.com";
+//                $email->Username   = "compcscodes@gmail.com";
+//                $email->Password   = $data[3];
+//
+//                $email->IsHTML(true);
+//                $email->AddAddress($mail, $username);
+//                $email->SetFrom("noreply@compcs.org", "CompCS");
+//                $email->Subject = "CompCS Verification";
+//
+//                $email->MsgHTML($content);
+//
+//                if ($email->Send()) {
                     $sql = "
                 INSERT INTO `users` (`username`, `password`, `email`, `school`, `hash`)
                 SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? as `school`, ? AS `hash`) AS temp 
@@ -97,9 +97,9 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 //                        `mkdir ../users/$username`;
 
                     echo "Success";
-                } else {
-                    die("Mail was unable to send.");
-                }
+//                } else {
+//                    die("Mail was unable to send.");
+//                }
             } else {
                 echo "Your school is not registered as part of CCC.";
             }
