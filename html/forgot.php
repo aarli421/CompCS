@@ -83,7 +83,8 @@ if (hasValue($_GET['hash']) && hasValue($_GET['email'])) {
     </div>
     <div class="form-content">
         <form id="forgot" action="forgot" method="post">
-            <div class="form-group"><label for="forgotEmail">Email</label><input type="email" id="forgotEmail" name="forgotEmail" required="required" /></div>
+            <h6 class="text-danger">Our forgot password service is currently down, if you think this is an issue please contact compcscodes@gmail.com.</h6>
+<!--            <div class="form-group"><label for="forgotEmail">Email</label><input type="email" id="forgotEmail" name="forgotEmail" required="required" /></div>-->
             <div class="form-group"><button form="forgot" type="submit">Request Change</button></div>
         </form>
     </div>

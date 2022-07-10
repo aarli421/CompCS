@@ -94,7 +94,7 @@ $schools = $sth->fetchAll();
                 success: function(data) {
                     if (data == "Success") {
                         $("#registerSuccess").css("display", "inline");
-                        $("#registerSuccess").html("You are successfully registered! Please verify your account through the email that was just sent.");
+                        $("#registerSuccess").html("You are successfully registered!");
                         $("#registerError").css("display", "none");
                         $("#registerError").html("");
 
