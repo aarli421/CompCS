@@ -85,7 +85,7 @@ if (hasValue($_POST['signUpUsername']) && hasValue($_POST['signUpPassword']) && 
 //
 //                if ($email->Send()) {
                     $sql = "
-                INSERT INTO `users` (`username`, `password`, `email`, `school`, `hash`)
+                INSERT INTO `users` (`username`, `password`, `email`, `school`, `hash`, `active`)
                 SELECT * FROM (SELECT ? AS `username`, ? AS `password`, ? AS `email`, ? as `school`, ? AS `hash`, ? as `active`) AS temp 
                 WHERE NOT EXISTS (SELECT * FROM `users` WHERE `username`=? OR `email`=?) LIMIT 1;";
                     $sth = $db->prepare($sql);
