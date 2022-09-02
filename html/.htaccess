@@ -4,6 +4,10 @@ RewriteEngine On
 RewriteCond %{HTTPS}  !=on 
 RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R=301,L]
 
+# Redirect to www
+RewriteCond %{HTTP_HOST} ^compcs.org$
+RewriteRule (.*) https://www.compcs.org%{REQUEST_URI} [R=301,L]
+
 # Remove php extension
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]

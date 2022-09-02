@@ -61,7 +61,7 @@ require '../templates/header.php';
                     </div>
 
                     <div class="wow fadeInUp" data-wow-delay="0.4s">
-                        <p>With the rapid development of the Computer Science Industry comes new styles of computing competitions for high school students.
+                        <p>With the rapid development of the computer science industry comes new styles of computing competitions for high school students.
                             Our goal is to help high school students who are interested in pursuing CS-related majors by preparing them for competitions like
                             USACO, Codeforces, etc. Our team has handpicked essential algorithms, and data structures tested in said competitions and put them
                             in our curriculum. As we teach the curriculum, we will have either created or selected a problem to test your understanding of each algorithm. </p>
