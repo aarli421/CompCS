@@ -98,6 +98,97 @@ require '../templates/header.php';
 
             <div class="col-md-4 col-sm-4">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                    <img src="images/team-image7.png" class="img-responsive" alt="">
+                    <div class="team-hover">
+                        <div class="team-item">
+                            <h4></h4>
+                            <ul class="social-icon">
+                                <li><a href="https://www.facebook.com/adrish.kar.796" target="_blank" class="fa fa-facebook"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Adrish Kar</h3>
+                    <p>President</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
+                    <img src="images/team-image8.jpg" class="img-responsive" alt="">
+                    <div class="team-hover">
+                        <div class="team-item">
+                            <h4></h4>
+                            <ul class="social-icon">
+                               <!-- <li><a href="#" class="fa fa-github"></a></li> -->
+                                <li><a href="https://www.facebook.com/varunragu23" target="_blank" class="fa fa-facebook"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Varun Ragunath</h3>
+                    <p>Vice President</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
+                    <img src="images/team-image5.jpg" class="img-responsive" alt="">
+                    <div class="team-hover">
+                        <div class="team-item">
+                            <h4></h4>
+                            <ul class="social-icon">
+<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
+                                <li><a href="https://www.facebook.com/manas.korimilli" target="_blank" class="fa fa-facebook"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Manas Korimilli</h3>
+                    <p>Vice President</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="0.8s">
+                    <img src="images/team-image9.jpg" class="img-responsive" alt="">
+                    <div class="team-hover">
+                        <div class="team-item">
+                            <h4></h4>
+                            <ul class="social-icon">
+<!--                                <li><a href="#" class="fa fa-github"></a></li>-->
+                                <li><a href="https://www.facebook.com/ruilin808" target="_blank" class="fa fa-facebook"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3>Ray Lin</h3>
+                    <p>Secretary</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!--FOUNDERS-->
+<section id="founders" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                    <h2>Meet our founders</h2>
+                    <h4>Login to facebook to view profiles</h4>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
                     <img src="images/team-image1.png" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
@@ -111,7 +202,6 @@ require '../templates/header.php';
                 </div>
                 <div class="team-info">
                     <h3>Aaron Li</h3>
-                    <p>President</p>
                 </div>
             </div>
 
@@ -130,7 +220,6 @@ require '../templates/header.php';
                 </div>
                 <div class="team-info">
                     <h3>Andrew Zheng</h3>
-                    <p>Vice President</p>
                 </div>
             </div>
 
@@ -149,7 +238,6 @@ require '../templates/header.php';
                 </div>
                 <div class="team-info">
                     <h3>Brandon Liu</h3>
-                    <p>Publicist</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4">
@@ -167,26 +255,10 @@ require '../templates/header.php';
                 </div>
                 <div class="team-info">
                     <h3>Austin Wang</h3>
-                    <p>Secretary</p>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="team-thumb wow fadeInUp" data-wow-delay="1.0s">
-                    <img src="images/team-image5.jpg" class="img-responsive" alt="">
-                    <div class="team-hover">
-                        <div class="team-item">
-                            <h4></h4>
-                            <ul class="social-icon">
-                                <li><a href="https://www.facebook.com/manas.korimilli.5" target="_blank" class="fa fa-facebook"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <h3>Manas Korimilli</h3>
-                    <p>Instructor</p>
-                </div>
-            </div>
+            
+            <!--
             <div class="col-md-4 col-sm-4">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="1.2s">
                     <img src="images/team-image6.jpg" class="img-responsive" alt="">
@@ -204,6 +276,7 @@ require '../templates/header.php';
                     <p>Instructor</p>
                 </div>
             </div>
+-->
         </div>
     </div>
 </section>
