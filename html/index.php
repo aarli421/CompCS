@@ -176,7 +176,7 @@ require '../templates/header.php';
 </section>
 
 <!--FOUNDERS-->
-<section id="founders" data-stellar-background-ratio="0.5">
+<section id="team" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row">
 
