@@ -98,7 +98,7 @@ require '../templates/header.php';
 
             <div class="col-md-4 col-sm-4">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                    <img src="images/team-image7.png" class="img-responsive" alt="">
+                    <img src="images/team-image7.jpg" class="img-responsive" alt="">
                     <div class="team-hover">
                         <div class="team-item">
                             <h4></h4>
